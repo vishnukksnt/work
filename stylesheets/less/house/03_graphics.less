@@ -1,0 +1,155 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+
+/* Global icons         ==================================*/
+    .icons {
+        background-image: @icons;
+        background-repeat: no-repeat;
+        border: 0;
+        .show;
+
+        /* Guest icons ***/
+        &.check-in { background-position: 5px -75px; }
+        &.check-out { background-position: 5px -115px; }
+        &.inhouse { background-position: 5px -155px; }
+
+        /* Room list icons ***/
+        &.icon-search {
+            background-color: transparent;
+            background-position: 0 -200px;
+            .square(20px);
+            .hide-text;
+        }
+        &.icon-clear-search {
+            background-color: transparent;
+            background-position: 4px -236px;
+            .square(15px);
+            .hide-text;
+        }
+        &.icon-filter { background-position: 0 -280px; }
+        &.icon-filter.active { background-position: 0 -320px; }
+
+        /* Room details icons ***/
+        &.icon-room { 
+            background-position: 0 -428px; 
+
+            @media only screen and (min-width : 768px) {
+                background-position: 0 -740px; 
+            }
+        }
+
+        &.icon-vacant {
+            background-position: 0 -640px;
+            margin: 0 auto;
+            .size(60px, 52px);
+            .show;
+
+            @media only screen and (min-width : 600px) {
+                background-position: 0 -890px;
+                .size(120px, 104px);
+            }            
+        }
+       
+        @media @highdpi {
+            background-image: @icons2x;
+            background-size: 120px;
+        }
+    }
+
+    .guest-status {
+        background-image: @icons;
+        background-repeat: no-repeat;
+        border: 0;
+        .hide-text;
+        .show;
+
+        &.check-out { background-position: 8px -512px; }
+        &.late-check-out { background-position: 8px -552px; }
+        &.inhouse { background-position: 8px -592px; }
+
+        @media @highdpi {
+            background-image: @icons2x;
+            background-size: 120px;
+        }
+    }
+
+/* Menu icons           ==================================*/
+    .icon-toggle,
+    .icon-back {
+        background-image: @icons;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        .hide-text;
+        .square(40px);
+        .show;
+        .no-transition;
+
+        @media only screen and (min-width: 600px) and (min-device-width: 533px) {
+            background-color: @logoGradientStart;
+            background-image: @iconMenu, @darkTexture;
+            background-repeat: no-repeat, repeat;
+            #border-radius > .right();
+            .box-shadow(inset 0 -2px 0 rgba(0,0,0,.2));
+        }
+    }
+
+    .icon-toggle {
+        background-position: 10px 12px;
+        &.active { background-position: 10px -28px;}
+
+        @media only screen and (min-width: 600px) and (min-device-width: 533px) {
+            background-position: -10px -10px, 0 0;
+            
+            &:hover,
+            &.active { background-position: -70px -10px, 0 0; }
+        }
+    }
+
+    .icon-back {
+        background-position: 10px -348px;
+        &:active { background-position: 10px -388px;}
+
+        @media only screen and (min-width: 600px) and (min-device-width: 533px) {
+            background-position: -12px -490px, 0 0;
+
+            &:hover,
+            &.active { background-position: -72px -490px, 0 0; }
+        }
+    }
+
+/* Misc                 ==================================*/
+    .vip {
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 22px;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0;
+        margin: 0;
+        color: rgba(0,0,0,.5);
+        text-shadow: none;
+        background: @yellow;
+        .square(20px);
+        #border-radius > .rounded(20px);
+
+        @media only screen and (min-width: 600px) and (min-device-width: 533px) {
+            font-size: 14px;
+            line-height: 36px;
+            .square(32px);
+            #border-radius > .rounded(32px);
+        }
+    }
+
+/* 4. LAYOUT
+==========================================================*/
+/* 5. COMPONENTS
+==========================================================*/
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

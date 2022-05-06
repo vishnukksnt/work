@@ -1,0 +1,502 @@
+/* Header ***/
+.overbooking-header {
+    position: relative;
+    padding: 10px;
+    background: @white;
+    z-index: 40;
+    display: flex;
+    .box-shadow(0 1px 2px 1px rgba(0,0,0,.1));
+    .size(60px, 100%);
+    #flexbox > .parent(row wrap, '', '', '');
+
+    .entry {
+        #flexbox > .parent(row wrap, '', '', '');
+
+        &:not(.date):not(.actions):not(.budgets-for):not(.type-filters) {
+            display: none;
+        }
+
+        &.budgets-for {
+            margin-right: 10px;
+        }
+    }
+
+    .entry-data {
+        background: @grey1 @calendar no-repeat 94% 10px;
+        background-size: 20px;
+        position: relative;
+        margin:0 5px;
+        #border-radius > .rounded();
+        .box-shadow();
+        .calc-width(100, 90);
+        height: 40px;
+        .show;
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            cursor: pointer;
+            .square(100%);
+            .opacity(0);
+        }
+
+        .date-range {
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+            padding-left: 10px;
+        }
+
+        @media @highdpi {
+            background-image: @calendar2x;
+        }
+
+        &:hover { background-position: 94% -40px; }
+    }
+
+    .date {
+        padding-right: 10px;
+        width: calc(~'100% - 40px');
+
+        .button {
+            background-color: @grey1;
+            .square(40px);
+        }
+
+        .icon-double-arrow {
+            background-size: 96px;
+            background-position: 3px -1227px;
+        }
+    }
+
+    .actions {
+
+        .button {
+            position: relative;
+            text-indent: -9999px;
+            .square(40px);
+
+            &.blue {
+                display: none;
+            }
+
+            &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: '+';
+                font-size: 18px;
+                line-height: 40px;
+                text-indent: 0;
+                display: block;
+                .square(100%);
+            }
+        }
+    }
+}
+
+/* Content ***/
+.overbooking-content {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    z-index: 20;
+    width: 100vw;
+    .calc-height(100, 110);
+    #flexbox > .parent(row nowrap, '', '', '');
+
+    .row {
+        overflow: hidden;
+        .size(40px, 100%);
+        #flexbox > .parent(row nowrap, '', '', '');
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+
+    .cell {
+        position: relative;
+        cursor: pointer;
+        line-height: 40px;
+        background: @white;
+        text-align: right;
+        .size(40px, 80px);
+        .transition();
+        #flexbox > .parent(row nowrap, '', '', '');
+        #border-radius > .rounded();
+
+        .rooms {
+            font-size: 14px;
+            font-style: italic;
+            color: rgba(0,0,0,.4);
+            background-color: rgba(0,0,0,.05);
+            width: 40px;
+            padding: 0 10px;
+            overflow: hidden;
+            .transition();
+
+            &.unavailable {
+                color: @red;
+            }
+        }
+
+        .limit {
+            padding: 0 10px;
+            width: 40px;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 1px 1px 1px rgba(0,0,0,.2);
+            .show();
+            .square(100%);
+            #border-radius > .rounded();
+        }
+
+        &.weekend {
+            background-color: #f5fcff;
+        }
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 1px 1px 2px rgba(0,0,0,.2);
+        }
+
+        &:active {
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 0 0 2px rgba(0,0,0,.4);
+        }
+    }
+
+    .iScrollVerticalScrollbar { 
+        top: 10px;
+        right: 10px;
+    }
+
+    .iScrollHorizontalScrollbar {
+        top: auto;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    /* Timeline with dates and house limit ***/
+    .overbooking-timeline {
+        position: relative;
+        background-color: @gcard;
+        .size(95px, 100%);
+        #flexbox > .parent(column wrap, flex-end, '', '');
+
+        .wrapper {
+            padding: 5px;
+        }
+
+        .iScrollHorizontalScrollbar {
+            .hide();
+        }
+
+         .label {
+            color: @white;
+            margin-top: auto;
+            margin-left: auto;
+            text-align: right;
+            font-weight: 600;
+            line-height: 1.2;
+            min-height: 40px;
+        }
+
+
+        .day{
+            cursor: default;
+            color: @white;
+            line-height: 1;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: rgba(0,0,0,.2);
+            padding: 7px 5px;
+            flex-wrap: wrap;
+
+            span {
+                font-size: 12px;
+                width: 100%;
+                .show();
+            }
+
+            strong {
+                font-weight: 600;
+                font-size: 14px;
+                width: 100%;
+            }
+                
+            &.weekend {
+                background-color: #5d808e;
+            }
+
+            &:after {
+                .hide();
+            }
+
+            &:hover,
+            &:active {
+                box-shadow: none;
+            }
+
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+
+        .limit {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+
+    /* Grid with rows ***/
+    .overbooking-grid {
+        position: relative;
+        width: 100%;
+        .calc-height(100, 95);
+
+        .wrapper {
+            padding: 5px;
+        }
+    }
+
+    /* Room Types (left side) ***/
+    .overbooking-rooms {
+        width: 140px;
+        
+        .row {
+            font-size: 14px;
+            line-height: 1;
+            text-transform: uppercase;
+            text-align: right;
+            padding: 0 5px;
+            height: 40px;
+            overflow: hidden;
+            #flexbox > .parent(column wrap, center, flex-end, '');
+        }
+
+        .iScrollVerticalScrollbar {
+            .hide();
+        }
+    }
+
+    /* Overbooking Limits (right side) ***/
+    .overbooking-limits {
+        width: calc(~'100vw - 140px');
+        box-shadow: 0 -2px 3px rgba(0,0,0,.4);
+
+        .wrapper {
+            width: 1195px;
+        }
+    }
+
+    &.budgets-content {
+
+        .cell {
+            width: 140px;
+            flex-shrink: 0;
+
+            strong {
+                font-weight: 600;
+            }
+
+            &.total {
+                pointer-events: none;
+                &:after {
+                    box-shadow: none;
+                }
+                &.last-cell {
+                    width: 180px;
+                    margin-left: 5px;
+                    background: transparent;
+
+                    &:before {
+                        content: '';
+                        width: 2px;
+                        height: calc(~"100% + 5px"); // .row adds 5px margin bottom.
+                        background: rgba(0,0,0,0.15);
+                        display: block;
+                        position: absolute;
+                        left: -6px;
+                    }
+                }
+            }
+        }
+
+        .row {
+            &.total {
+                height: 50px;
+                padding-top: 5px;
+                border-top: 2px solid rgba(0,0,0,0.15);
+
+                .cell {
+
+                    &.total {
+                        background: transparent;
+
+                        &.last-cell {
+                            .budget {
+                                font-size: 16px;
+                            }
+                            &:before {
+                                bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        &.showing-nights {
+            .cell {
+                width: 140px;
+
+                &.total {
+                    &.last-cell {
+                        width: 180px;
+                    }
+                }
+            }
+
+            .overbooking-timeline {
+                .cell {
+                    &.total {
+                        width: 180px;
+                    }
+                }
+            }
+        }
+
+        .overbooking-timeline {
+            height: 50px;
+
+            .wrapper {
+                padding: 0 5px 0 0;
+
+                .row {
+                    padding: 5px 0 5px 5px;
+                    height: 50px;
+                }
+            }
+
+            .day {
+                &.weekend {
+                    background: #4C6D7B;
+                }
+            }
+
+            .back-button {
+                background-size: 100px;
+                background-position: 10px -1320px;
+                padding-left: 35px;
+                padding-right: 10px;
+                border-radius: 5px;
+                background-color: white;
+                width: 100%;
+                text-indent: inherit;
+                line-height: 40px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            .cell {
+                
+                &.total {
+                    width: 180px;
+                    margin-left: 5px;
+
+                    strong {
+                        #flexbox > .parent( '', center, center, '' );
+                    }
+
+                    &:before {
+                        content: '';
+                        width: 2px;
+                        height: calc(~'100% + 10px');
+                        background: rgba(0,0,0,0.35);
+                        display: block;
+                        position: absolute;
+                        left: -6px;
+                        top: -5px;
+                    }
+                }
+            }
+        }
+
+        .overbooking-grid {
+            .calc-height(100, 50);
+
+            .wrapper {
+                padding-top: 0;
+                .row {
+                    overflow: inherit;
+                    &:first-child {
+                        height: 45px;
+                        padding-top: 5px;
+
+                        .cell {
+                            &:before {
+                                height: calc(~'100% + 10px');
+                                 
+                                top: -5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .overbooking-limits {
+            width: calc(~'100vw - 160px');
+
+            .wrapper {
+                padding-left: 0;
+
+                .row {
+                    padding-left: 5px;
+                }
+            }
+        }
+
+        .overbooking-rooms {
+            width: 160px;
+
+            .wrapper {
+                padding-left: 0;
+                padding-right: 0;
+
+                .row {
+                    padding-left: 10px;
+                    padding-right: 10px;
+
+                    &:first-child {
+                        height: 45px;
+                    }
+
+                    &.total {
+                        height: 47px;
+                    }
+                }
+            }
+
+            .overbooking-timeline {
+                padding: 5px;
+
+                select {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

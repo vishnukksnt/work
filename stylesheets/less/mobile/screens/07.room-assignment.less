@@ -1,0 +1,413 @@
+#room-assignment {
+
+    > .wrapper {
+        padding: 0 !important;
+        width: 100%;
+        height: 100%;
+    }
+
+    .room-assignment-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        /* Room nubmer ***/
+        .room-number {
+            font-size: 24px;
+            line-height: 40px;
+            margin-right: 10px;
+
+            &.room-green { color: @green; }
+            &.room-red { color: @red; }
+            &.room-orange { color: @logoPrimary; }
+        }
+
+        /* Rooms listing and search form ***/
+        .rooms-listing {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            
+            /* Search form ***/
+            .search {
+                padding: 10px;
+                background-color: rgba(0,0,0,.1);
+                box-shadow: 0 1px 0 rgba(0,0,0,.1);
+                display: flex;
+                flex-flow: row wrap;
+
+                .button {
+                    padding: 0;
+                    margin-right: 10px;
+                    .square(40px);
+                    .pull-left; 
+
+                    &.active {
+                        .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.3)");
+                        .gradient (@logoGradientEnd, @logoGradientStart);
+                    }
+                }
+
+                .select {
+                    width: 200px;
+                }
+               
+                .search-query-input {
+                    position: relative; 
+                    flex: 1;
+                    margin-right: 10px;
+                    height: 40px;
+                    .transition();
+
+                    input { width: 100%; }
+
+
+                    .icon-search {
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                        z-index: 99;
+                    }
+
+                    .clear-query {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        z-index: 99;
+                        visibility: hidden;
+                        .square(40px);
+
+                        .icons {
+                            position: absolute;
+                            top: 12.5px;
+                            right: 12.5px;
+                            background-color: @grey2;
+                            .hide-text;
+                            .square(15px);
+                            .opacity(0);
+                            .show;
+                            #fade > .out();
+                            #border-radius > .rounded(15px);
+                        }
+
+                        &.visible { 
+                            visibility: visible;
+
+                            .icons {    
+                                .opacity(100); 
+                                #fade > .in(); 
+                            }
+                        }
+
+                        &:hover,
+                        &.active { 
+                            .icons { background-color: @logoPrimary; }
+                        }
+                    }
+
+                    .query {
+                        width: 100%;
+                        font-size: 21px;
+                        font-weight: 700;
+                        padding-left: 30px;
+                        color: @logoPrimary; 
+                        z-index: 9;
+                        .box-shadow(inset 1px 1px 0 rgba(0,0,0,.15));
+                        #border-radius > .rounded(25px);
+
+                        &:focus,
+                        &:active { .box-shadow(inset 1px 1px 0 rgba(0,0,0,.3)); }
+                    }
+                }
+
+                &.only-filters {
+                    .select {
+                        flex: 1;
+                        width: auto;
+                    }
+                }
+            }
+
+            /* Attributes filers and results ***/
+            .results {
+                position: relative;
+                overflow: hidden;
+                height: calc(~'100% - 60px');
+
+                .scrollable {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+
+                    .wrapper {
+                        padding: 10px;
+                    }
+                }
+
+                .no-content {
+                    display: flex;
+                    flex-flow: column wrap;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                /* Room attributes ***/
+                .attributes {
+                    
+                    
+                    .action {
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+
+                        .button {
+                            font-size: 14px;
+                            line-height: 50px;
+                            width: 100%;
+                            .show;
+                        }
+                    }
+
+                    .entry {
+                        padding: 5px 0;
+                        margin-bottom: 0;
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+
+                        .radio,
+                        .checkbox { 
+                            font-size: 14px;
+                            line-height: 30px;
+                            height: 30px;
+                            margin-bottom: 0;
+                            float: none; 
+                            width: 100%;
+                            .show;
+
+                            .icon-form { top: 5px; }
+                        }
+
+                        .select {
+                            margin: 5px 0;
+
+                            select {
+                                font-size: 14px;
+                                line-height: 30px;
+                                height: 30px;
+                            }
+                        }
+
+                        &:first-child { padding-top: 0; }
+                        &:last-child { border-bottom: 0; }
+                    }
+                }
+
+                /* Room results ***/
+                .rooms {
+
+                    li {
+                        margin-bottom: 10px;
+
+                        .button {
+                            padding: 0 10px;
+                            text-align: left;
+                            width: 100%;
+                            position: relative;
+                            .nowrap();
+
+                            .icon-suite {
+                                position: absolute;
+                                right: 10px;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                            }
+
+                            .room-indicators {
+                                position: absolute;
+                                right: 10px;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                                #flexbox > .parent( '', '', center, '' );
+                        
+                                .room-indicator {
+                                    .icon-suite {
+                                        position: static;
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.with-pagination {
+                    height: calc(~'100% - 120px');
+                }
+            }
+        }
+
+        .upgrades {
+            position: relative;
+            height: 100%;
+            display: none;
+            .gradient (@logoGradientStart, @logoGradientEnd);
+
+            .wrapper {
+                display: flex;
+                flex-flow: row wrap;
+                height: calc(~'100% - 70px');
+            }
+
+            .available-title {
+                color: @white;
+                font-weight: 600;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+                text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+            }
+
+            li {
+                position: relative;
+                padding: 0;
+                background: @white;
+
+                .upgrade-title {
+                    padding: 0 10px;
+                    height: 50px;
+                    overflow: hidden;
+
+                    .room-number,
+                    h2 { 
+                        font-weight: 600;
+                        line-height: 50px;
+                        clear: none;
+                        .pull-left;
+                    }
+
+                    h2 {
+                        max-width: 50%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    .toggle {
+                        font-weight: 600;
+                        line-height: 50px;
+                        text-transform: uppercase;
+                        padding-right: 30px;
+                        .pull-right;
+                    }
+
+                    .icon-suite {
+                        .pull-right;
+                        margin-top: 15px;
+                        margin-right: 20px;
+                    }
+                }
+
+                .room-details {
+                    margin: 0 10px;
+                    height: 100%;
+                    background: @white;
+
+                    li {
+                        list-style-type: disc;
+                        font-size: 14px;
+                        line-height: 21px;
+                        min-height: 21px;
+                        margin: 0 0 5px 20px;
+                        color: @grey4;
+                        #border-radius > .top(0);
+                        .box-shadow(none);
+                    }
+                }
+
+                .button {
+                    position: absolute;
+                    left: 10px;
+                    bottom: 10px;
+                    line-height: 50px;
+                    z-index: 99;
+                    .calc-width(100, 20);
+                }
+
+                .room-image {
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        #border-radius > .bottom();
+                    }
+                }
+            }
+
+            .wrapper > li {
+                line-height: 10px;
+                margin: 10px;
+                height: calc(~'100% - 10px');
+                width: calc(~'100vw - 20px');
+                overflow: hidden;
+                #border-radius > .rounded();
+                .box-shadow();
+            }
+
+            .iScrollVerticalScrollbar { .hide; }
+        }
+
+        &.has-room { 
+            height: calc(~'100% - 60px');
+        } 
+
+        &.only-upgrades {
+
+            .upgrades {
+                display: block;
+            }
+
+            .iScrollHorizontalScrollbar { 
+                .iScrollIndicator {
+                    background: rgba(0,0,0,.2);
+                }
+            }
+
+            #no-thanks {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                line-height: 50px;
+            }
+        }
+    }
+
+    .room-assignment-actions {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        background-color: @white;
+        box-shadow: 0 -1px 2px rgba(0,0,0,.2);
+        z-index: 9000;
+
+        .button {
+            font-size: 14px;
+            line-height: 1.2;
+            padding: 0 10px;
+            height: 40px;
+            max-width: 50%;
+            margin: 10px 0;
+
+            &:not(:first-child) {
+                margin-left: 10px;
+            }            
+        }
+
+    }
+}

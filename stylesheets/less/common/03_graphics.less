@@ -1,0 +1,583 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+
+/* Menu icons			==================================*/
+	.icon-menu {
+        background-image: @iconMenu;
+        background-repeat: no-repeat;
+        background-size: 40px;
+        .nowrap();
+        .size(50px, 100%);
+        .show;
+        
+        &.icon-dashboard { 
+			background-position: 0 -365px;
+			&.active { background-position: 0 -425px;}
+		}
+
+		&.icon-frontdesk { 
+			background-position: 0 -485px;
+			&.active { background-position: 0 -545px;}
+		}
+
+		&.icon-actions { 
+			background-position: 0 -605px;
+			&.active { background-position: 0 -665px;}
+		}
+
+		&.icon-revenue { 
+			background-position: 0 -725px;
+			&.active { background-position: 0 -785px;}
+		}
+
+		&.icon-housekeeping { 
+			background-position: 0 -845px;
+			&.active { background-position: 0 -905px;}
+		}
+
+		&.icon-financials { 
+			background-position: 0 -965px;
+			&.active { background-position: 0 -1025px;}
+		}
+
+		&.icon-reports { 
+			background-position: 0 -1085px;
+			&.active { background-position: 0 -1145px;}
+		}
+
+		&.icon-settings {
+			background-position: 0 -1205px; 
+			&.active { background-position: 0 -1265px;}
+		}
+
+		&.icon-sign-out {
+			background-position: 0 -1325px; 
+			&.active { background-position: 0 -1385px;}
+		}
+
+		&.icon-groups {
+			background-position: 0 -1445px; 
+			&.active { background-position: 0 -1505px;}
+		}
+
+		@media only screen and (min-width: 600px) {
+			height: 60px;
+
+			&.icon-dashboard { 
+				background-position: 0 -360px;
+				&.active { background-position: 0 -420px;}
+			}
+
+			&.icon-frontdesk { 
+				background-position: 0 -480px;
+				&.active { background-position: 0 -540px;}
+			}
+
+			&.icon-actions { 
+				background-position: 0 -600px;
+				&.active { background-position: 0 -660px;}
+			}
+
+			&.icon-revenue { 
+				background-position: 0 -720px;
+				&.active { background-position: 0 -780px;}
+			}
+
+			&.icon-housekeeping { 
+				background-position: 0 -840px;
+				&.active { background-position: 0 -900px;}
+			}
+
+			&.icon-financials { 
+				background-position: 0 -960px;
+				&.active { background-position: 0 -1020px;}
+			}
+
+			&.icon-reports { 
+				background-position: 0 -1080px;
+				&.active { background-position: 0 -1140px;}
+			}
+
+			&.icon-settings {
+				background-position: 0 -1200px; 
+				&.active { background-position: 0 -1260px;}
+			}
+
+			&.icon-sign-out {
+				background-position: 0 -1320px; 
+				&.active { background-position: 0 -1380px;}
+			}
+
+			&.icon-groups {
+				background-position: 0 -1440px; 
+				&.active { background-position: 0 -1500px;}
+			}
+		}
+
+		@media @highdpi { background-image: @iconMenu2x; }
+    }
+
+/* Flag icons           ==================================*/
+	.icon-flag {
+		background-size: cover;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		
+		&.flag-ca { background-image: @flagCA; }
+		&.flag-de { background-image: @flagDE; }
+		&.flag-es { background-image: @flagES; }
+		&.flag-fr { background-image: @flagFR; }
+		&.flag-it { background-image: @flagIT; }
+		&.flag-nl { background-image: @flagNL; }
+		&.flag-gb { background-image: @flagGB; }
+		&.flag-us { background-image: @flagUS; }
+		&.flag-be { background-image: @flagBE; }
+		&.flag-au { background-image: @flagAU; }
+	}
+
+/* Menu & availability toggle   ==========================*/
+    .icon-toggle,
+	.icon-availability {
+		overflow: hidden;
+		background-image: @iconMenu, @darkTexture;
+		background-repeat: no-repeat, repeat;
+		.hide-text;
+		.square(40px);
+		.show;
+		.no-transition;
+
+		@media @highdpi {
+			background-image: @iconMenu2x, @darkTexture;
+			background-size: 40px;
+		}
+	}
+
+	&.icon-toggle {
+		background-color: @logoGradientStart;
+		background-position: 0 -10px, 0 0;
+		.box-shadow(inset 0 -2px 0 rgba(0,0,0,.2));
+		#border-radius > .right();
+
+		&:hover,
+		&.active { 
+			background-color: @logoGradientStart; 
+			background-position: 0 -70px, 0 0;
+			.box-shadow(inset 0 -2px 0 rgba(0,0,0,.2));
+		}
+	}
+
+	&.icon-availability {
+		background-color: @grey2;
+		background-repeat: no-repeat, repeat;
+		background-position: 0 -250px, 0 0;
+		#border-radius > .left();
+		.box-shadow(inset 0 -2px 0 rgba(0,0,0,.2));
+
+		&:hover,
+		&.active { background-position: 0 -310px, 0 0; }
+	}
+
+/* Buttons				==================================*/
+	.button {
+		display: inline-block;
+		font-weight: 600;
+		line-height: 40px;
+		vertical-align: middle;
+		text-transform: uppercase;
+		text-align: center;
+		color: @white;
+		border: 0;
+		padding: 0 20px;
+		cursor: pointer;
+		text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+		#border-radius > .rounded(3px);
+		.box-shadow(inset 0 -1px 0 rgba(0,0,0,.2));
+		.transition;
+		
+		&:hover,
+		&:active { 
+			color: @white;
+			.box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.3)");
+		}
+
+		/* Button styles ***/
+		&.blank {
+			color: @textColor;
+			background: transparent;
+			text-shadow: none;
+			#border-radius > .rounded(0);
+			.box-shadow(none);
+
+			&:hover,
+			&:active { color: @logoPrimary; }
+
+			&.soft-red-text {
+				color: @softRed;
+
+				&:hover,
+				&:active { color: @softRed; }
+			}
+		}
+
+		/* Button colors ***/
+		&.green { 
+			.gradient (@greenStart, @greenEnd);
+
+			&:hover,
+			&:active { .gradient (@greenEnd, @greenStart); }
+		}
+
+		&.green-light {
+			.gradient (@greenLightStart, @greenLightEnd);
+
+			&:hover,
+			&:active { .gradient (@greenLightEnd, @greenLightStart); }
+		}
+
+		&.green-dark {
+			.gradient (@greenDarkStart, @greenDarkEnd);
+
+			&:hover,
+			&:active { .gradient (@greenDarkEnd, @greenDarkStart); }
+		}
+
+		&.red { 
+			.gradient (@redStart, @redEnd);
+
+			&:hover,
+			&:active { .gradient (@redEnd, @redStart); }
+		}
+
+		&.red-light { 
+			.gradient (@redLightStart, @redLightEnd);
+
+			&:hover,
+			&:active { .gradient (@redLightEnd, @redLightStart); }
+		}
+
+		&.red-dark { 
+			.gradient (@redDarkStart, @redDarkEnd);
+
+			&:hover,
+			&:active { .gradient (@redDarkEnd, @redDarkStart); }
+		}
+
+		&.orange {
+			.gradient (@orangeStart, @orangeEnd);
+
+			&:hover,
+			&:active { .gradient (@orangeEnd, @orangeStart); }
+		}
+
+		&.yellow { 
+			.gradient (@yellowStart, @yellowEnd);
+
+			&:hover,
+			&:active { .gradient (@yellowEnd, @yellowStart); }
+		}
+
+		&.yellow-dark { 
+			.gradient (@yellowDarkStart, @yellowDarkEnd);
+
+			&:hover,
+			&:active { .gradient (@yellowDarkEnd, @yellowDarkStart); }
+		}
+
+		&.soft-red { 
+			.gradient (@softRedStart, @softRedEnd);
+
+			&:hover,
+			&:active { .gradient (@softRedEnd, @softRedStart); }
+		}
+
+		&.blue { 
+			.gradient (@blueStart, @blueEnd);
+
+			&:hover,
+			&:active { .gradient (@blueEnd, @blueStart); }
+		}
+
+		&.blue-light { 
+			.gradient (@blueLightStart, @blueLightEnd);
+
+			&:hover,
+			&:active { .gradient (@blueLightEnd, @blueLightStart); }
+		}
+
+		&.purple {
+			.gradient (@purpleStart, @purpleEnd);
+
+			&:hover,
+			&:active { .gradient (@purpleEnd, @purpleStart); }
+		}
+
+		&.grey {
+			.gradient (#d1d1d1, @grey2);
+
+			&:hover,
+			&:active { .gradient (@grey2, #d1d1d1); }
+		}
+
+		&.dark-grey {
+			.gradient (@grey3, @grey4);
+			
+			&:active { .gradient (@grey4, @grey3); }
+		}
+		
+		&.white {
+			color: @textColor;
+			background-color: @white;
+			text-shadow: none;
+			.box-shadow();
+
+			&:hover,
+			&:active { .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.15)"); }
+
+			&.brand-text {
+				color: @logoPrimary;
+
+				&:hover,
+				&:active { color: darken(@logoPrimary, 10); }
+			}
+
+			&.blue-text {
+				color: @blue;
+
+				&:hover,
+				&:active { color: darken(@blue, 10); }
+			}
+
+			&.red-text {
+				color: @red;
+
+				&:hover,
+				&:active { color: darken(@red, 10); }
+			}
+
+			&.soft-red-text {
+				color: @softRed;
+
+				&:hover,
+				&:active { color: darken(@softRed, 10); }
+			}
+
+			&.green-text {
+				color: @green;
+
+				&:hover,
+				&:active { color: darken(@green, 10); }
+			}
+
+			&.grey-text {
+				color: @grey3;
+
+				&:hover,
+				&:active { color: grey4; }
+			}
+
+			&.purple-text {
+				color: @purpleStart;
+
+				&:hover,
+				&:active { color: purpleEnd; }
+			}
+		}
+
+		/* Logo button ***/
+		&.brand-colors {
+			.gradient (@logoGradientStart, @logoGradientEnd);
+
+			&:hover,
+			&:active { .gradient (@logoGradientEnd, @logoGradientStart); }
+		}
+
+		/* Button with icon ***/
+		&.with-icon {
+			position: relative;
+			padding: 30px 0 0 0;
+			font-size: 12px;
+			line-height: 30px;
+			.size(60px,65px);
+
+			.icons {
+				position: absolute;
+				top: 15px;
+				left: 50%;
+				margin-left: -10px;
+				.show;
+				.square(20px);
+			}
+
+			&.only-icon {
+				.hide-text;
+
+				.icons {
+					top: 50%;
+					margin-top: -10px;
+				}
+			}
+		}
+
+		/* Button with label ***/
+		&.with-label {
+			text-align: right;
+			.float;
+
+			em,
+			strong {
+				text-transform: none;
+				.pull-left;
+			}
+
+			em { 
+				font-weight: 400;
+				color: @grey3;
+			}
+
+			strong { 
+				font-weight: 600;
+				color: @textColor; 
+				max-width: 80%;
+				.nowrap();
+			}
+		}
+
+		/* Content Unavailable ***/
+		&.content-unavailable {
+			cursor: default;
+	        box-shadow: none;
+	        border-radius: 3px;
+	        color: @grey3;
+	        text-shadow: none;
+	        background: rgba(0,0,0,.1);
+
+	        &:hover,
+	        &:active {
+	            color: @grey3;
+	            text-shadow: none;
+	            box-shadow: none;
+	            background: rgba(0,0,0,.1);
+	        }
+		}
+
+		/* Checking Content Button ***/
+		&.loading-content {
+			.content-unavailable();
+			
+	        .icons,
+	        .icons:before,
+	        .icons:after {
+	        	color: rgba(0,0,0,.2);
+	            background: rgba(0,0,0,.2);
+	            .size(16px, 2px);
+	            -webkit-animation: buttonLoader 1s infinite ease-in-out;
+	            animation: buttonLoader 1s infinite ease-in-out;
+	        }
+
+	        .icons {
+	            margin: 0;
+	            -webkit-transform: translateZ(0);
+	            -ms-transform: translateZ(0);
+	            transform: translateZ(0);
+	            -webkit-animation-delay: -0.16s;
+	            animation-delay: -0.16s;
+	        }
+
+	        .icons:before,
+	        .icons:after {
+	            position: absolute;
+	            top: 0;
+	            content: '';
+	        }
+
+	        .icons:before {
+	            left: -4px;
+	            -webkit-animation-delay: -0.32s;
+	            animation-delay: -0.32s;
+	        }
+
+	        .icons:after {
+	            left: 4px;
+	        }
+	    }
+	}
+
+	.add-new-button {
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 50px;
+		vertical-align: middle;
+		text-transform: uppercase;
+		text-align: center;
+		color: @green;
+		padding: 0 10px;
+		border: 1px dashed rgba(0,0,0,.2);
+		#border-radius > .rounded();
+
+		&:hover,
+		&:active {
+			color: @green;
+			border-color: @green;
+		}
+	}
+
+/* Arrow icons			==================================*/
+	.ui-datepicker-prev,
+	.ui-datepicker-next,
+	.fc-button-prev,
+	.fc-button-next,
+	.calendar-prev,
+	.calendar-next {
+		background-position: 50% 14px;
+		background-repeat: no-repeat;
+
+		&.ui-datepicker-prev,
+		&.fc-button-prev,
+		&.calendar-prev { 
+			background-image: @arrowBlackLeft; 
+			
+			&:hover { background-image: @arrowLeft; }
+		}
+
+		&.ui-datepicker-next,
+		&.fc-button-next,
+		&.calendar-next {  
+			background-image: @arrowBlackRight; 
+			
+			&:hover { background-image: @arrowRight; }
+		}
+
+		@media @highdpi {
+			background-size: 14px 14px;
+
+			&.ui-datepicker-prev,
+			&.fc-button-prev,
+			&.calendar-prev { 
+				background-image: @arrowBlackLeft2x; 
+
+				&:hover { background-image: @arrowLeft2x; }
+			}
+
+			&.ui-datepicker-next,
+			&.fc-button-next,
+			&.calendar-next {  
+				background-image: @arrowBlackRight2x; 
+
+				&:hover { background-image: @arrowRight2x; }
+			}
+		}
+	}
+
+/* 4. LAYOUT
+==========================================================*/
+/* 5. COMPONENTS
+==========================================================*/
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

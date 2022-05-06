@@ -1,0 +1,5 @@
+@import (inline) 'shared/lib/css/ngDialog.css';
+@import (inline) 'shared/lib/css/ngDialog-theme-default.css';
+@import (inline) 'shared/lib/css/ngDialog-theme-plain.css';
+@import 'shared/lib/css/date-picker.css.less';
+@import (inline) 'shared/lib/css/advanced_date_picker.css';

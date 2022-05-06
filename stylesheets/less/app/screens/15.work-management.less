@@ -1,0 +1,623 @@
+#work-management {
+    text-align: center;
+
+    h3,
+    h4 {
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        margin: 0;
+        width: 240px;
+        .pull-left;
+    }
+
+    h3 { font-size: 24px; }
+
+    h4 { font-size: 18px; }
+
+    ul {
+       padding-left: 40px;
+        .calc-width(100, 240);
+        .pull-left; 
+    }
+
+    li {
+        text-transform: uppercase;
+        text-align: right;
+        margin-bottom: 0;
+        color: @grey3;
+        .pull-left;
+        .calc-width(20, 20);
+
+        span {
+            font-size: 36px;
+            line-height: 40px;
+            font-weight: 300;
+            color: @textColor;
+            .nowrap();
+            .show;
+
+            &.red { color: @red; }
+            &.green { color: @green; }
+        }
+
+        &:not(last-child) { margin-right: 20px; }
+    }
+
+    .toggle {
+        background-position: 100% 50%;
+        padding-right: 40px;
+        cursor: pointer;
+    }
+
+    .button {
+        padding: 0 40px;
+        font-size: 20px;
+        line-height: 60px;
+        margin-top: 40px;
+    }
+
+    .wrapper { padding: 60px 60px 20px; }
+
+    .work-type {
+        padding: 20px 0;
+        .flex(center);
+        .float;
+
+        &.first { 
+            padding-top: 0; 
+
+            h3 { padding-top: 24px; }
+
+            .toggle { background-position: 100% 30px; }
+        }
+
+        &:not(.last) { border-bottom: 2px solid rgba(0,0,0,.1); }
+    }
+
+    .task-details {
+        margin-top: -2px;
+        .background(@white);
+    }
+
+    .task {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        .flex(center);
+        .float;
+
+        li {
+            span { font-size: 30px; }
+        }
+    }
+}
+
+@media not print {
+    .worksheet-header {
+        position: relative;
+        padding: 10px 20px;
+        height: 90px;
+        background: @rcardTexture1 rgba(0,0,0,.1);
+        z-index: 9999;
+        .float;
+
+        .entry {
+            .pull-left;
+
+            &.date { width: 175px; }
+            &.employees,
+            &.task { width: 240px; }
+
+            &:not(:last-child) { margin-right: 20px; }
+        }
+
+        .actions {
+            min-width: 60px;
+            max-width: 200px;
+            .pull-right;
+        }
+
+        .action {
+            width: 60px;
+            .pull-left;
+
+            &:not(:last-child) { margin-right: 10px; }
+        }
+
+        label:not(.checkbox) {
+            font-size: 14px;
+            line-height: 1em;
+            text-transform: uppercase;
+            .show;
+        }
+
+        select {
+            font-size: 18px;
+            min-height: 50px;
+            height: 50px;
+            padding: 0 10px;
+        }
+
+        .button {
+            .size(50px, 60px);
+
+            &:not(:last-child) { margin-right: 10px; }
+        }
+
+        /* Date ***/
+        .entry-data {
+            background: @white @calendar no-repeat 92% 16px;
+            background-size: 20px;
+            position: relative;
+            #border-radius > .rounded();
+            .box-shadow();
+            .size(50px, 100%);
+            .show;
+
+            input { 
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 99;
+                cursor: pointer;
+                .square(100%);
+                .opacity(0);
+            }
+
+            .day,
+            .month,
+            .year { position: absolute; }
+
+            .month,
+            .year {
+                left: 65px;
+                font-size: 16px;
+                line-height: 1em;
+            }
+
+            .day {
+                top: 15px;
+                left: 10px;
+                font-size: 40px;
+            }
+
+            .month { top: 10px; }
+            .year { top: 24px; }
+
+            @media @highdpi {
+                background-image: @calendar2x;
+            }
+
+            &:hover { background-position: 92% -34px; }
+        }
+
+        /* Select & Multi select ***/
+        .multi-select {
+            font-size: 18px;
+            line-height: 50px;
+            padding: 0 10px;
+            cursor: pointer;
+            .faux-clickable;
+            .size(50px, 100%);
+            .show;
+        }
+
+        .multi-select-options {
+            position: absolute;
+            top: 48px;
+            left: 0;
+            padding: 20px 0;
+            z-index: 1020;
+            .size(440px, 320px);
+            .faux-clickable;
+            #fade > .in();
+
+            .entry {
+                width: 100%;
+                float: none;
+
+                &.search {
+                    position: relative;
+                    overflow: hidden;
+                    .transition;
+                    .size(60px, 100%);
+
+                    .icon-search {
+                        position: absolute;
+                        top: 10px;
+                        left: 30px;
+                        z-index: 99;
+                    }
+
+                    .query {
+                        position: absolute;
+                        top: 0;
+                        left: 20px;
+                        width: 100%;
+                        font-size: 21px;
+                        font-weight: 700;
+                        padding-left: 30px;
+                        color: @logoPrimary; 
+                        z-index: 9;
+                        background: @grey1;
+                        .calc-width(100, 40);
+                        .box-shadow(inset 1px 1px 0 rgba(0,0,0,.15));
+                        #border-radius > .rounded(25px);
+
+                        &:focus,
+                        &:active { .box-shadow(inset 1px 1px 0 rgba(0,0,0,.3)); }
+                    }
+
+                    .clear-query {
+                        position: absolute;
+                        top: 0;
+                        right: 20px;
+                        z-index: 99;
+                        .square(40px);
+
+                        .icons {
+                            position: absolute;
+                            top: 12.5px;
+                            right: 12.5px;
+                            background-color: @grey3;
+                            .hide-text;
+                            .square(15px);
+                            .opacity(0);
+                            .show;
+                            #fade > .out();
+                            #border-radius > .rounded(15px);
+                        }
+
+                        &.visible { 
+                            .icons {
+                                .opacity(100); 
+                                #fade > .in(); 
+                            }
+                        }
+
+                        &:hover,
+                        &.active { 
+                            .icons { background-color: @logoPrimary; }
+                        }
+                    }
+                }
+
+                &.scrollable {
+                    position: relative;
+                    .calc-height(100, 60);
+
+                    .wrapper { padding: 0 20px; }
+
+                    .iScrollVerticalScrollbar { 
+                        top: 0;
+                        bottom: 0;
+                        right: 10px;
+                    }
+
+                    .checkbox {
+                        line-height: 30px;
+                        #border-radius > .rounded(0);
+                        .box-shadow(0 1px 0 rgba(0,0,0,.1));
+                        .show;
+
+                        .icon-form { 
+                            top: 5px; 
+                            left: 0;
+                            background-color: @grey1;
+                        }
+
+                        input { .square(100%); }
+
+                        &:not(:last-child) {
+                            padding-bottom: 5px;
+                            margin-bottom: 5px;
+                        }
+
+                        &:last-child { 
+                            margin-bottom: 0; 
+                            .box-shadow(none);
+                        }
+                    }
+                }
+            }
+
+            &.hidden { #fade > .out(); }
+        }
+    }
+
+    /* Task / Room details ***/
+    #worksheet-content {
+        h2 {
+            font-size: 18px;
+            line-height: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .worksheet-task {
+            position: relative;
+            padding: 10px;
+            margin: 0;
+            background-color: @white;
+            list-style: none;
+            cursor: @draggable, pointer;
+            cursor: @draggable 16 16, pointer;
+            .box-shadow(1px 1px 2px 1px rgba(0,0,0,.15));
+            min-width: 160px;
+
+            .print-date { .hide() }
+
+            .info {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-around;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                border-bottom: 1px solid rgba(0,0,0,.1);
+
+                span {
+                    font-size: 12px;
+                    line-height: 15px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    width: 50%;
+                    white-space: nowrap;
+
+                    &.guest { text-align: left; }
+                    &.room { text-align: right; }
+
+                    &.red { color: @red; }
+                    &.blue { color: @blue; }
+                    &.green { color: @green};
+                    &.orange { color: @orange; }
+                    &.grey { color: @grey3; }
+                    &.purple { color: @purple; }
+                }
+            }
+
+            h3 {
+                font-size: 35px;
+                font-weight: 700;
+                position: relative;
+                text-align: center;
+
+                .icon-suite,
+                .icon-queued{
+                    position: absolute;
+                    top:0;
+                    bottom:0; 
+                    margin: auto;
+                }
+
+                .icon-suite {
+                    left: 0;
+                }
+
+                .icon-queued {
+                    right: 0;
+                    background-position: 0 -4174px;
+
+                    &.has-time {
+                        font-size: 10px;
+                        line-height: 12px;
+
+                        width: 25px;
+                        height: 35px;
+                        .time {
+                            text-indent: initial;
+                            display: block;
+                            margin-top: 10px;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+
+            .room-type {
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: uppercase;
+                color: @grey3;
+                margin-top: 10px;
+                .show;
+            }
+
+            .task {
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: uppercase;
+                color: @black;
+                font-weight: 600;
+                padding: 5px 20px 0 20px;
+                margin-top: 5px;
+                border-top: 1px solid rgba(0,0,0,.1);
+                .show;
+            }
+
+            .icon-ok-10 {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+            }
+
+            .no-icon {
+                background: none !important;
+            }
+
+            .vip {
+                font-size: 9px;
+                line-height: 20px;
+                .square(18px);
+                position: absolute;
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .only-print {
+                display: none;
+            }
+
+            &:first-child { #border-radius > .top(); }
+
+            &:not(:first-child) {
+                #border-radius > .bottom();
+
+                .info { .hide; }
+            }
+
+            &.ui-sortable-helper,
+            &.ui-draggable-dragging {
+                cursor: @dragging, move;
+                cursor: @dragging 16 16, move; 
+
+                .info { display: flex; }
+            }
+        }
+
+        .worksheet-room {
+            margin: 0 20px;
+
+            &:not(:last-child) { margin-bottom: 20px; }
+        }
+
+        .placeholder {
+            margin: 0 20px 20px;
+            background: #f8e26e;
+            height: 100px;
+            line-height: 100px;
+            display: block;
+            border: 2px dashed #f3ce0d;
+            border-radius: 2px;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .iScrollHorizontalScrollbar { 
+            left: 20px;
+            right: 20px;
+        }
+
+        .iScrollVerticalScrollbar { 
+            .iScrollIndicator { background: rgba(0,0,0,.2); }
+        }
+    }
+
+    /* Unassigned rooms ***/
+    #unassigned-rooms {
+        position: absolute;
+        top: 90px;
+        left: 0;
+        width: 200px;
+        background: @rcardTexture2;
+        z-index: 999;
+        text-align: center;
+        padding-top: 20px;
+        .box-shadow(0 0 5px rgba(0,0,0,.3));
+        .calc-height(100, 90);
+
+        .button {
+            padding: 0;
+            margin: 10px 0 20px;
+            height: 40px;
+            .calc-width(100, 40);
+
+            &.orange {
+                margin-bottom: 0;
+            }
+        }
+
+        .worksheet-content {
+            position: relative;
+            padding-top: 20px;
+            border-top: 2px solid rgba(0,0,0,.1);
+            .calc-height(100, 130);
+        }
+
+        .wrapper { padding-bottom: 40px; }
+    }
+
+    /* Assigned rooms ***/
+    #assigned-rooms {
+        position: absolute;
+        top: 90px;
+        left: 200px;
+        .calc-width(100, 200);
+        .calc-height(100, 90);
+
+        > .wrapper {
+            height: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        
+        .employee {
+            text-align: center;
+            margin-left: 20px;
+            .show;
+            .size(100%, 200px);
+        }
+
+        .totals {
+            padding: 20px;
+            height: 110px;
+            background-color: rgba(0,0,0,.05);
+            margin-bottom: 2px;
+
+            ul {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            li { 
+                padding: 10px;
+                width: 50%;
+            }
+
+            span {
+                font-weight: 600;
+                line-height: 20px;
+                .show;
+
+                &.value { .box-shadow(0 1px 0 rgba(0,0,0,.1)); }
+                
+                &.total { color: @grey3; }
+                &.red { color: @red; }
+            }
+        }
+        
+        .remove-tasks {
+            height: 60px;
+            margin-top: 2px;
+            background-color: rgba(0,0,0,.05);
+            color: @black;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 30px;
+            line-height: 1.5;
+
+            &:hover {
+                color: @red;
+            }
+        }
+
+        .worksheet-content {
+            position: relative;
+            padding-top: 20px;
+            background-color: rgba(0,0,0,.05);
+            .calc-height(100, 174); // .totals (height+margin-bottom) + .remove-tasks (height+margin-top)
+
+            &.over {
+                border: 1px solid red;
+            }
+
+            > .wrapper { padding-bottom: 40px; }
+        }
+    }
+}

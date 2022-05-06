@@ -1,0 +1,57 @@
+/* StayNTouch | Rover mobile styles */
+
+/* 1. ROOT
+==========================================================*/
+@import "less/common/01-A_reset.less";
+
+@import "less/common/01-B_variables.less";
+@import "less/app/01-B_variables.less"; 
+
+@import "less/common/01-C_mixins.less"; 
+@import "less/common/01-D_mixins-animations.less";  
+
+/* 2. TYPOGRAPHY
+==========================================================*/
+@import "less/common/02_typography.less"; 
+
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+@import "less/common/03_graphics.less"; 
+@import "less/app/03_graphics.less";  
+ 
+/* 4. LAYOUT
+==========================================================*/
+@import "less/common/04_layout.less";
+@import "less/mobile/04_layout.less"; 
+
+/* 5. COMPONENTS
+==========================================================*/
+@import "less/common/05-A_components.less";
+@import "less/mobile/05-A_components.less";
+
+@import "less/common/05-B_forms.less";
+@import "less/app/05-B_forms.less";
+
+@import "less/common/05-C_plugins.less";
+@import "less/app/05-C_plugins.less"; 
+@import "less/mobile/05-C_plugins.less"; 
+
+
+/* 7. MEDIA QUERIES
+==========================================================*/
+@import 'stylesheets/less/rover-theme.less';
+
+/* 7. ANGULAR
+==========================================================*/
+@import (inline) 'shared/lib/css/ngDialog.css';
+@import (inline) 'shared/lib/css/ngDialog-theme-default.css';
+@import (inline) 'shared/lib/css/ngDialog-theme-plain.css';
+@import (inline) 'shared/lib/css/ng-table.css';
+@import 'shared/lib/css/date-picker.css.less';
+@import (inline) 'shared/lib/css/advanced_date_picker.css';
+@import (inline) 'shared/lib/css/angular-multi-select.css';
+
+
+/* 8. Styles to control pms/angular classes that we don't have in prototype
+==========================================================*/
+@import "less/mobile/08-pms.less";

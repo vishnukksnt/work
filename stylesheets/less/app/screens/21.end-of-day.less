@@ -1,0 +1,197 @@
+@media not print {
+    /* EOD options ***/
+    .eod-header {
+        position: relative;
+        padding-left: 20px;
+        height: 90px;
+        background: rgba(0,0,0,.1);
+        .float;
+
+        .eod-automatic {
+            display: block; 
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            margin-top: 30px;
+            color:@grey4;
+        }
+
+        .entry {
+            padding-top: 10px;
+            margin-right: 10px;
+            width: 150px;
+            .pull-left;
+
+            label {
+                font-size: 14px;
+                line-height: 1em;
+                text-transform: uppercase;
+                .show;
+            }
+
+            .faux-select,
+            input,
+            select {
+                font-size: 18px;
+                height: 50px;
+            }
+
+            select { padding: 12px 10px; }
+
+            .entry-data {
+                background: @white @calendar no-repeat 92% 16px;
+                background-size: 20px;
+                position: relative;
+                #border-radius > .rounded();
+                .box-shadow();
+                .size(50px, 100%);
+                .show;
+
+                input {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 99;
+                    cursor: pointer;
+                    .square(100%);
+                    .opacity(0);
+                }
+
+                .day,
+                .month,
+                .year { position: absolute; }
+
+                .month,
+                .year {
+                    left: 55px;
+                    font-size: 16px;
+                    line-height: 1em;
+                }
+
+                .day {
+                    top: 15px;
+                    left: 10px;
+                    font-size: 40px;
+                }
+
+                .month { top: 10px; }
+                .year { top: 24px; }
+
+                @media @highdpi {
+                    background-image: @calendar2x;
+                }
+
+                &:hover { background-position: 92% -34px; }
+            }
+ 
+        }
+
+        .button {
+            font-size: 18px;
+            line-height: 50px;
+            margin-top: 30px;
+        }
+
+    }
+
+    .eod-content {
+        position: relative;
+        .calc-height(100, 90);
+        .wrapper {
+            padding: 20px 20px 10px 20px;
+        }
+
+        .eod-item {
+            .faux-clickable();
+            margin-bottom: 10px;
+            padding: 10px 20px;
+
+            h2 {
+                line-height: 20px;
+                font-size: 16px;
+                font-weight: 600;
+                width: 100%;
+
+                &.has-arrow {
+                    background-position: 100% 50%;
+                    cursor:pointer;
+                }
+
+                &.pending {
+                    font-style: italic;
+                    font-weight: normal;
+                    color: @grey3;
+                }
+
+                &.error {
+                    color: @red;
+                }
+            }
+
+            .notice {
+                margin-top: 10px;
+                background-color: fade(@yellow, 25%);
+                border-color: fade(@yellow, 50%);
+                text-transform: uppercase;
+                font-size: 14px;
+                color: darken(@yellow, 20%);
+                p, h3 {
+                    font-size: 14px;
+                    text-align: center;
+                }
+                h3 {
+                    font-weight: 600;
+                }
+
+                ul {
+                    padding-left: 14px;
+                    list-style: inherit;
+
+                    li {
+                        margin-bottom: 0;
+                        span {
+                            position: relative;
+                            left: -5px;
+                        }
+                    }
+                }
+            }
+
+            .actions {
+                text-align: center;
+
+                .button:not(:first-child) {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .no-content {
+            .h2 {
+                max-width: 700px;
+                margin: 0 auto;
+                strong {
+                    font-weight: 600;
+
+                    &.green {
+                        color: @green;
+                    }
+                    &.red {
+                        color: @red;
+                    }
+                }
+            }
+
+            .alert {
+                color: @yellow;
+            }
+
+            .button {
+                margin-top: 20px;
+                font-size: 24px;
+                line-height: 70px;
+                padding: 0 2em;
+            }
+        }
+    }
+}

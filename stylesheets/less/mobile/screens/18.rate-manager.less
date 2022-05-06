@@ -1,0 +1,1585 @@
+#rate-manager-holder {
+    height: 100vh;
+}
+
+#rate-manager{
+    overflow: visible;
+
+    .has-event-block {
+        pointer-events: none;
+    }
+
+    /* Sidebar  ***/
+    .filter-options{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-right: 25px;
+        z-index: 1040;
+        .size(100%, 30px);
+        .transition(width, .2s, cubic-bezier(.10, .10, .25, .90));
+        .show();
+
+        /* Handle ***/
+        .ui-resizable-handle,
+        .leftMenuHandle {
+            background-image: @icons, @rcardTexture1;
+            background-repeat: no-repeat, repeat;
+            background-position: 5px -3807px, 0 0;
+            .size(50px, 25px);
+            #border-radius > .right(5px);
+
+            @media @highdpi {
+                background-image: @icons2x, @rcardTexture1;
+                background-size: 120px, 40px;
+            }
+        }
+
+        .leftMenuHandle {
+            position: absolute;
+            top: auto;
+            bottom: 20px;
+            right: 0;
+            cursor: e-resize!important;
+            z-index: 90;
+        }
+
+        .filter-container {
+            position: relative;
+            background: @rcardTexture1;
+            overflow: hidden;
+            .calc-height(100, 80);
+        }
+
+        .fixed-container { 
+            padding-top: 30px;
+            .square(100%);
+        }
+        
+        .filters,
+        .scrollable,
+        .actions {
+            .hide();
+        }
+                
+        .filters {
+            width: 100%;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 1px;
+            
+            li { 
+                cursor: pointer;
+                font-size: 13px;
+                line-height: 40px;
+                text-align: center;
+                color: @textColor; 
+                text-transform: uppercase;
+                padding: 0 5px;
+                margin: 0;
+                background-color: @white;
+                box-shadow: 1px 1px 0 rgba(0,0,0,.15);
+                .nowrap();
+                .transition();
+        
+                &:hover,
+                &:active { 
+                    color: @logoPrimary; 
+                }
+                
+                &.active {
+                    cursor: default;
+                    color: @white;
+                    text-shadow: 1px 1px 0 rgba(0,0,0,.1);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.3);
+                    .gradient (@logoGradientEnd, @logoGradientStart);
+                }
+
+                &:first-child { 
+                    border-top-left-radius: 2px;
+                    border-bottom-left-radius: 2px;
+                }
+
+                &:last-child { 
+                    border-top-right-radius: 2px;
+                    border-bottom-right-radius: 2px;
+                }
+            }
+        }
+
+        .scrollable {
+            position: relative;
+            margin-top: 20px;
+            .calc-height(100, 40);
+
+            .wrapper { 
+                padding-bottom: 20px;
+            }
+
+            > .iScrollVerticalScrollbar { 
+                top: 0;
+                right: 5px;
+                
+                .iScrollIndicator { background: rgba(0,0,0,.05); }
+            }
+        }
+
+        /* Bottom button Old ***/
+        .action-filter {
+            background: @rcardTexture1;
+            overflow: hidden;
+            height: 80px;
+
+            .actions {
+                height: 100%;
+                padding: 20px;
+                background-color: rgba(0,0,0,.05);
+            }
+
+            .button { width: 100%; padding: 0 10px; }
+        }
+        
+        /* Filter Elements ***/
+        .entry {
+            margin-bottom: 20px;
+
+            label {
+                display: table;
+                font-size: 14px;
+                line-height: 20px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+
+            input { 
+                font-size: 16px;
+                width: 100%;
+            }
+
+            .ui-datepicker-trigger {
+                top: 20px;
+            }
+
+            .filter-main {
+                font-weight: 600;
+            }
+
+            &.entry-search {
+                position: relative;
+
+                .icons {
+                    position: absolute;
+                    top: 30px;
+                    left: 10px;
+                    .square(18px);
+                    .show();
+                }
+
+                input {
+                    color: @logoPrimary;
+                    font-weight: 600;
+                    padding-left: 35px;
+                }
+
+
+                &.entry-break {
+                    .icons {
+                        top: 50px;
+                    }
+                }
+            }
+
+            &.entry-break {
+                padding-top: 20px;
+                box-shadow: 0 -1px 0 rgba(0,0,0,.1);
+            }
+        }
+
+        .select-group {
+            #flexbox > .parent(row wrap, '', '', '');
+
+            select {
+                position: relative;
+                font-size: 14px;
+            }
+
+            .select {
+                &:first-child {
+                    width: 55%;
+                   
+                    select {
+                        background: @grey1;
+                        z-index: 2;
+                        #border-radius > .right(0);
+                    }
+
+                    &:after {
+                        background-color: @grey1;
+                    }
+                }
+
+                &:last-child {
+                    width: 45%;
+
+                    select {    
+                        z-index: 1;
+                        #border-radius > .left(0); 
+                    }
+                }
+            }
+        }
+
+        /* Elements ***/
+        h3 {
+            font-weight: 600;
+            text-align: center;
+            .hide();
+        }
+
+        .deleteall {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: @red;
+            width: 100%;
+            .show();
+        }
+
+        /* Selected Elements ***/
+        .selected-data {
+            strong { 
+                font-size: 16px;
+                font-weight: 600;
+                text-transform: uppercase;
+                .show();
+            }
+
+            li {
+                position: relative;
+                font-size: 14px;
+                line-height: 16px;
+                font-weight: 600;
+                text-transform: uppercase;
+                padding: 8px 30px 8px 10px;
+                margin-bottom: 10px;
+                color: @white;
+                background-color: @blue;
+                cursor: pointer;
+                .transition();
+                #border-radius > .rounded();
+
+                .location {
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: 400;
+                    color: rgba(0,0,0,.8);
+                    .show();
+                }
+
+                &.company { background-color: @ccard; }
+                &.travel-agent { background-color: @tacard; }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    right: 5px;
+                    margin-top: -10px;
+                    .icons();
+                    .delete_small();
+                    .square(20px);
+                    .show();
+                    background-position: 5px -135px !important;
+
+                    @media @highdpi {
+                        background-size: 70px;
+                    }
+                }
+
+                &:active {
+                    color: rgba(0,0,0,.6);
+                    background-color: @red;
+                }
+            }
+        }
+
+        /* Opened slider ***/
+        &.slide_right { 
+            .calc-width(100, 20);
+
+            h3,
+            .actions {
+                .show();
+            }
+
+            .scrollable {
+                padding: 0 20px;
+                .show();
+            }
+        }
+    }
+
+    /* Top bar ***/
+    .topbar {
+        position: relative;
+        height: 0;
+        overflow: visible;
+
+        .back {
+            position: absolute;
+            top: -45px;
+            left: 40px;
+            margin: 0;
+            z-index: 9999;
+        }
+    }
+
+    /* Grid Containers ***/
+    .rate-manager-content {
+        height: 100%;
+        /*.calc-height(100, 60);*/
+
+        .calendar,
+        .calendar-wraper,
+        .graph {
+            position: relative;
+            .square(100%);
+        }
+
+        .calendar-wraper {
+            
+            /** Loading Navigation message with spinner */
+            .loading-message {
+                position: absolute;
+                text-transform: uppercase;
+                font-size: 12px;
+                line-height: 18px;
+                color: @grey3;
+                font-style: italic;
+                text-align: center;
+                z-index: 80;
+
+                #loading-spinner {
+                    .hide();
+                    .size(48px, 48px);
+                    margin: -24px 0 0 -24px;
+                    padding-top: 48px;
+                    &:after {
+                        .size(32px, 32px);
+                        top: 8px;
+                        left: 8px;
+                    }
+                }
+            }
+
+            .calendar-rate-table {
+                .ui-resizable-handle {
+                    display: none !important;
+                }
+            }
+
+            /* Adding background to hide spinner behide tables */
+            .calendar-rate-table-grid {
+                .rate-calendar {
+                    background:  @background;
+                }
+            }
+        }
+
+        .activity-log {
+            height: 100%;
+
+            .report-content {
+                height: 100%;
+
+                &.with-pagination {
+                    .calc-height( 100, 60 );
+                }
+
+                table{
+                    &.log-reports {
+
+                        th {
+                            line-height: 35px;
+                            vertical-align: top;
+                        }
+
+                        td {
+                            vertical-align: top;
+                            padding: 10px;
+                            line-height: 1.2;
+                        }
+
+                        th,
+                        td {
+                            &.username {
+                                width: 150px;
+                            }
+
+                            &.details { 
+                                strong {
+
+                                    &:after {
+                                        .hide();
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    /* Table - Global Settings ***/
+    table {
+        margin: 0;
+
+        th,
+        td { 
+            line-height: 1;
+            overflow: visible;
+            padding: 0; 
+            vertical-align: middle;
+        }
+
+        /* Row Styles ***/
+        .cell {
+            height: 60px;
+
+            &.expanded-row {
+                height: 210px;
+                
+                td { 
+                    vertical-align: top;
+                    padding-top: 15px;
+                }
+            }
+        }
+
+        /* First row needs to be slightly smaller ***/
+        tr:first-child {
+            .cell {
+                height: 55px;
+            }
+        }
+    }
+
+    /* Left Side - room / rate list ***/
+    .pinnedLeft {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 5px;
+        width: 100px;
+        z-index: 200;
+        background-color: @grey1;
+        height: 100%;
+        .box-shadow(2px 2px 3px rgba(0,0,0,.2));
+        
+
+        &.expanded {
+            width: 300px;
+
+            .rate-calendar {
+
+                .name {
+
+                    &.contracted-rate {
+                        padding-top: 0;
+                        margin-top: -20px;
+
+                        &.contracted-rate-missing-info {
+                            margin-top: -5px;
+
+                            & + span {
+                                bottom: 10px;
+                            }
+                        }
+                    }
+                }
+
+                /* Show Address */
+                .contracted-rate-address,
+                .contracted-rate-contract {
+                    display: block;
+                    .nowrap();
+                }
+            }
+        }
+
+        &.opened {
+            &.calendar-rate-table-hierarchy-2 {
+                .pinnedLeft-select-container:not(.pinnedLeft-availability) {
+                    height: 105px;
+                }
+
+                .pinnedLeft-list {
+                    .calc-height(100, 160); 
+                }
+            }
+
+            &.calendar-rate-table-hierarchy-3 {
+                .pinnedLeft-select-container:not(.pinnedLeft-availability) {
+                    height: 155px;
+                }
+
+                .pinnedLeft-list {
+                    .calc-height(100, 210); 
+                } 
+            }
+
+            &.calendar-rate-table-hierarchy-4 {
+                .pinnedLeft-select-container:not(.pinnedLeft-availability) {
+                    height: 205px;
+                }
+
+                .pinnedLeft-list {
+                    .calc-height(100, 260); 
+                } 
+            }
+
+            &.calendar-rate-table-hierarchy-5 {
+                .pinnedLeft-select-container:not(.pinnedLeft-availability) {
+                    height: 255px;
+                }
+
+                .pinnedLeft-list {
+                    .calc-height(100, 310); 
+                } 
+            }
+        }
+
+        .pinnedLeft-actions {
+            position: relative;
+            background: @gcard;
+            padding: 15px 5px 0 5px;
+            overflow: hidden;
+            z-index: 3;
+            .size(55px, 100%);
+
+            > div {
+                display: flex;
+            }
+
+            .button {
+                font-size: 0px; 
+                padding: 0 10px;
+                margin: 0;
+                height: 40px;
+                line-height: 1;
+                .calc-width(50, 2.5);
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    color: white;
+                    font-size: 20px;
+                    line-height: 40px;
+                }
+                
+                &:first-of-type {
+                    margin-right: 5px;
+                }
+                
+                &.prev {
+                    &:after {
+                        content: '←';
+                    }
+                }
+                
+                &.next {
+                    &:after {
+                        content: '→';
+                    }
+                    
+                    &:first-of-type {
+                        margin-right: 0;
+                        margin-left: auto;
+                    }
+                }                
+            }
+
+            .switch-button { 
+                border-radius: 3px;
+                background: @grey2;
+                width: 100%;
+                max-width: 155px;
+                height: 45px;
+                text-transform: uppercase;
+                display: block;
+                margin:0 auto;
+
+                label {
+                    width: 100%;
+                    height: 41px;
+                    top: 2px; 
+                    font-size: 14px;
+                    
+                    .switch-icon,
+                    .value {
+                        color: @grey3;
+                        text-shadow:none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        line-height: 1;
+                        font-weight: 400;
+                        text-shadow: none;
+                    }
+                }
+
+                &:not(.on) {
+                     label {
+                        &.data-off {
+                            left: -2px;
+                        } 
+                    }
+                }
+
+                &.on {
+                    label {
+                        &.data-on {
+                            left: 2px;
+                        } 
+                    }
+                }
+
+                .switch-icon {
+                    border-radius: 3px;
+                    background: @white;
+                }
+            }
+        }
+
+        .pinnedLeft-select-container {
+            height: 55px;
+            overflow: hidden;
+            .transition(height, .2s, cubic-bezier(.10, .10, .25, .90));
+
+            &.pinnedLeft-availability {
+                height: 45px;
+                position: relative;
+                z-index: 2;
+                .box-shadow(inset 0 -5px 0 0px #e9e9e9);
+
+                .pinnedLeft-select {
+                    height: 40px;
+                    background: @white;
+                    color: @darkBlue;
+
+                    .name {
+                        color: @darkBlue;
+                    }
+                }
+            }
+        }
+
+        .pinnedLeft-select {
+            position: relative;
+            padding: 5px 5px 0px 5px;
+            background: @gcard;
+            z-index: 3;
+            .size(50px, 100%);
+            #flexbox > .parent('', flex-end, center, '');
+
+            &.last {
+                height: 55px;
+                padding-bottom: 5px;
+            }
+
+            .select {
+                width: 100%;
+            }
+
+            select,
+            .name {
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            select {
+                padding-right: 30px;
+                direction: rtl;
+            }
+
+            .name {
+                color: @white;
+                text-align: right;
+                padding-right: 10px;
+                line-height: 12px;
+            }
+        }
+
+        .pinnedLeft-list { 
+            position:relative;
+            z-index: 1;
+            width: 100%;
+            .calc-height(100, 105);
+            .transition(height, .2s, cubic-bezier(.10, .10, .25, .90));
+
+            .wrapper {
+                padding-bottom: 5px;
+            }
+
+            .rate-calendar { 
+                background: @background;
+
+                tr {
+
+                    &:not(.expanded-row):first-child {
+                        height: 60px;
+                    }
+
+                }
+            }
+        }
+
+        .rate-calendar { 
+            width: 100%; 
+            background: @gcard;
+            position: relative;
+            z-index: 2;
+
+            tr {
+                &:not(.expanded-row):first-child {
+                    height: 45px;
+                }
+
+            }
+
+            td { 
+                position: relative;
+                padding: 5px 0;
+                text-align: right;
+                .box-shadow(0 5px 0 #e9e9e9);
+            }
+
+            a {
+                color: @black;
+                overflow: hidden;
+                .size(50px, 100%);
+            }
+
+
+            .name {
+                font-size: 12px;
+                line-height: 12px;
+                text-transform: uppercase;
+                padding: 10px 20px 5px 20px;
+                overflow: hidden;
+                max-height: 35px;
+                text-align: left;
+                .show();
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;  
+
+                &:not(.base-rate),
+                &:not(.contracted-rate) {
+                    padding-left:10px;
+                }
+
+                &.bolder { 
+                    font-weight: 18px;
+                    font-weight: 600;
+                    padding-right: 20px;
+                }
+
+                &.contracted-rate {
+                    padding-left: 20px;
+                }
+
+                &.base-rate { 
+                    padding-left: 20px;
+
+                    //Both
+                    &.contracted-rate {
+                        .base-rate-indicator {
+                            top: 10px;
+                        }
+
+                        .contracted-rate-indicator {
+                            top: 35px;
+                        }
+                    }
+                }
+
+                &.gray { 
+                    color:@grey3;
+                    font-size: 11px;
+                    text-transform: none;
+                }
+
+                &.room-type,
+                &.no-arrow {
+                    padding-right: 10px;
+                } 
+
+                &.locked {
+                    color: @red;
+                    padding-right: 20px;
+                }
+
+            }
+
+            .base-rate-indicator,
+            .contracted-rate-indicator {
+                position: absolute;
+                top: 23px;
+                left: 5px;
+                background: @blueStart;
+                color: @white;
+                font-size: 9px;
+                line-height: 12px;
+                text-align: center;
+                border-radius: 20px;
+                text-transform: uppercase;
+                .square(12px);
+            }
+
+            .contracted-rate-indicator {
+                background-color: @ccard;
+                 
+
+                &.allotment{ 
+                    background-color: @allotmentcard;
+                }
+
+                &.travel-agent{
+                    background-color: @tacard;
+                    
+                }
+
+                &.group {
+                    background-color: @groupcard;
+                     
+                }
+            }
+
+            .contracted-rate-address,
+            .contracted-rate-contract {
+                display:none;
+                position: absolute;
+                padding: 0 35px;
+                left:0;
+                width: 100%; 
+                font-size: 12px;
+                color: @ccard;
+
+                &.allotment{ 
+                    color: @allotmentcard;
+                }
+
+                &.travel-agent{
+                    color: @tacard;
+                    
+                }
+
+                &.group {
+                    color: @groupcard;   
+                }
+            }
+
+            .contracted-rate-contract {
+                bottom: 21px;
+            }
+
+            .contracted-rate-address {
+                bottom: 5px;
+                .contracted-rate-indicator {
+                    position: static;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 2px;
+                    margin-top:-1px;
+                    .size(15px,15px);
+                    font-size: 8px;
+                    line-height: 15px;
+                }
+            }
+
+            .icon-double-arrow {
+                position: absolute;
+                top: 21px;
+                right: 5px;
+                background-position: 4px -1061px;
+                background-size: 80px;
+                .square(20px);
+            }
+
+            .icon-room-lock {
+                height: 15px;
+                width: 12px;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                bottom: 0;
+                margin: auto;
+                background-size: 80px;
+                background-position: 0px -6026px;
+            }
+
+           
+        }
+    }
+    
+    /* Handle to toggle the Hierarchy rows */
+    .calendar-rate-table-handle {
+        position: absolute;
+        background-color: @gcard;
+        background-image: @icons;
+        background-repeat: no-repeat, repeat;
+        background-position: 5px -3807px, 0 0;
+        top: 95px;
+        cursor: ns-resize;
+        content: '';
+        z-index: 200;
+        left: 50%;
+        .size(50px, 25px);
+        #border-radius > .right(5px);
+        .rotate(90deg);
+        .transition(top, .2s, cubic-bezier(.10, .10, .25, .90));
+
+        @media @highdpi {
+            background-image: @icons2x;
+            background-size: 120px, 40px;
+        }
+
+        &.opened {
+            &.calendar-rate-table-hierarchy-2 {
+                top: 145px; 
+            }
+
+            &.calendar-rate-table-hierarchy-3 {
+                top: 195px; 
+            }
+
+            &.calendar-rate-table-hierarchy-4 {
+                top: 245px; 
+            }
+
+            &.calendar-rate-table-hierarchy-5 {
+                top: 295px; 
+            }
+        }
+    }
+    
+    /* Right Side - Calendar Grid ***/
+    .calendar-rate-table {
+        position: absolute;
+        left: 100px;
+        z-index: 100;
+        .calc-width(100, 100);
+        
+
+        /* Rate Table Grid - Restriction Icon ***/
+        .restriction-icon {
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 600;
+            .square(16px);
+            .show();
+
+            &.icon-cross, { background-position: 3px -7837px; }
+            &.icon-block {  background-position: 3px -7897px; }
+        }
+
+        /* Rate Table Grid - Column Styles ***/
+        .date-header,
+        .cell-container {
+            padding: 5px 5px 0 0;
+            background-color: rgba(0,0,0,.05);
+            .size(60px, 100px);
+
+            &.expanded-cell { 
+                height: 210px;
+
+                .cell-content {
+                    padding: 0;
+                    
+                }
+            }
+
+            &.weekend_day { 
+                background-color: fade(#5d808e, 10); 
+
+                .cell-content {
+                    background-color: #f5fcff;
+                }
+            }
+
+            .cell-availability {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 30px;
+                z-index: 1;
+                background-color: rgba(0,0,0,.05);
+                color: rgba( 0,0, 0,0.5);
+                line-height: 55px;
+                text-align: center;
+                font-size: 14px;
+                z-index: 1;
+                .hide();
+
+                &.red {
+                    color: @softRed;
+                }
+            }
+        }
+
+        td:first-child,
+        th:first-child {
+            .date-header,
+            .cell-container { padding-left: 5px; }
+        }
+
+        tr:last-child {
+            .cell-container { 
+                padding-bottom: 5px;
+
+                &:not(.expanded-cell) {
+                     height: 65px; 
+                }
+               
+            } 
+             /* If a last child is also a first child, keep it the same as before*/
+            &:first-child {
+                .cell-container {
+                    &:not(.expanded-cell) {
+                     height: 60px; 
+                    }
+                }
+            }
+        }
+
+        /* Rate Table Grid - Column Header ***/
+        .date-header{
+            line-height: 15px;
+            text-transform: uppercase;
+            text-align: center;
+
+            span {
+                color: @white;
+                background-color: @gcard;
+                .show();
+
+                &:not(.week-day) {       
+                    font-size: 14px;       
+                    font-weight: 600;     
+                    padding-bottom: 10px;     
+                    #border-radius > .bottom(); 
+                  }
+                
+                &.week-day { 
+                    font-size: 12px;
+                    padding-top: 10px;
+                    #border-radius > .top(); 
+                }
+            }
+
+            &.weekend_day {
+                span {
+                    background-color: #5d808e;
+                }
+            }
+
+            &.isHistory-cell-content { 
+                span {
+                    color: fade(@white, 60);
+                    background-color: fade(@gcard, 90);
+                }
+            }
+        }
+
+        /* Rate Table Grid - Column Content ***/
+        .cell-content {
+            position: relative;
+            padding: 10px 5px;
+            background: @white;
+            cursor: pointer;
+            overflow: hidden;
+            .transition();
+            .square(100%);
+            #flexbox > .parent(column wrap, center, '', '');
+            #border-radius > .rounded();
+
+            /* Single Rate Value ***/
+            .occupancy {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .rate-single {
+                text-transform: uppercase;
+                font-size: 15px;
+                font-weight: 300;
+
+                .rate-single-text {
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: @grey2;
+                    .show();
+                }
+
+                &:not(.no-rate) {
+                    padding-left: 10px;
+                    text-align: left;
+                }
+
+                &.no-rate {
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: @grey2;
+                    text-align: center;
+                }
+            }
+
+            /* Expanded Rate Values ***/
+            .room-type-price {
+                padding: 10px;
+                .size(50px, 100%);
+                .show();
+            }
+
+            .room-type-price-name {
+                font-size: 12px;
+                font-weight: 300;
+                text-transform: uppercase;
+                color: @grey3;
+                .show();
+            }
+
+            .room-type-price-value {
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+            /* Overrides ***/
+            .has-override { 
+                color: @logoPrimary;
+
+                &.third-party {
+                    color: @purpleStart;
+
+                    .icon-report {
+                        background-position: 0 -336px;
+                    }
+                }
+            }
+
+            .icon-report {
+                position: absolute;
+                z-index: 2;
+                top: 1px;
+                left: 0;
+                .square(16px);
+                background-position: 0 -14px;
+                background-size: 16px;
+            }
+
+            .restriction_holder {
+                position: absolute;
+                top: 0;
+                right: 0;
+                overflow: hidden;
+                .size(100%, 16px);
+                #flexbox > .parent(column wrap, '', '', '');
+
+                .restriction-icon {
+                    &:not(:last-child) {
+                        margin-bottom: 1px;
+                    }
+                }
+            }
+
+            /* History & active state ***/
+            &:not(.isHistory-cell-content) {
+                position: relative;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 1px 1px 1px rgba(0,0,0,.2);
+                    .show();
+                    .square(100%);
+                    #border-radius > .rounded();
+                }
+
+                &:hover {
+                    background-color: @grey1;
+                    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 1px 1px 2px rgba(0,0,0,.2);
+                }
+
+                &:active {
+                    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), inset 0 0 2px rgba(0,0,0,.4);
+                }
+            }           
+
+            &.isHistory-cell-content {
+                opacity: .5;
+            }
+        }
+
+        .rate-single.no-rate + .cell-content {
+            background: fade(@white, 50);
+        }
+     
+        .iScrollHorizontalScrollbar {
+            top: auto;
+            bottom: 10px;
+        }
+
+        /* First Row - Days ***/
+        &.calendar-rate-table-days { 
+            top: 0;
+            height: 110px; 
+            //box-shadow: 0 1px 1px rgba(0,0,0,.1);
+            .transition(height, .2s, cubic-bezier(.10, .10, .25, .90));
+
+            &:after {
+                content: '';
+                background: @gcard;
+                height: 110px;
+                width: 100%;
+                left: 0;
+                top: 0;
+                position: absolute;
+                z-index: -1;
+                .transition(height, .2s, cubic-bezier(.10, .10, .25, .90));
+            }
+            
+
+            &.opened {
+                &.calendar-rate-table-hierarchy-2 {
+                    height: 160px; 
+
+                    &:after {
+                        height: 160px;
+                    }
+                }
+
+                &.calendar-rate-table-hierarchy-3 {
+                    height: 210px; 
+
+                    &:after {
+                        height: 210px;
+                    }
+                }
+
+                &.calendar-rate-table-hierarchy-4 {
+                    height: 260px; 
+
+                    &:after {
+                        height: 260px;
+                    }
+                }
+
+                &.calendar-rate-table-hierarchy-5 {
+                    height: 310px; 
+
+                    &:after {
+                        height: 310px;
+                    }
+                }
+            }
+
+            .rate-calendar {
+                background: @gcard;
+            }
+
+            td {
+                vertical-align: top;
+            }
+
+            tr {
+                .cell-content {
+                    > .restriction-icon { 
+                            position: static;
+                            float: left;
+                            margin-right: 0.5em;
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                }
+            }
+
+            tr:first-child,
+            tr {
+                .cell {
+                    height: 50px;
+                }
+                .cell-container { 
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    height: 45px;
+
+                    &:not(.expanded-cell) {
+                       height: 45px; 
+                    }
+
+                    .cell-content {
+                        #flexbox > .parent(row wrap, flex-start, center, '');
+                    }
+                }
+            }
+        } 
+
+        /* Other Rows - Data ***/
+        &.calendar-rate-table-grid { 
+            top: 110px;
+            .calc-height(100, 110);
+            .transition(top, .2s, cubic-bezier(.10, .10, .25, .90));
+
+            &.opened {
+                &.calendar-rate-table-hierarchy-2 {
+                    top: 160px;
+                    .calc-height(100, 160); 
+                }
+
+                &.calendar-rate-table-hierarchy-3 {
+                    top: 210px;
+                    .calc-height(100, 210);  
+                }
+
+                &.calendar-rate-table-hierarchy-4 {
+                    top: 260px;
+                    .calc-height(100, 260);  
+                }
+
+                &.calendar-rate-table-hierarchy-5 {
+                    top: 310px;
+                    .calc-height(100, 310);  
+                }
+            }
+        }
+    }
+    
+    /**
+    * When Showing Room Availability Header row
+    **/
+    .with-availability {
+        .pinnedLeft {
+            &.opened {
+                &.calendar-rate-table-hierarchy-2 {
+                    .pinnedLeft-list {
+                        .calc-height(100, 155); 
+                    }
+                }
+    
+                &.calendar-rate-table-hierarchy-3 {
+                    .pinnedLeft-list {
+                        .calc-height(100, 205); 
+                    } 
+                }
+    
+                &.calendar-rate-table-hierarchy-4 {
+                
+                    .pinnedLeft-list {
+                        .calc-height(100, 255); 
+                    } 
+                }
+    
+                &.calendar-rate-table-hierarchy-5 {
+                  
+                    .pinnedLeft-list {
+                        .calc-height(100, 305); 
+                    } 
+                }
+            }
+
+            .pinnedLeft-list { 
+                .rate-calendar { 
+                    tr {
+                        &:not(.expanded-row):first-child {
+                            height: 55px;
+                            td {
+                                padding-top: 0;
+                            }
+
+                            .icon-double-arrow {
+                                top: 18px;
+                            }
+
+                            
+                            .contracted-rate-indicator,
+                            .base-rate-indicator {
+                                top: 18px;
+                            }
+
+                            .name.base-rate.contracted-rate {
+                                .base-rate-indicator {
+                                    top: 5px;
+                                }
+
+                                .contracted-rate-indicator {
+                                    top: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .calendar-rate-table {
+            &.calendar-rate-table-grid {
+                top: 155px;
+                .calc-height(100, 155); 
+
+                &.opened {
+                    &.calendar-rate-table-hierarchy-2 {
+                        top: 205px;
+                        .calc-height(100, 205); 
+                    }
+    
+                    &.calendar-rate-table-hierarchy-3 {
+                        top: 255px;
+                        .calc-height(100, 255); 
+                    }
+    
+                    &.calendar-rate-table-hierarchy-4 {
+                        top: 305px;
+                        .calc-height(100, 305); 
+                    }
+    
+                    &.calendar-rate-table-hierarchy-5 {
+                        top: 355px;
+                        .calc-height(100, 355);
+                    }
+                }
+
+                .rate-calendar {
+                    tr {
+                        &:first-child {
+                            .cell-container {
+                                padding-top: 0;
+
+                                &:not(.expanded-cell) {
+                                    height: 55px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.calendar-rate-table-days {
+                height: 155px;
+
+                .rate-calendar-availability {
+                    position: absolute;
+                    top: 110px;
+                    left: 0;
+                    z-index: 9999;
+                    background: @background;
+                    .transition(top, .2s, cubic-bezier(.10, .10, .25, .90));
+
+                    tr {
+                        .cell {
+                            height: 45px;
+                            background: rgba(0, 0, 0, 0.05);
+
+                            .cell-container {
+                                height: 40px;
+                                background: transparent;
+
+                                .cell-content {
+                                    background: @white;
+                                    border-top-left-radius: 0;
+                                    border-top-right-radius: 0;
+                                    justify-content: center;
+                                    color: @darkBlue;
+                                    font-weight: 600;
+                                    cursor: default;
+
+                                    &:not(.isHistory-cell-content):after {
+                                        border-top-left-radius: 0;
+                                        border-top-right-radius: 0;
+                                    }
+
+                                    &.red {
+                                        color: @softRed;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.opened {
+                    &.calendar-rate-table-hierarchy-2 {
+                        height: 205px; 
+
+                        .rate-calendar-availability {
+                            top: 160px;
+                        }
+                    }
+    
+                    &.calendar-rate-table-hierarchy-3 {
+                        height: 255px; 
+
+                        .rate-calendar-availability {
+                            top: 210px;
+                        }
+                    }
+    
+                    &.calendar-rate-table-hierarchy-4 {
+                        height: 305px; 
+
+                        .rate-calendar-availability {
+                            top: 260px;
+                        }
+                    }
+    
+                    &.calendar-rate-table-hierarchy-5 {
+                        height: 355px; 
+
+                        .rate-calendar-availability {
+                            top: 310px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /** When showing availability per room **/
+    .show-availability {
+        .calendar-rate-table {
+            .cell-container,
+            .date-header {
+                width: 130px;
+            }
+
+            &.calendar-rate-table-grid { 
+                .cell-container:not(.expanded-cell) {
+                    .cell-content {
+                        padding-left: 30px;
+                    }
+                    .cell-availability {
+                        .show();
+                    }
+                }
+            }
+        }
+    }
+}    
+
+/* Bottom - Legend ***/
+.restriction-legends {
+    .hide();
+}    

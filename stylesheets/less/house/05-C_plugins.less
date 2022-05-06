@@ -1,0 +1,48 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+/* 5. COMPONENTS
+==========================================================*/
+
+/* iScroll Scrollbar		==============================*/
+	.iScrollVerticalScrollbar {
+		position: absolute;
+		width: 4px;
+		top: 20px;
+		right: 5px;
+		bottom: 20px;
+		z-index: 99;
+		
+		.iScrollIndicator {
+			position: absolute;
+			width: 100%;
+			background: @logoGradientStart;
+			#border-radius > .rounded(4px);
+		}
+	}
+
+	.iScrollHorizontalScrollbar {
+		position: absolute;
+		height: 4px;
+		left: 5px;
+		right: 5px;
+		top: 10px;
+		z-index: 99;
+
+		.iScrollIndicator {
+			position: absolute;
+			height: 100%;
+			background: @logoGradientStart;
+			#border-radius > .rounded(4px);
+		}
+	}
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

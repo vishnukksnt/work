@@ -1,0 +1,517 @@
+#reservation-card {
+    .reservation-tabs-nav,
+    .reservation-header {
+        .hide();
+    }
+
+    .reservation-list,
+    .reservation {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .show();
+    }
+
+    .reservation-content,
+    .reservation-actions {
+        position: relative;
+
+        .wrapper {
+            padding: 10px;
+        }
+
+    }
+
+    /* Reservation card actions **/
+    .reservation-actions {
+        height: 160px;
+        background-color: @white;
+        box-shadow: 0 -1px 2px rgba(0,0,0,.2);
+        overflow: hidden;
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            padding: 10px;
+
+            > div {
+                grid-column: 1/span 2;
+            }
+        }
+
+        .iScrollIndicator {
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .balance {
+            grid-column: 1/span 2;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(0,0,0,.05);
+            border-radius: 3px;
+            height: 50px;
+
+            .label {
+                line-height: 1;
+                margin: 0;
+                color: rgba(0,0,0,.4);
+            }
+
+            .red {
+                color: @red;
+            }
+
+            .green {
+                color: @green;
+            }
+
+            .h1 {
+                margin-left: auto;
+                font-size: 24px;
+            }
+
+            &.background-red {
+                background-color: fade(@red, 10);
+            }
+
+            &.background-green  {
+                background-color: fade(@green, 10);
+            }
+        }
+
+        .button {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            line-height: 1;
+            height: 50px;
+            width: 100%;
+            overflow: hidden;
+
+            &:first-of-type,
+            &.green,
+            &.red,
+            &.purple,
+            &.grey,
+            &.bottom-button {
+                grid-column: 1/span 2;
+            }
+
+            &.white {
+                 background-color: @grey1;
+            }
+
+            &.staycard-button {
+                text-shadow: none;
+                background-image: none;
+                color: @blue;
+                background-color: @grey1;
+                .box-shadow();
+
+                &.routing {
+                    span {
+                        color: @logoPrimary;
+                        .show;
+                    }
+                }
+
+                &.icon-queue {
+                    &.in {
+                        color: @red;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Reservation card content ***/
+    .reservation-content {
+        position: relative;
+        height: calc(~'100% - 160px');
+
+        /* Title ***/
+        .block-title {
+            display: flex;
+            flex-flow: row wrap;
+            color: @textColor;
+            font-size: 14px;
+            line-height: 20px;
+            text-transform: uppercase;
+            text-align: left;
+            margin-bottom: 10px;
+            width: 100%;
+            box-shadow: 0 1px 0 rgba(0,0,0,.1);
+
+            span {
+                color: @grey3;
+                margin-left: auto;
+
+                &.payment-hold,
+                &.block-text {
+                    margin-left: 5px;
+                }
+            }
+
+            strong { font-weight: 600; }
+
+            .move-room,
+            .block-input {
+                margin-left: auto;
+                display: flex;
+                flex-flow: row wrap;
+                position: relative;
+
+                .label {
+                    margin: 0 5px 0 0;
+                }
+
+                .switch-button {
+                    margin-left: auto;
+                    .show;
+                    .size(18px, 28px);
+
+                    &.on {
+                        .gradient(@greenEnd, @greenStart);
+                        .switch-icon { left: 12px; }
+                        &.red-on {
+                            .gradient(@redEnd, @redStart);
+                        }
+                    }
+                }
+
+                .switch-icon {
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    z-index: 9;
+                    .gradient-with-image(@onOffLines, @grey1, @white);
+                    background-position: 50% 50%, 0 0;
+                    background-repeat: no-repeat, repeat;
+                    background-size: 6px 7px, auto;
+                    .hide-text;
+                    .show;
+                    .square(14px);
+                    .transition;
+                    #border-radius > .rounded(22px);
+
+                    @media @highdpi {
+                        .gradient-with-image(@onOffLines2x, @grey1, @white);
+                        background-position: 50% 50%, 0 0;
+                        background-repeat: no-repeat, repeat;
+                        background-size: 6px 7px, auto;
+                    }
+                }
+
+                input[type="checkbox"] {
+                    line-height: 18px;
+                    min-height: 18px;
+                }
+            }
+
+            .move-room  {
+                .switch-button {
+                    &.on {
+                        .gradient(@redEnd, @redStart);
+                        .switch-icon { left: 12px; }
+                    }
+                }
+            }
+
+            &.has-arrow {
+                cursor: pointer;
+                font-size: 16px;
+                line-height: 1em;
+                font-weight: 600;
+                background-position: 100% 50%;
+                padding: 15px 0 5px;
+                margin-bottom: 20px;
+
+                &.active { border-bottom: 0; }
+            }
+        }
+
+        /* Card elements ***/
+        .block-item {
+            width: 100%;
+            margin-bottom: 20px;
+            .show();
+
+            /* Content ***/
+            .next-view,
+            .no-view {
+                text-align: left;
+                color: @textColor;
+                line-height: 50px;
+                padding: 0 10px;
+                .size(50px, 100%);
+            }
+
+            .select-item,
+            select { height: 50px; }
+
+            .next-view {
+                .clickable();
+
+                &.has-arrow {
+                    background-position: calc(~'100% - 10px') 50%;
+                    padding-right: 40px;
+                }
+            }
+
+            .no-view,
+            .overlay {
+                .faux-clickable();
+                .box-shadow(none);
+            }
+
+            /* Actions / Notes / Group **/
+            &.item-actions,
+            &.item-notes {
+                .staycard-button {
+                    font-size: 30px;
+                    font-weight: 300;
+                    text-align: right;
+
+                    &.icon-actions { color: @green; }
+                    &.icon-new-actions { color: @red; }
+                    &.icon-notes { color: @blue; }
+
+                    &.icon-no-actions,
+                    &.icon-no-notes { color: @grey3; }
+
+                    span { color: @textColor; }
+                }
+            }
+
+            &.item-cards {
+
+                .icons {
+                    color: @grey3;
+                    font-size: 14px;
+                    line-height: 17px;
+                    padding-left: 25px;
+                    .nowrap();
+                }
+
+                .no-cards {
+                    background: rgba(0,0,0,.1);
+                    #border-radius > .rounded();
+                    .size(50px, 100%);
+                    .show;
+                }
+            }
+
+            /* Block Item - Payment Method ***/
+            &.item-payment {
+                .next-view,
+                .no-view {
+                    position: relative;
+
+                    .icons {
+                        position: absolute;
+                        top: 10px;
+                        right: 40px;
+                        margin: 0;
+                    }
+                }
+
+                .next-view {
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 23px;
+                        right: 14px;
+                        border-left: 4px solid transparent;
+                        border-right: 4px solid transparent;
+                        border-top: 4px solid @textColor;
+                        .square(0px);
+                    }
+                }
+            }
+
+            /* Block Item - Room ***/
+            &.item-room {
+
+                .next-view,
+                .no-view {
+                    .nowrap();
+                    #flexbox > .parent(row nowrap, '', center, '');
+
+                    .room-number {
+                        flex-shrink: 0;
+                        max-width: 50%;
+                        font-size: 24px;
+
+                        &:not(:empty) {
+                            padding-right: 10px;
+                        }
+
+                        &.no-number {
+                            color: @grey2;
+                        }
+                    }
+                }
+
+                .room-status {
+                    padding-right: 10px;
+                }
+
+                /* Room is locked ***/
+                .has-lock {
+                    position: relative;
+                    padding-right: 50px;
+
+                    .icon-room-lock {
+                        position: absolute;
+                        top: 15px;
+                        right: 15px;
+                        .square(20px);
+                    }
+                }
+            }
+
+            /* Block Item - ADR ***/
+            &.item-rate {
+                .next-view,
+                .no-view {
+                    #flexbox > .parent(row nowrap, '', center, '');
+
+                    .number {
+                        flex-shrink: 0;
+                        font-size: 24px;
+                        font-weight: 300;
+                        max-width: 50%;
+                        .nowrap();
+
+                        &:not(:empty) {
+                            padding-right: 10px;
+                        }
+                    }
+
+                    .rate {
+                        .nowrap();
+
+                        &.custom {
+                            position: relative;
+                            line-height: 1;
+                            padding-bottom: 16px;
+                            min-width: 60px;
+
+                            span {
+                                position: absolute;
+                                bottom: 0;
+                                left: 10px;
+                                font-size: 12px;
+                                color: @grey3;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            /* Rows with buttons ***/
+            &.has-buttons,
+            &.has-button {
+                display: grid;
+                grid-column-gap: 10px;
+
+                .actions {
+
+                    .add-new-button {
+                        padding: 0;
+                        line-height: 48px;
+                        .size(50px, 60px);
+                    }
+
+                    .button {
+                        margin-right: 10px;
+                        overflow: visible;
+                        .size(50px, 60px);
+                        .pull-left;
+
+                        &.with-icon {
+                            padding-top: 25px;
+                            line-height: 25px;
+
+                            .icons { top: 10px; }
+                        }
+
+                        &:last-child { margin: 0; }
+                    }
+
+                    .count {
+                        position: absolute;
+                        top: -6px;
+                        right: -6px;
+                        font-size: 12px;
+                        line-height: 24px;
+                        background-color: @softRedStart;
+                        #border-radius > .rounded(24px);
+                        .square(24px);
+                    }
+                }
+            }
+
+            &.has-buttons {
+                grid-template-columns: 1fr 130px;
+
+                .block-title {
+                    grid-column: 1/span 2;
+                }
+
+
+                /* CC display adjustment */
+                &.item-payment {
+                    .card-logo {
+                        margin: 13px 10px 13px 0;
+                        .size(24px, 48px);
+
+                        img {
+                            .show();
+                        }
+                    }
+
+                    span {
+                        margin-right: 10px;
+
+                        .value {
+                            margin-left: 3px;
+                        }
+                    }
+
+                    .icons {
+                        right: 30px;
+                    }
+                }
+            }
+
+            &.has-button {
+                grid-template-columns: 1fr 60px;
+
+                .block-title {
+                    grid-column: 1/span 2;
+                }
+            }
+        }
+
+        /* Notes & Actions ***/
+        .notes-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 10px;
+
+            div:not(.block-item),
+            .item-cards {
+                grid-column: 1/span 2;
+            }
+        }
+    }
+}

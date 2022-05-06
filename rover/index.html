@@ -1,0 +1,213 @@
+<html>
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+  <head>
+    <!-- inject:gtm:head -->
+    <!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+    <!-- endinject -->
+
+    <!-- inject:qtm:head -->
+    <!-- endinject -->
+    <base href="/">
+    <meta charset="utf-8"/>
+    <meta content="noindex, nofollow" name="robots"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="StayNTouch" name="apple-mobile-web-app-title"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link href="/assets/favicon.png" rel="icon" type="image/png"></link>
+    <link href="/assets/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed"></link>
+    <link href="/assets/apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image"></link>
+    <link href="/assets/apple-touch-startup-image-1024x748.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image"></link>
+    <link href="/assets/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"></link>
+    <link href="/assets/apple-touch-startup-image-2048x1496.png" media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"></link>
+    <!-- inject:less:css -->
+    <link rel='stylesheet' href='/ui/pms-ui/rover.css' media='print, screen and (min-width: 768px)'>
+    <!-- endinject -->
+    <!-- inject:mobile-less:css -->
+    <link rel='stylesheet' href='/ui/pms-ui/rover_mobile.css' media='screen and (max-width: 767px)'>
+    <!-- endinject -->
+  </head>
+  <body ng-app="sntRover" document-touch-move-prevent>
+    <!-- inject:gtm:body -->
+    <!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
+    <!-- endinject -->
+    <snt-session-timeout></snt-session-timeout>
+    <div class="root-view" ui-view></div>
+    <div class="room-indicator-popup hidden">
+      <div class="room-indicator-popup-title">
+          Connected To
+      </div>
+      <ul>
+          <li ng-repeat="roomNo in selectedRoom.connectingRooms">
+              <span class="icons icon-suite-{{roomIndicatorType}}"></span>
+              <span>{{roomNo}}</span>
+          </li>
+      </ul>
+    </div>
+    <script src="https://cnp.merchantlink.com/form/v2.1/hpf.js"></script>
+    <!--- Please dont delete ANY COMMENTS -->
+    <!-- inject:js -->
+    <script src="/ui/pms-ui/shared/lib/js/jquery.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/jquery-ui.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular/angular.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-dragdrop/src/angular-dragdrop.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-translate/dist/angular-translate.min.js"></script>
+    <script src="/ui/pms-ui/node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/oclazyload/ocLazyLoad.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/ui-utils.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/underscore.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/ngDialog.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/fastclick/fastclick.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/moment.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/toastr/toastr.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/d3/d3.v5.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/d3/d3-scale.v3.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/idle-timer.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/jsZip/jszip.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/fileSaver/filesaver.min.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/iscroll.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/ng-iscroll.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/Utils.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/date.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/fastclick/snt-fastclick-override.js"></script>
+    <script src="/ui/pms-ui/shared/lib/js/sortable.js"></script>
+    <script src="/ui/pms-ui/shared/interceptors/sharedHttpInterceptor.js"></script>
+    <script src="/ui/pms-ui/shared/interceptors/sntBaseWebSrv.js"></script>
+    <script src="/ui/pms-ui/shared/directives/activityIndicator/sntActivityIndicator.js"></script>
+    <script src="/ui/pms-ui/shared/directives/clickTouch/clickTouch.js"></script>
+    <script src="/ui/pms-ui/shared/directives/convertToNumber/convertToNumberDir.js"></script>
+    <script src="/ui/pms-ui/shared/directives/divTouchMoveStopPropogate/documentTouchMovePrevent.js"></script>
+    <script src="/ui/pms-ui/shared/directives/documentTouchMovePrevent/documentTouchMovePrevent.js"></script>
+    <script src="/ui/pms-ui/shared/directives/emitWhen/emitWhen.js"></script>
+    <script src="/ui/pms-ui/shared/directives/enterPress/enterPress.js"></script>
+    <script src="/ui/pms-ui/shared/directives/eventReachedRoot/eventReachedRoot.js"></script>
+    <script src="/ui/pms-ui/shared/directives/fauxMultiSelect/fauxMutilSelect.js"></script>
+    <script src="/ui/pms-ui/shared/directives/iScrollFixes/iscrollStopPropagation.js"></script>
+    <script src="/ui/pms-ui/shared/directives/limitInputRange/limitInputRange.js"></script>
+    <script src="/ui/pms-ui/shared/directives/ng-augment-native-scroll/ng-augment-native-scroll.min.js"></script>
+    <script src="/ui/pms-ui/shared/directives/ngClassWithoutAnimation/ngClassWithoutAnimation.js"></script>
+    <script src="/ui/pms-ui/shared/directives/numbersOnly/numbersOnly.js"></script>
+    <script src="/ui/pms-ui/shared/directives/onScroll/onScroll.js"></script>
+    <script src="/ui/pms-ui/shared/directives/orientationInputBlur/orientationInputBlur.js"></script>
+    <script src="/ui/pms-ui/shared/directives/prettyTimeAgo/prettyTimeAgo.js"></script>
+    <script src="/ui/pms-ui/shared/directives/restrictMinVal/restrictMinValDir.js"></script>
+    <script src="/ui/pms-ui/shared/directives/tooltip/qtip2.js"></script>
+    <script src="/ui/pms-ui/shared/directives/tooltip/qtipfc.js"></script>
+    <script src="/ui/pms-ui/shared/directives/touchPress/touchPress.js"></script>
+    <script src="/ui/pms-ui/shared/directives/uiColorpicker/uiColorpicker.js"></script>
+    <script src="/ui/pms-ui/shared/baseCtrl.js"></script>
+    <script src="/ui/pms-ui/shared/cardReaderCtrl.js"></script>
+    <script src="/ui/pms-ui/shared/sntTransitionManager/sntTransitionManager.js"></script>
+    <script src="/ui/pms-ui/shared/sntCurrency/sntCurrencyFilter.js"></script>
+    <script src="/ui/pms-ui/shared/sntCanvasUtil/sntConvertCanvasEvent.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/app.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/directives/sntSessionTimeoutDir.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/sntFeatureToggles.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/sntLoadExtScript.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/sntNotification.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/sntPlaceholder.js"></script>
+    <script src="/ui/pms-ui/shared/sntUtils/sntSessionTimeoutInterceptor.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvAccountsRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvAllotmentRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvCompanyCardRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvDashboardAndSearchRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvDiaryRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvEndOfDayRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvFinancialsRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvGroupRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvGuestCardRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvHouseEventsRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvHousekeepingRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvOverBookingRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvRateMangerRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvReportsRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvSocialLobbyRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouters/rvStaycardRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvApp.js"></script>
+    <script src="/ui/pms-ui/rover/rvRouter.js"></script>
+    <script src="/ui/pms-ui/rover/rvCardOperations.js"></script>
+    <script src="/ui/pms-ui/rover/rvMockCardOperations.js"></script>
+    <script src="/ui/pms-ui/rover/rvMLIOperations.js"></script>
+    <script src="/ui/pms-ui/rover/rvSwipeOperations.js"></script>
+    <script src="/ui/pms-ui/rover/rvCacheVaultModule.js"></script>
+    <script src="/ui/pms-ui/rover/rvDesktopCardOperations.js"></script>
+    <script src="/ui/pms-ui/rover/rvSntApp.js"></script>
+    <script src="/ui/pms-ui/rover/filters/roundFilter.js"></script>
+    <script src="/ui/pms-ui/rover/filters/highlightWordsFilter.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/rvTopCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/rvRoverController.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/sharedMethodsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/bill/rvValidateEmailOnPaymentCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/frontOffice/rvFrontOfficeActivityCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/frontOffice/rvFrontOfficeManagementAnalyticsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/frontOffice/rvFrontOfficeWorkloadCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/houseKeeping/rvHKOverviewAnalticsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/houseKeeping/rvHkWokrPriorityCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/manager/rvManagerDistributionAnalyticsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/manager/rvManagerPaceChartWithZoomCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/manager/rvManagerPaceLineChartCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/manager/rvManagerSpiderChartCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/manager/rvMangerPaceChart.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/analytics/rvAnalyticsMainCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvDashboardController.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvDashboardWidgetGuestsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvDashboardWidgetRoomsCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvFrontDeskDashboardCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvHouseKeepingDashboardCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvManagerDashboardCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/dashboard/rvTrustAsResourceUrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/availability/rvAvailabilityButtonCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvFrontDeskDashboardSearchCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvHouseKeepingDashboardRoomSearchCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvManagerDashboardSearchCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvReservationSearchController.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvReservationSearchFromDatepickerCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvReservationSearchToDatepickerCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/search/rvReservationSearchWidgetCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/errorPopup/rvTimeoutErrorCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/workstation/rvWorkstationCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/rvOWSErrorCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/deviceStatus/rvDeviceStatusCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/rvHouseEventsListPopupCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/controllers/angularIframe/rvAngularIframeCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/services/baseWebSrvV2.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvBaseWebSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvDashboardSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/menu/rvMenuSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvOWSTestSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/jsMappings/jsMappingsSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/permissions/rvPermissionSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvSearchSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvHotelDetailsSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/housekeeping/rvHkRoomStatusSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/util/rvUtilSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/availability/rvAvailabilitySrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/workstation/workstationSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/deviceStatus/rvDeviceStatusSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvAutomaticEmailSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/analytics/rvAnalyticsHelperSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/analytics/rvAnalyticsSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/analytics/rvFrontOfficeAnalyticsSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/analytics/rvGAHelperSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/analytics/rvManagersAnalyticsSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/rvHouseEventsListSrv.js"></script>
+    <script src="/ui/pms-ui/rover/services/angularIframe/rvAngularIframeHelperSrv.js"></script>
+    <script src="/ui/pms-ui/rover/directives/Outside Click handler/outsideClickDirective.js"></script>
+    <script src="/ui/pms-ui/rover/directives/pagination/rvPaginationCtrl.js"></script>
+    <script src="/ui/pms-ui/rover/directives/pagination/rvPaginationDir.js"></script>
+    <script src="/ui/pms-ui/rover/directives/fullscreen/rvFullScreenDir.js"></script>
+    <script src="/ui/pms-ui/payment/constants/payConfig.js"></script>
+    <!-- endinject -->
+    <!-- inject:templates:js -->
+    <script src="/ui/pms-ui/rover_templates.js"></script>
+    <!-- endinject -->
+  </body>
+</html>

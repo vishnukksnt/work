@@ -1,0 +1,4911 @@
+@media not print {
+    #search,
+    #find-cards,
+    #find-group,
+    #find-account,
+    #find-allotment,
+    #rooms,
+    #find-guests,
+    #find-invoices,
+    #find-events {
+       &.no-results {
+            .wrapper,
+            .search-results { height: 100%; }
+        }
+    }
+
+    .merge-cards {
+        background: rgba( 0, 0, 0, 0.05 );
+        position: absolute;
+        top: 0px;
+        right: 0;
+        padding: 30px 20px 20px;
+        .size(100%, 340px);
+        .box-shadow(inset 1px 0px 1px rgba(0, 0, 0, 0.1));
+        .hide();
+
+        .merge-header {
+            text-align: center;
+            text-transform: uppercase;
+            height: 80px;
+
+            h2 {
+                font-weight: 600;
+                font-size: 19px;
+            }
+
+            p {
+                font-size: 14px;
+                line-break: 14px;
+                margin-top: 5px;
+                color: @grey3;
+            }
+        }
+
+        .merge-content {
+            .calc-height( 100, 150 );
+
+            &.scrollable {
+                position: relative;
+
+                .wrapper {
+                    height: auto;
+                    padding-bottom: 10px;
+                }
+
+                .iScrollVerticalScrollbar {
+                    top: 5px;
+                    bottom: 25px;
+
+                    .iScrollIndicator {
+                        background: rgba( 0, 0, 0, 0.1 );
+                    }
+                }
+            }
+
+            .merge-status {
+                padding: 20px 0;
+                position: relative;
+                line-height: 20px;
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+                text-align: center;
+                color: @grey3;
+                .size(60px,100%);
+
+                &.green {
+                    color: @green;
+                }
+
+                &.red {
+                    color: @red;
+                }
+
+                &:after,
+                &:before {
+                    position: absolute;
+                    content: '';
+                    background: rgba(0, 0, 0, 0.1 );
+                    width: 2px;
+                    height: 20px;
+                    margin: auto;
+                    left: 0;
+                    right: 0;
+                }
+
+                &:after {
+                    bottom: 0;
+                }
+
+                &:before {
+                    top: 0;
+                }
+            }
+
+            .card {
+                position: relative;
+                width: 100%;
+                padding: 10px 10px 10px 50px;
+                background: @white;
+                margin-bottom: 1px;
+                min-height: 50px;
+                .box-shadow(1px 1px 0 rgba(0, 0, 0, 0.15));
+                #flexbox > .parent( column, center, '', '' );
+
+                &.with-button {
+                    padding-right: 50px;
+
+                    &.with-label {
+                        label {
+                            padding-right: 50px;
+                        }
+                    }
+
+                    .button {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background: @grey1;
+                        z-index: 999;
+                        .box-shadow();
+                        .square(30px);
+
+                        .icons {
+                            background-size: 80px;
+                            &.icon-remove-40 {
+                                background-position: 4px -2503px;
+                            }
+                        }
+                    }
+                }
+
+                &.with-label {
+                    background: transparent;
+                    padding: 0;
+                    .box-shadow(none);
+                }
+
+                .merge-icon {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background: @grey1;
+                    .square(30px);
+
+                    #loading-spinner {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        margin: 0;
+                        background: transparent;
+
+                        &:after {
+                            position: absolute;
+                            top: 7px;
+                            left: 7px;
+                            border: 2px solid;
+                            border-color: #f6991b rgba(255, 255, 255, 0.4);
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+
+                    .guest-image {
+                        .square( 100% );
+                    }
+
+                    .icons {
+                        width: 100%;
+                        height: 100%;
+                        background-size: 80px;
+
+                        &.icon-action {
+                            &.icon-unassigned {
+                                background-position: 7px -4740px;
+                            }
+
+                            &.icon-completed {
+                                background-position: 7px -4900px;
+                            }
+                        }
+
+                        &.guest-image {
+                            background-size: 100px;
+                            &.icon-company {
+                                background-position: 8px -2926px;
+                                background-color: @ccard;
+                            }
+
+                            &.icon-travel-agent {
+                                background-position: 8px -3026px;
+                                background-color: @tacard;
+                            }
+                        }
+                    }
+                }
+
+                .primary {
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-transform: uppercase;
+
+                    &.company {
+                        color: @ccard;
+                    }
+
+                    &.travel-agent {
+                        color: @tacard;
+                    }
+
+                    &.guest {
+                        color: @gcard;
+                    }
+                }
+
+                h2 {
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 18px;
+                    white-space: initial;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: @grey3;
+                    white-space: initial;
+                    margin: 0;
+
+                    &.error {
+                        color: @red;
+                    }
+                }
+
+                label {
+                    &.radio {
+                        position: relative;
+                        width: 100%;
+                        min-height: 50px;
+                        margin: 0 0 10px 0;
+                        padding: 10px 10px 10px 40px;
+
+                        .primary {
+                            .hide();
+                        }
+
+                        &.checked {
+                            .primary { .show(); }
+                        }
+                    }
+                }
+
+                &.no-address {
+                    label {
+                        &:not(.checked) {
+
+                            .icon-form {
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                            }
+
+                            h2 {
+                                line-height: 30px;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            &.no-content {
+                padding: 0;
+                .calc-height( 100, 80 );
+
+                .icon-no-content {
+                    background-size: 50px;
+                    height: 50px;
+                    width: 50px;
+
+                    &.icon-cards {
+                        background-position: 0 -384px;
+                    }
+                }
+
+                .h1 {
+                    font-size: 24px;
+                    margin: 0;
+                }
+
+                .h2 {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .merge-actions {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            height: 90px;
+            background: rgba( 0, 0, 0, 0.1 );
+            padding: 20px;
+            text-align: center;
+            .box-shadow(inset 0px 1px 1px rgba(0, 0, 0, 0.1));
+
+            button {
+                line-height: 50px;
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+
+    #find-cards {
+        .find-cards-header {
+            padding: 20px 20px 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: @grey3;
+            .float;
+
+            li {
+                margin: 0;
+                line-height: 15px;
+                .pull-left;
+
+                &.card {
+                    padding-left: 15px;
+                    .calc-width( 100, 530 );
+                }
+
+                &.rate {
+                    width: 325px;
+                }
+
+                &.contract {
+                    width: 205px;
+                    .pull-right;
+                }
+            }
+        }
+
+        .search-results {
+            padding-top: 0px;
+
+            li:not(.no-content) {
+                &.all-cards {
+
+                    label {
+                        &.checkbox {
+                            position: absolute;
+                            top: 10px;
+                            left: 5px;
+                            padding: 0;
+                            .box-shadow(none);
+                            .square(40px);
+                            .hide();
+                        }
+                    }
+
+                    a:not(.archived) {
+                        padding-right: 35px;
+                        background-image: @arrowRight;
+                        background-repeat: no-repeat;
+                        background-position: 98% 50%;
+
+                        &.no-arrow {
+                            background-image: none;
+                        }
+
+                        @media @highdpi {
+                            background-image: @arrowRight2x;
+                            background-size: 14px 14px;
+                        }
+                    }
+
+                    a {
+                        height: 60px;
+                    }
+
+                    .guest-image {
+                        margin-right: 10px;
+                        background-size: 100px;
+                        .square(30px);
+
+                        &.icon-company {
+                            background-position: 8px -2926px;
+                        }
+
+                        &.icon-travel-agent {
+                            background-position: 8px -3026px;
+                        }
+
+                        .global-card {
+                            width: 15px;
+                            height: 15px;
+                            font-size: 8px;
+                            line-height: 15px;
+                        }
+                    }
+
+                    .data {
+                        height: 35px;
+                        .calc-width(100, 555 );
+                        #flexbox > .parent( column, center, '', '' );
+
+                        &.no-address {
+                            height: 30px;
+                        }
+
+                        span {
+                            &.icons {
+                                padding-left: 14px;
+                            }
+                        }
+                    }
+
+                    .rate {
+                        width: 325px;
+                        margin: 0;
+                        padding-right: 10px;
+                    }
+
+                    .icon-contracts {
+                        background-position: 0px -7652px;
+                        line-height: 30px;
+                        width: 170px;
+                        margin: 0;
+                        .nowrap();
+
+                        &.active {
+                            color: @green;
+                            background-position: 0 -12752px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.no-results {
+            .find-cards-header { .hide(); }
+            .scrollable { height: 100%; }
+        }
+
+        &:not(.no-results) {
+            .scrollable:not(.merge-content) {
+                position: relative;
+                .calc-height( 100, 45 );
+
+                .iScrollVerticalScrollbar {
+                    top: 0px;
+                    bottom: 10px;
+                }
+            }
+        }
+
+        &.show-merge {
+            padding-right: 340px;
+
+            .merge-cards { .show(); }
+            .find-cards-header {
+                li {
+                    &.rate { .hide(); }
+                }
+            }
+            .search-results {
+                li:not(.no-content) {
+                    &.all-cards {
+                        label {
+                            &.checkbox { .show(); }
+                        }
+                        .data { .calc-width(100, 185); }
+                        .rate { .hide(); }
+                        a {
+                            padding-left: 50px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #find-guests {
+        .search-results {
+            li:not(.no-content) {
+                label {
+                    &.checkbox {
+                        position: absolute;
+                        top: 0px;
+                        bottom: 0;
+                        left: 5px;
+                        margin: auto;
+                        padding: 0;
+                        .box-shadow(none);
+                        .square(40px);
+                        .hide();
+                    }
+                }
+
+                &.reservation {
+                    position: relative;
+                }
+            }
+        }
+        &.no-results {
+            .scrollable:not(.merge-content) {
+                height: 100%;
+            }
+        }
+        &:not(.no-results) {
+            .scrollable {
+                position: relative;
+                &:not(.merge-content) {
+                    height: 100%;
+                }
+            }
+        }
+        &.show-merge {
+            padding-right: 340px;
+
+            .merge-cards { .show(); }
+            .search-results {
+                li:not(.no-content) {
+                    &.reservation {
+                        label {
+                            &.checkbox { .show(); }
+                        }
+                        .data {
+                             .calc-width(100, 280);
+                        }
+                        .last-stay {
+                            width: 200px;
+                            float: right;
+                        }
+                        a {
+                            padding-left: 50px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #find-events {
+        &.no-results {
+            .find-cards-header { .hide(); }
+            .scrollable { height: 100%; }
+            .events-col { height: 100%; }
+        }
+
+        &:not(.no-results) {
+            #flexbox > .parent(row, '', '', '' );
+            
+            .scrollable {
+                position: relative;
+                .calc-height( 100, 60 );
+
+                .iScrollVerticalScrollbar {
+                    top: 0px;
+                    bottom: 10px;
+                    right: 7px;
+                }
+
+                .search-results {
+                    padding-top: 0;
+                }
+
+                .wrapper {
+                    padding-bottom: 20px;
+                }
+            }
+
+            .events-col {
+                .scrollable {
+                    .calc-height( 100, 120 );
+                }
+            }
+
+            &.no-pagination {
+                .events-col {
+                    .scrollable {
+                        .calc-height( 100, 60 );
+                    }
+                }
+            }
+        }
+
+        .events-col {
+            position: relative;
+            .show();
+            .square(100%);
+        }
+
+        .event-details {
+            width: 315px;
+            padding-top: 20px;
+            padding-right: 20px;
+            .hide();
+
+            .report-col {
+                width: 100%;
+
+                h3 {
+                    margin-top: 20px;
+                }
+                
+                .notice { 
+                    margin: 0 20px 10px;
+                }
+
+                .column-actions {
+                    padding: 20px;
+
+                    .button {
+                        font-size: 14px;
+                    }
+                }
+
+                .entry:not(:last-child) {
+                    margin-bottom: 0;
+                    .box-shadow(none);
+                }
+
+                .entry {
+                    textarea {
+                        background-color: @grey1;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        &.cols-2 {
+            .events-col {
+                .calc-width(100, 315);
+
+                .find-events-header {
+                    li {
+                        &.event {
+                            .calc-width( 100, 280 );
+                        }
+                    }
+                }
+
+                .search-results {
+                    li:not(.no-content).find-event {
+                        .data{
+                            .calc-width( 100, 280 );
+                        }
+                    }
+                }
+            }
+
+            .event-details {
+                .show();
+            }
+
+            
+        }
+
+        .find-events-header {
+            padding: 15px 40px;
+            height: 60px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: @grey3;
+            .float;
+
+            li {
+                margin: 0;
+                line-height: 30px;
+                .pull-left;
+
+                &.event {
+                    .calc-width( 100, 380 );
+                }
+
+                &.type {
+                    width: 140px;
+                    padding-left: 20px;
+                }
+
+                &.start-date,
+                &.end-date,
+                &.dates {
+                    width: 100px;
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .search-results {
+        position: relative;
+
+        li:not(.no-content) {
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+
+            .highlight { color: @logoPrimary; }
+
+            a,
+            .faux-anchor {
+                color: @textColor;
+                line-height: 1em;
+                padding: 10px;
+                cursor: pointer;
+                background-color: @white;
+                #border-radius > .rounded();
+                .box-shadow();
+                .show;
+                .float;
+
+                &:hover,
+                &:active {
+                    .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.15)");
+                }
+            }
+
+            .guest-image,
+            .account-image { margin-right: 20px; }
+
+            .account-image {
+                display:block;
+                .pull-left;
+                width:50px;
+                height:50px;
+
+                &.icon-company {
+                    background-color: @ccard;
+                }
+
+                &.icon-travel-agent {
+                    background-color: @tacard;
+                }
+            }
+
+            .data {
+                .nowrap();
+                .show;
+                .pull-left;
+
+                h2 {
+                    font-weight: 700;
+                    .nowrap();
+                }
+            }
+
+            .check {
+                position: absolute;
+                text-align: center;
+                z-index: 9999;
+                .square(40px);
+
+                .checkbox {
+                    margin: 0;
+                    padding: 0;
+                    .square(100%);
+
+                    .icon-form {
+                        top: 10px;
+                        left: 10px;
+                        background-color: @grey1;
+                    }
+
+                    input {
+                        min-height: 35px;
+                        line-height: 35px;
+                    }
+
+                    &.disabled { .opacity(0); }
+                }
+            }
+
+            /* Reservations ***/
+            &.reservation {
+                .data {
+                    margin-right: 40px;
+                    .calc-width(40, 110);
+
+                    h2 {
+                        line-height: 24px;
+                        margin-bottom: 6px;
+                    }
+
+                    .confirmation,
+                    .icons {
+                        display: inline;
+                        line-height: 20px;
+                        height: 20px;
+                        overflow: hidden;
+                        margin-right: 20px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                    }
+
+                    .confirmation {
+                        color: @textColor;
+                        font-weight: 600;
+                    }
+
+                    &.no-guest-info {
+                        .calc-width(68, 110);
+                    }
+                }
+
+                .guest-info {
+                    margin-right: 20px;
+                    color: @grey3;
+                    .calc-width(28, 20);
+                    .pull-left;
+
+                    span {
+                        font-size: 14px;
+                        line-height: 18px;
+                        padding-left: 25px;
+                        .nowrap();
+
+                        &.highlight,
+                        &.ui-match { padding-left: 0; }
+                    }
+                }
+
+                .reservation-info {
+                    .size(50px, 32%);
+                    .pull-left;
+
+                    .guest-status {
+                        margin-right: 10px;
+                        .square(30px);
+                    }
+
+                    time {
+                        span { .show; }
+                    }
+
+                    .arrival-departure {
+                        position: relative;
+                        padding-top: 10px;
+                        margin-right: 20px;
+                        .calc-width(60, 20);
+                        .pull-left;
+
+                        .icon-queued {
+                            position: absolute;
+                            top: 10px;
+                            right: 0;
+                            background-position: 0 -4173px;
+                            .square(30px);
+                        }
+                    }
+
+                    .departing,
+                    .room-info {
+                        padding-top: 10px;
+                        .size(50px, 40%);
+                        .pull-left;
+                    }
+                }
+
+                /** Reservation Time - Different layout for Daily or Nightly **/
+                .reservation-time {
+                    position: relative;
+                    height: 40px;
+                    width: 225px;
+                    .pull-left;
+                    #flexbox > .display();
+
+                    .check-icons {
+                        display: block;
+                        width: 20px;
+                        margin-right: 10px;
+                        position: relative;
+                    }
+
+                    .guest-status {
+                        width: 20px;
+                        height: 20px;
+                        background-size: 80px;
+                        float: none;
+
+                        &.check-in {
+                            background-position: 6px -75px;
+                        }
+                        &.check-out {
+                            background-position: 6px -102px;
+                        }
+                    }
+
+                    .guest-time {
+                        font-size: 14px;
+                        width: 100%;
+                        display: block;
+                        height: 20px;
+                        line-height: 20px;
+                        font-weight: 600;
+
+                        .hours {
+                            font-weight: 400;
+                            color:  @grey3;
+                        }
+                    }
+
+                    .check-times {
+                        .guest-hours {
+                            height: 20px;
+                            line-height: 20px;
+                            width: 100%;
+                            display: block;
+                            .guest-time {
+                                width: auto;
+                                height: auto;
+                                line-height: inherit;
+                                display: inline;
+                            }
+                        }
+
+                        .date {
+                            color:  @grey3;
+                            font-size: 14px;
+                            line-height: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    &.daily {
+                        .check-icons {
+                            .check-in {
+                                position: absolute;
+                                right: 20px;
+                            }
+                        }
+                    }
+                }
+
+                /** Reservation Type 'D' or 'N' */
+                .reservation-type {
+                    font-size: 18px;
+                    line-height: 20px;
+                    font-weight: 600;
+                    color: @grey3;
+
+                    &.red {
+                        color: @red;
+                    }
+                }
+
+                .room-info {
+                    .room-number {
+                        font-size: 30px;
+                        line-height: 20px;
+                        .show;
+
+                        &.ready,
+                        &.room-green { color: @green; }
+
+                        &.not-ready,
+                        &.room-red {
+                            color: @red;
+                            margin-top: -10px;
+                        }
+
+                        &.room-orange { color: @orange; }
+
+                        &.dnd { color: @purple; }
+                    }
+
+                    .room-type {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        .nowrap();
+                        .show;
+                    }
+                }
+
+                &.accompany {
+                    .data {
+                        h2 { color: @grey3; }
+                    }
+                }
+
+                /* Identify guest ***/
+                &.identify-guest {
+                    .data {
+                        position: relative;
+                        margin-right: 10px;
+                        .calc-width(100, 380);
+
+                        h2 { padding-right: 80px; }
+
+                        .confirmation,
+                        .icons { margin-right: 10px; }
+
+                        &.no-stay {
+                            margin-right: 0;
+                            .calc-width(100, 70);
+                        }
+                    }
+
+                    .last-stay {
+                        padding-left: 10px;
+                        border-left: 1px solid rgba(0,0,0,.1);
+                        width: 300px;
+                        .pull-left;
+
+                        .label {
+                            float: none;
+                            margin-bottom: 10px;
+                            line-height: 18px;
+                            .show;
+
+                            .date {
+                                font-size: 15px;
+                                color: @textColor;
+                                margin-left: 5px;
+                            }
+                        }
+
+                        .room,
+                        .type {
+                            line-height: 24px;
+                            .show;
+                            .pull-left;
+                        }
+
+                        .room {
+                            font-size: 24px;
+                            font-weight: 600;
+                            width: 50px;
+                        }
+
+                        .type {
+                            margin-left: 10px;
+                            .calc-width(100, 60);
+                            .nowrap();
+                        }
+                    }
+                }
+
+                /* AR Transactions ***/
+                &.transaction {
+
+                    .faux-anchor {
+                        padding: 12px 15px;
+                        height: 60px;
+                        #flexbox > .parent(row wrap, '', center, '');
+
+                        &.has-arrow {
+                            cursor: pointer;
+                            background-position: -webkit-calc(~'100% - 15px') 50%;
+                            background-position: -moz-calc(~'100% - 15px') 50%;
+                            background-position: calc(~'100% - 15px') 50%;
+
+                            &.active {
+                                #border-radius > .bottom(0);
+                            }
+                        }
+
+                        &:not(.has-arrow) {
+                            cursor: default;
+
+                            &:hover,
+                            &:active {
+                                .box-shadow();
+                            }
+                        }
+                    }
+
+                    .data {
+                        margin-right: 10px;
+                        .calc-width(100, 440);
+
+                        h2 {
+                            margin-bottom: 0px;
+                            display: block;
+                            font-size: 20px;
+                            line-height: 20px;
+
+                            em { font-weight: 700; }
+
+                            &.group {
+                                color: @groupcard;
+                            }
+
+                            &.allotment {
+                                color: @allotmentcard;
+                            }
+                        }
+
+
+                        .confirmation,
+                        .invoice {
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 14px;
+                            height: 14px;
+                            text-transform: uppercase;
+                            color: @grey3;
+                            display:inline-block;
+                            vertical-align: middle;
+                            .nowrap();
+
+                            .value {
+                                display: inline-block;
+                                color: @textColor;
+                            }
+
+                            &:not(:last-child) {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    &.with-checkbox {
+                        position: relative;
+
+                        .checkbox {
+                            position: absolute;
+                            top: 20px;
+                            left: 15px;
+                            .square(20px);
+
+                            .icon-form {
+                                top: 0;
+                                left: 0;
+
+                                &:not(.checked){
+                                    background-color: @grey1;
+                                }
+                            }
+                        }
+
+                        .data {
+                            padding-left: 30px;
+                        }
+                    }
+
+                    &:not(.selected) {
+                        .has-arrow {
+                            padding-right: 40px;
+                        }
+                    }
+
+                    &.selected {
+                        .data {
+                            .calc-width(100, 420);
+
+                            h2 {
+                                color: @orange;
+                            }
+                        }
+
+                        .amount {
+                            .hide();
+
+                            &.input {
+                                .show();
+                            }
+                        }
+
+                        .balance { .show(); }
+
+                        .guest-date,
+                        .reservation-time,
+                        .reservation-type,
+                        .status { .hide(); }
+                    }
+
+                    &.payment {
+
+                        .data {
+                            .calc-width(100, 285);
+                        }
+
+                        .payment-data {
+                            #flexbox > .parent(row wrap, '', center, '');
+
+                            .reference {
+                                font-style: normal;
+                            }
+
+                            .date,
+                            .reference:not(:first-child) {
+                                margin-left: 15px;
+                            }
+
+                            .card-logo {
+                                width: 32px;
+                                margin-right: 2px;
+                            }
+                        }
+
+                        .payment-date {
+                            width: 100px;
+
+                            .icon-time {
+                                .square(20px);
+                                background-color: @grey2;
+                                background-position: 5px -11015px;
+                                margin-right: 5px;
+                            }
+
+                            time {
+                                font-size: 14px;
+                                line-height: 1;
+
+                                .time {
+                                    display: block;
+                                    color: @grey3;
+                                }
+                            }
+
+                            .icons,
+                            time {
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
+
+                        .search-results {
+                            background: @white;
+                            border-top: 1px solid rgba(0,0,0,0.15);
+                            .box-shadow();
+
+                            .transaction {
+                                .faux-anchor {
+                                    cursor: default;
+                                    background: @grey1;
+
+                                    .data {
+                                        .calc-width(100, 465);
+                                    }
+
+                                    .amount {
+                                        color: @textColor;
+                                        width: 160px;
+                                        padding: 0;
+                                    }
+
+                                    .button {
+                                        .square(40px);
+                                        position: relative;
+                                        margin-left: 10px;
+                                        top: 0;
+                                        right: 0;
+
+                                        .icons {
+                                            right: 0;
+                                            left: auto;
+                                            top:0;
+                                            .square(40px);
+                                        }
+                                    }
+
+                                    &:hover,
+                                    &:active {
+                                        .box-shadow();
+                                    }
+                                }
+                            }
+                        }
+
+                        &.unallocated {
+                            .has-arrow {
+                                padding-right: 15px;
+                                background-position: -webkit-calc(~'100% - 125px') 50%;
+                                background-position: -moz-calc(~'100% - 125px') 50%;
+                                background-position: calc(~'100% - 125px') 50%;
+                            }
+
+                            .data {
+                                .calc-width(100, 410);
+                            }
+
+                            .faux-anchor {
+                                position: relative;
+
+                                .button {
+                                    position: absolute;
+                                    height: 40px;
+                                    top: 10px;
+                                    right: 15px;
+                                    font-size: 14px;
+                                    padding: 0;
+                                    width: 90px;
+                                }
+                            }
+
+                            .amount {
+                                width: 220px;
+                                padding-right: 20px;
+                                color: @green;
+
+                                &.partially-paid {
+                                    padding-right: 50px;
+
+                                    .icons {
+                                        left: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    /* Arrival, Departure */
+                    .guest-date {
+                        font-size: 14px;
+                        line-height: 1;
+
+                        .guest-status {
+                            margin-right: 2px;
+                            float: none;
+                            .square(20px);
+                        }
+
+                        time,
+                        .guest-status {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .time { color: @grey3; display: block; }
+
+                        &.arrival {
+                            width: 130px
+                        }
+
+                        &.departure {
+                            width: 115px;
+                        }
+                    }
+
+                    /* Reservation Time and Type */
+                    .reservation-time {
+                        width: 190px;
+                        height: auto;
+                        padding-left: 20px;
+                    }
+                    .reservation-type {
+                        width: 55px;
+                    }
+
+                    .balance {
+                        .hide();
+                        font-size: 14px;
+                        line-height: 1;
+                        color: @grey3;
+                        text-transform: uppercase;
+                        height: 30px;
+
+                        strong {
+                            display: block;
+                            font-size: 18px;
+                            font-weight: 600;
+
+                            &.red {color: @red}
+                            &.green {color: @green}
+                        }
+
+                        &.balance-now,
+                        &.balance-after {
+                            width: 130px;
+                        }
+                    }
+
+                    .payment-data {
+                        width: 100%;
+                        .show();
+
+                        .card-logo {
+                            display: inline-block;
+                            vertical-align: middle;
+                            .size(17px, 35px);
+
+                            img { .size(auto, 100%); }
+                        }
+
+                        .number,
+                        .date,
+                        .reference,
+                        .type {
+                            font-size: 14px;
+                            font-style: normal;
+                            line-height: 14px;
+                            text-transform: uppercase;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .reference {
+                            font-style: italic;
+                        }
+
+                        .date,
+                        .reference {
+                            color: @grey3;
+                        }
+
+                        .value,
+                        .number,
+                        .type {
+                            font-size: 14px;
+                            color: @textColor;
+                            font-weight: 600;
+                        }
+                    }
+
+                    /* Status Icons ***/
+                    .status {
+                        margin-left: 24px;
+                        width: 16px;
+
+                        .icons {
+                            .square(16px);
+                        }
+
+                        .icon-room-lock {
+                            background-size: 90px;
+                            background-position: 0 -6780px;
+                        }
+                    }
+
+                    /* Amount ***/
+                    .amount {
+                        font-size: 24px;
+                        line-height: 1;
+                        font-weight: 300;
+                        color: @textColor;
+                        text-align: right;
+                        width: 170px;
+
+                        .exchange {
+                            font-size: 13px;
+                            font-weight: 400;
+                            color: @grey3;
+                            text-transform: uppercase;
+                            .show();
+                        }
+
+                        &.unallocated { color: @green; }
+                        &.unpaid { color: @red; }
+
+                        &.partially-paid {
+                            position: relative;
+                            padding-left: 20px;
+                            color: @red;
+
+                            .icons {
+                                position: absolute;
+                                .square( 16px );
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                                left: 0px;
+                            }
+                        }
+
+                        &.input {
+                            position: relative;
+                            .size(30px, 150px);
+                            .hide();
+
+                            input {
+                                width: 105px;
+                                background: @grey1;
+                                font-weight: 600;
+                                font-size: 18px;
+                                position: absolute;
+                                top: -5px;
+                                right: 0;
+                            }
+
+                            .currency {
+                                position: absolute;
+                                top: 0;
+                                line-height: 30px;
+                                right: 115px;
+                                font-size: 18px;
+                                font-weight: 600;
+                                text-align: right;
+                                width: 45px;
+                            }
+                        }
+                    }
+
+                    /* Detailed View ***/
+                    .grid-items {
+                        padding: 15px;
+                        background-color: @white;
+                        .box-shadow(~"1px 1px 0px rgba(0,0,0,.15), 0 -2px 0 rgba(0,0,0,.1)");
+                        .float;
+                        #border-radius > .bottom();
+
+                        .actions {
+                            padding-left: 15px;
+                            width: 145px;
+                            .pull-left;
+
+                            .button {
+                                width: 100%;
+                                font-size: 14px;
+                                padding: 0;
+                                .show();
+
+                                &:not(:last-child) {
+                                    margin-bottom: 10px;
+                                }
+
+                                &.white {
+                                    background: @grey1;
+                                }
+                            }
+                        }
+
+                        table {
+                            table-layout: auto;
+                            margin: 0;
+                            .pull-left;
+                            .calc-width(100, 145);
+                        }
+
+                        th,
+                        td {
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            line-height: 1em;
+                            padding: 9px 12px 7px 9px;
+                            white-space: normal;
+                            overflow: visible;
+                        }
+
+                        th {
+                            font-weight: 600;
+                            padding-top: 0;
+
+                            &.fees,
+                            &.credits {
+                                text-align: right;
+                            }
+                        }
+
+                        td {
+                            vertical-align: middle;
+                            word-wrap: break-word;
+                            width: 110px;
+                            height: 40px;
+
+                            &.date {
+                                width: 90px;
+                            }
+
+                            &.description {
+                                color: @grey3;
+                                width: auto;
+
+                                &.with-reference {
+                                    position: relative;
+
+                                    .icon-invoice-blue {
+                                        .size(18px, 15px);
+                                        position: absolute;
+                                        top: 0;
+                                        bottom: 0;
+                                        margin: auto;
+                                        left: -10px;
+                                        background-size: 80px;
+                                        background-position: 2px -7503px;
+                                    }
+                                }
+                            }
+
+                            &.toggle {
+                                position: relative;
+                                font-weight: 600;
+                                color: @textColor;
+                                font-style: normal;
+                            }
+
+                            &.fees,
+                            &.credits {
+                                font-weight: 600;
+                                color: @textColor;
+                                text-align: right;
+                                width: 100px;
+                            }
+
+                            &.action {
+                                width: 40px;
+                                padding: 0 5px;
+
+                                .button {
+                                    .box-shadow(1px 1px 1px rgba(0,0,0,0.15));
+                                    .square(30px);
+                                    #border-radius > .rounded();
+
+                                    &:hover,
+                                    &:focus,
+                                    &:active {
+                                        .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,0.15)");
+                                    }
+
+                                    &.blank {
+                                        background: @grey1;
+                                    }
+
+                                    .icons {
+                                        background-size: 72px;
+
+                                        &.icon-edit-40 {
+                                            background-position: 4px -6716px;
+                                        }
+
+                                        &.icon-remove-40 {
+                                            background-position: 4px -2252px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:last-child {
+                                font-weight: 600;
+                            }
+                        }
+
+                        tr.odd {
+                            td {
+                                background: @grey1;
+
+                                &.action {
+                                    button {
+                                        &.blank {
+                                            background: @white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        /** Charge Items in AR Transactions */
+                        .charge-items {
+
+                            td {
+                                font-size: 12px;
+                                padding-top: 0;
+                                padding-right: 0;
+                                padding-left: 0;
+
+                                li {
+                                    margin-bottom: 5px;
+                                    border-bottom: 1px solid rgba(0,0,0,0.1);
+
+                                    &.with-reference {
+                                        position: relative;
+
+                                        .icon-invoice-blue {
+                                            .size(18px, 15px);
+                                            position: absolute;
+                                            top: 0;
+                                            left: -20px;
+                                            background-size: 80px;
+                                            background-position: 2px -7503px;
+                                        }
+                                    }
+                                }
+
+                                &.description {
+                                    padding-left: 9px;
+                                }
+
+                                &.description + td {
+                                    padding-right: 12px;
+                                    text-align: right;
+                                    li {
+                                        padding-left: 9px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    /** Toggle in AR Transactions */
+                    .toggle {
+                        cursor: pointer;
+
+                        .icon-double-arrow {
+                            display: inline-block;
+                            background-position: 1px -797px;
+                            background-size: 60px;
+                            .square(12px);
+                            .icons > .rotate-down;
+                        }
+
+                        &.active {
+
+                            .icon-double-arrow {
+                                background-position: 3px -798px;
+                                .icons > .rotate-up;
+                            }
+
+                            &:hover {
+                                .box-shadow();
+                            }
+                        }
+                    }
+                }
+
+                /* Group Rooming List ***/
+                &.rooming-list {
+                    position: relative;
+
+                    .check {
+                        top: 10px;
+                        left: 10px;
+                    }
+
+                    a,
+                    .faux-anchor {
+                        padding: 10px 10px 10px 65px;
+                        height: 60px;
+                        #flexbox > .parent(row wrap, '', center, '' );
+                    }
+
+                    .guest-image {
+                        margin-right: 5px;
+                        .square(40px);
+
+                        &.accompany {
+                            img {
+                                width: 30px;
+
+                                &:nth-child(2) {
+                                    top: 10px;
+                                    left: 10px;
+                                }
+                            }
+                        }
+                    }
+
+                    .data {
+                        padding-right: 5px;
+                        margin-right: 5px;
+                        .calc-width(33, 74);
+
+                        h2 {
+                            font-size: 20px;
+                            line-height: 20px;
+                            margin: 0;
+                        }
+
+                        span {
+                            line-height: 20px;
+                        }
+
+                        .room {
+                            font-weight: 600;
+
+                            &.unassigned {
+                                color: @grey3;
+                                text-transform: uppercase;
+                            }
+                        }
+
+                        .confirmation { font-weight: 400; }
+
+                        &.no-image {
+                            .calc-width(33, 29);
+                        }
+                    }
+
+                    .reservation-info {
+                        line-height: 30px;
+                        margin-right: 5px;
+                        float: none;
+                        height: 30px;
+                        .calc-width(34, 28);
+                        #flexbox > .parent(row wrap, '', '', '' );
+
+                        .arrival-departure,
+                        .departing {
+                            margin: 0;
+                            padding: 0 5px;
+                            float: none;
+                            height: 30px;
+                            font-size: 14px;
+                            font-weight: 600;
+
+                            time {
+                                float: left;
+                                height: 30px;
+                                line-height: 1;
+                                #flexbox > .parent( column, center, '', '' );
+
+                            }
+
+                            .date {
+                                color: @grey3;
+                                font-weight: 400;
+                            }
+                        }
+
+                        .arrival-departure {
+                            width: 51%;
+                        }
+
+                        .departing {
+                            width: 49%;
+                        }
+                    }
+
+                    .room-info {
+                        text-transform: uppercase;
+                        padding-left: 5px;
+                        margin-right: 5px;
+                        .calc-width(20, 15);
+
+                        .room-type {
+                            font-weight: 600;
+                            .nowrap();
+                            .show;
+                        }
+
+                        .room-occupancy {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .rate {
+                        line-height: 40px;
+                        padding-left: 5px;
+                        margin-right: 5px;
+                        .calc-width(13, 19);
+                    }
+
+                    .reservation-status {
+                        width: 70px;
+                        line-height: 30px;
+
+                        .reservation-type {
+                            line-height: inherit;
+                            display: block;
+                            padding-left: 15px;
+                            .size( 30px, 40px );
+                            .pull-left;
+                        }
+
+                        .guest-status {
+                            float: right;
+                            margin: 0;
+                            .square(30px);
+                        }
+                    }
+                }
+
+                /* Post Charge ***/
+                &.post-charge {
+
+                    .guest-image {
+                        margin-right: 10px;
+                    }
+
+                    .data {
+                        .calc-width(100, 320);
+                        #flexbox > .parent( column, center, '', '' );
+                        height: 50px;
+                        margin-right: 0;
+                        padding-right: 20px;
+
+                        h2 {
+                            line-height: 22px;
+                            height: 24px;
+                            margin: 0;
+
+                            &.pending {
+                                color: @grey2;
+                            }
+                            &.cancelled {
+                                color:  @grey3;
+                            }
+                        }
+
+                        .guest-info {
+                            color: @grey3;
+                            display: block;
+                            font-size: 12px;
+                            line-height: 11px;
+                            height: 15px;
+                            width: 100%;
+                            margin: 0;
+                            .nowrap();
+
+                            span {
+                                padding: 0;
+                                text-transform: uppercase;
+                                display: inline-block;
+                                line-height: inherit;
+                                height: 15px;
+                                font-size: inherit;
+                                 > span {
+                                    display: inline;
+                                }
+
+                                &:not(.highlight) {
+                                    margin-right: 5px;
+                                }
+
+                                &.group {
+                                    color:  @groupcard;
+                                }
+
+                                &.guest-company {
+                                    color:  @ccard;
+                                }
+
+                                &.guest-travelagent {
+                                    color:  @tacard;
+                                }
+
+                                &.allotment {
+                                    color:  @allotmentcard;
+                                }
+
+                                &.highlight,
+                                &.ui-match { padding-left: 0; }
+                            }
+                        }
+
+                        .confirmation,
+                        .icons {
+                            line-height: 14px;
+                            height: 14px;
+                            font-size: 14px;
+                            overflow: hidden;
+                            margin-right: 10px;
+                            display: block;
+                            .pull-left;
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+
+                        .icons {
+                            color: @grey3;
+                        }
+
+                        .icon-location {
+                           padding-left: 15px;
+                           white-space: nowrap;
+                           text-overflow: ellipsis;
+                           overflow: hidden;
+                           background-position: -5px -40px;
+
+                           &.no-location {
+                             color: @grey2;
+                           }
+                        }
+
+                        .confirmation {
+                            color: @textColor;
+                            font-weight: 600;
+                            width: 155px;
+                            .nowrap();
+                            .confirmation-text {
+                                font-weight: normal;
+                                color: @grey3;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                    .reservation-info {
+                        position: relative;
+                        width: 250px;
+                        .pull-right;
+
+                        .reservation-type {
+                            position: absolute;
+                            left: -20px;
+                            width: 20px;
+                            margin: auto;
+                            top: 0;
+                            bottom: 0;
+                            height: 20px;
+                            font-size: 18px;
+                            line-height: 20px;
+                            font-weight: 600;
+                            color: @grey3;
+
+                            &.red {
+                                color: @red;
+                            }
+                        }
+
+                        .guest-status {
+                            margin-right: 10px;
+                            margin-top: 10px;
+                            .square(30px);
+                        }
+
+                        time {
+                            span { .show; }
+                        }
+
+                        .reservation-status {
+                            position: relative;
+                            padding-top: 10px;
+                            width: 40px;
+                            .pull-left;
+                        }
+
+                        .icon-suite-orange {
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-right: 10px;
+                            background-size: 80px;
+                            background-position: 0 -8546px;
+                            .size(10px, 18px);
+                        }
+
+                        .icon-queued-red {
+                            position: absolute;
+                            top: 0px;
+                            right: 0;
+                            background-position: 0px -8586px;
+                            background-size: 80px;
+                            height: 12px;
+                            width: auto;
+                            padding-left: 20px;
+                            color: @red;
+                            text-transform: uppercase;
+
+                            .time {
+                                display: block;
+                                float: right;
+                                text-indent: initial;
+                                font-size: 11px;
+                                line-height: 12px;
+                                width: auto;
+                            }
+                        }
+
+                        .room-info {
+                            padding-top: 10px;
+                            padding-right: 20px; // Because of arrow.
+                            height: 50px;
+                            .calc-width( 100, 40 );
+                            .pull-left;
+                        }
+
+                        .room-status {
+                            font-size: 10px;
+                            color: @red;
+                            display: inline-block;
+                            vertical-align: middle;
+                            height: 18px;
+                            line-height: 18px;
+
+                            &.green {
+                                color: @green;
+                            }
+                        }
+
+                        .room-number-info {
+                            #flexbox > .parent( row, '', center, '');
+
+                            .room-status,
+                            .icon-suite-orange {
+                                flex-shrink: 0;
+                            }
+                        }
+                    }
+
+                    .room-info {
+                        .room-number {
+                            font-size: 24px;
+                            line-height: 18px;
+                            text-transform: uppercase;
+                            display: inline-block;
+                            width: auto;
+                            margin-right: 10px;
+
+                            &.ready,
+                            &.room-green { color: @green; }
+
+                            &.not-ready,
+                            &.room-red {
+                                color: @red;
+                            }
+
+                            &.room-orange { color: @logoPrimary; }
+
+                            &.no-number {
+                                color: @grey2;
+                            }
+                        }
+
+                        .room-type {
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            .nowrap();
+                            .show;
+                        }
+                    }
+                }
+
+                /* Commisions ***/
+                &.commision {
+
+                    .faux-anchor {
+                        padding: 0;
+                        height: 60px;
+                        #flexbox > .parent( row wrap, flex-start, center, '' );
+
+                        &.prepaid {
+                            padding-left: 45px;
+                        }
+                    }
+
+                    a {
+                        background-color: transparent;
+                        background-position: calc(~'100% - 15px') 50%;
+                        padding: 0 65px 0 0;
+                        flex-grow: 1;
+                        .box-shadow(none);
+                        #flexbox > .parent( row wrap, flex-start, center, '' );
+
+                        .data {
+                            flex-grow: 1;
+                            margin: 0;
+
+                            h2 {
+                                font-size: 18px;
+                                margin: 0;
+                                line-height: 1;
+                            }
+
+                            .confirmation {
+                                font-size: 14px;
+                                height: auto;
+                                line-height: 1;
+                            }
+                        }
+
+                        .revenue,
+                        .commission {
+                            width: 80px;
+                            font-size: 14px;
+                        }
+
+                        .commissionable {
+                            width: 140px;
+                            font-size: 14px;
+                        }
+
+                        .amount {
+                            width: 95px;
+                        }
+
+                        .revenue,
+                        .commission,
+                        .amount,
+                        .commissionable {
+                            text-align: right;
+                        }
+
+                        .recalculated {
+                            color: @purpleEnd;
+                            font-weight: 600;
+                        }
+                    }
+
+                    .paid-status {
+                        width: 90px;
+                        padding: 15px 20px;
+                        line-height: 30px;
+                        font-size: 12px;
+                        color: @orange;
+                        text-align: center;
+                        text-transform: uppercase;
+
+                        .switch-button {
+                            width: 100%;
+                            height: 30px;
+
+                            .switch-icon,
+                            .value {
+                                text-indent: -9999px;
+                            }
+
+                            .switch-icon {
+                                .gradient(@redStart, @redEnd);
+                            }
+
+                            .data-on {
+
+                                .switch-icon {
+                                    .gradient(@greenStart, @greenEnd);
+                                }
+                            }
+                        }
+                    }
+
+                    .hold-status {
+                        width: 70px;
+
+                        .button {
+                            padding: 0;
+                            margin: 15px 20px;
+                            .square(30px);
+                            background-color: @grey1;
+                            .box-shadow(inset 1px 1px 0 rgba(0, 0, 0, 0.15));
+
+                            .icons {
+                                top: 5px;
+                            }
+
+                            &:not(.active){
+                                .box-shadow(inset -1px -1px 0 rgba(0, 0, 0, 0.15));
+
+                                .icons {
+                                    .opacity(25);
+                                }
+                            }
+                        }
+                    }
+
+                    .hold-status,
+                    .paid-status {
+                        height: 60px;
+                        border-left: 1px solid rgba(0,0,0,0.15);
+                    }
+
+                    .checkbox {
+                        padding: 0;
+                        margin: 0;
+                        .square(45px);
+                        .hide-text();
+
+                        input { .square(45px); }
+
+                        .icon-form {
+                            left: 12.5px;
+                            background-color: @grey1;
+                        }
+                    }
+                }
+            }
+
+            /* Find Reservations ***/
+            &.find-reservation {
+
+                a {
+                    background-position: calc( ~"100% - 15px" ) 50%;
+                    background-image: @arrowRight;
+                    background-repeat: no-repeat;
+
+                    @media @highdpi {
+                        background-image: @arrowRight2x;
+                        background-size: 14px 14px;
+                    }
+                }
+                .guest-image {
+                    margin-right: 10px;
+                }
+
+                .data {
+                    .calc-width(100, 535);
+                    #flexbox > .parent( column, center, '', '' );
+                    height: 50px;
+                    padding-right: 30px;
+                    h2 {
+                        line-height: 22px;
+                        height: 24px;
+
+                        &.pending {
+                            color: @grey2;
+                        }
+                        &.cancelled {
+                            color:  @grey3;
+                        }
+                    }
+
+                    .confirmation,
+                    .icons,
+                    .guest-time,
+                    .member-level {
+                        line-height: 14px;
+                        height: 14px;
+                        font-size: 14px;
+                        overflow: hidden;
+                        margin-right: 10px;
+                        display: block;
+                        .pull-left;
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+
+                    .icons {
+                        color: @grey3;
+                    }
+
+                    .icon-location {
+                       padding-left: 15px;
+                       white-space: nowrap;
+                       text-overflow: ellipsis;
+                       overflow: hidden;
+                       background-position: -5px -40px;
+
+                       &.no-location {
+                         color: @grey2;
+                       }
+                    }
+
+                    .confirmation {
+                        color: @textColor;
+                        font-weight: 600;
+                        width: 155px;
+                        .nowrap();
+                        .confirmation-text {
+                            font-weight: normal;
+                            color: @grey3;
+                            text-transform: uppercase;
+                        }
+                    }
+                    .guest-meta {
+                        height: 14px;
+                        #flexbox > .display();
+                    }
+
+                    .member-level {
+                        .nowrap();
+                        margin-left: 10px;
+                        font-weight: 400;
+                        color: @grey3;
+                        text-transform: uppercase;
+
+                        strong {
+                            font-weight: 600;
+                        }
+                    }
+                }
+
+                .guest-info {
+                    color: @grey3;
+                    display: block;
+                    font-size: 12px;
+                    line-height: 12px;
+                    height: 15px;
+                    .nowrap();
+
+                    span {
+                        text-transform: uppercase;
+                        display: inline-block;
+                        margin-right: 5px;
+                         > span {
+                            display: inline;
+                        }
+
+                        &.group {
+                            color:  @groupcard;
+                        }
+
+                        &.guest-company {
+                            color:  @ccard;
+                        }
+
+                        &.guest-travelagent {
+                            color:  @tacard;
+                        }
+
+                        &.allotment {
+                            color:  @allotmentcard;
+                        }
+
+                        &.highlight,
+                        &.ui-match { padding-left: 0; }
+                    }
+                }
+
+                .reservation-time {
+                    position: relative;
+                    height: 45px;
+                    padding-top: 5px;
+                    width: 225px;
+                    .pull-left;
+                    #flexbox > .display();
+
+                    .check-icons {
+                        display: block;
+                        width: 20px;
+                        margin-right: 10px;
+                        position: relative;
+                    }
+
+                    .guest-status {
+                        width: 20px;
+                        height: 20px;
+                        background-size: 80px;
+                        float: none;
+
+                        &.check-in {
+                            background-position: 6px -75px;
+                        }
+                        &.check-out {
+                            background-position: 6px -102px;
+                        }
+                    }
+
+                    .guest-time {
+                        font-size: 14px;
+                        width: 100%;
+                        display: block;
+                        height: 20px;
+                        line-height: 20px;
+                        font-weight: 600;
+
+                        .hours {
+                            font-weight: 400;
+                            color:  @grey3;
+                        }
+                    }
+
+                    .check-times {
+                        .guest-hours {
+                            height: 20px;
+                            line-height: 20px;
+                            width: 100%;
+                            display: block;
+                            .guest-time {
+                                width: auto;
+                                height: auto;
+                                line-height: inherit;
+                                display: inline;
+                            }
+                        }
+
+                        .date {
+                            color:  @grey3;
+                            font-size: 14px;
+                            line-height: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    &.daily {
+                        .check-icons {
+                            .check-in {
+                                position: absolute;
+                                right: 20px;
+                            }
+                        }
+                    }
+                }
+
+                 /*Holding Reservation info:  guest info, reservation status, room number*/
+                .reservation-info {
+                    position: relative;
+                    width: 250px;
+                    .pull-right;
+
+                    .reservation-type {
+                        position: absolute;
+                        left: -20px;
+                        width: 20px;
+                        margin: auto;
+                        top: 0;
+                        bottom: 0;
+                        height: 20px;
+                        font-size: 18px;
+                        line-height: 20px;
+                        font-weight: 600;
+                        color: @grey3;
+
+                        &.red {
+                            color: @red;
+                        }
+                    }
+
+                    .guest-status {
+                        margin-right: 10px;
+                        .square(30px);
+                    }
+
+                    time {
+                        span { .show; }
+                    }
+
+                    .reservation-status {
+                        position: relative;
+                        padding-top: 10px;
+                        width: 40px;
+                        .pull-left;
+                    }
+
+                    .icon-suite-orange {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 10px;
+                        background-size: 80px;
+                        background-position: 0 -8546px;
+                        .size(10px, 18px);
+                    }
+
+                    .icon-queued-red {
+                        position: absolute;
+                        top: 0px;
+                        right: 0;
+                        background-position: 0px -8586px;
+                        background-size: 80px;
+                        height: 12px;
+                        width: auto;
+                        padding-left: 20px;
+                        color: @red;
+                        text-transform: uppercase;
+
+                        .time {
+                            display: block;
+                            float: right;
+                            text-indent: initial;
+                            font-size: 11px;
+                            line-height: 12px;
+                            width: auto;
+                        }
+                    }
+
+                    .room-info {
+                        padding-top: 10px;
+                        padding-right: 20px; // Because of arrow.
+                        height: 50px;
+                        .calc-width( 100, 40 );
+                        .pull-left;
+                    }
+
+                    .room-status {
+                        font-size: 10px;
+                        color: @red;
+                        display: inline-block;
+                        vertical-align: middle;
+                        height: 18px;
+                        line-height: 18px;
+
+                        &.green {
+                            color: @green;
+                        }
+                    }
+
+                    .room-number-info {
+                        #flexbox > .parent( row, '', center, '');
+
+                        .room-status,
+                        .icon-suite-orange {
+                            flex-shrink: 0;
+                        }
+                    }
+                }
+
+                .room-info {
+                    .room-number {
+                        font-size: 24px;
+                        line-height: 18px;
+                        text-transform: uppercase;
+                        display: inline-block;
+                        width: auto;
+                        margin-right: 10px;
+
+                        &.ready,
+                        &.room-green { color: @green; }
+
+                        &.not-ready,
+                        &.room-red {
+                            color: @red;
+                        }
+
+                        &.room-orange { color: @logoPrimary; }
+
+                        &.no-number {
+                            color: @grey2;
+                        }
+
+                        &.dnd { color: @purple; }
+                    }
+
+                    .room-type {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        .nowrap();
+                        .show;
+                    }
+                }
+
+                .reservation-balance {
+                    display: block;
+                    width: 145px;
+                    height: 50px;
+                    line-height: 50px;
+                    font-size: 18px;
+                    padding-right: 35px;
+                    text-align: right;
+                    .nowrap();
+                    .pull-right;
+                    .hide();
+
+                    &.red {
+                        font-weight: 600;
+                        color: @red;
+                    }
+                }
+
+                &.show-balance {
+                    .data {
+                        .calc-width(100, 585);
+                    }
+                    .reservation-info {
+                        width: 155px;
+                        .pull-left;
+
+                        .room-info {
+                            padding-right: 0;
+                        }
+                    }
+                    .reservation-balance { .show(); }
+                }
+                
+                &.with-checkbox {
+                    position: relative;
+                    
+                    .check {
+                        top: 20px;
+                        left: 10px;
+                    }
+                    
+                    a {
+                        padding-left: 60px;
+                    }    
+                }
+            }
+
+            /* Rooms ***/
+            &.mobile-pagination {
+                text-align: center;
+                font-size: 14px;
+                padding: 10px 0;
+                margin: 0;
+
+                p {
+                    line-height: 1.2;
+                    margin-bottom: 0;
+                }
+
+                .pull-msg {
+                    color: @grey3;
+                }
+            }
+
+            &.room {
+                position: relative;
+                z-index: 1010;
+
+                .check {
+                    top: 0;
+                    left: 0;
+                }
+
+                /* Number, Room Type & Room Status ***/
+                .room-info {
+                    position: relative;
+                    padding: 0 80px 5px 0;
+                    margin-bottom: 10px;
+                    border-bottom: 1px solid @grey2;
+                }
+
+                h2 {
+                    font-size: 28px;
+                    line-height: 25px;
+                    font-weight: 700;
+                    .nowrap();
+
+                    &.pickup { color: @logoPrimary; }
+
+                    &.clean,
+                    &.inspected { color: @green; }
+
+                    &.dirty,
+                    &.clean-not-inspected { color: @red; }
+
+                    &.dnd { color: @purple; }
+
+                    &.out { color: @grey3; }
+                    .icons {
+                        display:inline-block;
+                        vertical-align: middle;
+                        margin-left: 10px;
+                    }
+
+                    .number {
+                        .nowrap();
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    &.is-suite {
+                        .number {
+                           .calc-max-width(100, 35);
+                        }
+                    }
+                }
+
+                .room-type {
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-transform: uppercase;
+                    .show;
+                    .nowrap();
+                }
+
+                .room-status {
+                    position: absolute;
+                    top: 0;
+                    right: 30px;
+                    line-height: 25px;
+                    color: @grey3;
+                    .show;
+
+                    &.clean,
+                    &.inspected { color: @green; }
+
+                    &.pickup,
+                    &.clean-not-bookable  { color: @orange; }
+
+                    &.dirty { color: @red; }
+
+                    &.dnd { color: @purple; }
+                }
+
+                .occupancy {
+                    color: @grey3;
+
+                    .occupancy-number {
+                        margin-right: 5px;
+                        font-size: 14px;
+                        line-height: 14px;
+
+                        .icons {
+                            .square(12px);
+                            .pull-left();
+                            margin-right: 5px;
+                            opacity: 0.5;
+
+                            background-size: 60px;
+            
+                            &.icon-adult-2 {
+                                background-position: 0px -6950px;
+                            }
+
+                            &.icon-student {
+                                background-size: 70px;
+                                background-position: 0px -6148px;
+                            }
+
+                            &.icon-baby {
+                                background-position: 2px -6980px;
+                            }
+                        }
+                    }
+                }
+
+                /* Reservation Status ***/
+                .reservation-status {
+                    width: 140px;
+                    .pull-right();
+                    #flexbox > .parent(row wrap, flex-end, '', '');
+
+                    .guest-status {
+                        margin-right: 2px;
+                        background-size: 80px;
+                        .square(15px);
+
+                        &.check-in { background-position: 3px -78px; }
+                        &.check-out { background-position: 3px -104px; }
+                        &.late-check-out { background-position: 3px -1904px; }
+                        &.inhouse { background-position:  3px -131px; }
+                    }
+
+                    .current,
+                    .next {
+                        font-size: 12px;
+                        line-height: 15px;
+                        text-transform: uppercase;
+                        height: 15px;
+                        max-width: 70px;
+                        .nowrap();
+
+                        &.check-in { color: @green; }
+                        &.check-out,
+                        &.late-check-out { color: @red; }
+                        &.inhouse { color: @blue; }
+                    }
+
+                    .current {
+                        margin-right: 5px;
+                    }
+                }
+
+                /* Additional Info - Assigned to & Service Status ***/
+                .assigned,
+                .unassigned {
+                    font-size: 14px;
+                    line-height: 15px;
+                    text-transform: uppercase;
+                    .nowrap();
+                }
+
+                .assigned { font-weight: 600; }
+                .unassigned { color: @grey2; }
+
+                .no-service {
+                    .notice();
+                    margin: 0;
+                    display: block;
+                    text-transform: uppercase;
+                    position: absolute;
+                    padding: 0 5px;
+                    right: 40px;
+                    top: 10px;
+                    font-size: 10px;
+                    height: 20px;
+                    line-height: 20px;
+                }
+
+                /* Service Status ***/
+                .service-status {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: @grey3;
+                    background-color: @grey1;
+                    text-align: center;
+                    padding: 5px;
+                    margin-top: 5px;
+                    .box-shadow(inset 0 0 1px rgba(0,0,0,.1));
+                    #border-radius > .rounded();
+                    .show();
+
+                    strong {
+                        font-weight: 600;
+                    }
+                }
+
+                /* Tasks ***/
+                .tasks {
+
+                    li {
+                        position: relative;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin: 0;
+                        font-weight: 600;
+                        .nowrap();
+                        .show;
+
+                        &.completed {
+                            color: @grey3;
+                            text-decoration: line-through;
+                            text-indent: 20px;
+                            font-weight: 400;
+                            background-image: @icons;
+                            background-repeat: no-repeat;
+                            background-position: 0 -5856px;
+
+                            @media @highdpi {
+                                background-image: @icons2x;
+                                background-size: 120px;
+                            }
+                        }
+                    }
+                }
+
+                /* Occupancy & Queued Room ***/
+                .show-vacant,
+                .guest-image,
+                .icon-queued {
+                    position: absolute;
+                    top: 35px;
+                    right: 10px;
+                    margin: 0;
+                    height: 20px;
+                }
+
+                .icon-queued {
+                    width: 30px;
+                    background-position: 0px -4178px;
+
+                    &.has-time {
+                        width: 50px;
+                        .time {
+                            display: block;
+                            float: right;
+                            font-size: 12px;
+                            text-indent: initial;
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+                .guest-image {
+                    width: 20px;
+
+                    .vip,
+                    .stay-count {
+                        font-size: 8px;
+                        line-height: 12px;
+                        .square(12px);
+                    }
+                }
+
+                .show-vacant {
+                    color: @grey3;
+                    background: transparent;
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-transform: uppercase;
+                }
+
+                /* Arrival & Departure Date will show only on print ***/
+                .print-date {
+                    display: none;
+                }
+
+                &.with-checkbox {
+                    a,
+                    .faux-anchor {
+                        padding-bottom: 5px;
+                    }
+
+                    /* Occupancy & Queued Room ***/
+                    .show-vacant,
+                    .guest-image,
+                    .icon-queued {
+                        top: 10px;
+                    }
+
+                    .icon-queued {
+                        width: 65px;
+                        height: 20px;
+                        background-position: 40px -14018px;
+    
+                        &.has-time {
+                            width: 65px;
+
+                            .time {
+                                width: 35px;
+                                text-align: right;
+                                display: block;
+                                float: left;
+                                font-size: 11px;
+                                text-indent: initial;
+                                line-height: 20px;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                    .guest-image {
+                        right: 10px;
+                        .square(20px);
+
+                        .stay-count,
+                        .vip {
+                            .square(12px);
+                            #flexbox > .parent('', center, center, '');
+                            z-index: 20;
+                        }
+
+                        .stay-count {
+                            font-size: 10px;
+                            line-height: 16px;
+                        }
+                        .vip {
+                            font-size: 5px;
+                            line-height: 1;
+                        }
+                    }
+
+                    .room-info {
+                        .nowrap();
+                        display: block;
+                        padding: 0 30px 10px 30px;
+
+                         h2 {
+                            font-size: 24px;
+                            line-height: 25px;
+                        }
+                    }
+
+                    .occupancy {
+                        margin-left: 5px;
+                        margin-top: 0;
+                        #flexbox > .parent('', '', center, '');
+                        padding: 0;
+                    }
+
+                    .room-status {
+                        position: static;
+                        line-height: 1;
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 14px;
+                        width: auto;
+                        margin: 0;
+                    }
+
+                    .service-status {
+                        margin-bottom: 5px;
+                    }
+
+                    .assigned,
+                    .unassigned {
+                        .calc-width( 100, 260);
+                        line-height: 20px;
+                        float: left;
+                    }
+
+                    .last-column {
+                        padding-top: 5px;
+                        clear: both;
+                    }
+    
+                    .room-type {
+                        line-height: 1;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .reservation-status {
+                        width: auto;
+                        .current,
+                        .next {
+                            max-width: 180px;
+                            height: 20px;
+                            line-height: 20px;
+                            
+                            .guest-status {
+                                margin-right: 5px;
+                                .square(20px);
+
+                                &.check-out {background-position: 6px -102px;}
+                                &.check-in { background-position: 6px -75px; }
+                                &.late-check-out { background-position: 7px -1902px; }
+                                &.inhouse { background-position:  5px -128px; }
+                            }
+
+                            .reservation-time {
+                                font-size: 14px;
+                                #flexbox > .parent(row, flex-end, '', '');
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Cards ***/
+            &.card {
+                .guest-image {
+
+                    &.icon-company {
+                        background-color: @ccard;
+                        background-position: 14px -3445px;
+                    }
+
+                    &.icon-travel-agent {
+                        background-color: @tacard;
+                        background-position: 14px -3565px;
+                    }
+                }
+
+                .rate {
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-right: 20px;
+                    .nowrap();
+                    .pull-left;
+
+                    .label { font-weight: 400; }
+                }
+
+                .icon-contracts {
+                    color: @grey3;
+                    text-transform: uppercase;
+                    font-size: 13px;
+                    line-height: 20px;
+                    padding-left: 20px;
+                    width: 150px;
+                    .pull-right;
+                }
+            }
+
+            &.all-cards {
+                position: relative;
+
+                .data {
+                    margin-right: 20px;
+                    .calc-width(50, 130);
+
+                    h2 {
+                        font-size: 18px;
+                        line-height: 18px;
+                    }
+
+                    span.icons {
+                        padding-left: 20px;
+                        line-height: 14px;
+                        font-size: 14px;
+                        float:left;
+                        color: @grey3;
+                        .nowrap();
+                        width: 100%;
+
+                        &.icon-location {
+                            background-size: 100px;
+                            background-position: -3px -32px;
+                        }
+                    }
+
+                    &:not(.no-address) {
+                        h2 {
+                            display: block;
+                        }
+                    }
+                }
+
+                .rate {
+                    line-height: 30px;
+                    font-size: 16px;
+                    .calc-width(50, 130);
+                }
+
+                .icon-contracts { margin-top: 15px; }
+                .icon-archive {
+                    display: block;
+                    .square(20px);
+                    position: absolute;
+                    right: 20px;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    opacity: 0.5;
+                }
+
+                .archived {
+                    .data {
+                        h2 {
+                            color: @grey3 !important;
+                        }
+                    }
+                }
+            }
+
+            &.card-result {
+                .data {
+                    .calc-width(100, 70);
+
+                    .info {
+                        margin-bottom: 10px;
+                        .float;
+
+                        h2 {
+                            line-height: 30px;
+                            margin-right: 20px;
+                            .calc-width(50, 95);
+                            .pull-left;
+                        }
+
+                        .rate {
+                            line-height: 30px;
+                            .calc-width(50, 95);
+                        }
+
+                        .icon-contracts { margin-top: 5px; }
+                    }
+
+                    .confirmation,
+                    .icons {
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: 20px;
+                        height: 20px;
+                        overflow: hidden;
+                        .nowrap();
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                        margin-right: 20px;
+                        &:last-child { margin-right: 0; }
+                        .calc-max-width(100, 630);
+
+                        &.icon-contracts {
+                            &.access-code {
+                                float: none;
+                                font-size: inherit;
+                                text-transform: none;
+                                width: auto;
+                            }
+                        }
+                    }
+
+                    .confirmation {
+                        max-width: 150px;
+                        font-weight: 600;
+                        margin-right: 20px;
+                    }
+
+                    // State Classes:
+                    &.no-confirmation {
+                        .confirmation {
+                            .hide();
+                        }
+                        .icons {
+                            .calc-max-width(25, 20); // 33 (3 Icons) - 20 (margin)
+                        }
+
+                        &.no-email,
+                        &.no-phone,
+                        &.no-address,
+                        &.no-access-code {
+                            .icons {
+                                .calc-max-width(33, 20); // 2 Icons - 20%
+                            }
+
+                            &.no-email,
+                            &.no-phone,
+                            &.no-address,
+                            &.no-access-code {
+                                .icons {
+                                    .calc-max-width(50, 20); // 2 Icons - 20%
+                                }
+                            }
+                        }
+                    }
+
+                    &.no-email {
+                        .icon-email-grey {
+                            .hide();
+                        }
+
+                        &.no-phone,
+                        &.no-address,
+                        &.no-access-code {
+                            .icons {
+                                .calc-max-width(100, 340); // 1 Icons & Conf
+                            }
+
+                            &.no-confirmation {
+                                .icons {
+                                    .calc-max-width(50, 20); // 2 Icons
+                                }
+                                .icons {
+                                    max-width: 100%; // Only this Icon
+                                }
+                            }
+
+                            &.no-phone,
+                            &.no-address,
+                            &.no-access-code {
+                                .icons {
+                                    .calc-max-width(100, 170); // 1 Icons & Conf
+                                }
+
+                                &.no-confirmation {
+                                    .icons {
+                                        max-width: 100%; // Only this Icon
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.no-phone {
+                        .icon-phone {
+                            .hide();
+                        }
+                        
+                        &.no-access-code,
+                        &.no-address {
+                            .icons {
+                                .calc-max-width(100, 340); // 2 Icons & Conf
+                            }
+
+                            &.no-confirmation {
+                                .icons {
+                                    .calc-max-width(50, 20); // 2 Icons
+                                }
+                            }
+                        }
+                    }
+
+                    &.no-address {
+                        .icon-location {
+                            .hide();
+                        }
+
+                        &.no-access-code {
+                            .icons {
+                                .calc-max-width(100, 340); // 1 Icons & Conf
+                            }
+
+                            &.no-confirmation {
+                                .icons {
+                                    .calc-max-width(50, 20); // 2 Icons
+                                }
+                            }
+                        }
+                    }
+
+                    &.no-access-code {
+                        .icons {
+                            &.access-code { .hide(); }
+                        }
+                    }
+                }
+            }
+
+            /* Employees ***/
+            &.employee {
+                .data {
+                    margin-right: 40px;
+                    .calc-width(100, 700);
+
+                    h2 {
+                        line-height: 40px;
+                        vertical-align: middle;
+                    }
+                }
+
+                .stayovers,
+                .departures {
+                    width: 160px;
+                    font-size: 15px;
+                    line-height: 40px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    margin-right: 20px;
+                    .show;
+                    .pull-left;
+
+                    span {
+                        font-size: 24px;
+                        font-weight: 400;
+                        margin-right: 5px;
+                        vertical-align: middle;
+                    }
+                }
+
+                .stayovers { color: @blue; }
+                .departures { color: @red; }
+
+                .shift {
+                    font-size: 24px;
+                    line-height: 40px;
+                    width: 180px;
+                    .show;
+                    .pull-left;
+
+                    .completed { color: @grey3; }
+                }
+
+                .location {
+                    position: relative;
+                    width: 120px;
+                    padding-left: 30px;
+                    font-weight: 600;
+                    line-height: 40px;
+                    text-transform: uppercase;
+                    .pull-left;
+
+                    .icons {
+                        position: absolute;
+                        top: 5px;
+                        left: 0;
+                        .square(30px);
+                    }
+
+                    &.floor { color: @grey3; }
+                    &.room { color: @darkBlue; }
+                }
+            }
+
+            /* Groups ***/
+            &.group {
+
+                .guest-image {
+
+                    &.icon-allotment {
+                        background-color: @allotmentcard;
+                        background-position: 14px -8365px;
+                    }
+
+                    &.icon-group {
+                        background-color: @groupcard;
+                        background-position: 15px -7705px;
+                    }
+                }
+
+                .data {
+                    margin-right: 40px;
+                    .calc-width(100, 520);
+
+                    h2 {
+                        line-height: 24px;
+                        margin-bottom: 6px;
+                    }
+
+                    .confirmation,
+                    .icons {
+                        display: inline;
+                        line-height: 20px;
+                        height: 20px;
+                        overflow: hidden;
+                        margin-right: 20px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                    }
+
+                    .confirmation { color: @textColor; }
+                }
+
+                .arrival,
+                .departure {
+                    margin: 10px 20px 0 0;
+                    width: 120px;
+                    .pull-left;
+
+                    .guest-status {
+                        margin-right: 5px;
+                        .square(30px);
+                    }
+
+                    time { line-height: 30px; }
+                }
+
+                .blocked,
+                .picked {
+                    margin-top: 10px;
+                    text-align: center;
+                    width: 80px;
+                    .pull-left;
+
+                    strong {
+                        font-size: 20px;
+                        line-height: 1em;
+                        font-weight: 600;
+                        .show;
+                    }
+
+                    span {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        .show;
+                        .nowrap();
+                    }
+                }
+
+                .blocked {
+                    margin: 10px 20px 0 20px;
+
+                    &.tentative { color: @logoPrimary; }
+                }
+
+                .picked {
+                    &.green { color: @green; }
+                    &.red { color: @red; }
+                }
+
+                &.with-image {
+                    .data { .calc-width(100, 590); }
+                }
+            }
+
+            /* Group accounts ***/
+            &.group-account {
+                line-height: 1em;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                background-color: @white;
+                overflow: hidden;
+                cursor: pointer;
+                overflow: hidden;
+                .box-shadow();
+                .show;
+                .float;
+
+                .group-info,
+                .room {
+                    margin-right: 20px;
+                    .size(45px, 120px);
+                    .show;
+                    .pull-left;
+
+                    strong,
+                    .type { line-height: 1.5em; }
+
+                    strong { font-weight: 600; }
+
+                    .type {
+                        text-transform: uppercase;
+                        .show;
+                    }
+                }
+
+                .room {
+                    strong {
+                        font-size: 30px;
+                        font-weight: 700;
+                        line-height: 45px;
+                    }
+                }
+
+                .data {
+                    .calc-width(100, 140);
+                    .pull-left;
+
+                    h2 {
+                        font-size: 21px;
+                        line-height: 1.1em;
+                        font-weight: 700;
+                    }
+
+                    &.guest {
+                        .calc-width(100, 260);
+
+                        h2 { line-height: 45px; }
+                    }
+                }
+
+                .reservation {
+                    padding-top: 10px;
+                    width: 120px;
+                    .pull-left;
+
+                    .guest-status {
+                        .square(30px);
+                        .pull-right;
+                    }
+
+                    .date {
+                        margin-right: 10px;
+                        line-height: 30px;
+                        width: 80px;
+                        .pull-left;
+                    }
+                }
+
+                &:hover,
+                &:active {
+                    .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.15)");
+                }
+
+                &:last-child { margin-bottom: 0; }
+            }
+
+            /* Account ***/
+            &.account {
+
+                .data {
+                    margin-right: 40px;
+                    .calc-width(100, 280);
+
+                    h2 {
+                        line-height: 24px;
+                        margin-bottom: 6px;
+                    }
+
+                    .confirmation,
+                    .icons {
+                        display: inline;
+                        line-height: 20px;
+                        height: 20px;
+                        overflow: hidden;
+                        margin-right: 20px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+
+                    .confirmation {
+                        color: @textColor;
+                        font-weight: 600;
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                    }
+                }
+
+                .info {
+                    margin-top: 10px;
+                    text-align: center;
+                    width: 120px;
+                    color: @grey3;
+                    .pull-left;
+
+                    strong {
+                        font-size: 20px;
+                        line-height: 1em;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        color: @textColor;
+                        .show;
+
+                        &.green { color: @green; }
+                        &.red { color: @red; }
+                    }
+
+                    span:not(.currency) {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            /* Account ***/
+            &.account-ar {
+
+                .data {
+                    margin-right: 20px;
+                    .calc-width(100, 510);
+
+                    h2 {
+                        line-height: 24px;
+                        margin-bottom: 6px;
+                    }
+
+                    .confirmation,
+                    .icons {
+                        display: inline;
+                        font-size: 14px;
+                        line-height: 18px;
+                        height: 18px;
+                        overflow: hidden;
+                        margin-right: 10px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                    }
+
+                    .confirmation {
+                        color: @textColor;
+                        font-weight: 600;
+                    }
+                }
+
+                .info-holder {
+                    padding-top: 10px;
+                    float: right;
+                    height: 50px;
+                }
+
+                .info {
+                    text-align: center;
+                    color: @grey3;
+                    .pull-left;
+
+                    strong {
+                        font-size: 18px;
+                        line-height: 1;
+                        font-weight: 600;
+                        text-transform: none;
+                        color: @textColor;
+                        .show;
+
+                        &.green { color: @green; }
+                        &.red { color: @red; }
+                    }
+
+                    span {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                    }
+
+                    &.number {
+                        width: 90px;
+                    }
+
+                    &.value {
+                        width: 120px;
+                    }
+                }
+            }
+
+
+            /* Commision Item***/
+            &.commision-item {
+                position: relative;
+
+                > .faux-anchor {
+                    padding: 0px;
+
+                    &.expanded {
+                        .box-shadow(0px 0px 8px 2px rgba(0,0,0,0.2));
+                    }
+                }
+
+                a {
+                    margin-left: 85px;
+                    padding-left: 0px;
+                    padding-right: 55px;
+                    background-color: transparent;
+                    .box-shadow(none);
+
+                    &.has-arrow {
+                        background-position: 98% 50%;
+                        background-image: @arrowRight;
+
+                        @media @highdpi {
+                            background-image: @arrowRight2x;
+                            background-size: 14px 14px;
+                        }
+                    }
+                }
+
+                .expand {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 40px;
+                    height: 60px;
+                    background-color: rgba(0,0,0,0.1);
+                    z-index: 10;
+                }
+
+                .check {
+                    top: 10px;
+                    left: 45px;
+                }
+
+                .account-image {
+                    .square(30px);
+                    margin-right: 10px;
+
+                    &.icon-travel-agent {
+                        background-position: 8px -2378px;
+                        background-size: 80px;
+                    }
+                }
+
+                .data {
+                    .calc-width(100, 445);
+                    height: 30px;
+                    padding-right: 30px;
+                    overflow: visible;
+                    position: relative;
+
+                    .meta-data {
+                        display: block;
+                        width: 100%;
+                        clear: both;
+                        font-size: 14px;
+                    }
+
+                    h2 {
+                        font-size: 18px;
+                        line-height: 1;
+                        .nowrap();
+                        .pull-left();
+                    }
+
+                    .icons {
+                        display: inline;
+                        line-height: 1;
+                        overflow: hidden;
+                        margin-right: 20px;
+
+                        &:last-child { margin-right: 0; }
+                    }
+
+                    .icon-guest-travelagent,
+                    .icon-location {
+                        display: inline-block;
+                        background-size: 90px;
+                    }
+
+                    .icon-location {
+                        background-position: 0px -28px
+                    }
+
+                    .icon-guest-travelagent {
+                        width: 150px;
+                        background-position: 0 -614px;
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        padding-left: 20px;
+                    }
+
+                    .confirmation { color: @textColor; }
+
+                    .icon-hold {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto 0;
+                        height: 20px;
+                    }
+                }
+
+                .info {
+                    float: right;
+                    .float;
+
+                    li {
+                        .pull-left;
+                        width: 130px;
+                        text-align: right;
+                        font-size: 16px;
+                        line-height: 30px;
+                        margin: 0;
+
+                        &:last-child {
+                            width: 145px;
+                            font-size: 18px;
+                        }
+
+                        &.red {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .commission-details {
+                    padding: 15px 15px 15px 45px;
+                    border-top: 2px solid rgba(0,0,0,0.1);
+                    background-color: @white;
+                    #border-radius > .bottom();
+
+                    table {
+                        table-layout: fixed;
+                        margin: 0;
+                        width: 100%;
+                    }
+
+                    th,
+                    td {
+                        font-size: 14px;
+                        line-height: 1em;
+                        white-space: normal;
+                        overflow: visible;
+                        padding: 5px;
+
+                        &:first-child {
+                            width: 40px;
+                            padding: 0;
+
+                            .checkbox {
+                                .size(30px, 40px);
+
+                                .icon-form {
+                                    top: 5px;
+                                    left: 10px;
+                                }
+                            }
+                        }
+
+                        &.owing {
+                            width: 180px;
+                            padding-right: 40px;
+                            text-align: right;
+                        }
+
+
+                        &.amount {
+                            width: 130px;
+                            text-align: right;
+                        }
+                    }
+
+                    th {
+                        font-weight: 600;
+                        padding-top: 0;
+                        font-size: 14px;
+                        color: @grey3;
+                        text-transform: uppercase;
+
+                        .checkbox {
+
+                            .icon-form{
+                                &:not(.checked) {
+                                    background: @grey1;
+                                }
+                            }
+                        }
+
+                    }
+
+                    td {
+                        vertical-align: middle;
+                        word-wrap: break-word;
+                        width: 110px;
+                        height: 40px;
+
+                        &.name {
+                            font-weight: 600;
+                            width: auto;
+                        }
+
+                        &.owing {
+                            font-weight: 600;
+                            color: @textColor;
+
+                            &.red {
+                                color: @red;
+                            }
+                        }
+
+                    }
+
+                    tr {
+                        &.odd {
+                            td {
+                                background: @grey1;
+                            }
+                        }
+
+                        &.even {
+                            td {
+
+                                .checkbox {
+
+                                    .icon-form{
+                                        &:not(.checked) {
+                                            background: @grey1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+             /* Invoice ***/
+            &.invoice-item {
+
+                .bill {
+                    position: relative;
+                    padding: 0 10px;
+                    display: grid;
+                    grid-template-columns: 30px calc(~'100% - 470px') 370px 40px;
+                    grid-column-gap: 10px;
+                    background-color: @white;
+                    .box-shadow();
+                    #border-radius > .rounded();
+
+                    &.has-arrow {
+                        cursor: pointer;
+                        background-position: calc(~'100% - 80px') 50%;
+                        .transition();
+
+                        &:hover,
+                        &:active {
+                            .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.15)");
+                        }
+                    }
+
+                    @i: 0;
+                    @increment: 1;
+
+                    .loop (@i) when (@i <= 20) {
+                        &:nth-child(@{i}) {
+                            z-index: (21 - @i);
+                        }
+                        .loop((@i + @increment));
+                    }
+
+                    .loop(@i);
+                }
+
+                .guest-image,
+                .group-info,
+                .data {
+                    margin: 10px 0;
+                    height: 30px;
+                }
+
+                .guest-image {
+                    grid-column: 1;
+                    width: 30px;
+
+                    &.icons {
+                        background-size: 80px;
+                    }
+
+                    &.icon-company {
+                        background-color: @ccard;
+                        background-position: 10px -2337px;
+                    }
+
+                    &.icon-travel-agent {
+                        background-color: @tacard;
+                        background-position: 8px -2378px;
+                    }
+
+                    &.accompany {
+                        .square(30px);
+
+                        img {
+                            .square(20px);
+
+                            &:nth-child(2) {
+                                top: 10px;
+                                left: 10px;
+                            }
+                        }
+                    }
+                }
+
+                .group-info {
+                    grid-column: 1;
+                    font-size: 18px;
+                    line-height: 30px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    text-align: center;
+                    color: @grey3;
+                    background-color: @grey1;
+                    width: 30px;
+                }
+
+                .data {
+                    grid-column: 2;
+                    position: relative;
+                    #flexbox > .parent(row wrap, '', center, '');
+
+                    h2 {
+                        font-size: 18px;
+                        line-height: 1;
+                        width: 100%;
+                        .nowrap();
+                    }
+
+                    .confirmation,
+                    .icons {
+                        color: @textColor;
+                        font-size: 14px;
+                        line-height: 1;
+                        .pull-left;
+                    }
+
+                    .confirmation {
+                        font-weight: 600;
+                        margin-right: 10px;
+                    }
+
+                    .confirmation-text {
+                        font-weight: normal;
+                        color: @grey3;
+                        text-transform: uppercase;
+                    }
+
+                    .icons {
+                        color: @grey3;
+                        background-size: 90px;
+                        padding-left: 16px;
+                        margin-right: 10px;
+
+                        &.icon-location {
+                            background-position: 0 -28px;
+                        }
+
+                        &.icon-guest-company {
+                            background-position: 0 -569px;
+                        }
+
+                        &.icon-guest-travelagent {
+                            background-position: 0 -614px;
+                        }
+                    }
+
+                    .reservation-type {
+                        position: absolute;
+                        right: 0px;
+                        width: 20px;
+                        margin: auto;
+                        top: 0;
+                        bottom: 0;
+                        height: 20px;
+                        font-size: 18px;
+                        line-height: 20px;
+                        font-weight: 600;
+                        color: @grey3;
+                        text-align: center;
+
+                        &.red {
+                            color: @red;
+                        }
+                    }
+
+                    &.has-arrow {
+                        cursor: pointer;
+                        background-position: 100% 50%;
+                    }
+                }
+
+                .invoice-info {
+                    grid-column: 3;
+                    text-align: right;
+                    padding: 5px 30px 5px 0;
+                    .box-shadow(1px 0 0 rgba(0,0,0,.1));
+                    .size(50px, 370px);
+                    #flexbox > .parent(row wrap, '', center, '');
+
+                    .number {
+                        width: 100px;
+                    }
+
+                    .balance {
+                        width: 120px;
+                        margin-right: 20px;
+
+                        &.text-red {
+                            color: @red;
+                            font-weight: 600;
+                        }
+                    }
+
+
+
+                    .highlight {
+                        font-weight: 600;
+                    }
+                }
+
+                .button {
+                    grid-column: 4;
+                    margin: 5px 0;
+                    .square(40px);
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 20px;
+                }
+
+                &.ar-invoice-item {
+                    .bill {
+                        grid-template-columns: 30px calc(~'100% - 370px') 270px 40px;
+                    }
+                }
+
+                &.receipt-item {
+                    .bill {
+                        grid-template-columns: 40px 30px 30px calc(~'100% - 410px') 270px;
+                        padding-left: 0;
+
+                        &.open {
+                            border-bottom-left-radius: 0px;
+                            border-bottom-right-radius: 0px;
+                        }
+
+                        &.has-arrow {
+                            background-position: calc(~'100% - 15px') 50%;
+
+                            &:hover,
+                            &:active {
+                                .box-shadow();
+                            }
+                        }
+
+                        .expand {
+                            position: relative;
+                            background-color: rgba(0,0,0,0.1);
+                            z-index: 10;
+                        }
+
+                        .check {
+                            grid-column: 2;
+                            height: 100%;
+
+                            .icon-form {
+                                left: 5px;
+                                top: 15px;
+                            }
+                        }
+
+                        .guest-image,
+                        .group-info {
+                            grid-column: 3;
+                        }
+
+                        .data {
+                            grid-column: 4;
+                        }
+
+                        .invoice-info {
+                            grid-column: 5;
+                            box-shadow: none;
+                            width: 270px;
+                        }
+                    }
+
+                    .bill-receipt-details {
+                        .faux-anchor();
+                        .box-shadow();
+                        padding: 20px 40px 10px 40px;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+                        &:active,
+                        &:hover {
+                            .box-shadow();
+                        }
+
+                        /* Paid With ***/
+                        .payment-data {
+                            width: 100%;
+                            .show();
+
+                            .card-logo {
+                                display: inline-block;
+                                vertical-align: middle;
+                                .size(17px, 35px);
+
+                                img { .size(auto, 100%); }
+                            }
+
+                            .number,
+                            .date,
+                            .reference,
+                            .type {
+                                font-size: 14px;
+                                font-style: normal;
+                                line-height: 14px;
+                                text-transform: uppercase;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+
+                            .reference {
+                                font-style: italic;
+                            }
+
+                            .date,
+                            .reference {
+                                color: @grey3;
+                            }
+
+                            .value,
+                            .number,
+                            .type {
+                                font-size: 14px;
+                                color: @textColor;
+                                font-weight: 600;
+                            }
+                        }
+
+                        table {
+                            table-layout: fixed;
+                            margin: 0;
+                            width: 100%;
+                        }
+
+                        th,
+                        td {
+                            font-size: 14px;
+                            text-transform: uppercase;
+                            line-height: 1em;
+                            white-space: normal;
+                            overflow: visible;
+                            padding: 5px;
+
+                            &:first-child {
+                                width: 50px;
+                                padding: 0;
+
+                                .checkbox {
+                                    margin: 0;
+                                    .size(30px, 50px);
+
+                                    .icon-form {
+                                        top: 5px;
+                                        left: 15px;
+                                    }
+                                }
+                            }
+
+                            .button {
+                                width: 30px;
+                                height: 30px;
+                                margin: 0;
+                                margin-left: 10px;
+
+                                .icons {
+                                    background-size: 100px;
+                                    background-position: 3px -7632px;
+                                }
+                            }
+
+                            &.date {
+                                width: 100px;
+                            }
+
+                            &.charge-code {
+                                width: 150px;
+                            }
+
+                            &.amount {
+                                width: 130px;
+                                text-align: right;
+                            }
+
+                            &.credits {
+                                font-weight: 600;
+                            }
+                        }
+
+                        th {
+                            font-weight: 600;
+                            padding-top: 0;
+                            font-size: 14px;
+                            color: @black;
+                        }
+
+                        td {
+                            vertical-align: middle;
+                            word-wrap: break-word;
+                            height: 30px;
+                        }
+
+                        tr {
+                            &.odd {
+                                td {
+                                    background: @grey1;
+                                }
+                            }
+
+                            &.even {
+                                td {
+                                    .checkbox {
+
+                                        .icon-form{
+                                            &:not(.checked) {
+                                                background: @grey1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.guest-deposit-item {
+                    .bill {
+                        grid-template-columns: 30px calc(~'100% - 570px') 470px 40px;
+                    }
+
+                    .invoice-info {
+                        width: 470px;
+                    }
+                }
+            }
+
+            /* Contract - under CO/TA Contracts tab when searching */
+            &.contract {
+                position: relative;
+                height: 50px;
+
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                .faux-anchor {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    #flexbox > .parent( row, '', center, '' );
+                }
+                
+                .contract-status,
+                .contract-dates,
+                .contract-rates,
+                .contract-details {
+                    .pull-left;
+                }
+
+                .contract-dates {
+                    width: 100px;
+                    font-size: 14px;
+
+                    .start-date,
+                    .end-date {
+                        display: block;
+                    }
+                }
+
+                .contract-rates {
+                    .calc-width( 100, 520 );
+                    font-size: 14px;
+                    padding-right: 15px;
+                    text-transform: uppercase;
+
+                    .more {
+                        display: inline;
+                        color: @grey3;
+                        margin: 0;
+                    }
+                }
+
+                .contract-status {
+                    width: 70px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+
+                    .icon-contracts {
+                        padding-left: 17px;
+
+                        &.active {
+                            color: @green;
+                        }
+                    }
+                }
+
+                .contract-details {
+                    width: 330px;
+
+                    h2 {
+                        font-size: 18px;
+                        .nowrap();
+                    }
+
+                    .access-code {
+                        width: 90px;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        color: @black;
+                        font-weight: 600;
+                        .pull-left;
+                        .nowrap();
+                    }
+
+                    .icons {
+                        font-size: 14px;
+                        padding-left: 20px;
+                        line-height: 18px;
+                        height: 16px;
+                        text-transform: uppercase;
+                        background-size: 80px;
+                        .pull-left;
+
+                        &.colored {
+                            &.icon-guest-company {
+                                background-position: 0 -8743px;
+                            }
+
+                            &.icon-guest-travelagent {
+                                background-position: 0 -8783px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Dashboar Analytics */
+            &.dashboard-analytics {
+
+                .faux-anchor {
+                    display: grid;
+                    grid-template-columns: 1fr 120px;
+                    grid-column-gap: 20px;
+                    padding-right: 40px;
+                    background-position: calc(~'100% - 15px') 50%;
+                    background-image: @arrowRight2x;
+                    background-repeat: no-repeat; 
+                    background-size: 14px 14px;
+
+                    &:before,
+                    &:after {
+                        .hide();
+                    }
+                }
+
+                h2 {
+                    font-size: 21px;
+                    line-height: 20px;
+                    font-weight: 700;
+                }
+
+                .description {
+                    font-size: 15px;
+                    line-height: 1;
+                    color: @grey3;
+                }
+
+                .category {
+                    font-size: 14px;
+                    color: @grey3;
+                    text-transform: uppercase;
+                    #flexbox > .parent(column wrap, center, '', flex-end);
+                }
+            }
+
+            /** Events **/
+            &.find-event {
+
+                a,
+                .faux-anchor {
+                    padding: 10px 20px;
+                    height: 60px;
+                    overflow: hidden;
+                    #flexbox > .parent(row, '', center, '');
+
+                    &:not(.active) {
+                        background-repeat: no-repeat;
+                        background-position: 98% 50%;
+                        background-image: @arrowRight;
+
+                        @media @highdpi {
+                            background-image: @arrowRight2x; 
+                            background-size: 14px 14px;
+                        }
+                    }
+
+                    &.active {
+                        color: @white;
+                        .gradient(@orangeEnd, @orangeStart);
+
+                        .highlight,
+                        .description {
+                            color: @white;
+                        }
+                    }
+                }
+
+                .data {
+                    .calc-width(100, 380);
+
+                    h2 {
+                        font-size: 18px;
+                        line-height: 18px;
+                    }
+
+                    .description {
+                        display: block;
+                        font-size: 14px;
+                        line-height: 16px;
+                        text-transform: uppercase;
+                        margin-top: 5px;
+                        color: @grey3;
+                        .nowrap();
+                    }
+                }
+                
+                .type {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    line-height: 16px;
+                    width: 140px;
+                    padding-left: 20px;
+                }
+
+                .start-date,
+                .end-date,
+                .dates {
+                    text-align: right;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    line-height: 16px;
+                    width: 100px;
+                }
+
+                .dates {
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .search-results {
+        padding: 20px 20px 10px 20px;
+
+        li:not(.no-content) {
+            &.mobile-pagination { .hide; }
+
+            a,
+            .faux-anchor { padding: 15px; }
+
+            &.room {
+                .check {
+                    top: 15px;
+                    right: 15px;
+                }
+
+                a,
+                .faux-anchor {
+                    #flexbox > .parent(row wrap, flex-start, center, '');
+                }
+
+                /* Number, Room Type & Room Status ***/
+                .room-info {
+                    padding: 0 100px 0 0;
+                    margin: 0;
+                    border: 0;
+                    max-width: 380px;
+                    .calc-width(60, 250);
+                }
+
+                h2 {
+                    line-height: 20px;
+                }
+
+                .room-status {
+                    top: 10px;
+                    font-size: 16px;
+                    line-height: 20px;
+                    width: 120px;
+                }
+
+                /* Reservation Status ***/
+                .reservation-status {
+                    width: 220px;
+                    padding-right: 20px;
+                    float: none;
+                    #flexbox > .parent('', flex-start, '', '');
+
+                    .guest-status {
+                        margin-right: 5px;
+                        .square(20px);
+
+                        &.check-in { background-position: 6px -75px; }
+                        &.check-out { background-position: 6px -101px; }
+                        &.late-check-out { background-position: 6px -1901px; }
+                        &.inhouse { background-position:  5px -128px; }
+                    }
+
+                    .current,
+                    .next {
+                        font-size: 16px;
+                        line-height: 20px;
+                        max-width: 120px;
+                        margin: 0;
+                        .size(20px, 50%);
+                    }
+                }
+
+                /* Additional Info - Assigned to & Service Status ***/
+                .assigned,
+                .unassigned {
+                    font-size: 16px;
+                    line-height: 20px;
+                    .calc-width(40, 250);
+                }
+
+                .no-service {
+                    font-size: 12px;
+                    right: 100px;
+                    top: 22px;
+                    height: 25px;
+                    line-height: 25px;
+                }
+
+                /* Service Status ***/
+                .service-status {
+                    position: absolute;
+                    top: 10px;
+                    right: 100px;
+                    .size(40px, 180px);
+
+                    strong {
+                        .show();
+                    }
+                }
+
+                /* Tasks ***/
+                .tasks {
+                    clear: both;
+                    width: 100%;
+
+                    li {
+                        line-height: 30px;
+                        border-top: 1px solid rgba(0,0,0,.1);
+
+                        &:first-child {
+                            border-top: 2px solid rgba(0,0,0,.1);
+                        }
+
+                        &.completed {
+                            background-position: 0 -5851px;
+                        }
+                    }
+                }
+
+                /* Occupancy & Queued Room ***/
+                .icon-queued,
+                .guest-image {
+                    top: 20px;
+                    right: 60px;
+                    .square(30px);
+                }
+
+                .icon-queued {
+                    background-position: 2px -4174px;
+                    &.has-time {
+                        width: 30px;
+                        text-align: center;
+                        .time {
+                            display: block;
+                            float: none;
+                            font-size: 12px;
+                            text-indent: initial;
+                            line-height: 30px;
+                        }
+                    }
+                }
+
+                .guest-image {
+                    .vip {
+                        font-size: 9px;
+                        line-height: 20px;
+                        .square(18px);
+                    }
+
+                    .stay-count {
+                        font-size: 12px;
+                        line-height: 18px;
+                        .square(18px);
+                    }
+                }
+
+                .show-vacant {
+                    top: 25px;
+                    right: 50px;
+                }
+
+                &.with-checkbox {
+                    min-height: 60px;
+
+                    .check {
+                        right: auto;
+                        left: 0;
+                        top: 10px;
+                    }
+
+                    .show-vacant {
+                        top: 20px;
+                        right: 10px;
+                        line-height: 20px;
+                    }
+
+                    a,
+                    .faux-anchor {
+                        padding-left: 40px;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        padding-right: 10px;
+                    }
+
+                    .room-info {
+                        display: block;
+                        padding-bottom: 0px;
+                        padding-left: 0;
+                        .calc-width(60,280);
+
+                        h2 {
+                            font-size: 24px;
+                            line-height: 25px;
+                        }
+                    }
+
+                    .assigned {
+                        font-size: 14px;
+                    }
+
+                    .assigned,
+                    .unassigned {
+                        .calc-width(40,220);
+                    }
+
+                    .room-status {
+                        position: static;
+                        line-height: 1;
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 14px;
+                        width: auto;
+                        margin: 0;
+                    }
+    
+                    .room-type {
+                        line-height: 1;
+                        display: inline;
+                        vertical-align: middle;
+                    }
+
+                    .reservation-status {
+                        width: 290px;
+                        padding-right: 0;
+
+                        .guest-status {
+                            margin-right: 10px;
+                        }
+
+                        .current,
+                        .next {
+                            max-width: 145px;
+                            height: auto;
+                            #flexbox > .parent('', '', center, '');
+                            
+                            .occupancy {
+                                margin-top: 2px;
+                                margin-left: 0;
+                            }
+
+                            .reservation-time {
+                                font-size: 14px;
+                                display: block;
+                            }
+                        }
+                    }
+
+                    .icon-queued,
+                    .guest-image {
+                        right: 10px;
+                        top: 20px;
+                    }
+
+                    .icon-queued {
+                         
+                        &.has-time {
+                             
+                            .time {
+                                
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    .no-service {
+                        right: 40px;
+                        font-size: 10px;
+                        top: 20px;
+                        height: 20px;
+                        line-height: 20px;
+                    }
+                    
+                    .service-status {
+                        right: 70px;
+                        width: 150px;
+                        top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .search-results {
+
+        li:not(.no-content) {
+
+            /* Account ***/
+            &.account-ar {
+
+                .data {
+                    .confirmation,
+                    .icons {
+                        font-size: @baseFontSize;
+                        line-height: 20px;
+                        height: 20px;
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

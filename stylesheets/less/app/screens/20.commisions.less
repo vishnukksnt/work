@@ -1,0 +1,374 @@
+@media not print {
+    .container .commissions-content {
+        top:120px;
+        .calc-height( 100, 120 );
+    }
+
+    .commissions-filters {
+        position: absolute;
+        top: 0;
+        right: -280px;
+        text-transform: uppercase;
+        z-index: 2030;
+        .size(100%, 280px);
+        .background(@white);
+        .transition();
+        
+        /* Title ***/
+        .filters-header {
+            text-align: center;
+            line-height: 1;
+            padding: 20px 10px 0 10px;
+            height: 60px;
+
+            h2 {
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            p {
+                color: @grey3;
+                font-size: 14px;
+                margin: 0;
+            }
+        } 
+
+        /* Content ***/
+        .scrollable {
+            position: relative;
+            .calc-height(100, 140);
+
+            .wrapper {
+                padding: 10px;
+            }
+
+            .iScrollVerticalScrollbar {
+                top: 0;
+                bottom: 0;
+                right: 2px;
+            }
+        }
+
+        .entry {
+            font-size: 14px;
+            padding-top: 10px;            
+
+            label:not(.checkbox):not(.radio) {
+                display: table;
+                
+                margin: 0;
+            }
+
+            input,
+            .select {
+                width: 100%;
+            }
+
+            &:not(:last-child) {
+                padding-bottom: 10px;
+                .box-shadow(0 1px 0 rgba(0,0,0,.15));
+            }
+        }
+
+        .actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 20px;
+            background: #bfbfbf @darkTexture;
+            z-index: 9;
+            text-align: center;
+            .box-shadow(0 -1px 1px rgba(0,0,0,.15));
+            .size(80px, 100%);
+
+            .button {
+                width: 120px;
+            }
+        }
+
+        &.visible {
+            .translate3d(-280px, 0, 0);
+            .box-shadow(-1px 0 2px 1px rgba(0, 0, 0, .2));
+        }
+    }
+
+    .commissions-header {
+        height:60px;
+        width:100%;
+        display:block;
+        .box-shadow(1px 1px 2px rgba(0, 0, 0, 0.15));
+        z-index: 99;
+        position: relative;
+
+        .filters {
+            li {
+                margin: 0;
+                cursor: pointer;
+                font-size: 14px;
+                text-align: center;
+                text-transform: uppercase;
+                line-height: 1;
+                background: rgba(0,0,0,0.05);
+                color: fade(@black, 50%);
+                text-shadow: 1px 1px 0 rgba(225,225,225,0.27);
+                .box-shadow(1px 0 0 rgba(0,0,0,.1));
+                .size(60px, 110px);
+                .show;
+                .pull-left;
+                #flexbox > .parent( column, center, center, '' );
+
+                strong {
+                    font-size: 24px;
+                    display: block;
+                    color: @black;
+                }
+
+                &.active {
+                    position: relative;
+                    .gradient(@logoGradientStart, @logoGradientEnd);
+
+                    strong {
+                        color: white;
+                        text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        bottom: -10px;
+                        width: 0; 
+                        height: 0; 
+                        margin-left: -10px;
+                        border-top: 10px solid @logoGradientEnd;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                    }
+                }
+            }
+        }
+
+        .commissions-selected {
+            li {
+                span {
+                    &.amount {
+                        color: @orange;
+                    }
+                }
+            }
+        }
+
+        &.searching {
+            .filters {
+                li {
+                    &:not(.active) {
+                        strong {
+                            color: @orange;
+                        }
+                    }
+                }
+            }
+
+            .commissions-info {
+                li {
+                    span {
+                        &.amount {
+                            color: @orange;
+                        }
+                    }
+                }
+
+                &.totals {
+                    .hide();
+                }
+            }
+        }
+    }
+
+    .commissions-list {
+        .calc-height( 100, 120 );
+        position: relative;
+
+        .expand-arrow {
+            .square(20px);
+            .icons > .rotate-up();
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            left: 0;
+            right: 0;
+            z-index: 20;
+
+            &:not(.active) {
+                opacity: 0.2;
+                .icons > .rotate-down();
+            }
+        }
+
+        .commissions-list-header {
+            height: 50px;
+            padding: 15px 20px 0 20px;
+            .float();
+
+            li {
+                margin: 0;
+                .pull-left();
+                position: relative;
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: @grey3;
+                width: 130px;
+                text-align: right;
+
+                &.expand {
+                    width: 40px;
+                }
+
+                &.check {
+                    text-align: left;
+                    width: 70px;
+
+                    .checkbox {
+                        height: 30px;
+                        margin-left: 15px;
+
+                        .icon-form {
+                            top: 5px;
+                        }
+                    }
+                }
+
+                &.agent-info {
+                    text-align: left;
+                    .calc-width(100, 570);
+                }
+
+                &:last-child {
+                    width: 200px;
+                    padding-right: 55px;
+                }
+            }
+        }
+        
+        .commissions-list-content {
+            .calc-height( 100, 50 );
+            position: relative;
+
+            .search-results { padding-top: 5px; }
+
+            &.no-results { height: 100%; }
+
+            .no-content {
+                padding: 0;
+                margin: 0;
+            }
+        } 
+
+        .iScrollVerticalScrollbar {
+            top: 0;
+            bottom: 0;
+        }
+
+        &.no-pagination {
+            .calc-height( 100, 80 );
+        }
+
+        &.no-commissions-header {
+            .calc-height( 100, 60 );
+
+            &.no-pagination {
+                .calc-height( 100, 0 );
+            }
+        }
+    }
+
+    .commissions-info {
+        margin: 0;
+        padding-left: 20px;
+        .pull-left();
+        .float;
+        
+        li {
+            display:block; 
+            font-size: 14px;
+            margin:0;
+            padding: 13px 0 12px 0;
+            float: left;
+
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+
+            span {
+                display:block;
+                color: @grey3;
+                text-transform: uppercase;
+                font-size: 14px;
+                line-height: 14px;
+                
+                .currency {
+                    text-transform: none;
+                    display: inline;
+                    font-size: inherit;
+                    color: inherit;
+                }
+                
+                &.amount {
+                    font-size:24px;
+                    line-height: 21px;
+                    color:@black;
+                    text-transform: none;
+
+                    &.green {
+                        color: @green;
+                    }
+
+                    &.red {
+                        color:@red;
+                    }
+                }
+            } 
+            
+            &.actions {
+                padding: 10px 0;
+
+                .button {
+                    &.with-icon {
+                        padding: 0 15px 0 40px;
+                        font-size: 16px;
+                        line-height: 40px;
+                        .size(auto, auto);
+
+                        .icons {
+                            left: 20px;
+                            top: 10px;
+                        }
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        &.totals {
+            .pull-right();
+            text-align: right;
+            padding-right: 20px;
+            border-left: 2px solid rgba(0,0,0,0.1);
+        }
+
+
+    }
+}
+
+@media print {
+  .commissions-filters, .commissions-header {
+    display: none;
+  }
+}

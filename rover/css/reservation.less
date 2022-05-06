@@ -1,0 +1,270 @@
+#createReservations{
+  // override for the edit icon in the rvSettings.html partial
+  .edit-room.icons.icon-edit-10{
+    //background-position: 0 -2141px;
+  }
+
+  .reservation-card-cvv-container{
+    width:30%;
+    float:left;
+  }
+  .reservation-card-expiry-date-container{
+    width:70%;
+    float:right;
+  }
+
+  .reservations-inner .reservation-filters.with-guests .edit-guests .reservation-guests{
+    width:170px;
+    .select select{
+      padding: 0 10px 0 70%;
+    }
+  }
+
+  .reservations-inner .reservations-content-wrapper {
+    ul.rooms-and-rates.wrapper{
+      padding: 0 20px 20px 20px;
+    }
+
+    .reservation-content.rooms-and-rates-content {
+      .iScrollVerticalScrollbar, .iScrollHorizontalScrollbar{
+        .iScrollIndicator {
+          background: #ffb319 !important;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+        }
+      }
+      .rate-details .info{
+        ul{
+          li{
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+    .summary_email{
+      width: 93%;
+    }
+
+
+    @creditCard:    asset-url("cc-icons.png");
+    @creditCard2x:  asset-url("cc-icons@2x.png");
+
+    .card{
+      background-image: @creditCard;
+      background-repeat: no-repeat;
+      background-position: 0px 50px;
+      text-indent: 50px;
+      &.mastercard{
+        background-position: 0px 8px;
+      }
+      &.diners_club{
+        background-position: 0px -76px;
+      }
+      &.visa{
+        background-position: 0px -160px;
+      }
+      &.jcb{
+        background-position: 0px -118px;
+      }
+      &.discover{
+        background-position: 10px -202px;
+      }
+      &.amex{
+        background-position: 0px -33px;
+      }
+    }
+
+  }
+}
+#staycard_main{
+  span.no-right-margin {
+    margin-right: 0px;
+  }
+
+  .icons.time.check-in{
+    background-position: 10px -553px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .icons.time.check-out {
+    background-position: 10px -593px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .icons.time.late-check-out {
+    background-position: 10px -2914px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* some common style - used mainly in workmanagement */
+  .clear-both{
+    clear:both;
+  }
+
+  .half-width{
+    width: 50%;
+  }
+
+  .unasssigned-room-filter-time{
+    width: 33%;
+    max-width: 75px;
+    float: left;
+    margin-bottom: 20px;
+  }
+
+#demographics{
+  width: 300px;
+  min-height: 425px;
+  .modal-header{
+    text-align: center;
+    padding: 10px 20px;
+  }
+  .block-item{
+    padding: 5px 0;
+    h3.block-title {
+      padding-bottom: 10px;
+    }
+  }
+}
+
+#reservations-settings{
+  .settings-content#sidebar-nights{
+    .entry-data{
+      &.disabled-calendar{
+        background: #fcfcfc;
+        cursor: default
+      }
+    }
+  }
+}
+
+
+#room-type-charge-modal{
+  &.modal-content.form.new-content{
+    width: 450px;
+  }
+}
+.swiped-card{
+  margin-left: 90px;
+}
+.waiting-dialog{
+  min-width: 260px !important;
+}
+
+
+#modal #change-stay-dates.modal-content.change-stay-dates{
+  width: 400px;
+}
+
+.sharer-active{
+    background-color: transparent !important;
+    opacity: .3 !important;
+    cursor: default !important;
+    font-style: italic;
+}
+.status{
+    >.guest-status{
+            height: 30px;
+            width: 30px;
+            margin: 10px;
+            margin-top: 10px
+    }
+}
+  .sharer-status-icon{
+      padding-right: 5px;
+      width: 30px !important;
+      height: 30px;
+      margin-right: 10px;
+  }
+  .icons.time.check-in.sharer{
+    background-position: 10px -553px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .icons.time.check-out.sharer {
+    background-position: 10px -593px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .icons.time.late-check-out.sharer {
+    background-position: 10px -2914px;
+    width: 30px;
+    height: 30px;
+  }
+  .sharer-avater{
+      width: 60px;
+      margin-right: 5px;
+      padding: 10px;
+  }
+
+  .actions-mid{
+      width: 10%;
+  }
+  .actions-end{
+      width: 45%;
+  }
+  .action-full-view{
+      width:100% !important;
+  }
+
+  .assign-reassign{
+   > button{
+    width: 190px !important;
+    display: table;
+    margin: 0 auto;
+   }
+  }
+  .actions-small-font{
+      font-size:small;
+  }
+  .action-post-btn{//fixes an opacity transition bug in chrome
+      -webkit-transform: translateZ(0);
+  }
+  @media and (min-height:768px){
+    .action-post-btn{//fixes an opacity transition bug in chrome
+        -webkit-transform: translateZ(0);
+    }
+  }
+
+  .actions-none{
+      color:#9d9d9d !important;
+  }
+  .actions-pending{
+      color:#E63A3A !important;
+  }
+  .actions-completed{
+      color:#8ABD57 !important;
+  }
+  .red-text{
+      color: #e63838
+  }
+
+
+.inline-edit-action-title{
+    width: 80% !important;
+}
+.centered-action-btn{
+    left:25%;//the parent el is already 50% width/right
+}
+.special-request-icon{
+      background-image: asset-url("bell_special_new.svg") !important;
+}
+.big-message {
+  width: 500px !important;
+}
+
+.swipe-cc-prompt{
+  button {
+    min-width: 180px;
+    .c-and-p{
+      margin-bottom: 12px;
+    }
+  }
+}

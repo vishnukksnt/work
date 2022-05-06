@@ -1,0 +1,159 @@
+/* 
+* Angular UI-States Animations      
+* ==================================
+* 
+DO NOT change the numeric values
+*/
+
+/* ui-view animation hook up class for root-view */
+.root-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url("cssimg/texture.png") repeat scroll 0 0 #FCFCFC;
+}
+
+.ui-router-wrapper {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* This code was creating an isssue CICO-10248
+  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  */
+  /**/
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* ui-view animation hook up class for main-view */
+.main-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url("cssimg/texture.png") repeat scroll 0 0 #FCFCFC;
+}
+
+/* making sure we are not flickering */
+.main-view.ng-enter,
+.main-view.ng-leave {
+  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  /**/
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.main-view.ng-enter,
+.main-view.ng-enter-active {
+  z-index: 50;
+}
+
+.main-view.ng-leave,
+.main-view.ng-leave-active {
+  z-index: 30;
+}
+
+/* to remove a slight delay in applying the animations
+on a slow performaing device, keep the entering view hidden
+untill angular is ready to activate it */
+.main-view.ng-enter {
+  display: none;
+}
+.main-view.ng-enter-active {
+  display: block;
+}
+
+/* normal app state animations */
+.main-view.ng-enter {
+  #move > #ui-view > .enter;
+}
+
+.main-view.ng-leave {
+  #move > #ui-view > .leave;
+}
+
+/* when returning back */
+.return-back .main-view.ng-enter {
+  #move > #ui-view > .enter-rev;
+}
+
+.return-back .main-view.ng-leave {
+  #move > #ui-view > .leave-rev;
+}
+
+#reports .ng-leave {
+   opacity: .05;
+   transition: opacity 1s;
+}
+
+#reports .ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+/* 
+* The End     
+* ==================================
+* Angular UI-States Animations
+*/
+
+
+
+/* 
+* Reports screen change animations  
+* ==================================
+* DO NOT change the numeric values
+*/
+.reports-wrapper { background: url("cssimg/texture.png") repeat scroll 0 0 #FCFCFC; }
+
+/* making sure we are not flickering */
+.reports-wrapper.ng-hide-remove-active,
+.reports-wrapper.ng-hide-add-active {
+  display: block !important;
+}
+
+.reports-wrapper.ng-hide-remove,
+.reports-wrapper.ng-hide-add {
+  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  /**/
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.reports-wrapper.ng-hide-remove,
+.reports-wrapper.ng-hide-remove-active {
+  z-index: 50 !important;
+}
+
+.reports-wrapper.ng-hide-add,
+.reports-wrapper.ng-hide-add-active {
+  z-index: 30 !important;
+}
+
+/* normal app state animations */
+.reports-wrapper.ng-hide-remove {
+  #move > #ui-view > .enter;
+}
+
+.reports-wrapper.ng-hide-add {
+  #move > #ui-view > .leave;
+}
+
+/* when returning back */
+.return-back .reports-wrapper.ng-hide-remove {
+  #move > #ui-view > .enter-rev;
+}
+
+.return-back .reports-wrapper.ng-hide-add {
+  #move > #ui-view > .leave-rev;
+}

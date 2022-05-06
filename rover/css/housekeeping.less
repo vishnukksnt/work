@@ -1,0 +1,51 @@
+// keep textureImage below and apply rgba(0, 0, 0, .1) on top of if
+// more details on bug: CICO-10573
+
+#rooms-search-form {
+  background: url("cssimg/texture.png") repeat scroll 0 0 #fcfcfc;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  #show-filters,
+  #filter-actions,
+  #refresh-data,
+  .entry,
+  .button {
+    z-index: 3;
+  }
+}
+
+#rooms{
+  .additional-info .service-status{
+    float:right;
+  }
+}
+
+
+#worksheet-content.single{
+  .single-sheet{
+    .filter.button.open-modal.white.with-icon.only-icon{
+      top: -40px;
+      left: 80%;
+      width: 100px;
+      height: 45px;
+    }
+  }
+  .ui-draggable.ui-draggable-handle.ui-draggable-dragging{
+        width: -webkit-calc(~"50% - 30px");
+        width: -moz-calc(~"50% - 30px");
+        width: calc(~"50% - 30px");
+  }
+}
+.floor-filter {
+  line-height:15px !important;
+}

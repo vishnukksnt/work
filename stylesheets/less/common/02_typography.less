@@ -1,0 +1,171 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+
+/* font-face		======================================*/
+	
+	/* 300 ***/
+	@font-face {
+	    font-family: 'source_sans_pro';
+	    src: url('@{type}/sourcesanspro-light-webfont.eot');
+	    src: url('@{type}/sourcesanspro-light-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('@{type}/sourcesanspro-light-webfont.woff') format('woff'),
+	         url('@{type}/sourcesanspro-light-webfont.ttf') format('truetype');
+	    font-weight: 300;
+	    font-style: normal;
+	}
+
+	/* 400 ***/
+	@font-face {
+	    font-family: 'source_sans_pro';
+	    src: url('@{type}/sourcesanspro-regular-webfont.eot');
+	    src: url('@{type}/sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    	     url('@{type}/sourcesanspro-regular-webfont.woff') format('woff'),
+	         url('@{type}/sourcesanspro-regular-webfont.ttf') format('truetype');
+	    font-weight: 400;
+	    font-style: normal;
+	}
+
+	/* 400 italic ***/
+	@font-face {
+	    font-family: 'source_sans_pro';
+	    src: url('@{type}/sourcesanspro-italic-webfont.eot');
+	    src: url('@{type}/sourcesanspro-italic-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('@{type}/sourcesanspro-italic-webfont.woff') format('woff'),
+	         url('@{type}/sourcesanspro-italic-webfont.ttf') format('truetype');
+	    font-weight: 400;
+	    font-style: italic;
+	}
+
+	/* 600 ***/
+	@font-face {
+	    font-family: 'source_sans_pro';
+	    src: url('@{type}/sourcesanspro-semibold-webfont.eot');
+	    src: url('@{type}/sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('@{type}/sourcesanspro-semibold-webfont.woff') format('woff'),
+	         url('@{type}/sourcesanspro-semibold-webfont.ttf') format('truetype');
+	    font-weight: 600;
+	    font-style: normal;
+	}
+
+	/* 700 ***/
+	@font-face {
+	    font-family: 'source_sans_pro';
+	    src: url('@{type}/sourcesanspro-bold-webfont.eot');
+	    src: url('@{type}/sourcesanspro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('@{type}/sourcesanspro-bold-webfont.woff') format('woff'),
+	         url('@{type}/sourcesanspro-bold-webfont.ttf') format('truetype');
+	    font-weight: 700;
+	    font-style: normal;
+	}
+
+/* Headings			======================================*/
+	h1, .h1, 
+	h2, .h2, 
+	h3, .h3, 
+	h4, .h4 {
+		line-height: 1em;
+		margin: 0;
+		clear: both;
+		.show; 
+	}
+
+	h1,
+	.h1 {
+		font-size: 30px;
+	}
+
+	h2,
+	.h2 {
+		font-size: 24px;
+	}
+
+	h3,
+	.h3 {
+		font-size: 20px;
+	}
+
+	h4,
+	.h4 {
+		font-size: 18px;
+	}
+	
+/* Paragraphs & lists 		==============================*/
+	p,
+	li {
+		font-size: 1em;
+		line-height: 1.5em;
+		margin-bottom: 1em;
+
+		&:last-child { margin-bottom: 0; }
+	}
+
+/* Inline elements	======================================*/
+
+	em { font-style: italic; }
+	strong { font-weight: 700; }
+
+/* Links			======================================*/
+	a {
+		color: @logoPrimary;
+		cursor: pointer !important;
+		.transition;
+
+		&:hover,
+		&:active { color: darken(@logoPrimary, 10); }
+	}
+
+/* Tables			======================================*/
+	table {
+		clear: both;
+		border-collapse: collapse;
+		table-layout: fixed;
+		margin-bottom: 1em;
+
+		tr {
+			th { white-space: nowrap; }
+
+			th,
+			td {
+				vertical-align: middle;
+				text-align: left;
+			}
+
+			&:not(.edit-data) {
+				th,
+				td {
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+			}
+		}		
+	} 
+
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+
+/* Helpers                  ==============================*/
+
+.currency {
+	text-transform: none;
+	display: inline;
+}
+
+/* 5. COMPONENTS
+==========================================================*/
+
+/* Forms			 		==============================*/
+select, 
+input, 
+textarea,
+button { #font > .sans-serif(@baseFontSize, 400, @baseLineHeight); }
+
+button { font-weight: 700; }
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

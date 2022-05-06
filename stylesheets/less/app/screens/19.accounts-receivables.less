@@ -1,0 +1,97 @@
+.ar-statement {
+	display:none;
+}
+
+#accounts-receivables-search-form {
+	
+
+	select {
+		height: 40px;
+	}
+}
+
+.container .accounts-ar-content {
+	top:120px;
+	.calc-height( 100, 120 );
+}
+
+.accounts-ar-header {
+	height:80px;
+	width:100%;
+	display:block;
+	.box-shadow(1px 1px 2px rgba(0, 0, 0, 0.15));
+	z-index: 99;
+	position: relative;
+	padding:15px 0;
+}
+
+.accounts-ar-list {
+	.calc-height( 100, 140 );
+	position: relative; 
+
+	&.no-pagination {
+		.calc-height( 100, 100 );
+	}
+
+	&.no-accounts-ar-header {
+		.calc-height( 100, 80 );
+
+		&.no-pagination {
+			.calc-height( 100, 20 );
+		}
+	}
+}
+
+.accounts-ar-totals {
+	text-align: center;
+	 
+	li {
+		display:inline-block;
+        font-size: 30px;
+        padding: 0 20px;
+        margin: 0;
+
+		span {
+            display:block;
+            color: @grey3;
+            font-size: 16px;
+            line-height: 21px;
+
+            &:not(.currency) {
+                text-transform: uppercase;
+            }
+        }
+
+        .amount {
+            font-size:30px;
+            line-height: 1;
+            color:@black;
+            text-transform: none;
+
+            &.red {
+                color:@red;
+            }
+
+            &.green {
+                color: @green;
+            }
+
+            .currency {
+                font-size: inherit;
+                color: inherit;
+                display: inline;
+                line-height: inherit;
+            }
+        }
+
+        &.number {
+            .amount {
+                font-weight: 300;
+            }
+        }
+
+        &:not(:last-child) {
+            box-shadow: inset -1px 0 0 @grey2;
+        }
+	}
+}

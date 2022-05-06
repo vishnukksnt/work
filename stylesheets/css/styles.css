@@ -1,0 +1,56 @@
+.col-xs-2 {
+	border-right: 1px solid #ddd;
+}
+
+.pos-rel {
+	position: relative;
+}
+
+.pos-abs {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 5;
+}
+
+.pad-20 {
+	padding: 20px;
+}
+
+.pad-56 {
+	padding: 28px 0;
+}
+
+.padt-50 {
+	padding-top: 50px;
+}
+
+.padt-10 {
+	padding-top: 10px;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.guestcard {
+	background: #fff;
+}
+
+.tabs {
+	min-height: 650px;
+}
+
+.show-hide {
+	margin-bottom: -34px;
+}
+
+.spin-icon {
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

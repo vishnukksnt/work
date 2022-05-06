@@ -1,0 +1,1704 @@
+/* StayNTouch | Rover LESS file */
+
+/* 1. ROOT
+==========================================================*/
+@import "stylesheets/less/common/01-A_reset.less";
+
+@import "stylesheets/less/common/01-B_variables.less";
+@import "stylesheets/less/app/01-B_variables.less";
+
+@import "stylesheets/less/common/01-C_mixins.less";
+@import "stylesheets/less/common/01-D_mixins-animations.less";
+
+/* 2. TYPOGRAPHY
+==========================================================*/
+@import "stylesheets/less/common/02_typography.less";
+
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+@import "stylesheets/less/common/03_graphics.less";
+@import "stylesheets/less/app/03_graphics.less";
+
+/* 4. LAYOUT
+==========================================================*/
+@import "stylesheets/less/common/04_layout.less";
+@import "stylesheets/less/app/04_layout.less";
+
+/* 5. COMPONENTS
+==========================================================*/
+@import "stylesheets/less/common/05-A_components.less";
+@import "stylesheets/less/app/05-A_components.less";
+
+@import "stylesheets/less/common/05-B_forms.less";
+@import "stylesheets/less/app/05-B_forms.less";
+
+@import "stylesheets/less/common/05-C_plugins.less";
+@import "stylesheets/less/app/05-C_plugins.less";
+
+/* 6. IE
+==========================================================*/
+@import "stylesheets/less/app/06_ie.less";
+
+/* 7. MEDIA QUERIES
+==========================================================*/
+@media only print {
+    @import "stylesheets/less/app/07_print.less";
+}
+
+@import "stylesheets/less/app/08_smartband.less";
+
+
+/* x. Rover Angular Animations
+==========================================================*/
+@import "rover/css/rover_animation.less";
+
+
+// back button
+.actions-back {
+  position: absolute;
+  left: 55px;
+  top: 10px;
+  padding: 0;
+
+  .back-button:not(.button):not(.switch) {
+    padding: 6px 20px 4px 45px;
+    display:block;
+    background-position: 15px -1588px;
+
+    &:hover {
+      background-position: 15px -1528px;
+    }
+  }
+}
+
+#modal.key-deliyvery-scan {
+  position: fixed !important;
+}
+
+#main-menu .nav-toggle.updated span.active {
+   background-image:  asset-url("image-active-drawer.png") !important;
+}
+
+//Added for animation effects
+.slide-left.ng-enter,
+.slide-left.ng-leave,
+.slide-right.ng-enter,
+.slide-right.ng-leave {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: inherit;
+  -ms-transition: 2.4s ease-in-out;
+  -webkit-transition: 2.4s ease-in-out;
+  transition:  2.4s ease-in-out;
+}
+
+.slide-left.ng-enter {}
+.slide-left.ng-enter.ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.slide-left.ng-leave {
+  z-index: 100;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-left.ng-leave.ng-leave-active {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+
+.slide-right.ng-enter {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.slide-right.ng-enter.ng-enter-active,
+.slide-right.ng-leave {
+  position: absolute;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.slide-right.ng-leave.ng-leave-active {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+
+
+.container.menu-open .page-current, .container.menu-open .page-locked {
+    animation: 0s ease 0s normal both 1 appMenuOpen;
+ }
+ /* ------------------date -picker ---------------------*/
+.pickdate-cell-bg{
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.05);
+}
+.pickdate-container-bg{
+  background: url("/assets/date_container_bg.png");
+}
+.pickadate-header {
+  position: relative;
+}
+
+
+
+.pickadate-main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.pickadate a:visited, .pickadate a {
+  color: #666666;
+}
+
+.pickadate-cell {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.pickadate-cell li {
+  display: block;
+  float: left;
+  border-left: 2px solid #f1f1f1;
+  border-right: 2px solid #f1f1f1;
+  width: 14.285%;
+  padding: 2.3%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+    margin-bottom: 0.5em !important;
+
+}
+
+.pickadate-cell li:nth-child(7n+0) {
+  border-right: 2px solid #f1f1f1;
+}
+
+.pickadate-cell li:nth-child(1),
+.pickadate-cell li:nth-child(8),
+.pickadate-cell li:nth-child(15),
+.pickadate-cell li:nth-child(22),
+.pickadate-cell li:nth-child(29),
+.pickadate-cell li:nth-child(36) {
+  border-left: 2px solid #f1f1f1;
+}
+
+
+.pickadate-cell .pickadate-disabled,
+.pickadate-cell .pickadate-disabled a {
+  color: #9D9D9D;
+  font-size: 18px;
+}
+
+
+.pickadate-cell .pickadate-outofrange-disabled,
+.pickadate-cell .pickadate-outofrange-disabled a,
+.pickadate-cell .pickadate-disabled.pickadate-outofrange-disabled,
+.pickadate-cell .pickadate-disabled.pickadate-outofrange-disabled a {
+
+
+  color: transparent;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pickadate-cell .pickadate-enabled {
+  cursor: pointer;
+  font-size: 18px;
+  color: #000;
+  font-weight:400;
+}
+
+
+.pickadate-cell .pickadate-active {
+  color: #fff !important;
+  background-color: #ffaa17;
+
+}
+
+.pickadate-cell .pickadate-active {
+  color: #000;
+
+}
+
+.pickadate-cell .pickadate-head {
+  color: #9D9D9D;
+  line-height: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-top: 0px ;
+  border-left: 0px !important;
+  border-right: 0px !important;
+}
+
+.pickadate-centered-heading {
+  text-transform: uppercase;
+  color:#000;
+  font-weight: normal;
+  text-align: center;
+  font-size: 1em;
+  margin: 13px 0 13px 0;
+}
+
+.pickadate-controls {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+
+.pickadate-controls .pickadate-next {
+  float: right;
+}
+
+.pickadate-controls a {
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.pickadate-cell .pickadate-outofrange-disabled,
+.pickadate-cell .pickadate-outofrange-disabled a,
+.pickadate-cell .pickadate-disabled.pickadate-outofrange-disabled,
+.pickadate-cell .pickadate-disabled.pickadate-outofrange-disabled a,
+.pickadate-cell .pickadate-active.pickadate-outofrange-disabled,
+.pickadate-cell .pickadate-active.pickadate-outofrange-disabled a {
+
+  color: gray;
+  color: transparent;
+
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.date-picker-bg{
+  background: url("/ui/pms-ui/cssimg/texture.png") repeat scroll 0 0 #FCFCFC;
+  padding:10px;
+  margin:5px;
+}
+.date-picker-bg_right{
+  width:48%;
+  float:right;
+}
+.date-picker-bg_left{
+  width:48%;
+  float:left;
+}
+
+.pickadate_select{
+  background: none repeat scroll 0 0 #ffffff !important;
+  padding-right:14px;
+  color:black;
+  box-shadow:none !important;
+  outline:0 !important;
+}
+.float_left{
+  float:left;
+
+}
+.float_right{
+  float:right;
+
+}
+.calendar_top_panel{
+  background-color:white;
+  height:46px;
+}
+.pickadate-prev,.pickadate-next{
+
+  width:30px;
+  padding:15px 5px !important;
+}
+.pickadate-body{
+  margin-top:10px;
+
+}
+.date_picker_conatiner{
+border-style: solid;
+border-width: 1px 0;
+border-color: #f1f1f1;
+height: 410px;
+}
+
+.date_range_set_table{
+  margin-bottom:0px;
+  width:100%;
+  tr,td{
+    box-shadow: none !important;
+  }
+  tr{
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: #f1f1f1;
+  }
+}
+.pickadate-cell .current-date{
+  color: #66CCFF !important;
+}
+
+#modal .ngmodal-uidate-wrap {
+  width: 480px;
+}
+
+.service-status-date #modal .ngmodal-uidate-wrap {
+  width: 100%;
+  max-width: 480px;
+}
+
+/*------------------date -picker ends here-------------------------- */
+.ui-match {
+  color: #F6991B !important; margin-right: 0px !important;
+}
+.post-button {
+  line-height: 50px !important;
+  width: 100% !important;
+}
+.action-post-button{
+  width:23.645% !important;
+}
+
+//Commenting this as this overrides icon class used by Stjpan.
+//TODO: Review places where this class were used, and apply the styles locally.
+ // .icons {
+     // background-image: url("/ui/pms-ui/cssimg/admin/admin-icons.png");
+     // background-repeat: no-repeat;
+     // border: 0 none;
+     // display: block;
+ // }
+.delete_small {
+    background-position: 13px -542px !important;
+}
+.cursor-hand {
+    cursor: pointer;
+}
+
+
+// CICO-609 'Accompany' in Search- Multiple images
+.guest-image img{
+    &.first-image {
+        margin-left: 0;
+        position: absolute;
+        width: 70%;
+    }
+    &.second-image {
+        margin-left: 15px;
+        margin-top: 15px;
+        position: relative;
+        width: 70%;
+    }
+}
+// CICO-609 'Accompany' in stay card.
+.accompany-guest{
+  background-color: #E0E0E0;
+  border-radius:5px;
+  padding:5px 15px;
+  height:auto;
+  margin-bottom: 20px;
+  .group{
+    margin: 5px 0 5px;
+    height:25px;
+  }
+  .name{
+    font-style:italic;
+    line-height: 20px;
+  }
+  .guest{
+    margin: 5px 0 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 5px;
+  }
+  .label{
+    width:30%;
+  }
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  border-radius: 0px !important;
+  padding: 0px !important;
+
+  /* CICO-8546: Fixing issue with close animation */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none !important;
+  width: auto !important;
+}
+.ngdialog-close {
+  display: none;
+}
+
+//Search page Changes : CICO-3997
+
+#search_list #search-form{
+height: 60px;
+background: rgba(0,0,0,0.1);
+.entry{
+  width:100%;
+   top:-20px;
+}
+input{
+background-color:#FCFCFC;
+}
+
+button.icons.icon-search{
+  background: @icons;
+    background-repeat: no-repeat;
+   top:15px;
+}
+
+}
+
+#search-cards .entry{
+  .icon-search{
+    background-image: @icons;
+  }
+}
+
+/* Customizing the z-index for loader to use with the popups */
+#loading{
+  z-index: 99999;
+}
+
+/* Admin icons      ==================================*/
+@iconsAdmin: url("/ui/pms-ui/cssimg/admin/admin-icons.png");
+  .admin-icons {
+    background-image: @iconsAdmin;
+    background-repeat: no-repeat;
+    border: 0;
+    .show;
+
+    &.icon-mover-right {
+      background-position: 13px -788px;
+
+      &:hover,
+      &:active { background-position: 13px -888px; }
+    }
+
+    @media @highdpi {
+      background-image: @iconsAdmin2x;
+      background-size: 50px;
+    }
+  }
+
+.payment-popup{
+  width:100% !important;
+}
+
+.roomListAnimation {
+  width: 67% !important;
+  margin-left: 200px !important;
+}
+
+#room-assignment .room-assignment-content.only-upgrades .upgrades .wrapper > li .room-details {
+    height: 50px !important;
+}
+
+#room-assignment .room-assignment-content .rooms-listing .results .rooms li .button {
+    height: 50px !important;
+    vertical-align: middle;
+}
+#room-assignment .room-assignment-content .rooms-listing .results .rooms li .room-number {
+    line-height: normal;
+}
+
+#room-content .wrapper {
+  overflow: hidden;
+}
+
+.iScrollVerticalScrollbar .iScrollIndicator {
+    background: none repeat scroll 0 0 #FFB319;
+    border-radius: 4px 4px 4px 4px;
+    position: absolute;
+    width: 100%;
+}
+.occupancy-cancel{
+  margin-left: 30px;
+}
+
+.room-upgrades-list{
+  padding-bottom: 10px !important;
+}
+
+/*
+Padding for the ows error popup
+*/
+#modal .modal-content.new-content.warning {
+    padding: 20px 20px 10px;
+    text-align: center;
+}
+
+.overlay {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* CICO-36015 : Disable Element */
+.disable-element {
+    pointer-events: none;
+    cursor: default;
+}
+
+.padding-30{
+  padding:30px !important;
+}
+
+
+/* Rooms page               ==============================*/
+.content#rooms {
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling:touch;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 4px;
+    border-radius: 3px;
+    background-color: #FFB319;
+  }
+}
+
+.content#filter-options {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.content#rooms {
+  .search-results {
+    min-height: -webkit-calc(100%);
+    min-height: -moz-calc(100%);
+    min-height: calc(100%);
+    padding-bottom: 60px;
+  }
+
+  .on-bottom-pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .content#rooms {
+    .search-results {
+      min-height: initial;
+      padding-bottom: 0;
+    }
+
+    .on-bottom-pagination {
+      position: static;
+    }
+  }
+}
+
+
+
+
+#pull-refresh-page {
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  text-align: center;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  #refresh-icon {
+    background: @arrowDownTrans center no-repeat;
+    background-size: 14px;
+    width: 14px;
+    height: 14px;
+    display: block;
+    margin: 0 auto 5px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    &.rotate {
+      -webkit-transform: rotateZ(180deg);
+      transform: rotateZ(180deg);
+    }
+  }
+
+  #refresh-text {
+    display: block;
+    line-height: 1;
+  }
+}
+
+#pull-load-next {
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -80px;
+  text-align: center;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  #load-icon {
+    background: @arrowUpTrans center no-repeat;
+    background-size: 14px;
+    width: 14px;
+    height: 14px;
+    display: block;
+    margin: 5px auto 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    &.rotate {
+      -webkit-transform: rotateZ(180deg);
+      transform: rotateZ(180deg);
+    }
+  }
+
+  #load-text {
+    display: block;
+    line-height: 1;
+  }
+}
+
+.mobile-pagination {
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  .page-count,
+  .pull-msg {
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+  .pull-msg {
+    color: #9d9d9d;
+  }
+}
+
+.hk-pagination {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  #pull-refresh-notify.has-options {
+    top: 60px;
+  }
+
+  .mobile-pagination {
+    display: none;
+  }
+
+  .hk-pagination {
+    display: block;
+  }
+}
+
+
+
+
+
+.end-of-day-modal{
+  width:30%;
+}
+
+.end-of-day{
+  text-align:center;
+  font-size:20px;
+}
+
+.end-of-day-message{
+  background:#f8e26e;
+  font-size: 16px !important;
+  padding: 6%;
+  border-radius:3px;
+  border: 1px solid #e5e500;
+  text-transform: uppercase;
+  margin-top: 5px;
+
+  .current-bussiness-date{
+    color:#e63838;
+  }
+
+  .next-bussiness-date{
+    color:#89bd56;
+  }
+}
+
+.end-of-day-button{
+  width:80% !important;
+  margin-bottom:4px;
+}
+
+.actions-end-of-day-container{
+  border:none !important;
+}
+
+.actions-end-of-day-text{
+  text-transform:uppercase;
+  text-align: center;
+  margin-bottom: 5%;
+  font-weight: 500;
+}
+.end-of-day-notification{
+ font-size: 16px;
+ margin-bottom: 10px;
+ text-transform: uppercase;
+}
+.credentials-title{
+  text-transform: uppercase;
+}
+.print-billcard{.hide;}
+
+.billing-info-container{
+  float: left;
+     .button{
+        display: block;
+        margin: 0 0 5px !important;
+        width: 100% !important;
+        border-bottom-left-radius: 3px !important;
+        border-bottom-right-radius: 3px !important;
+    }
+}
+.cancel-search-container{
+  position:fixed;
+  bottom:15px;
+  left:70px;
+}
+.card-search-scroller, .res-search-scroller{
+  position:absolute;
+  bottom: 0px;
+  left:0px;
+  width: 100%;
+  overflow:hidden;
+}
+.billing-info-body{
+    height: 510px;
+    padding: 0;
+    width: 800px;
+    .content-wrapper{
+        height: 420px !important;
+  }
+}
+.billing-info-entity{
+  height: 100%;
+}
+#modal .modal-content.billing-information{
+  height: 600px;
+}
+
+.ar-popup-content {
+
+    text-align: center;
+  }
+
+
+.ngdialog.end-of-day-popup .ngdialog-content{
+  padding:0 !important;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.guest-bill-edit-buttons{
+  width:100% !important;
+}
+/* CICO-6099 to solve issue with select list appearing beneath the edit preview*/
+#modal .modal-content.edit-charge .entry{
+  animation:none !important;
+  -webkit-animation:none !important;
+ }
+.ngdialog.end-of-day-popup .ngdialog-content{
+  padding:0 !important;
+}
+
+
+.bussiness-date-changed-popup{
+  width:300px !important;
+}
+
+#availability.availability-open {
+  width: 100% !important;
+  height: 100% !important;
+}
+#availability-graph {
+  position: absolute;
+  top: 100px;
+
+  #graph-options-area {
+    width: 15%;
+    float: left;
+    position: relative;
+    top: 45px;
+  }
+
+  #graph-showing-area {
+    padding-top: 4px;
+    background-color: white;
+      width: 84%;
+      float: left;
+      position: relative;
+      overflow: hidden;
+  }
+  #nav-listing{
+      overflow: hidden;
+      height: 100%;
+      position:relative;
+      color: white;
+      margin-bottom: 5px;
+  }
+  #nav-listing ul{
+     list-style: none outside none;
+     white-space: nowrap;
+     height: 50px;
+
+  }
+  #nav-listing ul li:first-child{
+    border-left: none;
+  }
+  #nav-listing ul li:last-child{
+    border-right: none;
+  }
+  #nav-listing ul li{
+    background-color: #373837;
+    display: inline-block;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    height: 50px;
+    color: #cccccc;
+    font-size: 14px;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  #nav-listing ul li span{
+      display: block;
+  }
+  #availabilityGraphShowingArea {
+      display: block;
+      overflow: hidden;
+      width: 100%;
+  }
+
+  #graph-options-area label.checkbox {
+      background-color: transparent;
+      box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.15);
+  }
+  #graph-options-area label {
+      font-size: 14px;
+      text-transform: uppercase;
+  }
+  .iScrollHorizontalScrollbar {
+    position: relative !important;
+    top:0px !important;
+  }
+}
+#modal .modal-content.key-delivery #key-status.print-key .status.error{
+  height: auto !important;
+}
+
+/** CICO-22679 fix */
+#modal.qr-code-popup {
+  position: fixed !important;
+}
+
+#room-assignment{
+ #unassign-room {
+    z-index: 10;
+  }
+ }
+
+// For CICO-6080 Charge code select box.
+
+.charge-code-select{
+  margin: 0 auto 0 auto !important;
+}
+
+.billing-info-charge-codes{
+  margin: 20 0 0 0 !important;
+}
+
+ // For CICO-6080 Charge code search results.
+
+ .charge-code-list{
+    height: 200px;
+    z-index: 999;
+    left: 390px;
+    width: 330px;
+    li{
+      padding-left: 5px;
+    }
+    .text-bold {
+     font-weight: bold;
+     font-size:16px;
+    }
+    .first-text{
+     margin-right:5px;
+   }
+ }
+
+/*-----CICO-6080 Adding the styles for the routing list header-------*/
+#modal .modal-content .bill-routing-header {
+  padding-top : 30px;
+}
+
+.bill-routing-list {
+  margin-top : 60px;
+  height: 360px !important;
+}
+
+/*-----CICO-6080 Adding cursor pointer to the entity div-------*/
+.entity {
+   cursor: pointer;
+
+}
+
+/*-----CICO-9319 Hiding CC options for other payment methods-------*/
+.paymentMethodSelect {
+   min-width: 320px;
+
+}
+
+#main-menu {
+  position: fixed;
+  li .menu-item {
+    width: 100%;   height: 100%;   display: block; padding-top :0;
+  }
+}
+// Solve the select box design issue in post charge pop-up
+.post-charge {
+  .select:after{
+    z-index: 9 !important;
+  }
+}
+
+
+//CICO-9595 setting the height and width for the terms and conditions dialog
+#modal .modal-content.terms {
+  width: 480px !important;
+  height: 600px !important;
+}
+
+#modal .modal-content.terms .actions {
+  margin-top: 20px;
+  text-align: center;
+}
+#modal .modal-content.terms .actions .button {
+  display: inline-block;
+  width: auto;
+}
+.head_terms_and_conditions {
+  text-align: center;
+  font-weight: bold;
+}
+#modal .modal-content.terms .scrollable {
+  position: relative;
+  font-size: 14px;
+  width: 100%;
+  height: 480px;
+}
+
+#modal .modal-content.terms .actions .button.green {
+  padding: 0 35px;
+}
+
+.payment-checkbox-container{
+  float: left !important;
+}
+.payment-checkbox{
+  float:left !important;
+  width:50%;
+
+}
+
+
+.no-animation   * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+}
+
+// CICO-9956 -scroll for credit card list.
+.card-list-height{
+  height:220px;
+}
+
+#modal .key-delivery #key-status .info.print-status-msg {
+    height: 150px;
+}
+
+/* CICO-10309 */
+.no-margin-right {
+  margin-right:0px !important;
+}
+
+/* CICO-6105 */
+.short-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* CICO-10508 */
+#modal .modal-content .message .select-stand-alone{
+  width:auto !important;
+}
+
+#modal .modal-content .message .select-stand-alone:after{
+  width: 14px !important;
+}
+
+/* PAYMENTS */
+
+.deposit-actions, .deposit-required-actions{
+	padding-left: 10px;
+	padding-right: 10px;
+	.button{
+	    width: 210px !important;
+	}
+	.button.blue{
+	    float:left !important;
+	}
+	.button.green{
+	    float: right !important;
+	}
+}
+.deposit-required-actions{
+	.button.blue{
+	    float:right !important;
+	}
+	.button.blank{
+	    float: left !important;
+	}
+}
+.authorised-code-text, .amount-paid{
+	text-align: center;
+	margin-right: 70px;
+	margin-left: 70px;
+	span:first-child{
+		float:left !important;
+	}
+	span:last-child{
+		color:#ff9812 !important;
+		float:right !important;
+	}
+}
+.authorised-code-text{
+	padding-top: 15px;
+}
+.amount-paid{
+	padding-top: 10px;
+	margin-top: 35px;
+
+}
+
+.margin-top-1{
+  border-top: 1px solid grey !important;
+}
+
+
+.search-results li:not(.no-content).reservation a .room-number .ui-match {
+  display: inline-block;
+  margin-left: -10px;
+  padding-left: 10px;
+  border-left: 4px solid #f6991b;
+}
+
+.deposit-balance .content-right .deposit-amount.full-width{
+  border-bottom: none !important;
+}
+
+
+.modal-content.new-content.eod.form.warning{
+  width:110% !important;
+}
+/* CICO-11897 */
+.search-results li.reservation:not(.no-content) a .room-highlight, .search-results li.reservation:not(.no-content) .faux-anchor .room-highlight{
+  display: inline-block;
+  margin-left: -10px;
+  padding-left: 10px;
+  border-left: 4px solid #f6991b;
+}
+
+.billing-info-charges {
+    overflow-y:hidden;
+    .search-results {
+      background: none repeat scroll 0 0 #fcfcfc;
+      padding: 0;
+      position: relative;
+    }
+
+    li {
+      border-bottom: 1px solid #eeeeee;
+      cursor: pointer;
+      height: 42px;
+      margin: 1px !important;
+    }
+
+    h4 {
+      clear: none;
+      float: left;
+      margin: 12px 0;
+    }
+    &.charge-code-list {
+      height: 200px;
+      margin: 0 auto 20px;
+      width: 310px;
+      z-index: 999;
+      position:absolute;
+      left:0;
+      right:0;
+    }
+}
+
+
+
+.addons-list{
+  .item{
+    color: black !important;
+    font-weight: 600 !important;
+  }
+}
+
+.no-top-border{
+  border-top:none !important;
+}
+
+#reservation-card .reservation-content .block-title .sharer-label {
+	float: none;
+	padding-left: 5px;
+}
+
+.deposit-failed{
+  text-align:center !important;
+  button{
+    margin:5%;
+  }
+}
+.outset-block{
+    cursor: pointer;
+    display: inline-block;
+    background-color: #F4F4F4;
+    border: solid #E5DEDE;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+.loyalty{
+    margin-right: 0px !important;
+}
+.new-key{
+    width: auto !important;
+}
+span.validate-keys-section{
+    background: #F7E16D;
+    border-color: #F5D323;
+    border-width: 1px;
+    border-style: solid;
+    padding: 10px;
+    font-weight: 500;
+    font-size: smaller;
+}
+span.keys-msg-bold{
+    font-weight: 600;
+}
+
+#post-charge .entry .search-field {
+	padding-right: 26px;
+}
+
+
+#modal .modal-content.staycard-notes{
+  max-height:575px !important;
+}
+#confirmation-print-template{
+  .hide
+}
+#cancellation-print-template{
+  .hide
+}
+
+// Styles for PRINT confirmation and Cancellation Emails
+@media only print{
+  #confirmation-print-template{
+    .show
+  }
+  #cancellation-print-template,
+  #cancellation-print-template table {
+    text-transform: none;
+  }
+  .ngdialog{
+    position: absolute !important;
+  }
+  .ngdialog-overlay{
+    .hide;
+  }
+  #modal{
+    .hide
+  }
+  #details-and-payment {
+    .hide;
+  }
+  #margin-control invisible margin-control-top{
+  .hide;
+  }
+
+  /**** Styles for confirmation Email PRINT Starts Here ***/
+ #confirmation-print-template{
+
+  table tr td{
+    border-bottom: 0;
+  }
+  .table-common {
+    border: 0;
+    width: 100%;
+  }
+
+  .container-table {
+    border: 0;
+    background:#ffffff;
+    width: 650px;
+  }
+
+  .container-table-data {
+     padding-left: 15px;
+     padding-right:10px;
+  }
+
+  .first-inner-table-data {
+    vertical-align: middle;
+    width: 610px;
+  }
+
+  .first-inner-table-image {
+    max-height: 180px;
+    width: auto;
+  }
+
+  .second-inner-table-title {
+     padding-left: 5px;
+     font-family: Arial;
+     font-weight: 700;
+     width: 50%;
+  }
+
+  .second-inner-table-date {
+    text-align:right;
+    padding-right:5px;
+    font-family: Arial;
+    font-weight: 700;
+  }
+
+  .third-inner-table {
+     background: #ebebeb;
+  }
+
+  .third-inner-table-data {
+    border-right: 4px solid #fff;
+    padding-left: 10px;
+    font-size:14px;
+    font-family: Arial;
+    width: 35%;
+  }
+
+  .third-inner-table-data-second {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom:20px;
+    padding-top:20px;
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-size:12px;
+    width:65%;
+  }
+
+  .fourth-inner-table {
+    width: 100%;
+  }
+
+  .data-label {
+    padding-left: 6px;
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-weight: 700;
+    font-size:14px;
+    width: 40%;
+  }
+
+  .data {
+    padding-left: 6px;
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-weight: 700;
+    font-size:14px;
+    width:60%;
+  }
+
+  .fifth-inner-table-data {
+    border-right:4px solid #ebebeb;
+    padding-left:10px;
+    padding-right:10px;
+    vertical-align: text-top;
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-size:10px;
+    width:30%;
+  }
+
+  .location-direction {
+     color: inherit;
+     text-decoration: underline;
+  }
+
+  .message-body {
+    padding-left: 10px;
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-size: 10px;
+  }
+
+  .uppercase {
+     text-transform: uppercase;
+  }
+
+  .signature {
+    font-family: Arial;
+    color:  #4d4d4d;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+  /**** Styles for confirmation Email PRINT Ends Here ***/
+  /**** Styles for cancellation Email PRINT Starts Here ***/
+#cancellation-print-template{
+.show
+}
+#reservations-settings{
+  .hide
+}
+#cancellation-print-template{
+.table-common {
+  border: 0;
+  width: 100%;
+}
+.container-table {
+  border:'0';
+  background:#ffffff;
+  width: 650px;
+}
+
+.container-table-data {
+  padding-left:15px;
+  padding-right:10px;
+}
+
+.first-inner-table {
+  border: 0;
+  width: 100%;
+}
+
+.first-inner-table-data {
+  width: 610px;
+  vertical-align: middle;
+}
+
+.second-inner-table-title {
+   padding-left: 5px;
+   font-family: Arial;
+   font-weight: 700;
+   width: 50%;
+}
+
+.second-inner-table-data {
+  text-align: right;
+  padding-right: 5px;
+  font-family: Arial;
+  font-weight: 700;
+}
+
+.third-table-data {
+  border-right: 4px solid #ebebeb;
+  vertical-align: text-top;
+  font-family: Arial;
+  color: #4d4d4d;
+  font-size: 12px;
+  width: 30%;
+}
+.third-table-data-second {
+  padding-left: 10px;
+  font-family: Arial;
+  color:  #4d4d4d;
+   font-size: 12px;
+}
+
+.fourth-table {
+   background: #ebebeb;
+   padding-left: 10px;
+   width: 100%;
+}
+
+.company-name {
+  font-family: Arial;
+  color:  #4d4d4d;
+  font-size: 12px;
+  font-weight: 700;
+}
+}
+/**** Styles for cancellation Email PRINT Ends Here ***/
+}
+
+
+.add-new-payment{
+  width:100% !important;
+}
+
+.payment-form .feedback .transaction-details{
+  width:80% !important;
+}
+
+
+/* CICO-12791: Set to tomorrow button */
+.set-to-tomorrow {
+  top: -5px !important;
+  font-size: 12px !important;
+  line-height: 25px !important;
+  height: 25px !important;
+}
+
+.on-hold h2, .on-hold span {
+  text-decoration: line-through;
+}
+
+/*CICO-23273 : Scrolling issue for cc manual selection */
+#modal .modal-content.deposit-balance .content-right .payment-form {
+  max-height: 380px;
+
+  @media only screen and (max-height: 767px) { 
+    max-height: 320px;
+  } 
+}
+
+.payment-form.scrollable {
+  position: relative;
+}
+
+.payment-form.scrollable .iScrollVerticalScrollbar {
+  top: 0;
+  right: 10px;
+  bottom: 0;
+}
+
+.payment-form.scrollable .wrapper {
+  padding: 0 20px;
+}
+
+/*CICO-26599*/
+
+.extended-tax-table {
+  text-transform: none !important;
+  td,th{
+    text-align: right;
+    padding: 4pt 4pt 4pt 0 !important;
+  }
+  .text-align-left{
+    text-align: left !important;
+  }
+  tfoot tr{
+    font-weight: 600;
+    background-color: #f5f5f5;
+  }
+}
+
+
+#six-payment-loader {
+    position: absolute;
+    padding: 40px;
+      top: calc(~"50% - 70px");
+      height: 140px;
+      width: 360px;
+      left: calc(~"50% - 180px");
+      margin: -32px 0 0 -32px;
+      background: #fff;
+      z-index: 21000;
+  }
+
+
+.toggle-display {
+  display: block !important;
+}
+
+@media print {
+  .toggle-display, .allowance-info {
+    display: none !important;
+  }
+}
+
+div#guest-id.modal-content {
+  height:auto;
+}
+
+.guest-documents.scan-mode {
+  grid-template-columns: calc(100%) !important;
+}
+.half-width-buttons{
+  width: 50% !important;
+  margin: 0 auto;
+}
+
+.invoice-page-break {
+  page-break-after: always;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* DASHBOARD ANALYTICS */
+
+/* to hide left side Y axis*/
+.left-most path,
+.hidden-bar {
+  display: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #A0A0A0;
+}
+.y.axis.inner path,
+.y.axis.inner line {
+  fill: #B1B1B1;
+  stroke: #B1B1B1;
+}
+
+.x.axis.bottom-axis path {
+  stroke: #E8E8E8;
+  stroke-width: 1px;
+}
+
+.tick line {
+  opacity: 0.2;
+}
+
+.invoice-table {
+  display:table-row-group;
+}
+
+#right-side-legend,
+#left-side-legend {
+  ul {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin-top: 20px;
+    .label {
+      margin-left: 10px;
+      float: none;
+      display: inline-block;
+    }
+    .rect {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+.left-right-pad20 {
+  padding: 0px 20px;
+}
+
+
+.chart-rect {
+  fill: none;
+  stroke: lightgray;
+}
+
+.right-legend-override {
+  grid-column: 2 !important;
+}
+
+.x.brush {
+  .overlay {
+    pointer-events: all;
+  }
+}
+
+.grid-chart .tick {
+  .line {
+      stroke: #000;
+      opacity: 0.8;
+  }
+}
+
+.pace-chart-style {
+  overflow: visible !important;
+}
+
+#iframe-token {
+  height: 300px !important;
+}
+.datepicker-position-absolute {
+  position: absolute;
+  display: block;
+}
+
+.room-rate-currency {
+  display: inline-block;
+  margin: 0 20px 0 1px;
+  font-size: 36px;
+  line-height: 40px;
+  vertical-align: middle;
+  font-weight: 300;
+}
+
+
+.payment-form .payment-iframe.adyen {
+  height: auto !important;
+}
+
+#angular-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border:0;
+}

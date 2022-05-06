@@ -1,0 +1,281 @@
+#edit-reservation {
+
+    .edit-reservation-content {
+        padding: 20px;
+        width: 100%;
+        .show;
+        .calc-height(100, 50);
+        .float;
+
+        .reservation-calendar,
+        .reservation-updates {
+            height: 100%;
+            overflow: hidden;
+            .pull-left;
+            .show;
+        }
+
+        .reservation-calendar {
+            width: 490px;
+            padding-right: 20px;
+            overflow: hidden;
+            position: relative;
+
+            /* Scrollable area ***/
+            .iScrollVerticalScrollbar {
+                top: 0;
+                bottom: 0;
+                right: 7px; 
+            }
+
+            .notice { 
+                line-height: 1em;
+                padding: 10px; 
+                margin: 0 0 5px 0;
+            }
+
+            #reservation-calendar-legend {
+                padding-top: 5px;
+                border-top: 1px solid rgba(0,0,0,.1);
+                .float;
+
+                li {
+                    font-size: 14px;
+                    line-height: 22px;
+                    vertical-align: middle;
+                    text-transform: uppercase;
+                    margin-bottom: 5px;
+                    .size(22px, 33%);
+                    .pull-left;
+
+                    span {
+                        margin-right: 10px;
+                        .square(22px);
+                        .show;
+                        .pull-left;
+
+                        &.check-in { 
+                            background: @green @icons no-repeat 6px -1415px; 
+
+                            @media @highdpi {
+                                background-image: @icons2x;
+                                background-size: 120px;
+                            }
+                        }
+                        
+                        &.check-out { 
+                            background: @red @icons no-repeat 6px -1475px; 
+                            @media @highdpi {
+                                background-image: @icons2x;
+                                background-size: 120px;
+                            }
+                        }
+
+                        &.no-availability { background: rgba(0,0,0,.1); }
+                        &.mid-stay { background: rgba(137,189,85,.2); }
+                        &.availability { border: 2px solid @green; .background(); }
+                    }
+
+                    &:nth-child(4),
+                    &:nth-child(5) { margin-bottom: 0; }
+                    &:nth-child(5) { .size(22px, 66%); }
+                }
+            }
+        }
+
+        .reservation-updates {
+            position: relative;
+            background: rgba(0,0,0,.1);
+            .calc-width(100, 490);
+            #border-radius > .rounded();
+
+            .updates-content {
+                padding: 20px;
+                .opacity(100);
+                #fade > .in;
+
+                .button {
+                    line-height: 50px;
+                    margin: 10px auto;
+                    .show;
+                    .size(50px, 50%);
+                }
+
+                .available-title {
+                    color: @textColor;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                    border-bottom: 2px solid rgba(0,0,0,.1);
+
+                    &.error { 
+                        color: @red; 
+                        margin-bottom: 10px;
+                    }
+                }
+
+                .subheading { 
+                    font-weight: 600;
+                    text-transform: uppercase; 
+
+                    .button {
+                        display: inline;
+                        line-height: 24px;
+                        margin: 0;
+                        padding: 0;
+                        vertical-align: baseline;
+                        .size(24px, auto);
+                    }
+                }
+
+                .details {
+                    position: absolute;
+                    top: 60px;
+                    left: 20px;
+                    .calc-width(100, 40);
+                    .show;
+
+                    .unnasign-from-guest {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+
+                    .room {
+                        line-height: 40px;  
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+                        .nowrap();
+
+                        .room-number {
+                            line-height: 40px;
+                            padding-right: 10px;
+
+                            &.ready { color: @green; }
+                            &.not-ready { color: @red; }
+                        }
+                    }
+
+                    .data {
+                        padding: 10px 0;
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+                        .float;
+
+                        li {
+                            font-size: 14px;
+                            line-height: 30px;
+                            margin: 0;
+                            width: 39%;
+                            .nowrap();
+                            .pull-left;
+
+                            .guest-status {
+                                margin: 5px 5px 5px 0;
+                                .square(20px);
+                            }
+
+                            &:first-child { width: 22%; }
+                        }
+                    }
+
+                    .rate {
+                        color: @textColor;
+                        vertical-align: middle;
+                        line-height: 60px;
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+                        .nowrap();
+                        .float;
+
+                        .number {
+                            font-size: 30px;
+                            line-height: 60px;
+                            font-weight: 300;
+                            margin-right: 20px; 
+                            .pull-left;
+
+                            strong { font-weight: 400; }
+                        }
+                    }
+
+                    .rooms {
+                        li {
+                            margin: 0 0 10px 0;
+
+                            .button {
+                                text-align: left;
+
+                                .room-number {
+                                    margin-right: 20px;
+
+                                    &.ready { color: @green; }
+                                    &.not-ready { color: @red; }
+                                }
+                            }
+                        }
+                    }
+
+                    .button {
+                        width: 100%;
+                        margin-top: 0;
+                    }
+                    
+                    /* Room is available / Unassign room from antoher guest ***/
+                    &#update-details,
+                    &#unassign-room  { 
+                        padding: 20px;
+                        background: @white;
+                        max-height: 320px;
+                        .box-shadow();
+                        .calc-height(100, 80);
+
+                        .wrapper { padding-bottom: 20px; }
+                        .iScrollVerticalScrollbar {
+                            top: 10px;
+                            bottom: 10px;
+                            right: 10px; 
+                        }
+                    }
+
+                    /* Room not availabile ***/
+                    &#change-room {
+                        top: 100px;
+                        padding: 0 10px 0 0;
+                        .calc-height(100, 190);
+
+                        .iScrollVerticalScrollbar {
+                            top: 0;
+                            bottom: 0;
+                            right: 0; 
+                        }
+                    }
+                }
+                
+                &.hidden {
+                    .opacity(0);
+                    #fade > .out;
+                }
+
+                &.no-content { 
+                    position: static;
+
+                    .h1 { 
+                        font-size: 24px;
+                        line-height: 26px;
+                    }
+
+                    .h2 {
+                        font-size: 20px;
+                        line-height: 24px;
+                    }
+                }
+            }
+
+            #find-rooms-and-rates {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                margin-left: -120px;
+                .size(50px, 240px);
+            }
+        }
+    }
+}

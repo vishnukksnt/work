@@ -1,0 +1,637 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+
+/* Typical form layout 			==========================*/
+	.form {
+		.entry {
+			margin-bottom: 10px;
+			.pull-left;
+
+			label {
+				font-size: 14px;
+				text-transform: uppercase;
+				.show;
+
+				span { 
+					color: @grey4; 
+
+					&.clear-value {
+						color: @red;
+						.pull-right;
+					}
+				}
+
+				strong { color: @red; }
+
+				&.checkbox,
+				&.radio {
+					font-size: 16px;
+					display: inline-block;
+					text-transform: none;
+				}
+			}
+
+			input:not([size]),
+			select,
+			textarea {  width: 100%; }
+
+			.select {
+				select { 
+					height: 40px;
+					line-height: 20px;
+				}
+			}
+
+			.short-break { 
+				display: inline-block; 
+				margin-right: 5px;
+			}
+
+			&.full-width,
+			&.radio-check {
+				float: none;
+				clear: both;
+				width: 100%;
+			}
+
+			&.radio-check {
+				.float;
+				
+				.checkbox,
+				.radio { .pull-left; }		
+			}
+
+			&.with-switch {
+				position: relative;
+
+				.switch-button {
+					position: absolute;
+					top: 35px;
+					right: 10px;
+					width: 140px;
+					.show;
+
+					.data-off,
+					.data-on {
+						font-size: 12px;
+					}
+				}
+			}
+
+			/* Multi select dropdown ***/
+		 
+		    .multi-select { 
+		        position: relative;
+		        padding: 0 10px;
+		        line-height: 40px;
+		        cursor: pointer;
+		        z-index: 40;
+		        .nowrap();
+		        .faux-clickable;
+		        background-color: @grey1;
+
+		        &.placeholder {
+		            color: @grey3;
+		            font-style: italic;
+		        }
+
+		        &.active {
+		            .box-shadow(1px 0 0 rgba(0,0,0,.15));
+		            #border-radius > .bottom(0px);
+		        }
+
+		        &:after {
+		            content: "";
+		            position: absolute;
+		            top: 0;
+		            right: 0;
+		            background: @grey1 @selectArrow no-repeat 50% 50%;
+		            background-size: 6px 4px;
+		            pointer-events: none;
+		            z-index: 999;
+		            .size(100%, 25px);
+		            #border-radius > .right();
+		        }
+		    }
+
+		    .multi-select-options {
+		        margin-top: -1px;
+		        background-color: @grey1;
+		        z-index: 10;
+		        #border-radius > .bottom();
+		        .box-shadow(1px 1px 0 rgba(0,0,0,.15));
+		        .transition;
+		        #fade > .in();
+
+		        .entry {
+		            width: 100%;
+		            float: none;
+		            margin: 0;
+		            padding: 0;
+		        }
+
+		        .search {
+		            position: relative;
+		            padding: 10px;
+		            overflow: hidden;
+		            background: rgba(0,0,0,.1);
+		            .size(60px, 100%);
+
+		            .icon-search {
+		                position: absolute;
+		                top: 20px;
+		                left: 20px;
+		                z-index: 99;
+		            }
+
+		            .query {
+		                width: 100%;
+		                font-size: 18px;
+		                font-weight: 700;
+		                padding-left: 30px;
+		                color: @logoPrimary; 
+		                z-index: 9;
+		                background: @grey1;
+		                .box-shadow(inset 1px 1px 0 rgba(0,0,0,.15));
+		                #border-radius > .rounded(25px);
+
+		                &:focus,
+		                &:active { .box-shadow(inset 1px 1px 0 rgba(0,0,0,.3)); }
+		            }
+
+		            .clear-query {
+		                position: absolute;
+		                top: 10px;
+		                right: 10px;
+		                z-index: 99;
+		                .square(40px);
+
+		                .icons {
+		                    position: absolute;
+		                    top: 12.5px;
+		                    right: 12.5px;
+		                    background-color: @grey2;
+		                    .hide-text;
+		                    .square(15px);
+		                    .opacity(0);
+		                    .show;
+		                    #fade > .out();
+		                    #border-radius > .rounded(15px);
+		                }
+
+		                &.visible { 
+		                    .icons {
+		                        .opacity(100); 
+		                        #fade > .in(); 
+		                    }
+		                }
+
+		                &:hover,
+		                &.active { 
+		                    .icons { background-color: @logoPrimary; }
+		                }
+		            }
+		        }
+
+		        .checkbox {
+		            padding: 0 10px 0 40px;
+
+		            .icon-form { 
+		                left: 10px;
+		            }
+
+		            &:not(:last-child) {
+		                .box-shadow(0 1px 0 rgba(0,0,0,.1));
+		            }
+
+		            .option-name,
+		            .option-number {  
+		                display: block;
+		                white-space: nowrap;
+		                text-overflow: ellipsis;
+		                overflow: hidden;
+		                line-height: 1;
+		            }
+
+		            .option-name { 
+		                color: inherit;
+		                line-height: 16px;
+		                margin-top: 5px;
+		            }
+		        }
+
+		        &.hidden { #fade > .out(); }
+		    }
+		}
+
+		/* Disabled part of form ***/
+		.is-disabled {
+			label,
+			input[disabled],
+			label.disabled,
+			button[disabled] {
+				.opacity(20);
+				cursor: default;
+			}
+		}
+		.disable-clicks {
+			pointer-events: none;
+	      	opacity : 0.5;
+	    }
+	}
+
+/* 5. COMPONENTS
+==========================================================*/
+
+/* Check & radio box 			==========================*/
+	.checkbox,
+	.radio {
+		padding-left: 40px;
+		line-height: 40px;
+		.clickable;
+
+		.icon-form {
+			top: 10px;
+			left: 10px;
+		}
+
+		&.inline {
+			display: inline-block;
+			padding-left: 30px;
+			background: transparent;
+			.box-shadow(none);
+
+			.icon-form { 
+				left: 0; 
+				background: @white;
+			} 
+		}
+
+		&.error {
+			color: @red;
+			border-color: @softRed;
+		}
+
+		&.warning {
+			color: darken(@yellow, 30);
+			border: 1px solid @yellow;
+		}
+
+		&.success {
+			color: darken(@green, 20);
+			border-color: @green;
+		}
+
+		&.info {
+			color: darken(@blue, 20);
+			border-color: @blue;
+		}
+	}
+
+/* On/off switch checkbox		==========================*/
+	@media not print {
+		.switch-button {
+			display: inline-block;
+			height: 30px;
+			cursor: pointer;
+			text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+			position: relative;
+			overflow: hidden;
+			.gradient(@grey2, @white);
+			.box-shadow(inset 1px 1px 1px rgba(0,0,0,.15));
+			#border-radius > .rounded(20px);
+
+			input[type="checkbox"] { 
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				line-height: 30px;
+				min-height: 30px;
+				z-index: 20;
+				.opacity(0);
+				.show;
+
+				&:disabled {
+					cursor: default;
+				}
+			}
+
+			.data-off,
+			.data-on {
+				position: absolute;
+				top: 5px;
+				line-height: 20px;
+				.size(20px, 100%);
+				.transition;
+
+				.switch-icon,
+				.value {
+					text-align: center;
+					height: 100%;
+					.pull-left;
+				}
+
+				.switch-icon {
+					color: @white;
+					font-weight: 600;
+					text-shadow: 1px 1px 0 rgba(0,0,0,.1);
+					.calc-width(50, 5); /* %, px */
+					.gradient(@logoGradientStart, @logoGradientEnd);
+					.show;
+					.transition;
+					#border-radius > .rounded(20px);
+				}
+
+				.value {
+					font-weight: 400;
+					color: @grey3;
+					text-shadow: none;
+					width: 50%;
+				}
+
+				&.data-off { 
+					left: 0; 
+					.switch-icon { margin-left: 5px; }
+				}
+				
+				&.data-on { 
+					left: 100%; 
+					.switch-icon { margin-right: 5px; }
+				}
+			}
+
+			&.on {
+				.data-off { left: -100%; }
+				.data-on { left: 0; }
+			}
+			
+			&.full-width {
+				.size(40px, 100%);
+
+				input[type="checkbox"] { 
+					line-height: 40px;
+					height: 40px;
+				}	
+
+				.data-off,
+				.data-on {
+					line-height: 30px;
+					height: 30px;
+				}			
+			}		
+		}
+	}
+
+/* Styled selectboxes			==========================*/
+	.select-item {
+		position: relative;
+		height: 40px;
+		padding: 0 10px;
+		background: @selectArrow no-repeat 95% 50%;
+		background-size: 6px 4px;
+		.clickable;
+
+		.selected {
+			line-height: 40px;
+			vertical-align: middle;
+			white-space: nowrap;
+  			overflow: hidden;
+  			text-overflow: ellipsis;
+
+			> * {
+				line-height: 40px;
+				vertical-align: middle;
+			}
+		}
+
+		select {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			outline: none;
+			cursor: pointer;
+			z-index: 1;
+			.opacity(0);
+		}		
+	}
+
+	.select.multiple {
+		&:after { .hide; }
+	}
+
+	.form {
+		.entry {
+			.select-item {
+
+				&.credit-card {
+					
+					.card-logo {
+						margin: 5px 20px 0 0;
+						.pull-left;
+						.size(30px,60px);
+
+						img {
+							width: 100%;
+							height: auto;
+						}
+					}	
+
+					span {
+						display: inline-block;
+						line-height: 40px;
+						vertical-align: middle;
+						color: @grey3;
+						font-size: 14px;
+						text-transform: uppercase;
+						font-weight: 400;
+						margin-right: 10px;
+
+						&.value,
+						.value {
+							display: inline-block;
+							font-size: 18px;
+							color: @textColor;
+							margin-left: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+/* Datepicker input				==========================*/
+	.datepicker,
+	.range-datepicker {
+		background-image: @calendar;
+		background-repeat: no-repeat;
+		background-position: 95% 12px;
+    	background-size: 20px;
+    	cursor: pointer;
+    	.no-transition();
+
+		&:hover,
+		&:active { background-position: 95% -38px; }
+
+		&[disabled] {
+			background: rgba(0,0,0,.01) @calendar no-repeat 95% 12px !important;
+		}
+
+		@media @highdpi {
+			background-image: @calendar2x;
+		}			
+	}
+
+/* List of settings				==========================*/
+	.setings-group {
+		padding: 10px 20px;
+		background-color: rgba(0,0,0,.05);
+		box-shadow: inset 1px 1px 1px rgba(0,0,0,.1);
+		border-radius: 3px;
+	}
+
+/* Autocomplete Search */
+	.autocomplete-search {
+		
+		.scrollable {
+			position: relative;
+			max-height: 400px;
+			display: none;
+
+			.wrapper {
+				padding: 0;
+			}
+
+			.card {
+				line-height: 1em;
+				padding: 10px;
+				cursor: pointer;
+				width: 100%;
+				text-transform: uppercase;
+				font-size: 14px;
+				line-height: 20px;
+				.box-shadow();
+				.nowrap();
+
+				.guest-image {
+					background-size: 50px;
+					margin-right: 10px;
+					.square( 20px );
+	
+					&.icon-company {
+						background-color: @ccard;
+						background-position: 6px -1437px;
+					}
+	
+					&.icon-travel-agent {
+						background-color: @tacard;
+						background-position: 5.5px -1486px;
+					}
+				}
+			}
+		}
+
+		.search {
+			padding: 10px;
+			position: relative;
+			.box-shadow(none);
+
+			input {
+				padding: 0 30px;
+				font-weight: 600;
+				color: @logoPrimary;
+				#border-radius > .rounded(25px);
+			}
+
+			.clear-query,
+			.icon-search {
+				position: absolute;
+			}
+
+			.clear-query {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				z-index: 99;
+				visibility: hidden;
+				.size(40px, 40px);
+
+				.icons {
+					position: absolute;
+					top: 13px;
+					right: 12.5px;
+					background-color: @grey2;
+					.hide-text;
+					.square(15px);
+					.opacity(0);
+					.show;
+					#fade > .out();
+					#border-radius > .rounded(15px);
+				}
+
+				&.visible { 
+					visibility: visible;
+
+					.icons {    
+						.opacity(100); 
+						#fade > .in(); 
+					}
+				}
+
+				&:hover,
+				&.active { 
+					.icons { background-color: @logoPrimary; }
+				}
+			}
+
+			.icon-search {
+				top: 20px;
+				left: 20px;
+			}
+		}
+
+		.highlight { color: @logoPrimary; }
+
+		&.searching {
+			background: @white;
+			.box-shadow();
+
+			.search {
+				input {
+					background-color: @grey1;
+				}
+			}
+
+			.scrollable {
+				display: block;
+			}
+		}
+	}
+
+/* Converted Currency */
+	@media not print {
+		// We have one on print as well.
+		.converted-currency {
+			display: block;
+			color: @grey3;
+			margin-top: 3px;
+
+			&.smaller {
+				font-size: 0.875em;
+			}
+		}
+	}
+	
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

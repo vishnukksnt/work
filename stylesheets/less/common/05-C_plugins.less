@@ -1,0 +1,831 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+/* 5. COMPONENTS
+==========================================================*/
+
+/* jQuery UI tabs			==============================*/
+	.ui-tabs {
+		position: relative;
+
+		.ui-tabs-nav {
+			li {
+				a {
+					cursor: pointer;
+				}
+
+				&.ui-tabs-active {
+					a { cursor: pointer; }
+				}
+
+				&.ui-tabs-active,
+				&.ui-state-disabled,
+				&.ui-tabs-loading {
+					a { cursor: text; }
+				}
+			}
+		}
+
+		.ui-tabs-panel {
+			.show;
+			background: transparent;
+		}
+	}
+
+/* jQuery UI datepicker		==============================*/
+	#ui-datepicker-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.5);
+		z-index: 10001;
+
+		&.transparent { background: transparent; }
+	}
+
+	.has-datepicker {
+		position: relative;
+
+		.ui-datepicker-trigger {
+			position: absolute;
+			top: 0;
+			left: 0;
+			border: 0;
+			cursor: pointer;
+			background: transparent @calendar no-repeat 95% 12px;
+    		background-size: 20px;
+    		.hide-text;
+			.size(40px, 100%);
+
+			&:hover,
+			&:active { background-position: 95% -38px; }
+
+			@media @highdpi {
+				background-image: @calendar2x;
+			}			
+		}
+	}
+
+	.ui-datepicker {
+		top: 0% !important;
+		left: 0% !important;
+		padding: 10px;
+		margin: 0;
+		z-index: 10002 !important;
+		.square(100%);
+		.background(@white);
+		.hide;
+
+		.ui-datepicker-header,
+		.ui-datepicker-calendar,
+		.ui-datepicker-buttonpane {
+			position: relative;
+			width: 100%;
+		}
+
+		.ui-datepicker-buttonpane {
+			text-align: center;
+			padding-top: 20px;
+
+			button {
+				display: inline-block;
+				.button;
+
+				&.ui-datepicker-current { margin-right: 20px; .button.blue; }
+				&.ui-datepicker-close { .button.green; }
+			}
+		}
+
+		.ui-datepicker-header {
+			height: 40px;
+			.faux-clickable;
+			#border-radius > .bottom(0);
+
+			.ui-datepicker-title {
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 40px;
+				vertical-align: middle;
+				text-align: center;
+				text-transform: uppercase;
+
+				.select {
+					display: inline-block;
+					min-width: 80px;
+					max-width: 120px;
+				}
+
+				select {
+					font-weight: 400;
+					text-transform: none;
+					display: inline-block;
+					background: @white @selectArrow no-repeat 90% 50%;
+					background-size: 6px 4px;
+					.box-shadow(none);
+
+					&.ui-datepicker-month { 
+						width: 120px;
+						margin-right: 20px;
+					}
+
+					&.ui-datepicker-year {
+						width: 80px;
+					}
+				}			
+			}
+
+			.ui-datepicker-prev,
+			.ui-datepicker-next {
+				position: absolute;
+				top: 0;
+				overflow: hidden;
+				cursor: pointer;
+				.show;
+				.hide-text;
+				.square(40px);
+
+				&.ui-datepicker-prev { left: 0; }
+				&.ui-datepicker-next { right: 0; }
+				&.ui-state-disabled { .hide; }
+			}
+		}
+
+		.ui-datepicker-calendar {
+			margin: 0;
+			table-layout: fixed;
+			border-collapse: separate; 
+			border-spacing: 5px;
+
+			thead {
+				th {
+					color: @grey3;
+					font-weight: 600;
+					text-align: center;
+					text-transform: uppercase;
+					line-height: 30px;
+					vertical-align: middle;
+				}
+			}
+
+			tbody {
+				td {
+					text-align: center;
+					line-height: 50px;
+					vertical-align: middle;
+
+					a {
+						font-size: 18px;
+						font-weight: 600;
+						color: @textColor;
+						background: rgba(0,0,0,.05);
+						.show;
+
+						&.ui-state-active {
+							color: @white;
+							text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+							.gradient (@logoGradientStart, @logoGradientEnd);
+
+							&.ui-state-highlight { color: @white; }
+						}
+					}
+
+					&.ui-datepicker-today {
+						a { color: @blue; }
+					}
+
+					&.ui-state-disabled {
+						span {
+							color: @grey2;
+							font-weight: 600;
+							background: rgba(0,0,0,.025);
+							.show;
+						}
+					}
+
+					&.date-range-selected {
+						a {
+							color: @white;
+							text-shadow: 1px 1px 0 rgba(0,0,0,.15);
+							.gradient (@logoGradientStart, @logoGradientEnd);
+						}
+					}
+
+					&.room-out {
+						a {
+							color: @red;
+							background: rgba(230,56,56,.3);
+
+							&.ui-state-active {
+								color: @white;
+								.gradient (@redStart, @redEnd);
+							}
+
+							&.ui-state-highlight { color: @white; }
+						}
+					}
+				}
+			}
+		}
+
+		&.ui-datepicker-inline {
+			position: static;
+			top: auto !important;
+			left: auto !important;
+			margin: 0;
+			width: 100%;
+		}
+
+		&.ui-datepicker-multi-2 {
+			width: 100% !important;
+
+			.ui-datepicker-group {
+				.hide;
+
+				&.ui-datepicker-group-first { .show; }
+			}
+		}
+	}
+
+	@media only screen and (min-width: 768px) {
+		.ui-datepicker {
+			top: 50% !important;
+			left: 50% !important;
+			margin: -185px 0 0 -240px;
+			.size(auto, 480px);
+
+			.ui-datepicker-buttonpane { .hide; }
+
+			&.ui-datepicker-multi-2 {
+				width: 980px !important;
+				margin-left: -480px;
+
+				.ui-datepicker-group {
+					width: 480px;
+					.show;
+					.pull-left;
+				}
+
+				.ui-datepicker-buttonpane {
+					clear: both;
+					width: 100%;
+					.show;
+
+					.ui-datepicker-current { .hide; }
+					
+					.ui-datepicker-close {
+						.button;
+						.green;
+					}
+				}
+			}
+
+			&.reservation {
+				top: 400px !important;
+				background-image: none;
+				padding: 15px;
+				.box-shadow();
+				#border-radius > .rounded();
+
+				.ui-datepicker-header {
+					background-color: @grey1;
+				}
+
+				.ui-datepicker-group {
+					width: 460px;
+					.pull-left;
+
+					&.ui-datepicker-group-first { margin-right: 20px; }
+				}
+
+				&:after {
+	                content: "";
+	                position: absolute;
+	                top: -15px;
+	                width: 0; 
+	                height: 0; 
+	                border-bottom: 15px solid @white;
+	                border-left: 15px solid transparent;
+	                border-right: 15px solid transparent;
+	            }
+
+	            &.arriving {
+	            	&:after { left: 360px; }
+	            }
+
+	            &.departing {
+	            	&:after { right: 230px; }
+	            }
+
+	            &.hide-arrow {
+	            	&:after { top: 0; }
+	            }
+			}
+		}
+	}
+
+/* Modal window				==============================*/
+	#modal,
+	.inline-modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		z-index: 9999;
+		visibility: hidden;
+
+		#modal-close {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 9995;
+			border: 0;
+			cursor: pointer;
+			.square(40px);
+			.background(@white);
+			#border-radius > .rounded(20px);
+
+			.icons {
+				position: absolute;
+				top: 8px;
+				left: 8px;
+				z-index: 9992;
+			}
+
+			&.green { background: @green; }
+			&.red { background: @red; }
+			&.blue { background: @blue; }
+			&.dark-title { background: @gcard; }
+		}
+
+		.modal-content {
+			padding: 20px;
+			z-index: 9990;
+			.background(@white);
+			#border-radius > .rounded(3px);
+			.scale3d(0.5, 0.5, 1);
+			.opacity(0);
+			.transition;
+
+			.status {
+				height: 70px;
+				margin: 20px 0;
+
+				label {
+					font-size: 14px;
+					text-transform: uppercase;
+					text-align: center;
+					font-weight: 600;
+				}
+
+				.switch-button {
+					.size(40px, 100%);
+					.show;
+
+					.data-off,
+	                .data-on {
+	                	font-size: 14px;
+	                	line-height: 30px;
+	                	text-transform: uppercase;
+	                	height: 30px;
+
+	                	&.data-off {
+	                		.switch-icon { .gradient(@redStart, @redEnd); }
+	                	}
+
+	                	&.data-on {
+	                		.switch-icon { .gradient(@greenStart, @greenEnd); }
+	                	}
+	                }
+				}
+			}
+
+			.message,
+			.text {
+				text-transform: uppercase;
+				.show;
+			}
+
+			.message { 
+				margin: 10px 0 20px 0; 
+				text-align: center;
+				font-weight: 600;
+
+				.select,
+				.select-item {
+					display: inline-block;
+					margin: -5px 0 0 10px;
+					width: 60px;
+
+					select { font-weight: 600; }
+				}
+
+				&.notice { margin-top: 0; }
+				&.solo { margin: 0; }
+			}
+
+			.notice {
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 400;
+			}
+
+			.text:not(.value) {
+				font-size: 16px;
+				line-height: 1em;
+				color: @grey3;
+				padding-bottom: 20px;
+				text-align: center;
+
+				&.red { 
+					color: @red; 
+					text-decoration: line-through;
+				}
+			}
+
+			.text.value {
+				font-weight: 400;
+				text-transform: none;
+			}
+
+			label {
+				&.checkbox,
+				&.radio { .show }
+			}
+
+			textarea { height: 100px;}
+
+			.modal-options {
+				margin: 20px auto;
+				display: table;
+				.float;
+
+				li { 
+                	display: inline-block;
+                    cursor: pointer;
+                    margin: 0 0 0 1px;
+                    font-size: 14px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: @textColor;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    padding: 0 20px;
+                    .pull-left;
+                    .clickable;
+                    #border-radius > .rounded(0);
+
+                    &:hover { 
+                        color: @logoPrimary; 
+                        .box-shadow();
+                    }
+
+                    &.active {
+                        cursor: default;
+                        color: @white;
+                        text-shadow: 1px 1px 0 rgba(0,0,0,.1);
+                        .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.3)");
+                        .gradient (@logoGradientEnd, @logoGradientStart);
+                    }
+
+                    &:first-child { #border-radius > .left(); }
+                    &:last-child { #border-radius > .right(); }
+
+                    &.disabled {
+                    	color: @grey3;
+						background-color: rgba(0,0,0,.1);
+						.box-shadow(none);
+                    }
+                }
+			}
+
+			.button { 
+				font-size: 18px;
+				line-height: 50px;
+				width: 100%; 
+				.show; 
+
+				&.blank {
+					color: @textColor;
+
+					&:hover,
+					&:active { color: @logoPrimary; }
+				}
+
+				&.half {
+					padding: 0 5px;
+					.pull-left;
+					.calc-width(50, 10);
+
+					&:first-child { margin-right: 20px; }
+				}
+			}
+		}
+
+		/* Auto-close notice message ***/
+		.notice {
+			font-weight: 600;
+			text-transform: uppercase;
+			margin: 0;
+			text-align: center;
+		}
+
+		&.modal-show { 
+			visibility: visible; 
+
+			.modal-content {
+				.scale3d(1, 1, 1);
+				.opacity(100);
+			}
+		}
+
+		&.keyboard-lock { .translate3d(-50%, -15%, 0); }
+
+		/* Custom positioning ***/
+		&[data-position="bottom-right"]{
+			top: auto;
+			left: auto;
+			bottom: 0;
+			right: 0;
+			.translate3d(0, 0, 0);
+		}
+
+		&.ui-draggable { cursor: move; }
+	}
+
+	#modal-overlay,
+	.inline-modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 9990;
+		.opacity(0);
+		.square(100%);
+		.transition;
+
+		&.modal-show { .opacity(100); }
+	}
+
+	@media only screen and (min-width: 600px) {
+		#modal,
+		.inline-modal {
+			top: 50%;
+			left: 50%;
+			height: auto;
+			.translate3d(-50%, -50%, 0);
+
+			#modal-close {
+				top: -20px;
+				left: -20px;
+			}
+		}
+	}
+
+/* Toaster                  ==============================*/
+    
+    /* Container ***/
+    #toast-container {
+        position: fixed;
+        z-index: 9989;
+        pointer-events: none;
+
+        > div {
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+            overflow: hidden;
+            margin-bottom: 4px;
+            padding: 8px 8px 8px 48px;
+            width: 280px;
+            border-radius: 3px;
+            background-size: 24px;
+            background-position: 8px center;
+            background-repeat: no-repeat;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0,0,0,.05);
+                z-index: 1;
+                .size(100%, 40px);
+            }
+
+            &.rtl {
+                direction: rtl;
+                padding: 8px 48px 8px 8px;
+                background-position: right 8px center;
+
+                .toast-close-button {
+                    right: auto;
+                    left: 0;
+                    text-align: left;
+                }
+
+                &:after {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    /* Position ***/
+    .toast-top-center {
+        top: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    .toast-bottom-center {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+    }
+    
+    .toast-top-full-width {
+        top: 0;
+        right: 0;
+        width: 100%;
+    }
+    
+    .toast-bottom-full-width {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+    }
+    
+    .toast-top-left {
+        top: 4px;
+        left: 4px;
+    }
+    
+    .toast-top-right {
+        top: 4px;
+        right: 4px;
+    }
+    
+    .toast-bottom-right {
+        right: 4px;
+        bottom: 4px;
+    }
+    
+    .toast-bottom-left {
+        bottom: 4px;
+        left: 4px;
+    }
+
+    #toast-container.toast-top-center > div,
+    #toast-container.toast-bottom-center > div {
+        width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #toast-container.toast-top-full-width > div,
+    #toast-container.toast-bottom-full-width > div {
+        width: calc(~'100% - 8px');
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Content ***/
+    .toast {
+        line-height: 1.2;
+
+        p {
+            font-size: 14px;
+            line-height: 1.2;
+        }
+    }
+
+    .toast-title {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .toast-message {
+        font-size: 14px;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+
+        a {
+            color: @white;
+            text-decoration: underline;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .button {
+            font-size: 14px;
+            padding: 0 10px;
+        }
+    }
+
+    .toast-close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: inherit;
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 700;
+        text-align: right;
+        padding: 4px;
+        width: 40px;
+
+        &:hover,
+        &:focus {
+            color: rgba(0,0,0,.2);
+        }
+    }
+
+    .toast-progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: @yellow;
+        z-index: 2;
+        .size(2px, 100%);
+    }
+
+    /* Color ***/
+    #toast-container > .toast-info {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLC4xNkExMS44MiwxMS44MiwwLDEsMCwyMy44LDEyLDExLjgzLDExLjgzLDAsMCwwLDEyLC4xNlptMCwyMi42M0ExMC44MiwxMC44MiwwLDEsMSwyMi44LDEyLDEwLjgyLDEwLjgyLDAsMCwxLDEyLDIyLjc5WiIgZmlsbD0iIzg2YzNkZCIvPjxwYXRoIGQ9Ik0xMS41MiwxNy43MmEuNS41LDAsMCwwLS41LjV2LjM2YS41LjUsMCwwLDAsMSwwdi0uMzZBLjUuNSwwLDAsMCwxMS41MiwxNy43MloiIGZpbGw9IiM4NmMzZGQiLz48cGF0aCBkPSJNMTEuNiw1QTQuNzQsNC43NCwwLDAsMCw3LjYzLDdhLjQ5LjQ5LDAsMCwwLC4xNC42OS41LjUsMCwwLDAsLjY5LS4xNUEzLjc0LDMuNzQsMCwwLDEsMTEuNiw2YTMuMzgsMy4zOCwwLDAsMSwzLjYsMy4xYzAsMS4zMi0xLjA4LDIuMzUtMy4zLDMuMTNBMS4zMSwxLjMxLDAsMCwwLDExLDEzLjQydjIuMmEuNTEuNTEsMCwwLDAsLjUuNS41LjUsMCwwLDAsLjUtLjV2LTIuMmEuMzEuMzEsMCwwLDEsLjIxLS4yOGMyLjY3LTEsNC0yLjI4LDQtNC4wOEE0LjM3LDQuMzcsMCwwLDAsMTEuNiw1WiIgZmlsbD0iIzg2YzNkZCIvPjwvc3ZnPg==");
+    }
+
+    #toast-container > .toast-error {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIzLjU5LDYuNjcsMTcuMzMuNDFBMS4yNiwxLjI2LDAsMCwwLDE2LjQxLDBINy41NmExLjI2LDEuMjYsMCwwLDAtLjkyLjM4TC4zOCw2LjY3QTEuMjYsMS4yNiwwLDAsMCwwLDcuNTl2OC44NWExLjI4LDEuMjgsMCwwLDAsLjM4LjkybDYuMjYsNi4yNmExLjMsMS4zLDAsMCwwLC45Mi4zOGg4Ljg1YTEuMjgsMS4yOCwwLDAsMCwuOTItLjM4bDYuMjYtNi4yNmExLjI4LDEuMjgsMCwwLDAsLjM4LS45MlY3LjU5QTEuMjIsMS4yMiwwLDAsMCwyMy41OSw2LjY3Wk0yMywxNi40NGEuMy4zLDAsMCwxLS4wOC4yMWwtNi4yNyw2LjI2YS4yNy4yNywwLDAsMS0uMjEuMDlINy41NmEuMzEuMzEsMCwwLDEtLjIyLS4wOUwxLjA4LDE2LjY1QS4zLjMsMCwwLDEsMSwxNi40NFY3LjU5YS4zNS4zNSwwLDAsMSwuMDgtLjIyTDcuMzQsMS4xMUEuMzUuMzUsMCwwLDEsNy41NiwxaDguODVhLjMuMywwLDAsMSwuMjEuMDhsNi4yNyw2LjI2YS4zNS4zNSwwLDAsMSwuMDguMjJ2OC44NVoiIGZpbGw9IiNhMDE5MWIiLz48cGF0aCBkPSJNMTguOTMsOC4zOWExLjMsMS4zLDAsMCwwLTEuNDkuMzVjLS4xMS4xNC0uMjIuMjktLjMzLjQ2QTguNzgsOC43OCwwLDAsMCwxNy41OCw3LDEuNDMsMS40MywwLDAsMCwxNyw1Ljc3YTEuMjQsMS4yNCwwLDAsMC0xLjE5LS4yNmMtLjg3LjMxLTEuMjIsMS42NC0xLjU5LDMuMDYtLjA1LjItLjExLjQ1LS4xOC43LDAtLjM5LDAtLjgsMC0xLjJhMTMuMzYsMTMuMzYsMCwwLDAtLjI3LTIuOSwxLjI4LDEuMjgsMCwwLDAtMi4zNC0uMzNBNi40MSw2LjQxLDAsMCwwLDExLjA3LDhsMCwuNzdjLS4wNy0uMTgtLjEzLS4zNS0uMTktLjUzQzEwLjMyLDYuNTcsOS43OCw1LDguNSw1LjE0QTEuNDcsMS40NywwLDAsMCw3LjMyLDYuMjhhNi4yMyw2LjIzLDAsMCwwLC44MiwzLjMxYy44MiwxLjkxLDEuMywzLjI3LjQxLDQuMTRhNS4wNiw1LjA2LDAsMCwxLS42Mi0uNjZjLS42MS0uNzUtMS40Ni0xLjc2LTIuODQtMS4zNWExLjA4LDEuMDgsMCwwLDAtLjgyLjc3Yy0uMjcsMSwuOSwyLjMyLDEuMjYsMi43YTMuNTYsMy41NiwwLDAsMCwuNTYuNDUsMy4yOSwzLjI5LDAsMCwxLC41NC40M2MuMzQuMzcuNjguOCwxLDEuMjJhOS41NCw5LjU0LDAsMCwwLDIuMSwyLjE4LDUuMTMsNS4xMywwLDAsMCwyLjcyLjc4LDUuMzYsNS4zNiwwLDAsMCw0LjEzLTEuOTMsNSw1LDAsMCwwLC44NC0yLjYyLDcuNDcsNy40NywwLDAsMSwuMzQtMS42Myw4LjA3LDguMDcsMCwwLDEsLjc4LTEuNDQsNi4xMyw2LjEzLDAsMCwwLDEuMTgtMi45NEExLjI5LDEuMjksMCwwLDAsMTguOTMsOC4zOVptLTEuMjEsMy43YTksOSwwLDAsMC0uODgsMS42Miw4LjM0LDguMzQsMCwwLDAtLjM5LDEuODYsNC4yNCw0LjI0LDAsMCwxLS42NCwyLjEzLDQuMzQsNC4zNCwwLDAsMS01LjUzLjkyLDkuMjEsOS4yMSwwLDAsMS0xLjg1LTEuOTVjLS4zNC0uNDQtLjctLjg5LTEuMDctMS4yOGEzLjU4LDMuNTgsMCwwLDAtLjctLjU3LDIuNDIsMi40MiwwLDAsMS0uNC0uMzJjLS42MS0uNjQtMS4xLTEuNDgtMS0xLjc1LDAsMCwuMDktLjA2LjEzLS4wOGExLjI1LDEuMjUsMCwwLDEsLjMyLS4wNWMuNTMsMCwuOTMuNDMsMS40NywxLjA5YTMuMTQsMy4xNCwwLDAsMCwxLjMxLDEuMS40OS40OSwwLDAsMCwuNDQtLjA3YzEuOTItMS40Ljk0LTMuNy4xNS01LjU0QTUuOSw1LjksMCwwLDEsOC4zLDYuNDdhLjQ5LjQ5LDAsMCwxLC4yOS0uMzNjLjUxLDAsMSwxLjMxLDEuMzcsMi40YTE3LjEzLDE3LjEzLDAsMCwwLC45NCwyLjI3LjQ5LjQ5LDAsMCwwLC40My4yNi40NS40NSwwLDAsMCwuNDQtLjI0LDUuOSw1LjksMCwwLDAsLjMtMi45MSw2LjI5LDYuMjksMCwwLDEsLjE5LTIuNTcuMjguMjgsMCwwLDEsLjUxLjA3QTEyLjgzLDEyLjgzLDAsMCwxLDEzLDguMDlhMTMuNCwxMy40LDAsMCwwLC4yOSwzLC40OS40OSwwLDAsMCwuMjguMzMuNTQuNTQsMCwwLDAsLjQzLDBjLjU4LS4zMS44NC0xLjE4LDEuMi0yLjU3LjIyLS44My41OS0yLjI0Ljk1LTIuMzYuMDUsMCwuMTUsMCwuMjYuMTFhLjQzLjQzLDAsMCwxLC4xNy4zNUE4LjkyLDguOTIsMCwwLDEsMTYsOS40NmExMC40NSwxMC40NSwwLDAsMC0uNjMsMi4zOC41MS41MSwwLDAsMCwuMTUuNDIuNDguNDgsMCwwLDAsLjQzLjEzYy43Ny0uMTMsMS4xOS0xLDEuNi0xLjgyYTYuMzUsNi4zNSwwLDAsMSwuNjgtMS4xOC4zLjMsMCwwLDEsLjM1LS4wOC4zMS4zMSwwLDAsMSwuMTkuMzFBNS4zMSw1LjMxLDAsMCwxLDE3LjcyLDEyLjA5WiIgZmlsbD0iI2EwMTkxYiIvPjwvc3ZnPg==");
+    }
+
+    #toast-container > .toast-success {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLC4xMkExMS44OSwxMS44OSwwLDEsMCwyMy44OSwxMiwxMS44OSwxMS44OSwwLDAsMCwxMiwuMTJabTAsMjIuNzdBMTAuODksMTAuODksMCwxLDEsMjIuODksMTIsMTAuOSwxMC45LDAsMCwxLDEyLDIyLjg5WiIgZmlsbD0iIzhkYmI1YiIvPjxwYXRoIGQ9Ik0xNy4xNSw3LjI1bC02Ljc2LDguNDRMNy40NiwxMmEuNS41LDAsMCwwLS43LS4wOC41Mi41MiwwLDAsMC0uMDguNzFMMTAsMTYuODFhLjUzLjUzLDAsMCwwLC4zOS4xOC41Mi41MiwwLDAsMCwuMzktLjE4bDcuMTUtOC45NGEuNS41LDAsMSwwLS43OC0uNjJaIiBmaWxsPSIjOGRiYjViIi8+PC9zdmc+");
+    }
+
+    #toast-container > .toast-warning {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIzLjE2LDE4Ljc4bC05LTE1Ljg2YTIuNDcsMi40NywwLDAsMC00LjI5LDBsLTksMTUuODZBMi40NywyLjQ3LDAsMCwwLDMsMjIuNDZIMjFBMi40NywyLjQ3LDAsMCwwLDIzLjE2LDE4Ljc4WiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTI3YjFiIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48bGluZSB4MT0iMTIuMDEiIHkxPSI3LjgxIiB4Mj0iMTIuMDEiIHkyPSIxNC45OSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTI3YjFiIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48bGluZSB4MT0iMTIuMDEiIHkxPSIxOC4xMiIgeDI9IjEyLjAxIiB5Mj0iMTguMzciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkyN2IxYiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+");
+    }
+
+    .toast {
+        color: darken(@yellow, 20);
+        background: lighten(@yellow, 20);
+        border: 2px solid @yellow;
+    }
+
+    .toast-success {
+        color: darken(@green, 20);
+        background: lighten(@green, 20);
+        border-color: @green;
+
+        .toast-progress {
+            background-color: @green;
+        }
+    }
+
+    .toast-error {
+        color: darken(@red, 20);
+        background: lighten(@red, 20);
+        border-color: @red;
+
+        .toast-progress {
+            background-color: @red;
+        }
+    }
+
+    .toast-info {
+        color: darken(@blue, 20);
+        background: lighten(@blue, 20);
+        border-color: @blue;
+
+        .toast-progress {
+            background-color: @blue;
+        }
+    }
+
+    .toast-warning {
+        color: darken(@yellow, 20);
+        background: lighten(@yellow, 20);
+
+        .toast-progress {
+            background-color: @yellow;
+        }
+    }
+
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

@@ -1,0 +1,260 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+
+/* Screen positioning       ==============================*/
+    .content:not(#login) {
+        top: 60px;
+        .calc-height(100, 60); /* %, px */
+
+        /** Rooms screen ***/
+        &#rooms {
+            top: 120px;
+            .calc-height(100, 120); /* %, px */
+        }
+
+        &#filter-options {
+            top: 60px;
+            .calc-height(100, 60); /* %, px */
+        }
+
+        &#guest-info {
+            top: 100px;
+            .calc-height(100, 100); /* %, px */
+        }
+    }
+
+/* Nav Bar                  ==============================*/
+    .nav-bar{ 
+        height: 60px;
+
+        .nav-toggle,
+        .back-button,
+        .clear-selection,
+        .toggle, { top: 10px; }
+
+        h1 {
+            .h2;
+            line-height: 60px;
+        }
+
+        .clear-selection {
+            left: 20px; 
+            font-size: 16px; 
+        }
+
+        .toggle {
+            &.only-icon {
+                right: 10px;
+            }
+
+            &.complete { 
+                right: 20px;
+                font-size: 16px; 
+            }
+        }
+    }
+
+/* 5. COMPONENTS
+==========================================================*/
+
+/* Search bar               ==============================*/
+    .search-form {
+        height: 60px;
+
+        .entry {
+            height: 40px;
+
+            .icon-search {
+                top: 12.5px;
+                right: 12.5px;
+            }
+
+            #query {
+                line-height: 40px;
+                min-height: 40px;
+                .placeholder-text(16px, 40px, 400, @grey3);
+            }
+
+            #clear-query {
+                top: 12.5px;
+                right: 12.5px;
+            }
+        }
+    }   
+
+/* Dashboard page           ==============================*/
+    #dashboard {
+        .wrapper {
+            padding: 40px 40px 20px 40px;
+
+            h2 {
+                margin: 20px 0;
+                font-size: 30px;
+                line-height: 30px;
+            }
+
+            #guests-today {
+
+                li {
+                    .button {
+                        padding: 20px;
+
+                        .icons { 
+                            margin: 0;
+                            background: transparent;
+                            text-indent: 0;
+                            width: 100%;
+                        }
+
+                        strong {
+                            font-size: 72px;
+                            line-height: 1.1em;
+                            overflow: hidden;
+                            .show;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/* Rooms page               ==============================*/
+    
+    /* Rooms listing ***/
+    #rooms {
+        li {           
+            a {
+                color: @textColor;
+                padding: 0 20px 0 20px;
+
+                .room-number,
+                .room-status,
+                .fo-status { line-height: 60px; }
+
+                .room-number { 
+                    font-size: 36px;
+                    width: 120px; 
+                }
+                
+                .room-status,
+                .fo-status {
+                    font-size: 16px;
+                    font-style: normal;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+
+                .guest-image {
+                    top: 10px;
+                }
+
+                .room-stats-wrap {
+                    left: 150px;
+                    right: 60px;
+                }
+
+                &.with-image {
+                    .guest-image {
+                        top: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Rooms filters ***/
+    #filter-rooms {
+        .wrapper {
+            padding: 20px;
+        
+            .holder {
+                margin-bottom: 30px;
+
+                .title { margin-bottom: 20px; }
+
+                .entry {
+                    .radio,
+                    .checkbox { font-size: 16px; }
+
+                    &.floors {
+                        .entry-data {
+                            .left,
+                            .right {
+     
+                                .h4 { font-size: 18px; }
+
+                                .label { font-size: 16px; }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/* Room details page        ==============================*/
+
+    #room-details {
+        #room-header {
+            padding: 20px 10px;
+
+            h1 { font-size: 48px; }
+        }
+
+        #fo-status { 
+            font-size: 18px;
+            padding: 20px 0; 
+        }
+
+        #guest-info {
+            .wrapper { 
+                padding: 120px 40px 0 40px; 
+
+                .guest-image { 
+                    margin-top: 40px;
+                    .square(128px); 
+                }
+
+                h2 {
+                    .guest-status { margin: 5px 10px 0 0; }
+
+                    .name {
+                        font-size: 44px;
+                        line-height: 44px;
+                        vertical-align: top;
+                    }
+                }
+
+                .status {  font-size: 21px; }
+
+                .checkout-guest {
+                    margin-top: 40px;
+
+                    strong { font-size: 18px; }
+
+                    .button {
+                        margin: 20px auto;
+                        line-height: 60px;
+                        font-size: 21px;
+                        .show;
+                    }
+                }
+            }
+
+            .iScrollVerticalScrollbar { 
+                top: 20px;
+                bottom: 20px;
+            }
+        }
+    }
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

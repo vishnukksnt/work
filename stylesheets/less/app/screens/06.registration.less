@@ -1,0 +1,1609 @@
+/* Registration content ***/
+.registration-content {
+    position: relative;
+    .calc-height(100, 50);
+    
+    &.with-complete-registration {
+        .calc-height(100, 140);
+    }
+
+    > .wrapper { 
+        padding: 20px 20px 10px 20px; 
+        .float; 
+    }
+    
+    > .iScrollVerticalScrollbar { bottom: 20px; }
+
+    /* Billing information ***/
+    .billing-information {
+        clear: both;
+        padding: 0;
+        .show;
+
+        table {
+            width: 100%;
+            font-size: 14px;
+            line-height: 21px;
+            table-layout: fixed;
+            text-transform: uppercase;
+            border-collapse: collapse;
+            margin: 0;
+
+            tr {
+                th,
+                td { padding: 5px 10px; }
+
+                th {
+                    font-weight: 600;
+                    background: rgba(0,0,0,.05);
+
+                   &:first-child {
+                        width: 120px;
+                        #border-radius > .left-top();
+                    }
+
+                    &:nth-child(2) { width: 120px; }
+
+                    &:last-child { #border-radius > .right-top(); }
+                }
+            }
+        }
+    }
+
+    /* Registration summary ***/
+    .registration-summary {
+        position: relative;
+
+        /* Registration summary tabs navigation ***/
+        .bill-tabs {
+            position: relative;
+            padding-top: 20px;
+            .size(70px, 100%);
+
+            .iScrollHorizontalScrollbar { 
+                left: 0;
+                right: 0;
+                top: 10px;
+            }
+
+            .wrapper {
+                .float();
+            }
+
+            li {
+                margin: 5px 0 0 0;
+                line-height: 1em;
+                vertical-align: middle;
+                min-width: 95px;
+                height: 45px;
+                background: rgba(0,0,0,.05);
+                .show;
+                .pull-left;
+                .box-shadow(~"inset -1px 0 1px rgba(0,0,0,.1)");
+                #border-radius > .top();
+
+                .bill-toggle {
+                    color: @grey4;
+                    text-transform: uppercase;
+                    padding: 10px;
+                    cursor: pointer;
+                    .float;
+                    .show;
+                    .no-transition;
+
+                    .bill-entity-icon {
+                        .square(25px);
+                        float: left;
+                        margin-right: 10px;
+                        position: relative;
+                        padding: 5px;
+                        background: @gcard;
+
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+
+                        .icons {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background-size: 70px;
+                            .square(25px);
+
+                            &.icon-company {
+                                background-color: @ccard;
+                                background-position: 6px -2013px;
+                            }
+
+                            &.icon-travel-agent {
+                                background-color: @tacard;
+                                background-position: 6px -2082px;
+                            }
+                        }
+                    }
+
+                    .price {
+                        font-weight: 600;
+                        .pull-left;
+
+                        span:not(.currency) { 
+                            font-size: 14px;
+                            font-weight: 400;
+                            .show;
+                        }
+                    }
+
+                    .card-logo,
+                    .payment {
+                        font-size: 12px;
+                        line-height: 12px;
+                        margin-left: 20px;
+                        text-align: right;
+                        .pull-left;
+                        .size(20px, 50px);
+                        .opacity(50);
+
+                        img { .size(auto, 40px); }
+                    }
+
+                    .card-logo {
+                        &.blank {
+                            img {
+                                .size(20px, auto);
+                            }
+                        }
+                    }
+
+                    &.error,
+                    &.has-icon {
+                        position: relative;
+                        padding-left: 20px;
+                    }
+
+                    &.error {
+                        &:after {
+                            content: "!";
+                            position: absolute;
+                            top: 5px;
+                            left: 5px;
+                            font-size: 12px;
+                            line-height: 14px;
+                            text-align: center;
+                            color: @white;
+                            background: @red;
+                            .square(14px);
+                            #border-radius > .rounded(14px);
+                        }
+                    }
+
+                    &.has-icon {
+                        .icons:not(.icon-company):not(.icon-travel-agent) {
+                            background-size: 80px;
+                            .square(14px);
+                            top: 5px;
+                            left: 5px;
+                            position: absolute;
+                            .opacity(50);
+
+                            &.icon-room-lock {
+                                background-position: 1px -6026px;
+                            }
+                        }
+
+                        &.error {
+                            &:after {
+                                top: 25px;
+                            }
+                        }
+                    }
+                }
+
+                &.new-bill {
+                    min-width: 45px; 
+                    background: transparent;
+                    padding: 5px 0 0 5px;
+                    .box-shadow(none);
+
+                    .button {
+                        .square(45px);
+                        #border-radius > .bottom(0);
+                        .box-shadow(none);
+
+                        .icons { margin-top: -8px; }
+
+                        &:hover,
+                        &:active { 
+                            .box-shadow(~"inset 1px 1px 1px rgba(0,0,0,.3)");
+                        }
+                    }
+                }
+
+                &.with-button {
+                    #flexbox > .parent(row wrap, '', center, '');
+
+                    .button {
+                        margin-right: 8px;
+                        padding: 0;
+                        background-position: 12px -3929px;
+                        background-color: @white;
+                        .hide();
+                        .square(35px);
+                    }
+                }
+
+                &.ui-tabs-active,
+                &.active {
+                    line-height: 1em;
+                    margin-top: 0;
+                    height: 50px;
+                    background: rgba(0,0,0,.1);
+                    .box-shadow(none);
+
+                    &.with-button {
+                        .button {
+                            .show();
+                        }
+                    }
+
+                    a {
+                        color: @textColor;
+
+                        .card-logo,
+                        .payment,
+                        &.has-icon .icons { .opacity(100); }
+                    }
+                }
+            }
+
+            &.with-incoming {
+                .calc-width(100, 280);
+            }
+        }
+
+        .incoming-billing {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            font-size: 15px;
+            line-height: 40px;
+            text-transform: uppercase;
+            padding-right: 15px;
+            background: @arrowUp no-repeat 100% 45%;
+
+            &.active { background-image: @arrowDown; }
+        }
+
+        /* Registration summary tabs ***/
+        .bill-summary {
+            position: relative;
+            
+            /* Short bill summary ***/
+            .bill-summary-wrapper {
+                width: 100%;
+                padding: 10px;
+                background: rgba(0,0,0,.1);
+                #border-radius > .rounded();
+
+                .scrollable {
+                    height: 50px;
+                }
+                
+                .iScrollHorizontalScrollbar { 
+                    left: 10px;
+                    right: 10px;
+                    top: 64px;
+
+                    .iScrollIndicator {
+                        background-color: rgba(0,0,0,.1);
+                    }
+                }
+                
+                .days {
+                    > button,
+                    .days-wrapper {
+                        .pull-left();
+                    }
+
+                    > button {
+                        .size( 50px, 30px );
+                        overflow: hidden;
+                        background-color: @grey1;
+                     
+                        .icons {
+                            width: 100%;
+                        }
+
+                        .icon-double-arrow {
+                            background-position: 7px -1587px;
+                        }
+                        
+                        &.next {
+                            margin-left: 1px;
+                            .box-shadow();
+                        }
+
+                        &.prev {
+                             .box-shadow(0px 1px 0 rgba(0, 0, 0, 0.15));
+                        }
+
+                        &.disabled {
+                            cursor: initial;
+                            .icon-double-arrow {
+                                 background-position: 7px -1527px;
+                                 opacity: 0.2;
+                            }
+
+                        }    
+                    }
+
+                    .days-wrapper {
+                        width: 100%;
+                        overflow: hidden;
+                        max-height: 60px;
+
+                        .wrapper {
+                            li {
+                                
+                                .no-expense,
+                                .toggle{
+                                    border-radius: 0;
+                                    font-weight: normal;
+                      
+                                }
+                                &.check-out {
+                                    padding-right: 0;
+                                }
+
+                                &.active {
+                                    font-style: normal;
+                                    height: 50px;
+                                    .price {
+                                        font-weight: 600;
+                                    }
+                                }
+
+                                &.today .toggle {
+                                    color: @blue;
+                                }
+
+                                .active,
+                                &.today .active {
+                                    .gradient( @orangeEnd, @orangeStart);
+                                    color: @white;
+                                }
+                            }
+                            width: auto;
+                            min-width: 60px;
+                        }
+                    }
+                }
+
+                .scrollable {
+                    .float;
+                    /* Container of the days carousel */
+                     > .with-days {
+                         width: 100%;
+                        .pull-left();
+                        position: relative;
+
+                        .days {
+                            .calc-width(100, 80);
+
+                            &.with-date {
+                                .calc-width(100,160);
+                            }
+                        }
+                        
+                        &:not(.no-border) {
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                right: 2px;
+                                height: 50px;
+                                border-right: 1px solid rgba(0,0,0,.1);
+                            }
+                        }
+                     }
+                    
+                    /* Package/Charges List Scroller */
+                     > .package-list {
+                        .pull-right();
+                        .calc-width(100, 540);
+                        min-height: 59px;
+                        position: relative;
+                        z-index: 2;
+                        .iScrollHorizontalScrollbar {
+                            .show();
+                            top: 55px;
+                            z-index: -1;
+                        }
+                     }
+
+                    &.with-allowances {
+                        .calc-width( 100, 100);
+                    }
+                }
+
+                .wrapper {
+                    padding: 0;
+                    margin: 0;
+                    min-height: 52px;
+                    min-width: 100%;
+
+                    li {
+                        margin: 0 5px 0 0;
+                        .show;
+                        .pull-left;
+
+                        .toggle,
+                        .no-expense {
+                            position: relative;
+                            color: @grey3;
+                            font-size: 11px;
+                            line-height: 16px;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            height: 50px;
+                            min-width: 60px;
+                            max-width: 120px;
+                            padding: 0 5px;
+                            cursor: pointer;
+                            .clickable;
+                            .show;
+
+                            .date { 
+                                position: absolute;
+                                top: 5px;
+                                right: 5px; 
+                            }
+
+                            .guest-status {
+                                position: absolute;
+                                top: 30px;
+                                left: 5px;
+                                float: none;
+                                .square(15px);
+
+                                &.check-in { background-position: 3px -77px; }
+                                &.check-out { background-position: 3px -103px; }
+                            }
+
+                            .day,
+                            .expense {
+                                text-align: left;
+                                margin-top: 5px;
+                                .nowrap();
+                                .show;
+                            }
+
+                            .price {
+                                font-size: 16px;
+                                text-align: right;
+                                margin-top: 10px;
+                                .show;
+                            }
+
+                            .expense {
+
+                            }
+
+                            &.active {
+                                background: @white;
+                                height: 60px;
+                                #border-radius > .bottom(0);
+                                .box-shadow(1px 0 0 rgba(0,0,0,.15));
+                            }
+                        }
+
+                        .with-icon {
+                            padding-top: 28px;
+                            font-size: 11px;
+                            line-height: 9px;
+                            .size(50px, 60px);
+
+                            .icons { top: 5px; }
+                        }
+
+                        .no-expense {
+                            cursor: default;
+                            .box-shadow(none);
+
+                            &:hover,
+                            &:active { .box-shadow(none); }
+                        }
+
+                        &.active { 
+                            .toggle,
+                            .no-expense { color: @textColor; }
+                        }
+
+                        &.package {
+                            .toggle,
+                            .no-expense { background-color: @grey1; }
+                        }
+
+                        &.check-in,
+                        &.check-out {
+                            .toggle,
+                            .no-expense {
+                                padding-left: 30px;
+
+                                .day,
+                                .expense { margin-left: -25px; }
+                            }
+                        }
+
+                        &.add-new,
+                        &.go-to-date,
+                        &.check-out {
+                            margin-right: 10px;
+                            padding-right: 10px;
+                            position: relative;
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                height: 50px;
+                                border-right: 1px solid rgba(0,0,0,.1);
+                            }
+                        }
+
+                        &.go-to-date {
+                            .button {
+                                padding-left: 5px;
+                                padding-right: 5px;
+                            }
+
+                            .icons.icon-forward {
+                                background-position: 3px -9224px;
+                                background-size: 80px;
+                            }
+                        }
+
+                        &.add-new {
+                            .button { 
+                                &:not(:last-child) { margin-right: 10px; }
+                            }
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                            padding-right: 0;
+
+                            &:after { .hide; } 
+                        }
+                    }
+                }
+
+                .allowance {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    .toggle {
+                        color: @black;
+                        font-size: 12px;
+                        line-height: 16px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        height: 50px;
+                        min-width: 60px;
+                        max-width: 120px;
+                        padding: 0 5px;
+                        cursor: pointer;
+                        background: @white;
+                       
+                        .clickable;
+                        .show;
+    
+                        .day {
+                            text-align: left;
+                            margin-top: 5px;
+                            .nowrap();
+                            .show;
+                        }
+
+                        .price {
+                            font-size: 16px;
+                            text-align: right;
+                            margin-top: 10px;
+                            .show;
+                        }
+
+                        &.active {
+                            height: 60px;
+                        
+                            #border-radius > .bottom(0);
+                            .box-shadow(1px 0 0 rgba(0,0,0,.15));
+                        }
+                    }
+                }
+            }
+
+            /* Detailed bill summary ***/
+            .summary-expanded {
+                width: 100%;
+                padding: 10px;
+                background: @white;
+                #border-radius > .rounded();
+                .show;
+
+                &.no-padding {
+                    padding: 0;
+                }                  
+
+                /* Stay charges ***/
+                .toggle {
+                    color: @textColor;
+                    width: 100%;
+                    background-position: 98% 50%;
+                    .show;
+
+                    .price {
+                        display: inline-block;
+                        font-size: 30px;
+                        line-height: 20px;
+                        font-weight: 300;
+                        #pixel-to-percent > .width(240, 1926);
+
+                        span:not(.currency) {
+                            font-size: 12px;
+                            text-transform: uppercase;
+                            font-weight: 400;
+                            .show;
+                        }
+                    }
+
+                    .rate,
+                    .room {
+                        display: inline-block;
+                        font-size: 18px;
+                        vertical-align: top;
+                        text-transform: uppercase;
+
+                        span {
+                            color: @grey3;
+                            font-size: 14px;
+                            line-height: 1em;
+                            text-transform: uppercase;
+                            .show;
+                        }
+
+                        &.rate { #pixel-to-percent > .width(645, 1926); }
+                        &.room { 
+                            padding-left: 20px;
+                            #pixel-to-percent > .width(1020, 1926); 
+                        }
+                    }
+                }
+
+                /* Stay details ***/
+                .stay-details {
+                    position: relative;
+                    clear: both;
+                    padding: 10px 0;
+                    .show;
+                    .float;
+
+                    .rate-details,
+                    .room-details {
+                        color: @grey4;
+                        font-size: 14px;
+                        line-height: 21px;
+                        .show;
+                        .pull-left;
+
+                        li {
+                            margin-bottom: 0;
+                            line-height: 21px;
+                        }
+                    }
+
+                    .rate-details {
+                        padding-right: 20px;
+                        #pixel-to-percent > .width(885, 1926);
+                    }
+
+                    .room-details { 
+                        padding-left: 30px; 
+                        #pixel-to-percent > .width(1020, 1926);
+                    }
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        background-color: rgba(0,0,0,.1);
+                        width: 1px;
+                        #pixel-to-percent > .left(885, 1926);
+                        .calc-height(100, 20);
+                        .show;
+                    }
+                }
+
+                /* Expense details table ***/
+                .expense-details {
+                    margin: 0;
+                    .calc-width(100, 20);
+
+                    th {
+                        font-size: 14px;
+                        line-height: 40px;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        color: @grey3;
+
+                        &.price { width: 160px; }
+                    }
+
+                    td {
+                        font-size: 18px;
+                        line-height: 24px;
+                        text-transform: uppercase;
+                        min-height: 30px;
+                        padding: 5px 0;
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+                        width: 25%;
+
+                        &.price {
+                            font-size: 30px;
+                            line-height: 24px;
+                            font-weight: 300;
+                        }
+                    }
+
+                    tr:last-child {
+                        td { border-bottom: 0; }
+                    }
+                }
+
+                /* Allowances Details **/
+                .allowances-details {
+                    width: 100%;
+                    
+                    th {
+                        font-size: 12px;
+                        line-height: 30px;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        color: @grey3;
+                    }
+
+                    td {
+                        font-size: 18px;
+                        line-height: 30px;
+                        text-transform: uppercase;
+                        min-height: 30px;
+                        padding: 5px 0;
+                        border-bottom: 1px solid rgba(0,0,0,.1);
+                        width: 25%;
+                        vertical-align: top;
+
+                        &.date,
+                        &.amount {
+                            font-weight: 700;
+                        }
+
+                        &.date {
+                            border-bottom: 1px solid rgba(0,0,0,.15);;
+                        }
+
+                        &.last {
+                            border-bottom: 0;
+                        }
+
+                        &.column-allowance {
+                            position: relative;
+
+                            .icons {
+                                background-color: transparent;
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto;
+                                background-size: 100px !important;
+
+                                &.check-in {
+                                    background-position: 10px -465px !important;
+                                }
+
+                                &.check-out {
+                                    background-position: 10px -498px !important;
+                                }
+                            }
+
+                            .value {
+                                display: block;
+                                font-size: 14px;
+                                line-height: 1;
+                                margin-top: -5px;
+                                color: @grey3;
+                            }
+
+                            &:not(:last-child) {
+                                .icons {
+                                    right: 0;
+                                }
+                            }
+
+                            &:last-child {
+                                .icons {
+                                    left: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    th,
+                    td {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                         
+
+                        &.date {
+                            width: 120px;
+                            text-align: right;
+                        }
+
+                        &.time {
+                            width: 90px;
+                        }
+
+                        &.charge-code {
+                            width: 95px;
+                        }
+
+                        &.amount {
+                            width: 140px;
+                            background: #efefef;
+                            text-align: center;
+                        }
+
+                        &.column-allowance {
+                            text-align: right;
+
+                            &:last-child {
+                                text-align: left;
+                                padding-left: 35px;
+                            }
+
+                            &:not(:last-child) {
+                                padding-right: 35px;
+                            }
+                        }
+                    }
+
+                    tr {
+                        &.last {
+                            td {
+                                border-bottom: 1px solid rgba(0,0,0,.15);;
+                            }
+                        }
+                    }
+
+                    tr:last-child {
+                        td { border-bottom: 0; }
+                    }
+                }
+            }
+        }           
+    }
+
+    /* Printables ***/
+    .invoice,
+    .registration-card { .hide; }
+    
+    /* Total Stay Fees ***/
+    .total-stay-fees {
+        padding-top: 10px;
+        #flexbox > .parent(row wrap, '', flex-start, '');
+
+        /* Reservation Overview ***/
+        .overview {
+            #flexbox > .parent(row wrap, '', '', '');
+
+            .toggle {
+                text-align: left;
+                padding-right: 20px;
+                margin-right: 10px;
+                background-position: 100% 65%;
+                max-width: 240px;
+                .show();
+
+                .title {
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-transform: uppercase;
+                    .show;
+                }
+
+                .value {
+                    font-size: 36px;
+                    line-height: 46px;
+                    font-weight: 400;
+                    .show;
+                    .nowrap();
+
+                    &.red { color: @red; }
+                    &.green { color: @green; }
+                }
+            }
+
+            .button { 
+                margin-right: 10px;
+                .show;
+
+                &.green {
+                    position: relative;
+                    margin-right: 20px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        right: -10px;
+                        background-color: rgba(0,0,0,.1);
+                        .show;
+                        .size(100%, 1px);
+                    }
+                }
+
+                &.brand-colors { 
+                    position: relative;
+                    font-size: 11px;
+                    line-height: 1em;
+                    width: 80px;
+
+                    .icons { top: 8px; }
+                }
+
+                &.disabled {
+                    .opacity(35);
+                }
+            }
+
+            .checkbox {
+                font-size: 14px;
+                line-height: 1;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 30px 0 0 0;
+                white-space: normal;
+                overflow: visible;
+                width: 80px; 
+
+                .icon-form {
+                    top: 5px;
+                    left: 50%;
+                    margin-left: -10px;
+                }
+
+
+                &.disabled {
+                    .opacity(35);
+                }
+            }
+        } 
+
+         /* Reservation Signature ***/
+        .signature {
+            position: relative;
+            margin-left: 10px;
+
+            .toggle {
+                color: @textColor;
+                text-transform: uppercase;
+                position: relative;
+                background-position: 85% 50%;
+                .size(60px, 80px);
+                .clickable;
+
+                .icons {
+                    position: absolute;
+                    height: 24px;
+
+                    &.icon-signature { 
+                        top: 15px; 
+                        left: 15px;
+                        width: 30px;
+                    }
+
+                    &.icon-smartphone { 
+                        top: 18px; 
+                        left: 20px;
+                        width: 20px;
+                    }
+                }
+
+                &.active { 
+                    height: 70px; 
+                    background-position: 85% 42%;
+                    #border-radius > .bottom(0);
+                    .box-shadow(1px 0 0 rgba(0,0,0,.15));
+                }
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -10px;
+                background-color: rgba(0,0,0,.1);
+                .show;
+                .size(100%, 1px);
+            }
+        }
+
+        /* Reservation Payment Details ***/
+        .item-payment {
+            margin-left: auto;
+            #flexbox > .parent(row wrap, '', center, '');
+
+            .next-view {
+                position: relative;
+                line-height: 14px;
+                height: 60px;
+                padding: 10px 15px;
+                .clickable();
+
+                span { color: @textColor; }
+
+                .card-logo {
+                    margin: 0 20px 0 0;
+                    .size(40px, 50px);
+
+                    img { .size(25px, 50px); }
+
+                    .number {
+                        text-align: right;
+                        margin-right: 0;
+                        float: none;
+                        align-items: none;
+                        .show;
+                    }
+
+                    &.blank {
+                        width: 40px;
+                        text-align: right;
+                        img {
+                            .size(25px, auto);
+                        }
+                    }
+                }
+
+                .type,
+                .name {
+                    line-height: 40px;
+                    text-transform: none;
+                    .show;
+                    .nowrap();
+                }
+
+                .name { 
+                    font-size: 14px;
+                    color: @grey4;
+                    max-width: 240px; 
+                }
+
+                .type { 
+                    font-size: 18px;
+                    font-weight: 600;
+                    max-width: 140px; 
+                }
+
+                .icon-swiped { margin-top: 3px; }
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 28px;
+                    right: 14px;
+                    border-left: 4px solid transparent;
+                    border-right: 4px solid transparent;
+                    border-top: 4px solid @textColor;
+                    .square(0px);
+                }
+
+                @media only screen and (max-width: 1140px) {
+                    .name,
+                    .type { 
+                        max-width: 160px; 
+                    }
+                }
+            }
+
+            .add-new-button { 
+                padding: 0 40px; 
+                height: 60px;
+            }
+
+            .button {
+                margin: 10px;
+                .square(40px);
+
+                &.unmask-button {
+                    margin: 0 10px;
+                    .size( 60px, 65px );
+
+                    .icon-eye {
+                        background-size: 100px;
+                        background-position: 0 -10782px;
+                    }
+                }
+            }
+        }
+
+        /* Groups & Accounts Overview ***/
+        .group-overview {
+            width: 100%;
+            .float;
+
+            li {
+                font-size: 14px;
+                line-height: 40px;
+                text-transform: uppercase;
+                margin: 0 10px 0 0;                
+                .pull-left;
+
+                .title,
+                .value {
+                    .pull-left;
+                }
+
+                .value {
+                    font-size: 30px;
+                    margin-left: 5px;
+
+                    &.red { color: @red; }
+                    &.green { color: @green; }
+                }
+
+                .button {
+                    margin-right: 5px;
+
+                    &.with-icon { .square(40px); }
+                }
+
+                &.break {
+                    padding: 0 10px 0 0;
+                    border-right: 1px solid rgba(0,0,0,.1);
+                }
+
+                &:last-child { 
+                    margin-right: 5px;
+                    .pull-right; 
+                }
+            }
+        }
+
+        /* Fee details ***/   
+        .details {
+            padding-top: 10px;
+            width: 100%;
+
+            /* Total stay fees table ***/
+            .total-fees {
+                width: 100%;
+                font-size: 14px;
+                line-height: 21px;
+                text-transform: uppercase;
+                table-layout: auto;
+                border-collapse: separate; 
+                border-spacing: 0 10px;
+                margin: 0;
+
+                .action {
+                    .checkbox {
+                        margin: 0;
+                        padding: 0;
+                        .size(35px, 60px);
+
+                        .icon-form { 
+                            top: 7px; 
+                            left: 20px;
+                        }
+
+                        input {
+                            min-height: 35px;
+                            line-height: 35px;
+                        }
+                    }
+                }
+
+                .active {
+                    .action {
+                        .icon-form { background-color: @grey1; }
+                    }
+                }
+
+                tfoot {
+                    td:last-child { text-align: right; }
+                }
+
+                tr {
+                    th,
+                    td {
+                        &.align-right {
+                            text-align: right;
+                        }
+                    }
+
+                    th {
+                        padding: 0 10px;
+                        font-weight: 600;
+
+                        &.description {
+                            padding: 0 10px 0 30px;
+                        }
+
+                        .sort {
+                            position: relative;
+                            cursor: pointer;
+                            padding-left: 20px;
+                            .show;
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                top: 2px;
+                                left: 0;
+                                background: @arrowSort no-repeat;
+                                background-size: 14px;
+                                .square(14px);
+                                .show();
+
+                                @media @highdpi {
+                                    background-image: @arrowSort2x;
+                                }
+                            }
+
+                            &.sorting-desc {
+                                &:after { .rotate(180deg); }
+                            }
+                        }
+
+                        &.form,
+                        &.action { 
+                            padding: 0;
+                            text-align: center;
+                        }
+
+                        &.form { width: 80px; }
+                        &.action { width: 60px; }
+                    }
+
+                    td {
+                        color: @grey4;
+                        background: rgba(0,0,0,.05);
+                        padding: 10px;
+                        overflow: visible;
+                        .select { width: 60px; }
+
+                        &.credits {
+                            .button {
+                                margin-left: 10px;
+                            }
+                        }
+
+                        &.description {
+                            font-style: normal;
+
+                            strong {
+                                font-weight: 600;
+
+                                &.toggle {
+                                    cursor: pointer;
+
+                                    .icon-double-arrow {
+                                        display: inline-block; 
+                                        background-position: 1px -797px;
+                                        background-size: 60px;
+                                        .square(12px);
+                                        .icons > .rotate-down;
+                                    }
+
+                                    &.active {
+                                        padding-bottom: 5px;
+                                        .box-shadow(0px 1px 0 rgba(0, 0, 0, 0.15));
+
+                                        .icon-double-arrow {
+                                            background-position: 3px -798px;
+                                            .icons > .rotate-up;
+                                        }
+                                    } 
+                                }
+                            }
+
+                            span:not(.currency),
+                            strong {
+                                line-height: 1;
+                                .show();
+                            }
+
+                            .edited {
+                                padding-left: 14px;
+                                background-position: 0 -4000px;
+                            }
+
+                            .reference {
+                                color: @grey3;
+                            }
+
+                            .adjusted {
+                                em {
+                                    color: darken(@yellow, 10);
+                                }
+                            }
+
+                            .charge-items {
+                                font-size: 0.875em;
+                                margin-bottom: 10px;
+                                margin-top:5px;
+
+                                li {
+                                    margin:0 0 5px 0; 
+                                    .box-shadow(0px 1px 0 rgba(0, 0, 0, 0.10));
+                                    #flexbox > .parent(row, center, center, center);
+
+                                    &.with-reference {
+                                        position: relative;
+                                        overflow: visible;
+
+                                        .icon-invoice-blue { 
+                                            position: absolute;
+                                            top: -2px;
+                                            left: -20px;
+                                            background-size: 80px;
+                                            background-position: 2px -7503px;
+                                            .size(18px, 15px);
+                                        }
+                                    }
+                                }
+
+                                strong,
+                                .cost {
+                                    line-height: inherit;
+                                }
+
+                                strong {
+                                    .calc-width(100, 100);
+                                    word-break:break-all;
+                                }
+
+                                .cost {
+                                    width: 100px;
+                                    text-align: right;
+                                    text-transform: none;
+                                    &.fee {     
+                                        color: @red;       
+                                    }      
+
+                                    &.credit {        
+                                        color: @green;     
+                                    }
+                                }
+                            }
+
+                            &.with-reference {
+                                position: relative;
+
+                                .icon-invoice-blue { 
+                                    position: absolute;
+                                    top: 50%;
+                                    left: -10px;
+                                    margin-top: -9px;
+                                    background-size: 80px;
+                                    background-position: 2px -7503px;
+                                    .size(18px, 15px);
+                                }
+                            }
+                        }
+
+                        &.total-label { 
+                            text-align: right; 
+
+                            .button { margin-right: 5px; }
+                        }
+
+                        &.total-value { 
+                            font-size: 18px;
+                            font-weight: 600;
+
+                            strong {
+                                color: @logoPrimary;
+                                font-size: 30px;
+                                font-weight: 600;
+                            }
+
+                            &.red,
+                            &.red strong { color: @red; }
+                            &.green,
+                            &.green strong { color: @green; }
+                        }
+
+                        &.action { padding: 10px 0; }
+                    }
+
+                    &.active {
+                        td {
+                            color: @textColor;
+                            background: @white;
+                        }
+                    }
+
+                    &.edit {
+                        td { 
+                            vertical-align: middle; 
+
+                            .button { 
+                                .square(40px); 
+
+                                &:not(.inline) { .show; }
+                            }
+                        }
+                    }
+
+                    &.pagination {
+                        td {
+                            .numbers-pagination, 
+                            .search-pagination {
+                                position: static;
+                                left: auto;
+                                bottom: auto;
+                                padding: 0;
+                                height: 40px;
+                                background-color: transparent;
+                                .box-shadow(none);
+
+                                .button { font-size: 14px; }
+
+                                &:before,
+                                &:after { .hide; }
+                            }
+                        }
+                    }
+                }
+
+                tr:last-child {
+                    td { border-bottom: 0; }
+                }
+            }
+
+            /* Signature **/
+            &.signature-wrapper {
+                display: table;
+                table-layout: fixed;
+                position: relative;
+                padding: 10px 10px 40px;
+                line-height: 1em;
+                background: @white;
+                #border-radius > .rounded();
+                .size(200px, 100%);
+                .box-shadow();
+
+                figure {
+                    background-color: #fff;
+                    display: table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                    overflow: hidden;
+                    .size(200px, 100%);
+
+                    img { 
+                        max-width: 100%;
+                        max-height: 100%;
+                        height: auto;
+                    }
+                }
+
+                .signature-date {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+
+            /* Charges Accepted ***/
+            &.charges-accepted {
+                text-align: center;
+                padding: 10px;
+                background: @white;
+                #border-radius > .rounded();
+                .box-shadow();
+
+                em { .show; }
+            }
+        }
+    }
+
+    .signature-header {
+        margin-top: 20px;
+        padding: 10px 0;
+        .float;
+        .box-shadow(inset 0 1px 0 rgba(0,0,0,.1));
+
+        h2 { 
+            margin: 0;
+            line-height: 40px;
+            .pull-left;
+        }
+
+        .button {
+            line-height: 40px;
+            .pull-right;
+        }
+    }
+}
+
+/* Complete registration */
+.complete-registration {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    background: @background;
+    .box-shadow(inset 0 1px 0 rgba(0,0,0,.1));
+    #flexbox > .parent(row wrap, flex-end, center, space-between);
+    
+    &.form {
+        .entry {
+            flex: 1 1 auto;
+            margin: 0;
+            padding-right: 20px;
+            .calc-width(100, 400);
+            .float;
+
+            .checkbox {
+                font-size: 14px;
+                line-height: 20px;
+                text-transform: uppercase;
+                .show;
+            }
+
+            .termsandconditions-checkbox {
+                padding: 0;
+                .square(20px);
+            }
+
+            .agree-terms-and-conditions { 
+                display: inline;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+
+            .checkbox {
+                margin-bottom: 7px;
+
+                .icon-checkbox { 
+                    top: 0;
+                    left: 0; 
+                }
+
+                &.single { margin: 15px 0 0 0; }
+
+                &:last-child { 
+                    clear: both; 
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .actions {
+        flex: 0 1 auto;
+        width: 400px;
+
+        .button {
+            font-size: 18px;
+            line-height: 50px;
+            width: 100%;
+        }
+    }
+}

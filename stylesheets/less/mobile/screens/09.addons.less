@@ -1,0 +1,109 @@
+.addons-content {
+    height: 100%;
+
+    .wrapper {
+        padding: 0;
+    }
+
+    .addons {
+        grid-template-columns: 1fr;
+        grid-column-gap: 0;
+
+        .addon-categories {
+           grid-column: 1/span 2;
+           grid-row: 2;
+           background-color: rgba(0,0,0,.1);
+
+           li {
+               margin: 0;
+           }
+
+           .button {
+               background: transparent;
+               border-radius: 0px;
+               box-shadow: none;
+           }
+        }
+
+        .addon-items {
+            padding: 20px;
+            grid-column: 1/span 2;
+        }
+
+        .addon-items {
+            .options {
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .addon-tab {
+                li {
+                    display: flex;
+                    flex-flow: column wrap;
+                    align-items: center;
+
+                    .data {
+                        text-align: center;
+                    }
+
+                    .price {
+                        display: grid;
+                        grid-template-columns: 2fr 1fr;
+                        grid-template-rows: repeat(2, 18px);
+                        grid-column-gap: 5px;
+                        padding: 0;
+                        margin: 10px 0;
+
+                        > * {
+                            position: static;
+                        }
+                    }
+
+                    .value {
+                        grid-column: 1;
+                        grid-row: 1/span 2;
+                    }
+
+                    .amount-type,
+                    .post-type {
+                        line-height: 14px;
+                        grid-column: 2;
+                    }
+
+                    .amount-type {
+                        padding-top: 4px;
+                        grid-row: 1;
+                    }
+
+                    .post-type {
+                        padding-bottom: 4px;
+                        grid-row: 2;
+                    }
+
+                    .list-price {
+                        grid-column: 1/span 2;
+                        grid-row: 3;
+                        text-align: center;
+                    }
+
+                    .add-enhancement {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+
+                        .select {
+                            width: 18ch;
+                            margin-right: 10px;
+                        }
+
+                        .button {
+                            width: 12ch;
+                            order: 2;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,239 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+
+/* Screen positioning       ==============================*/
+    .content:not(#login) {
+        top: 60px;
+        .calc-height(100, 60); /* %, px */
+
+        /** Rooms screen ***/
+        &#rooms {
+            top: 140px;
+            .calc-height(100, 160); /* %, px */
+        }
+
+        &#filter-options {
+            top: 80px;
+            .calc-height(100, 100); /* %, px */
+        }
+
+        &#guest-info {
+            top: 120px;
+            .calc-height(100, 120); /* %, px */
+        }
+    }
+
+/* Nav Bar                  ==============================*/
+    .nav-bar{ 
+        height: 60px;
+
+        .nav-toggle,
+        .back-button,
+        .toggle { top: 10px; }
+
+        h1 {
+            .h2;
+            line-height: 60px;
+        }
+
+        .toggle {
+            &.only-icon {
+                right: 10px;
+            }
+
+            &.complete { 
+                right: 20px;
+                font-size: 16px; 
+            }
+        }
+    }
+
+/* 5. COMPONENTS
+==========================================================*/
+
+/* Search bar               ==============================*/
+    .search-form { padding: 10px 20px; }   
+
+/* Dashboard page           ==============================*/
+    #dashboard {
+        .wrapper {
+            #pixel-to-percent > .side-padding( 128, 2048 );
+
+            h2 {
+                margin: 60px 0 20px 0;
+                font-size: 48px;
+                line-height: 48px;
+            }
+
+            #guests-today {
+                text-align: center;
+                padding-bottom: 40px;
+                border-bottom: 1px solid rgba(0,0,0,.1);
+
+                li {
+                    display: inline-block;
+                    margin-right: 10px;
+                    float: none;
+                    .size(175px, 215px);
+
+                    .button {
+                        line-height: 1.325em;
+                        .square(100%);
+                        .show;
+
+                        strong {  font-size: 110px; }
+                    }
+                }
+            }
+
+            #stats-today {
+                text-align: center;
+                .float;
+
+                li {
+                    color: @grey3;
+                    font-size: 16px;
+                    line-height: 1.5em;
+                    text-align: center;
+                    text-transform: uppercase;
+                    padding-bottom: 40px;
+                    margin: 0 20px 0 0;
+                    border-bottom: 0;
+                    .calc-width(24.33, 13.33); /* %, px */ /* Modified by Qburst to show 4 status in a row*/ 
+                    .pull-left;
+                    .show;
+
+                    em {
+                        float: none;
+                    }
+
+                    span {
+                        font-size: 48px;
+                        float: none;
+                        font-weight: 300;
+                        text-align: center;
+                        margin: 0;
+                    }
+
+                    &:last-child { margin-right: 0; }
+                }
+            }
+        }
+    }
+
+/* Rooms page               ==============================*/
+    
+    /* Rooms listing ***/
+    #rooms {
+        .wrapper { padding: 0 20px; }
+
+        li {
+            margin-bottom: 10px;
+
+            a {
+                border-bottom: 0;
+                .clickable;
+
+                &:hover,
+                &:active { background-color: @white; }
+            }
+        }
+
+        .iScrollVerticalScrollbar { 
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    /* Rooms filters ***/
+    #filter-rooms {
+        .wrapper {
+            .float;
+
+            .holder {
+                margin-right: 20px;
+                .calc-width(50, 10); /* %, px */
+                .pull-left;
+
+                &:nth-child(2n) { margin-right: 0; }
+            }
+
+            .entry {
+                .radio,
+                .checkbox { 
+                    line-height: 40px;
+                    height: 40px;
+
+                    .icon-form { 
+                        top: 10px; 
+                        left: 0;
+                    }
+                }
+            }
+        }
+
+        .iScrollVerticalScrollbar { 
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+/* Room details page        ==============================*/
+
+    #room-details {
+        #room-header {
+            padding: 20px;
+
+            h1 {
+                font-size: 72px;
+                line-height: 80px;
+                padding-left: 92px;
+            }
+
+            .select {
+                margin: 18px 0;
+                width: 40%;
+
+                select { 
+                    line-height: 24px;
+                    min-height: 44px;
+                    height: 44px;
+                }
+
+                &:after { top: 7px; }           
+            }
+        }
+
+        #guest-info { 
+
+            .wrapper {
+                .guest-image,
+                .checkout-guest { margin-top: 60px; }
+
+                .status { font-size: 26px; }
+            }
+
+            &.no-content {
+                .info {
+                    .h1 { 
+                        font-size: 36px;
+                        line-height: 36px;
+                        margin: 18px 0;
+                    }
+                }
+            }
+
+            .iScrollVerticalScrollbar { right: 10px; }
+        }
+    }
+    
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

@@ -1,0 +1,5969 @@
+/* 1. ROOT
+==========================================================*/
+    * {
+        text-shadow: none !important;
+        filter:none !important;
+        -ms-filter: none !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @page { margin: 1cm; }
+
+    html {
+        #font > .sans-serif(8pt, 400, 1.3);
+        color: @textColor;
+        background: transparent !important;
+    }
+
+    body { overflow: visible; height:auto; }
+
+    #main-menu,
+    #availability,
+    .logo-hide,
+    .text-hide,
+    .no-print,
+    .numbers-pagination,
+    .search-pagination,
+    .reservation-tabs-nav,
+    .reservation-list,
+    .search-form,
+    .release-notes,
+    .fullscreen-header,
+    .commissions-filters,
+    .overbooking-header,
+    #find-invoices,
+    .cards .ui-resizable-handle { display: none !important; }
+
+/* 2. TYPOGRAPHY
+==========================================================*/
+    p,
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4 { orphans: 3; widows: 3; }
+
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4 { page-break-after: avoid; }
+
+    q {quotes: none}
+    q:before, q:after {content: ""}
+
+    a { .no-transition(); }
+
+    table {
+        margin: 0;
+        width: 100%;
+        text-transform: uppercase;
+        table-layout: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+
+            th { white-space: normal; }
+
+            th,
+            td {
+                font-size: 8pt;
+                line-height: 1;
+                vertical-align: top;
+                text-align: left;
+                white-space: normal;
+                page-break-after: auto;
+                page-break-inside: avoid;
+            }
+
+            th {
+                padding: 4pt 4pt 4pt 0;
+
+                &:first-child { padding-left: 4pt; }
+                &:last-child { padding-right: 0; }
+            }
+
+            td {
+                padding: 4pt 8pt 4pt 0;
+                border-bottom: 1px solid @grey2;
+
+                /* Fix for line break as first child ***/
+                br {
+                    content: "" !important;
+                    display: block !important;
+                }
+
+                &:first-child { padding-left: 4pt; }
+                &:last-child { padding-right: 0; }
+            }
+
+            &:last-child {
+                td { border-bottom: 0; }
+            }
+        }
+
+        thead {
+            tr {
+               th {
+                    font-weight: 600;
+                    background: @grey1;
+                }
+            }
+        }
+
+        tfoot {
+            td { border-bottom: 0; }
+        }
+    }
+
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+
+/* App screens              ==============================*/
+    .container {
+        position: static;
+        top: 0 !important;
+        left: 0 !important;
+        height: auto !important;
+        overflow: visible;
+        .box-shadow(none);
+
+        .page {
+            position: static;
+            top: 0 !important;
+            left: 0 !important;
+            height: auto !important;
+            background: transparent !important;
+            overflow: visible;
+            .hide;
+
+            &.page-current {
+                .show;
+                .box-shadow(none);
+            }
+        }
+
+        /* Page inner container ***/
+        .content,
+        .main-view,
+        .nested-view {
+            position: static;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: auto !important;
+            right: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            overflow: visible;
+        }
+    }
+
+    .root-view,
+    .ui-router-wrapper {
+        position: static !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: auto !important;
+        right: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        overflow: visible;
+    }
+
+    .main-view,
+    .nested-view,
+    .view-current { background: transparent !important; }
+
+    .scrollable { overflow: visible; }
+
+    .wrapper {
+        padding: 0 !important;
+        transform: translate(0px, 0px) !important;
+    }
+
+    .iScrollVerticalScrollbar,
+    .iScrollHorizontalScrollbar { .hide; }
+
+/* Nav Bar                  ==============================*/
+    .nav-bar {
+        position: relative;
+        height: auto;
+        padding: 0;
+        background: transparent;
+        margin-bottom: .5cm;
+        .box-shadow(none);
+
+        .switch-button,
+        .back-button,
+        .show-mobile,
+        .icon-alert { display: none !important; }
+
+        h1 {
+            font-size: 12pt;
+            line-height: 1;
+
+            .hotel,
+            .user { font-size: 8pt; }
+
+            .date { .hide; }
+        }
+
+        .logo {
+            margin: 0 auto 1pt;
+            .size(15px, auto);
+            .show;
+
+            img { .size(100%, auto); }
+        }
+
+        &.logo-print {
+            margin-bottom: 0;
+
+            h1 { .hide; }
+        }
+
+        &.no-print { .hide; }
+    }
+
+/* Icons                    ==============================*/
+    .guest-status {
+        background-color: transparent !important;
+        background-size: 20px;
+        border: 1px solid @textColor;
+        margin-right: 4pt;
+        .square(20px);
+
+        &.pre-check-in,
+        &.check-in,
+        &.check-out,
+        &.inhouse,
+        &.late-check-out,
+        &.cancel { background-image: @iconPrint; }
+
+        &.pre-check-in,
+        &.check-in { background-position: -1px -1px; }
+        &.check-out { background-position: -1px -21px; }
+        &.inhouse { background-position:  -1px -40px; }
+        &.late-check-out { background-position: 0 -60px; }
+        &.cancel { background-position: -1px -81px; }
+
+        &.small-icon {
+            background-size: 20px;
+            .square(20px);
+
+            &.pre-check-in,
+            &.check-in { background-position: -1px -1px; }
+            &.check-out { background-position: -1px -21px; }
+            &.inhouse { background-position:  -1px -40px; }
+            &.late-check-out { background-position: 0 -60px; }
+            &.cancel { background-position: -1px -81px; }
+        }
+
+        &.arrival,
+        &.departed { background-color: @grey1; }
+
+        &.no-show,
+        &.cancel { border-color: @grey2; }
+
+        &.no-image,
+        &.no-show { background-image: none; }
+    }
+
+    .icons {
+        background-image: @iconPrint;
+        background-repeat: no-repeat;
+        background-size: 20px;
+
+        &.icon-queued {
+            background-position: 0 -100px;
+            .square(20px);
+        }
+
+        &.icon-group { background-position: 0 -120px; }
+        &.icon-guest-company { background-position: 0 -140px; }
+        &.icon-guest-travelagent { background-position: 0 -160px; }
+        &.icon-hold { background-position: 0 -180px;
+            &.red {
+                background-position: 0 -180px;
+                }
+        }
+
+        &.icon-blocked { background-position: 4px -275px; }
+        &.icon-picked-up { background-position: 4px -315px; }
+        &.icon-available { background-position: 4px -295px; }
+    }
+
+/* 5. COMPONENTS
+==========================================================*/
+/* Action Manager           ===============================*/
+
+    /* Hide Content */
+    .actions-content {
+        .content-left,
+        .content-right {
+            .hide();
+        }
+    }
+
+    .post-form {
+        .hide();
+    }
+
+/* Availability             ==============================*/
+
+    /* Hide everything except availability ***/
+    .availability-print {
+        .container,
+        .availability-header,
+        .availability-toggle {
+            display: none !important;
+        }
+
+        #availability {
+            display: block !important;
+        }
+    }
+
+    #availability {
+
+        .dates-grid {
+
+            col {
+                width: 16%;
+
+                &.grid-col { width: 6%; }
+            }
+
+            th,
+            td {
+                text-align: right;
+                padding: 4pt;
+            }
+
+            thead {
+                th {
+
+                    span {
+                        font-weight: 400;
+                        .show();
+                    }
+
+                    &.heading {
+                        background: transparent;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    th,
+                    td {
+                        border-bottom: 1px solid @grey2;
+                    }
+
+                    &.main {
+                        th,
+                        td {
+                            font-size: 10pt;
+                            font-weight: 600;
+                        }
+                    }
+
+                    &:last-child {
+                        th,
+                        td {
+                            border-bottom: 2px solid @grey2;
+                        }
+                    }
+                }
+            }
+
+            .button {
+                display: inline;
+                font-size: 8pt;
+                line-height: 1;
+                text-align: right;
+                padding: 0;
+                background: transparent;
+                .box-shadow(none);
+            }
+        }
+
+        /* Reset hidden rows icon and visibility ***/
+        .rows-toggle {
+            background-image: none !important;
+        }
+
+        tr.hidden {
+            display: table-row !important;
+        }
+
+        tr.hide-row {
+            display: none;
+        }
+
+        .wrapper {
+            width: 100% !important;
+        }
+
+        td {
+            .rate-value {
+                word-break: break-all;
+            }
+        }
+    }
+
+/* Search                   ==============================*/
+    .search-results {
+        padding: 0;
+
+        li:not(.no-content) {
+            font-size: 8pt;
+            line-height: 10px;
+            margin: 0;
+            padding: 4pt 0;
+            text-transform: uppercase;
+            page-break-inside: avoid;
+            page-break-after: auto;
+
+            a,
+            .faux-anchor {
+                color: @textColor;
+                padding: 0;
+                .show;
+                .float;
+            }
+
+            .has-arrow { background: transparent; }
+
+            h2 {
+                font-size: 10pt;
+                line-height: 10px;
+                font-weight: 600;
+                margin: 0;
+                .nowrap();
+            }
+
+            .guest-image,
+            &.mobile-pagination { .hide; }
+
+            &:not(last-child) { border-bottom: 1px solid @grey2; }
+
+            /* AR Transactions ***/
+            &.transaction {
+
+                img {
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
+                    .size(20px, auto);
+                }
+
+                .invoice-logo {
+                    img {
+                        .size(40px, auto);
+        
+                        &.qr-code {
+                            .size(140px, auto);
+                        }
+                    }
+                }
+
+                .data {
+                    position: relative;
+                    width: -webkit-calc(~"100% - 7cm");
+                    width: -moz-calc(~"100% - 7cm");
+                    width: calc(~"100% - 7cm");
+                    .pull-left;
+
+                    h2 {
+                        .calc-width(100, 540);
+                    }
+
+                    .confirmation,
+                    .icon-time {
+                        line-height: 10px;
+                        .nowrap();
+                        .show;
+                        .pull-left;
+                    }
+
+                    .confirmation {
+
+                        color: @grey3;
+                        margin-right: 8pt;
+
+                        .value { color: @textColor; }
+                    }
+
+                    .icon-time {
+                        background: transparent;
+
+                        &:last-child:not(:nth-child(2)) {
+                            position: relative;
+                            padding-left: 8pt;
+
+                            &:after {
+                                content: '•';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                color: @grey3;
+                                .show();
+                                .size(10px, 2px);
+                            }
+                        }
+                    }
+
+                    .arrival,
+                    .departure {
+                        position: absolute;
+                        top: 2px;
+                        width: 240px;
+                        line-height: 10px;
+                        .pull-left;
+
+                        .guest-status { margin-right: 4pt; }
+
+                        .time {
+                            color: @grey3;
+                            .show;
+                        }
+                    }
+
+                    .arrival { right: 280px; }
+                    .departure { right: 80px; }
+
+                    .card-data {
+
+                    }
+                }
+
+                .amount {
+                    font-size: 12pt;
+                    font-weight: 300;
+                    line-height: 20px;
+                    width: 3cm;
+                    .pull-left;
+
+                    &.paid { color: @grey3; }
+                }
+
+                .switch-button {
+                    line-height: 20px;
+                    text-align: right;
+                    .size(20px, 4cm);
+                    .pull-left;
+
+                    input { .hide; }
+
+                    .data-on,
+                    .data-off {
+                        .switch-icon { .hide; }
+                    }
+
+                    .data-on {
+                        .hide;
+
+                        .value { color: @grey3; }
+                    }
+
+                    .data-off {
+                        .show;
+
+                        .value {
+                            color: @textColor;
+                            font-weight: 600;
+                        }
+                    }
+
+                    &.on {
+                        .data-on { .show; }
+                        .data-off { .hide; }
+                    }
+                }
+
+                .employee {
+                    line-height: 20px;
+                    text-align: right;
+                    width: 4cm;
+                    .nowrap();
+                    .pull-left;
+                }
+
+                .card-data {
+
+                    .card-logo {
+                        clear: both;
+                        .show();
+                    }
+
+                    .number,
+                    .date {
+                        position: relative;
+                        display: inline-block;
+                        padding-right: 8pt;
+                        line-height: 10px;
+                        color: @grey3;
+                        .pull-left;
+
+                        .value {
+                            color: @textColor;
+                        }
+
+                        &:after {
+                            content: '•';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            color: @grey3;
+                            .show();
+                            .size(10px, 2px);
+                        }
+                    }
+
+                    .date {
+                        margin: 0 8pt;
+                    }
+                }
+
+                &:last-child { border-bottom: 0; }
+
+                .grid-items { .hide(); }
+            }
+
+            /* Rooming List ***/
+            &.rooming-list {
+                padding: 4pt;
+
+                .check { .hide; }
+
+                .guest-image {
+                    .square(20px);
+                    .show();
+
+                    &.accompany {
+                        img {
+                            width: 15px;
+
+                            &:nth-child(2) {
+                                top: 5px;
+                                left: 5px;
+                            }
+                        }
+                    }
+                }
+
+                .stay-count,
+                .vip {
+                    font-size: 6pt;
+                    line-height: 10pt;
+                    .square(10pt);
+                }
+
+                .data {
+                    padding: 0 4pt;
+                    .calc-width(30, 20);
+                    .pull-left;
+
+                    .room {
+                        font-weight: 600;
+
+                        &.unassigned {
+                            color: @grey3;
+                            font-weight: 400;
+                        }
+                    }
+                }
+
+                .reservation-info {
+                    width: 30%;
+                    .pull-left;
+
+                    .arrival-departure,
+                    .departing {
+                        line-height: 20px;
+                        padding: 0 4pt;
+                        width: 50%;
+                        .pull-left;
+
+                        .guest-status { margin-right: 4pt; }
+                    }
+                }
+
+                .room-info {
+                    padding: 0 4pt;
+                    width: 25%;
+                    .pull-left;
+
+                    .room-type {
+                        font-weight: 600;
+                        .nowrap();
+                        .show;
+                    }
+                }
+
+                .rate {
+                    padding: 0 4pt;
+                    line-height: 20px;
+                    width: 10%;
+                    .pull-left;
+                    .nowrap();
+                }
+
+                .reservation-status {
+                    width: 5%;
+                    .pull-left;
+
+                    .guest-status {
+                        float: right;
+                    }
+                }
+            }
+
+            /* Rooms ***/
+            &.room {
+                position: relative;
+                margin-right: 5px;
+
+                a,
+                .faux-anchor {
+                    .show();
+                }
+
+                .check { .hide(); }
+
+                .room-info {
+                    .size(20px, 30%);
+                    .pull-left;
+                    position: relative;
+                    padding-right: 10%;
+
+                    h2 {
+                        margin: 0;
+                        line-height: 10px;
+                        .nowrap();
+
+                        &.out { color: @grey3; }
+
+                        .icons {
+                            display: inline-block;
+                            vertical-align: middle;
+                            .size(8pt, 15pt);
+                            margin-left: 2pt;
+
+                            &.icon-suite {
+                                background-position: 0px -339px;
+                            }
+                        }
+
+                        .room-indicator {
+                            font-size: 5pt;
+                            color: @grey4;
+                            font-weight: 400;
+                            margin-left: 2pt;
+
+                            .icons {
+                                width: 15px;
+                            }
+                        }
+                    }
+
+                    .room-type,
+                    .room-status {
+                        line-height: 10px;
+                        .nowrap();
+                        display: block;
+                    }
+
+                    .room-status {
+                        position: absolute;
+                        width: 30%;
+                        left: 70%;
+                        top:0;
+                        bottom: 0;
+                        line-height: 20px;
+                    }
+                }
+
+                .room-status {
+                    font-size: 8pt;
+                }
+
+                .reservation-status {
+                    width: 30%;
+                    .pull-left;
+
+                    .guest-status {
+                        background-image: none;
+                        margin-right: 4pt;
+                    }
+
+                    .current,
+                    .next {
+                        font-size: 8pt;
+                        line-height: 20px;
+                        .pull-left;
+                        .size(20px, 50%);
+                    }
+                }
+
+                .assigned,
+                .unassigned {
+                    font-size: 8pt;
+                    line-height: 20px;
+                    width: 20%;
+                    .pull-left;
+                }
+
+                .unassigned { color: @grey2; }
+
+                .service-status {
+                    line-height: 10px;
+                    width: 20%;
+                    color: @grey3;
+                    .pull-left;
+
+                    strong {
+                        .show();
+                    }
+                }
+
+                .guest-image,
+                .icon-queued,
+                .show-vacant {
+                    position: absolute;
+                    top: 5px;
+                    right: 0;
+                }
+
+                .guest-image {
+                    .show;
+                    .square(20px);
+                }
+
+                .show-vacant {
+                    text-align: right;
+                    line-height: 20px;
+                    width: 10%;
+                }
+
+                .vip {
+                    font-size: 4pt;
+                    line-height: 12px;
+                    background: @grey1;
+                    color: @grey3;
+                    bottom: -2px;
+                    .square(12px);
+                }
+
+                .stay-count {
+                    font-size: 6pt;
+                    line-height: 12px;
+                    background: @grey1;
+                    color: @black;
+                    bottom: -2px;
+                    .square(12px);
+                }
+
+                .tasks {
+                    margin-left: 60%;
+                    width: 18%;
+                    padding: 2pt;
+                    background-color: @grey1;
+                    .pull-left;
+
+                    li {
+                        font-style: italic;
+                        line-height: 10pt;
+                        padding: 2pt 0;
+                        display: block;
+
+                        &:last-child {
+                            border: none;
+                        }
+
+                        &.completed {
+                            color: @grey3;
+                            text-decoration: line-through;
+                            background: transparent;
+                        }
+                    }
+                }
+
+                .print-date {
+                    display: block;
+                    margin-top: 2pt;
+
+                    .arrival-date,
+                    .departure-date {
+                        clear: both;
+                        display: inline-block;
+                        vertical-align: middle;
+                        .float;
+
+                        .guest-status {
+                            .square(15px);
+                            background-size: 15px;
+
+                            &.check-out {
+                               background-position: -1px -16px
+                            }
+                        }
+
+                        time {
+                            line-height: 15px;
+                        }
+                    }
+
+                    .departure-date {
+                        margin-left: 2pt;
+                    }
+
+                }
+
+                .last-column {
+                    .pull-left;
+                    width: 20%;
+                    position:relative;
+
+                    .no-service {    
+                        position: absolute;
+                        right: 100%;
+                        width: 60px;
+                        line-height: 20px;
+                        font-weight: 600;
+                    }
+
+                    .service-status {
+                        width: 100%;
+                        float: none;
+                    }
+                }
+               
+                &.with-checkbox {
+                   
+                    height: auto;
+                    .room-dot { .hide(); }
+
+                    .room-info {
+                        height: auto;
+                        .room-type {
+                            margin-top: 2px;
+                        }
+                    }
+
+                    .reservation-status {
+                        .guest-status {
+                            background-image: @iconPrint;
+
+                            &.no-show {
+                                background-image: none;
+                            }
+                        }
+
+                        .current,
+                        .next {
+                            height: auto;
+                        }
+                    }
+
+                    .occupancy {
+                        margin-top: 2px;
+                        #flexbox > .parent('', '', center, '');
+                        padding: 0;
+
+                        .occupancy-number {
+                            margin-right: 5px;
+                    
+                            font-size: 12px;
+                            line-height: 12px;
+    
+                            .icons {
+                                .square(12px);
+                                .pull-left();
+                                background-image: @icons;
+                                margin-right: 5px;
+                                opacity: 0.5;
+    
+                                background-size: 50px;
+                
+                                &.icon-adult-2 {
+                                    background-position: 0px -5791px;
+                                }
+    
+                                &.icon-student {
+                                    background-size: 60px;
+                                    background-position: 0px -5270px;
+                                }
+    
+                                &.icon-baby {
+                                    background-position: 2px -5816px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* Commisions ***/
+            &.commision {
+                .faux-anchor {
+                    #flexbox > .parent( row wrap, flex-start, center, '' );
+                }
+
+                .has-arrow { 
+                    background: transparent; 
+                    #flexbox > .parent( row wrap, flex-start, center, '' );
+                    flex-grow: 1;
+
+                    .data {
+                        flex-grow: 1;
+                        margin: 0;
+
+                        h2 {
+                            font-size: 14px;
+                            margin: 0;
+                            line-height: 1;
+                        }
+
+                        .confirmation {
+                            font-size: 14px;
+                            height: auto;
+                            line-height: 1;
+                        }
+                    }
+
+                    .revenue,
+                    .commission {
+                        width: 80px;
+                        font-size: 14px;
+                    }
+
+                    .amount {
+                        width: 95px;
+                    }
+
+                    .revenue,
+                    .commission,
+                    .amount {
+                        text-align: right;
+                    }
+                }
+
+                .paid-status {
+                    width: 60px;
+                    color: @grey3;
+                    text-align: right;
+                    text-transform: uppercase; 
+                }
+
+                .hold-status {
+                    width: 70px;
+                    text-align: center;
+
+                    .button {
+                        .box-shadow(none);
+                        .square(30px); 
+
+                        .icon-hold {
+                            top: 5px;
+                        }
+                        
+                        &:not(.active){
+                            .hide(); 
+                        }
+                    }
+                }
+
+                .data {
+                    .confirmation {
+                        line-height: 10px;
+                        color: @grey3;
+                        .show;
+                    }
+                }
+
+                .switch-button {
+                    position: relative;
+                    text-align: right;
+                    text-transform: uppercase;
+                }
+
+                .switch-button {
+                    input { .hide(); }
+
+                    .data-on,
+                    .data-off {
+                        .value { .hide(); }
+                    }
+
+                    .data-on {
+                        .hide();
+
+                        .switch-icon { 
+                            color: @textColor;
+                            font-weight: 600;
+                        }
+                    }
+
+                    .data-off {
+                        .show();
+
+                        .switch-icon {
+                            color: @grey3; 
+                        }
+                    }
+
+                    &.on {
+                        .data-on { .show(); }
+                        .data-off { .hide(); }
+                    }
+                }
+
+                .checkbox {
+                    .hide();
+                }
+
+                &:last-child { border-bottom: 0; }
+            }
+        }
+    }
+
+/* Cards                    ==============================*/
+    .cards {
+        position: relative;
+        z-index: 9999;
+        .hide;
+
+        /* Card headers ***/
+        .cards-header {
+            height: 14pt;
+
+            .card-header {
+
+                form,
+                .card-search-form {
+                    float: none;
+                    text-align: center;
+
+                    .masked-input {
+                        color: @textColor;
+                        border: 0;
+                        background: transparent;
+                        .no-transition;
+                        .box-shadow(none);
+                        .hide;
+
+                        &.h1 {
+                            font-size: 14pt;
+                            line-height: 1;
+                            text-align: center;
+                            font-weight: 700;
+                            margin: 0;
+                            width: 100% !important;
+                            height: 14pt !important;
+                            min-height: 14pt !important;
+                            .show;
+                        }
+                    }
+                }
+
+                .guest-image,
+                .switch-button,
+                .card-actions { .hide; }
+
+                &.second,
+                &.third,
+                &.fourth { .hide; }
+            }
+        }
+
+        /* Card Tabs ***/
+        .card-tabs-nav {
+            margin-bottom: 12pt;
+
+            li {
+                text-align: center;
+                font-size: 10pt;
+                margin: 0;
+                .hide;
+
+                .button {
+                    .hide();
+                }
+
+                a { color: @grey3; }
+
+                &.ui-tabs-active { .show; }
+            }
+        }
+
+        /* Card Content - Header ***/
+        .tab-header {
+            .search-form,
+            .button { .hide; }
+
+            .totals {
+                margin-bottom: 8pt;
+                clear: both;
+                .float;
+
+                li {
+                    font-size: 8pt;
+                    line-height: 1;
+                    text-align: left;
+                    margin: 0;
+                    padding: 0 4pt;
+
+                    .label {
+                        margin: 0;
+                        float: none;
+                        .show;
+                    }
+
+                    .value {
+                        font-size: 12pt;
+                        line-height: 1;
+                        font-weight: 300;
+                        color: @textColor;
+                        .show;
+                    }
+
+                    &:last-child { .hide; }
+                }
+            }
+        }
+
+        /* AR Transactions ***/
+        .transactions {
+            .tab-header {
+                .totals {
+                    li {
+                        margin-right: 8pt;
+                        padding-right: 8pt;
+                        border-right: 1px solid @grey2;
+                        .pull-left;
+
+                        &:nth-last-child(2) {
+                            margin-right: 0;
+                            padding-right: 0;
+                            border-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Rooming List ***/
+        .rooming-list {
+            .tab-details {
+                .rooming-list-header {
+                    margin: 0;
+                    .float;
+
+                    li {
+                        font-size: 8pt;
+                        line-height: 1em;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        background: @grey1;
+                        padding: 4pt;
+                        margin: 0;
+                        .pull-left;
+
+                        &.check { .hide; }
+
+                        &.status,
+                        &.room { width: 5%; }
+                        &.rate { width: 10%; }
+                        &.date { width: 15%; }
+                        &.name,
+                        &.type { width: 25%; }
+                    }
+                }
+            }
+        }
+
+        /* Commisions ***/
+        .commisions {
+            .tab-header {
+                .totals { 
+                    li {
+                        display: inline-block;
+                        padding: 0 4pt 0 0;
+                    }
+                }
+            }
+            .tab-details {
+
+                .search-results-header {
+                    #flexbox > .parent(row, flex-start, center, center);
+                    
+                    li {
+                        margin:0;
+
+                        &.action {
+                            .hide();
+                        }
+
+                        &.paid {
+                            width: 60px;
+                            text-align: right;
+                        }
+
+                        &.hold {
+                            width: 70px;
+                            text-align: center;
+                        }
+
+                        &.amount {
+                            width: 95px;
+                            text-align: right;
+                        }
+
+                        &.commissionable {
+                            width: 100px;
+                            text-align: right;
+                        }
+
+                        &.commission,
+                        &.revenue {
+                            width: 80px;
+                            text-align: right;
+                        }
+                        
+                        &.reservation {
+                            flex-grow: 1;
+                        }
+                    }
+                    
+                } 
+
+                .print-selected {
+                    .reservation:not(.selected) { .hide; }
+                }
+            }
+
+            .search-results {
+                .commissionable {
+                    width: 100px;
+                    text-align: right;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        /* AR Statement ***/
+        .ar-statement {
+            .hide();
+        }
+
+        &.print-statement {
+            .cards-header,
+            .card-tabs-nav { .hide; }
+
+            .transactions {
+                .tab-header,
+                .search-results,
+                .billing-sidebar,
+                .billing-footer { .hide; }
+
+                .ar-statement {
+                    display: block;
+
+                    .statement-header-text,
+                    .invoice-footer {
+                        text-align: justify;
+                    }
+
+                    img {
+                        -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+                        filter: grayscale(100%);
+                    }
+
+                    .invoice-body .invoice-details tr:last-child td {
+                        margin-bottom: 12pt;
+                    }
+
+                    .invoice-footer {
+                        margin-bottom: 12pt;
+                    }
+
+                    thead th {
+                        text-transform: uppercase;
+                        background-color: @grey2;
+                        padding:4pt 0;
+                        font-size: 4pt;
+                        word-break: break-word;
+
+                        &:last-child {
+                            padding-right: 4pt;
+                        }
+
+                        &.charge-date,
+                        &.charge-code,
+                        &.charge-amount {
+                            width: 45pt !important;
+                        }
+
+                        /*Add space to Charge Amount and Amount Due*/
+                        &:nth-child(5),
+                        &:nth-child(6),
+                        &.charge-code,
+                        &.charge-date {
+                            padding-right: 4pt;
+                        }
+
+                        &.charge-description {
+                            strong {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+
+                    .invoice-details {
+                        > tbody > tr > td {
+                            border-bottom:2px solid @grey2;
+                        }
+                    }
+
+                    tbody {
+
+                        tr:not(.person) td {
+                            padding-top:4pt;
+                        }
+
+
+                        tr {
+                            td {
+                                border-bottom:1px solid @grey2;
+                                padding: 4pt 4pt 4pt 0;
+
+                                &.charge-description {
+                                    padding-right: 8pt;
+                                    word-break: break-word;
+                                } 
+
+                                &.amount-due {
+                                    vertical-align: bottom;
+                                }
+                            }
+                        }
+                    }
+
+                    .charges-table-container {
+                        padding-right: 0;
+                    }
+
+                    .charges-table {
+                        tr td {
+                            &.charge-date,
+                            &.charge-code,
+                            &.charge-amount {
+                                width: 45pt !important;
+                            } 
+                        }
+
+                        tr:last-child td {
+                            border-bottom: none;
+                        }
+                        tr:first-child td {
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+                .statement-header {
+                    &:after {
+                        display: table;
+                        clear: both;
+                        content: '';
+                    }
+                }
+
+                .invoice-header {
+                    margin-top: 1.5cm;
+                    position: relative;
+
+                    img {
+                        position: absolute;
+                        height: 30px;
+                        top: -30px;
+                        right: 0;
+                    }
+
+                    h1 {
+                        font-size:18pt;
+                        font-weight: 600;
+                    }
+
+                    .statement-company-address {
+                        font-size:10pt;
+                        font-style: italic;
+                    }
+                }
+
+                .guest-info {
+                    font-size: 9pt;
+                    width:50%;
+                    float:left;
+
+                    img {
+                        .size(40px, auto);
+                    }
+                }
+
+                .person td,
+                .payment td {
+                    padding:5pt 0;
+                    vertical-align: top;
+
+                    &.person-info {
+                        width: 3.5cm;
+                    }
+
+                    .name {
+                        font-size:11pt;
+                    }
+
+                    .person-meta {
+                        margin-top:0.05cm;
+                        display: block;
+
+                        strong {
+                            display: block;
+                        }
+                    }
+                }
+
+                .tax-breakdown {
+                    td,th {
+                        padding: 4pt;
+                        text-align: right;
+
+                        &:first-child {
+                            text-align: left;
+                            padding-left: 4pt;
+                        }
+                    }
+
+                    th {
+                        font-size: 8pt;
+                    }
+
+                    tfoot td {
+                        background-color: @grey2;
+                        font-weight: bold;
+                    }
+
+                    .tax-description {
+                        width: 50%;
+                    }
+                }
+
+                .statement-info {
+                    width:50%;
+                    float:right;
+                    margin-bottom:0.5cm;
+
+                    &:after {
+                        display: table;
+                        content: '';
+                        clear: both;
+                    }
+                }
+
+                .statement-meta {
+                    width:50%;
+                    float:left;
+                    font-size:9pt;
+                    margin-bottom:0.1cm;
+
+                    strong { display:block; }
+
+
+                    &:nth-child(3) {
+                        clear: both;
+                    }
+
+                    &:nth-child(3),
+                    &:first-child{
+                        padding-right: 1em;
+                    }
+                }
+            }
+        }
+
+        /* Open ***/
+        &.open,
+        &.fullscreen { .show; }
+    }
+
+/* Reports                  ==============================*/
+    #reports,
+    #report-update { .hide; }
+
+    #report-details {
+        position: static !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .report-header {
+
+        .totals {
+            margin-bottom: 8pt;
+            clear: both;
+
+            li {
+                display: inline-block;
+                font-size: 8pt;
+                line-height: 1;
+                color: @grey3;
+                text-transform: uppercase;
+                margin: 0 8pt 0 0;
+                padding-right: 8pt;
+                border-right: 1px solid @grey2;
+
+                span:not(.currency) {
+                    font-size: 12pt;
+                    line-height: 1;
+                    font-weight: 300;
+                    color: @textColor;
+                    .show;
+
+                    &.green,
+                    &.red,
+                    &.purple,
+                    &.brand-colors { font-weight: 600; }
+                }
+
+                &.sub {
+                    color: @grey3;
+                    border-right: 0;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                    padding-right: 0;
+                    border-right: 0;
+                }
+            }
+
+            &.legend {
+                li {
+                    .float;
+                    .icons {
+                        .square(20px);
+                        display: block;
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        .actions { .hide; }
+    }
+
+    .report-content {
+        padding: 0;
+
+        h2 {
+            font-size: 10pt;
+            line-height: 1;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 18pt 0 4pt;
+
+            &:first-child { margin-top: 0; }
+        }
+
+        .card-meta {
+            margin: 18pt 0 4pt;
+            .float;
+
+            li {
+                font-size: 10pt;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin: 0 8pt 0 0;
+                .nowrap();
+                .pull-left;
+                .show();
+
+                &.guest {
+                    min-width: 4cm;
+                }
+
+                &.balance {
+                    width: 3cm;
+                    margin-right: 0;
+                    .pull-right;
+                }
+            }
+
+            &:first-child { margin-top: 0; }
+        }
+
+        .report-footer {
+            margin-top: 4pt;
+            .float;
+
+            li {
+                line-height: 1.2;
+                width: 50%;
+                margin: 0;
+                .pull-left;
+
+                span { color: @grey3; }
+
+                &:last-child { text-align: right; }
+            }
+        }
+
+        table {
+            .unassigned { color: @grey3; }
+
+            strong { font-weight: 600; }
+
+            thead {
+                tr {
+                    &.bottom-row {
+                        th {
+                            font-weight: 400;
+                            color: @grey3;
+                            background: transparent;
+                            border-bottom: 1px solid @grey3;
+                        }
+                    }
+                }
+            }
+
+            tfoot {
+                tr {
+                    td {
+                        color: @grey3;
+
+                        span { color: @textColor; }
+
+                        &:last-child { text-align: right; }
+                    }
+
+                    &.totals {
+                        td {
+                            font-weight: 600;
+                            color: @textColor;
+                            border-top: 1px solid @grey2;
+
+                            &:last-child { text-align: left; }
+                        }
+                    }
+                }
+            }
+
+            &.condensed-print {
+                th,
+                td {
+                    font-size: 6pt;
+                    padding: 2pt 2pt 2pt 0;
+
+                    &:first-child { padding-left: 2pt; }
+                }
+            }
+
+            &.log-reports {
+                tr {
+                    &.invalid {
+                        td {
+                            color: @grey3;
+                            font-style: italic;
+                        }
+                    }
+                }
+
+                td {
+                    &.date,
+                    &.activity,
+                    &.name { width: 4cm; }
+
+                    &.details {
+                        color: @grey3;
+                        width: 12cm;
+                        white-space: normal;
+                        overflow: visible;
+
+                        strong {
+                            font-weight: 400;
+                            color: @textColor;
+                            margin-right: 10px;
+                        }
+
+                        .old {
+                            text-decoration: line-through;
+                            strong { color: @grey3; }
+                        }
+                    }
+                }
+            }
+
+            &.guest-reports {
+
+                tr {
+                    th {
+                        &:first-child { width: 2cm; }
+                    }
+
+                    td {
+                        border-bottom: 0;
+                        min-height: 20px;
+
+                        strong,
+                        span,
+                        div {
+                            page-break-inside: avoid;
+                            min-height: 10px;
+                        }
+
+                        strong {
+                            font-weight: 600;
+                            .show;
+
+                            &.title {
+                                font-size: 10pt;
+                                font-weight: 600;
+                                text-transform: none;
+                            }
+                        }
+
+                        a {
+                            color: @textColor;
+                        }
+
+                        .data {
+                            margin: 0 2pt;
+
+                            &:first-of-type,
+                            &.status,
+                            &.penalty,
+                            &.payment,
+                            &.rate { margin-left: 0; }
+
+                            &.upper { text-transform: uppercase; }
+
+                            &.room,
+                            &.rate,
+                            &.status,
+                            &.penalty,
+                            &.payment {
+                                text-transform: uppercase;
+                                .show;
+                            }
+
+                            &.rate {
+                                strong {
+                                    display: inline;
+                                    font-weight: 600;
+                                }
+                            }
+
+                            &.vip {
+                                font-size: 8pt;
+                                line-height: 1.1;
+                                font-weight: 400;
+                                text-align: left;
+                                vertical-align: inherit;
+                                background: transparent;
+                                color: @grey3;
+                                .square(auto);
+                            }
+
+                            &.guarantee {
+                                color: @grey3;
+                                text-transform: uppercase;
+                                margin-left: 4pt;
+                                width: 2cm;
+                                .show;
+                                .pull-left;
+                            }
+
+                            &.payment {
+                                line-height: 10px;
+                                color: @textColor;
+
+                                span { color: @grey3; }
+                            }
+                        }
+
+                        time {
+                            .show;
+                            .pull-left;
+
+                            span { .show; }
+                        }
+
+                        .hours {
+                            font-size: 10pt;
+                            line-height: 20px;
+                            font-weight: 600;
+                            text-align: center;
+                            border: 1px solid @textColor;
+                            margin-left: 4pt;
+                            .show;
+                            .square(20px);
+                            .pull-left;
+                        }
+
+                        .card-logo {
+                            margin-right: 2pt;
+                            .pull-left;
+                            .size(10px, 20px);
+
+                            img { .size(100%, auto); }
+                        }
+
+                        &:first-child { width: 3cm; }
+
+                        &.name { width: 7cm; }
+
+                        &.room-reservation {
+                            width: 2cm;
+                        }
+
+                        &.date {
+                            width: 3cm;
+                            .float;
+
+                            &.hour { width: 4cm; }
+                            &.guarantee { width: 6.5cm; }
+                        }
+
+                        &.balance { font-weight: 600; }
+
+                        &.guest-info {
+                            .icons {
+                                color: @grey3;
+                                line-height: 12px;
+                                padding-left: 16px;
+                                .show;
+                                .nowrap();
+                            }
+                        }
+
+                        &[rowspan] { border-bottom: 2px solid @grey2; }
+
+                        &:last-child {
+                            .data {
+                                &.room,
+                                &.rate { text-align: right; }
+                            }
+                        }
+
+                        &.secondary {
+                            color: @grey3;
+                            font-weight: 400;
+                            padding-left: 0;
+                            border-top: 1px solid @grey1;
+
+                            span {
+                                .show();
+                            }
+
+                            strong {
+                                color: @grey4;
+                                text-transform: uppercase;
+                                font-weight: 600;
+                                margin-bottom: 0;
+                                .show();
+                            }
+
+                            p {
+                                line-height: 1;
+                            }
+
+                            &.actions {
+                                p {
+                                    position: relative;
+                                    padding-left: 15px;
+
+                                    .icons {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        .square(10px);
+
+                                        &.icon-unassigned { background-position: 0 -220px; }
+                                        &.icon-assigned { background-position: 0 -240px; }
+                                        &.icon-completed { background-position: 0 -260px; }
+                                    }
+                                }
+                            }
+                        }
+
+                        &[data-count] {
+                            position: relative;
+                            padding-right: 30px;
+
+                            &:before {
+                                content: attr(data-count);
+                                position: absolute;
+                                top: 5px;
+                                right: 10px;
+                                font-size: 10pt;
+                                line-height: 15pt;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                text-align: center;
+                                color: @black;
+                                background: @grey1;
+                                .square(14pt);
+                                #border-radius > .rounded(50%);
+                            }  
+                        }
+                    }
+
+                    &.row-break {
+                        td {
+                            padding-bottom: 4pt;
+                            border-bottom: 2px solid @grey2;
+                        }
+                    }
+                }
+            }
+
+            &.cancellation-report {
+                tr td:last-child .data.room,
+                tr td:last-child .data.rate {
+                    text-align: left;
+                }
+            }
+
+            &.statistics-reports {
+
+                tr {
+                    th,
+                    td {
+                        line-height: 14pt;
+                        padding: 0 4pt;
+                        .nowrap();
+                    }
+                }
+
+                thead {
+                    tr {
+                        th {
+                            text-align: center;
+                            font-weight: 600;
+
+                            &[colspan] {
+                                border-right: 1px solid @grey3;
+
+                                &:last-child { border-right: 0; }
+                            }
+                        }
+
+                        &.bottom-row {
+                            th {
+                                text-transform: none;
+                                font-style: italic;
+                                font-weight: 400;
+                                background: @grey1;
+                                border-bottom: 0;
+
+                                &.day-end { border-right: 1px solid @grey3; }
+
+                                &:last-child { border-right: 0; }
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            border: solid @grey2;
+                            border-width: 0 1px 1px 0;
+
+                            &.last-year { color: @grey3; }
+                            &.day-end { border-right: 1px solid @grey3; }
+                            &:last-child { border-right-width: 0; }
+                           
+                            &.with-background {
+                                background: @grey1;
+                            }
+                        }
+
+                        &.double-row {
+                            td {
+                                height: 38px;
+
+                                strong,
+                                span { .show; }
+
+                                span {
+                                    color: @grey3;
+                                    margin-top: -2px;
+                                }
+                            }
+                        }
+
+                        &:last-child {
+                            td { border-bottom: 0; }
+                        }
+                    }
+                }
+
+                &.business-books {
+                    thead {
+                        tr {
+                            &.bottom-row {
+                                th {
+                                    font-size: 7pt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.transaction-reports {
+                tbody {
+                    tr {
+                        td {
+                            border-bottom-color: @grey1;
+
+                            &.group { font-weight: 600; }
+
+                            &:first-child { padding-left: 0; }
+
+                            &[rowspan] { border-bottom: 1px solid @grey2; }
+                        }
+
+                        &.row-break {
+                            td { border-bottom-color: @grey2; }
+                        }
+                    }
+                }
+            }
+
+            &.deposit-reports {
+                tbody {
+                    tr {
+                        td {
+                            padding: 4pt 8pt 0 0;
+
+                            strong { font-weight: 600; }
+
+                            &.name {
+                                width: 12cm;
+                                border-bottom: 0;
+                                height: auto;
+                                padding-bottom: 8pt;
+
+                                > div {
+                                    .float;
+
+                                    &:not(:last-child) { margin-bottom: 5px; }
+                                }
+
+                                .info {
+                                    strong { line-height: 20px; }
+
+                                    em {
+                                        color: @grey3;
+                                        .pull-right;
+                                    }
+                                }
+
+                                .date {
+                                    .nowrap();
+                                    .pull-left;
+
+                                    &:not(:last-child) { margin-right: 20px; }
+                                }
+
+                                .guest-status,
+                                .icons {
+                                    font-size: 12px;
+                                    margin-right: 5px;
+                                    color: @grey3;
+                                }
+
+                                .guest-status { .square(20px); }
+
+                                .icons {
+                                    font-size: 7pt;
+                                    line-height: 8pt;
+                                    padding-left: 20px;
+
+                                    &.icon-group { background-position: 5px -120px; }
+                                    &.icon-guest-company { background-position: 5px -140px; }
+                                    &.icon-guest-travelagent { background-position: 5px -160px; }
+
+                                    &:not(:last-child) { margin-bottom: 5px; }
+
+                                    &.time {
+                                        padding: 0;
+                                        margin-bottom: 0;
+                                        background-size: 16px;
+                                        .opacity(50);
+                                        .size(8pt, 12px);
+                                        .pull-left;
+
+                                        &.check-in { background-position: 0 -3px; }
+                                        &.check-out { background-position: 0 -19px; }
+                                    }
+                                }
+
+                                &.short { width: 6cm; }
+                            }
+
+                            &.info {
+                                font-style: italic;
+                                color: @grey3;
+                                width: 20%;
+                            }
+
+                            &.room-type {
+                                max-width: 3cm;
+                                .nowrap();
+                            }
+
+                            &:first-child { padding-left: 0; }
+
+                            &[rowspan] { height: auto; }
+                        }
+
+                        &.row-break {
+                            border-bottom: 1px solid @grey2;
+
+                            td { border-bottom-color: @grey2; }
+                        }
+                    }
+                }
+
+                &.condensed-print {
+                    tbody {
+                        tr {
+                            td {
+                                height: auto;
+
+                                &[rowspan] { padding-right: 4pt; }
+                            }
+                        }
+                    }
+                }
+
+                &.tax-exempt-report {
+
+                    td {
+                        .reference {
+                            color: @grey3;
+                            .show();
+                        }
+
+                        .icons {
+                            &.time {
+                                width: 20px;
+                                height: 20px;
+                                float: left;
+
+                                &.check-in {
+                                    background-position: 0px 0px;
+                                }
+
+                                &.check-out {
+                                    background-position: 0px -20px;
+                                }
+                            }
+                        }
+
+                        &.name { 
+                            width: 240pt;
+                            border-bottom: 1px solid @grey2;
+                        }
+                        
+                        &.date { width: 80pt; }
+                        
+                        &.rate { width: 150pt; }
+                    }
+                }
+            }
+
+            &.balance-reports {
+                thead {
+                    th {
+                        padding: 4pt 8pt 4pt 4pt;
+
+                        &:last-child { padding-right: 0; }
+                    }
+                }
+
+                tbody {
+                    td {
+                        padding: 4pt 8pt 4pt 4pt;
+                        .float;
+
+                        strong { font-weight: 600; }
+
+                        .date {
+                            .nowrap();
+                            .pull-left;
+
+                            &:not(:last-child) { margin-right: 8pt; }
+                        }
+
+                        .guest-status {
+                            float: none;
+                            .square(20px);
+                        }
+
+                        .icons.time {
+                            margin-right: 4pt;
+                            background-size: 16px;
+                            .opacity(50);
+                            .size(8pt, 12px);
+                            .pull-left;
+
+                            &.check-in { background-position: 0 -3px; }
+                            &.check-out { background-position: 0 -19px; }
+                        }
+
+                        &.name {
+                            em {
+                                color: @grey3;
+                                .pull-right;
+                            }
+                        }
+
+                        &.room,
+                        &.status { width: 2cm; }
+
+                        &.balance {
+                            min-width: 3cm;
+                            padding-right: 0;
+                            .nowrap();
+                        }
+                    }
+                }
+
+                &.deposit-balance-summary {
+                    table-layout: fixed;
+                    margin-bottom: 16pt;
+
+                    thead {
+                        th {
+                            &:nth-child(1) { .calc-width(75, 255);  }
+                            &:nth-child(2) { width: 100px; }
+                            &:nth-child(3) { width: 170px; }
+                            &:nth-child(4) { .calc-width(25, 255); }
+                            &:nth-child(5),
+                            &:nth-child(6) { width: 120px; }
+                        }
+                    }
+                }
+
+                &.complimentary-report {
+                    table-layout: fixed;
+                    margin-bottom: 16pt;
+
+                    thead {
+                        th {
+                            &:nth-child(1) { width:150px; }
+                            &.confirmation {
+                                width: 100px;
+                            }
+
+                            &.room,
+                            &.guests,
+                            &.total-nights,
+                            &.comp-nights {
+                                width:80px;
+                            }
+
+                            &.arrival {
+                                width: 200px;
+                            }
+                        }
+                    }
+                }
+
+                &.tax-output {
+                    .pagination { .hide(); }
+
+                    tbody {
+                        tr {
+                            &.row-break:not(:last-child) {
+                                td {
+                                    border-bottom: 8pt solid @grey1;
+                                }
+                            }
+
+                        
+                        
+                            &:not(.row-break) {
+                                td:not([rowspan]) {
+                                    border-bottom: 1px solid @grey2;
+                                }
+
+                                td[rowspan] {
+                                    border-bottom: 8pt solid @grey1;
+                                }
+    
+                                td {
+                                    .date {
+                                        font-size: 6pt;
+                                        margin-top: 2pt;
+                                        color: @grey3;
+                                        width: 100%;
+                                        float: none;
+                                        .show();
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+
+                    tfoot {
+                        tr {
+                            &.totals {
+                                td {
+                                    background: @grey1;
+                                    padding: 4pt 8pt 4pt 4pt
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.financial-adjustment-reports {
+                text-transform: none;
+                tbody {
+                    tr:last-child td {
+                        border-bottom: 1px solid @grey2;
+                    }
+                }
+
+                thead {
+                    th {
+                        &.modified,
+                        &.posted {
+                            width: 80px;
+                        }
+
+                        &.name,
+                        &.modified-by {
+                            width: 100px;
+                        }
+
+                        &.room {
+                            width: 80px;
+                        }
+
+                        &.code {
+                            width: 70px;
+                        }
+
+                        &.amount {
+                            width: 80px;
+                        }
+                    }
+                }
+
+                td.code {
+                    padding-left: 0;
+                }
+            }
+
+            &.forecast-reports {
+                thead {
+                    tr {
+                        th {
+                            &.date { background-color: transparent; }
+
+                            &.break {
+                                position: relative;
+                                padding-right: 16pt;
+
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    background: #fff;
+                                    .size(100%, 16pt);
+                                }
+                            }
+                        }
+
+                        &.top-row {
+                            th { text-align: center; }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            &.date {
+                                span { .show; }
+                            }
+                        }
+
+                        &.weekend {
+                            td {
+                                color: @grey4;
+                                font-style: italic;
+                            }
+                        }
+
+                        &.total {
+                            td {
+                                font-size: 8pt;
+                                font-weight: 600;
+                                border: 0;
+                            }
+                        }
+                    }
+                }
+
+                &.medium-grid,
+                &.large-grid {
+                    thead {
+                        tr {
+                            th {
+                                text-align: center;
+
+                                &.break {
+                                    position: static;
+                                    padding-right: 0;
+                                    border-right: 1px solid @grey2;
+
+                                    &:after { .hide; }
+                                }
+
+                                &:last-child { border-right: 0; }
+                            }
+
+                            &.bottom-row {
+                                th {
+                                    border-right: 1px solid @grey2;
+                                    border-bottom: 1px solid @grey2;
+
+                                    &.break { border-right: 1px solid @grey2; }
+
+                                    &:last-child { border-right: 0; }
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            td {
+                                text-align: center;
+                                border-right: 1px solid @grey2;
+
+                                &.date,
+                                &.code { text-align: left; }
+
+                                &.break { border-right: 1px solid @grey2; }
+
+                                &:last-child { border-right: 0; }
+                            }
+
+                            &.grouped {
+                                page-break-inside: avoid;
+                                page-break-after: auto;
+
+                                td {
+                                    color: @grey3;
+                                    font-weight: 400;
+                                    background-color: transparent;
+
+                                    strong {
+                                        font-size: 8pt;
+                                        font-weight: 600;
+                                        color: @textColor;
+                                    }
+                                }
+                            }
+
+                            // Used in Comparison Report
+
+                            &.charge-group {
+                                &.toggle {
+
+                                    .icon-double-arrow {
+                                        .hide();
+                                    }
+
+                                    &.active {
+                                        td {
+                                            border-bottom-color: rgba(0,0,0,0.04);
+                                        }
+                                    }
+
+                                }
+                            }
+                            // Used in Comparison Report
+                            &.charge-code {
+                                td {
+                                    &.code {
+                                        padding-left: 20px;
+                                    }
+                                    border-bottom-color: rgba(0,0,0,0.03);
+                                }
+
+                                &.last {
+                                    td {
+                                        border-bottom-color: @grey2;
+                                    }
+                                }
+
+                                &.charge-pagination {
+                                    .hide();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.medium-grid {
+                    thead {
+                        tr {
+                            th {
+                                .switch-button {
+
+                                    .value,
+                                    input {
+                                        .hide();
+                                    }
+
+                                    &:not(.on) {
+                                        .data-on {
+                                            .hide();
+                                        }
+                                    }
+
+                                    &.on {
+                                        .data-off {
+                                            .hide();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            &.grouped {
+                                td { padding-top: 18pt; }
+
+                                &:first-child {
+                                    td { padding-top: 4pt; }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.large-grid {
+                    tbody {
+                        tr {
+                            td {
+                                &.vertical {
+                                    text-align: left;
+                                    padding: 0;
+
+                                    .row {
+                                        padding: 2pt;
+                                        border-bottom: 1px solid @grey2;
+                                        .show;
+
+                                        strong {
+                                            font-weight: 400;
+
+                                            em {
+                                                font-size: 8pt;
+                                                padding-left: 4pt;
+                                                color: @grey3;
+                                            }
+                                        }
+
+                                        &.cells {
+                                            display: -webkit-box;
+                                            display: -webkit-flex;
+                                            display: flex;
+
+                                            strong {
+                                                width: 50%;
+                                                overflow: hidden;
+                                                .pull-left;
+
+                                                &:first-child {
+                                                    text-align: left;
+                                                    border-right: 1px solid rgba(0,0,0,.1);
+                                                }
+
+                                                &:last-child {
+                                                    text-align: right;
+                                                    padding-left: 1pt;
+                                                }
+                                            }
+                                        }
+
+                                        &:last-child { border-bottom: 0; }
+                                    }
+                                }
+                            }
+
+                            &.before-total {
+                                td {
+                                    border-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.forecast-group {
+                    thead {
+                        tr {
+                            &.top-row {
+                                th {
+
+                                    font-size: 13px;
+                                }
+                            }
+
+                            &.bottom-row {
+                                th {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            &.total {
+
+                                td {
+                                    border-top: 1px solid @black;
+                                    border-bottom: 1px solid @black;
+
+                                    &.vertical {
+                                        .row {
+                                            strong {
+                                                font-weight: 600;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.card-authorization-check-reports {
+                tbody {
+                    tr {
+                        td {
+                            width: 3.4cm;
+
+                            &.entity-name {
+                                width: -webkit-calc(~'100% - 19cm');
+                                width: -moz-calc(~'100% - 19cm');
+                                width: calc(~'100% - 19cm');
+                            }
+
+                            &.red,
+                            &.penalty { color: @grey3; position:relative }
+
+                            &.red:before {
+                                content: '!';
+                                position: absolute;
+                                right: 0;
+                                top: 2px;
+                                border-radius: 10px;
+                                background-color: @grey3;
+                                color: white;
+                                width: 15px;
+                                text-align: center;
+                                height: 15px;
+                                line-height: 15px;
+                                font-weight: 600;
+                            }
+
+                            &:first-child {
+                                width: 2cm;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.commission-reports {
+                table-layout: fixed;
+                border-collapse: collapse;
+                border-spacing: 0;
+
+                /* styles for commission summary print */ 
+                &.payment-report {
+                    thead {
+                        display: table-row-group;
+                        tr {
+                            th {
+                                &.room {
+                                    width: 75pt;
+                                }
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                &.confirm-no {
+                                    width: 75pt;
+                                }
+                            }    
+                        }
+                    }
+                }
+
+                thead {
+                    display: table-row-group;
+                    tr {
+                        th {
+
+
+                            &.amount {
+                                width: 100pt;
+                            }
+
+                            &.code {
+                                width: 150pt;
+                            }
+
+                            &.room {
+                                width: 50pt;
+                            }
+
+                            &.guest {
+                                width: 175pt;
+                            }
+                        }
+
+                        &.bottom-row {
+
+                            th {
+
+                                text-transform: none;
+                                font-style: italic;
+                                background: @grey1;
+                                border-bottom: 0;
+                                font-weight: 400;
+
+                                &.break {
+                                    border-left: 1px solid rgba(0,0,0,.4);
+                                }
+                                &:not(.break) {
+                                     border-left: 1px solid rgba(0,0,0,.1);
+                                }
+
+                                .box-shadow(inset 0 1px 0 rgba(0,0,0,.1));
+
+
+                                &:first-child { border-left: 0; }
+
+                                &:not(:first-child) {
+                                    padding-left:4pt;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            page-break-inside: avoid;
+
+                            &.name {
+
+                                .title {
+                                    a {
+                                        color: inherit;
+                                    }
+                                }
+
+                                .data {
+                                    display: block;
+                                }
+
+                                .guest-date {
+                                    clear: both;
+
+                                    .guest-status { .hide(); }
+
+                                    .date {
+                                        margin-top: 0;
+                                        display: block;
+                                        line-height: 15px;
+
+                                        &:first-child { margin-top: 5pt; }
+                                    }
+
+                                    span {
+                                        margin:0 2pt;
+
+                                        &:first-child { margin-left: 0pt; }
+                                        &:last-child { margin-right: 0pt; }
+                                    }
+                                }
+                            }
+
+                            &:nth-child(5),
+                            &:nth-child(6),
+                            &:nth-child(7) {
+                                padding-left: 4pt;
+                            }
+                        }
+
+                        &.rate-row {
+                            td {
+                                 padding-left:0;
+                            }
+                        } 
+                    }
+                }
+
+                tfoot {
+                    display: table-row-group;
+                    tr { 
+                        &.totals {
+                            td {
+                                font-size: 14px;
+                            }
+                        }
+
+                        &.pagination {
+                            display: none;
+                        }
+                    }
+
+                }
+
+                /** For Financials > Commissions print */
+                &.payment-report {
+                    margin-bottom: 10pt;
+                    
+                    thead {
+                        tr {
+                            th {
+                                &.room {
+                                    width: 75pt;
+                                }
+
+                                &.guest {
+                                    width: 200pt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            &.group-rooms-reports {
+                table-layout: fixed;
+
+                thead {
+                    tr {
+                        th {
+                            text-align: center;
+                            font-weight: 600;
+
+                            &[colspan] {
+                                border-right: 1px solid @grey2;
+
+                                &:last-child { border-right: 0; }
+                            }
+                        }
+
+                        &:first-child {
+                            th {
+
+                                .nowrap();
+
+                                &[colspan="1"] {
+                                    text-overflow: initial;
+                                }
+                            }
+                        }
+
+                        &.bottom-row {
+                            th {
+                                text-transform: none;
+                                font-style: italic;
+                                font-weight: 400;
+                                background: @grey1;
+                                border-bottom: 0;
+                                border-right: 1px solid @grey2;
+
+                                &:last-child { border-right: 0; }
+                            }
+                        }
+                    }
+                }
+
+
+                tbody {
+                    td {
+                        text-align: center;
+
+                        &.empty {
+                            border-color: @grey1;
+
+                            // Shifting the border to left and bottom instead of right and bottom
+                            border-width: 0 0px 1px 1px;
+                            // Adding left border to the first filled day
+                            &+td:not(.empty) {
+                                border-width: 0 1px 1px 1px;
+                            }
+
+                        }
+
+                        &.zero {
+                            font-style: italic;
+                            color: @grey3;
+                        }
+                    }
+                }
+            }
+
+            &.invoice-tax-reports {
+                td {
+                    table {
+                        table-layout: fixed;
+                        thead {
+                            td {
+                                border-bottom: 1px solid rgba(0,0,0,0.1);
+                            }
+                        }
+                    }
+
+                    &.vat-groupings {
+                        padding-top: 0;
+                        width: 300px;
+
+                        td {
+                            &:first-child {
+                                width: 60px;
+                            }
+                        }
+                    }
+                
+                }
+
+                tr {
+                    &.totals {
+                        table {
+                            td {
+                                background: none;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        &.with-graphs {
+
+            .report-block {
+
+                .totals {
+                    &.for-print {
+                        .show;
+                    }
+
+                    font-size: 8pt;
+                    line-height: 10pt;
+                    text-transform: uppercase;
+                    .float;
+
+                    .pull-left,
+                    .pull-right {
+                        color: @grey3;
+                        .show;
+
+                        span { color: @textColor; }
+                    }
+                }
+
+                .graph-summary {
+                    page-break-after: always;
+                    page-break-inside: avoid;
+
+                    li {
+                        font-size: 8pt;
+                        line-height: 1;
+                        padding: 2pt 0;
+                        margin-bottom: 2pt;
+                        border-bottom: 1px solid @grey2;
+
+                        &.header {
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            padding: 4pt;
+                            border-bottom: 0;
+                            background: @grey1;
+                        }
+
+                        &.totals {
+                            margin-bottom: 0;
+                            border-bottom: 0;
+                        }
+                    }
+                }
+
+                .graph-chart {
+                    page-break-after: always;
+                    page-break-inside: avoid;
+
+                    .chart {
+                        margin-right: 1cm;
+
+                        h2 {
+                            font-size: 10pt;
+                            font-weight: 600;
+                            margin-bottom: 6pt;
+                        }
+
+                        li {
+                            font-size: 8pt;
+                            line-height: 10px;
+
+                            .label {
+                                font-size: 8pt;
+                                line-height: 10px;
+                                width: 180px;
+                            }
+
+                            .fill-container {
+                                left: 200px;
+                                .calc-width(100, 200);
+
+                                .fill {
+                                    height: 10px;
+                                    background-color: @grey2;
+                                }
+
+                                .mark {
+                                    border-left: 1px solid @grey1;
+
+                                    &:last-child { border-right: 1px solid @grey1; }
+                                }
+                            }
+
+                            &.legend {
+                                line-height: 20px;
+                                border-top: 1px solid @grey1;
+                                margin-left: 200px;
+                                .calc-width(100, 200);
+                            }
+                        }
+                    }
+
+                    .totals {
+                        border-top: 1px solid @grey2;
+                        padding-top: 8pt;
+                        margin: 8pt 0 1cm 0;
+                    }
+                }
+            }
+        }
+
+        &.statistics {
+            overflow-x: hidden;
+
+            .statistics-headings {
+                margin: 0;
+                .pull-left;
+                .size(100%, 160px);
+                .show;
+
+                > .iScrollVerticalScrollbar { .hide; }
+                > .wrapper { width: 100% !important; }
+
+                li {
+                    font-size: 8pt;
+                    line-height: 14pt;
+                    padding: 0 4pt 0 8pt;
+                    margin: 0;
+                    height: 19px;
+                    background-color: @grey1;
+                    border-bottom: 1px solid @grey2;
+                    .nowrap();
+
+                    em { color: rgba(0,0,0,.5); }
+
+                    strong { font-weight: 600; }
+
+                    .switch-button {
+                        .hide;
+                    }
+
+                    &.action-row {
+                        padding: 4px 4pt 4px 8pt;
+                        height: 36px;
+                    }
+
+                    &.double-row {
+                        line-height: 28pt;
+                        height: 38px;
+                    }
+
+                    &.main-heading {
+                        font-weight: 600;
+                        background: @grey1;
+                        border-bottom: 0;
+
+                        &.double-row { height: 36px; }
+                    }
+
+                    &:last-child { border-bottom: 0; }
+                }
+            }
+
+            .statistics-content {
+                margin: 0;
+                .calc-width(100, 160);
+                .pull-left;
+
+                > .wrapper { width: 100% !important; }
+            }
+
+            &.books {
+                .statistics-headings {
+                    width: 90px;
+
+                    th.action-row {
+                        height: calc(28pt + 0.5px);
+                        border-bottom: 1px solid @grey2;
+                    }
+
+                    tr {
+                        td {
+                            line-height: 14pt;
+                            padding:0 4pt;
+                            background-color: @grey1;
+                            border-bottom: 1px solid @grey2;
+                        }
+
+                        &.totals {
+                            td {
+                                border-bottom:0;
+                            }
+                        }
+                    }
+
+                }
+                .statistics-content {
+                    .calc-width(100, 90);
+
+                    th[rowspan="2"] {
+                        border-bottom: 1px solid @grey2;
+                    }
+
+                    th[colspan] {
+                        border-left: 1px solid @grey2;
+                        border-right:0;
+                    }
+
+                    .bottom-row {
+                        th {
+                            border-bottom: 1px solid @grey2;
+                        }
+
+                        th {
+                            &:first-child,
+                            &.rooms,
+                            &.picked-up {
+                                border-left: 1px solid @grey2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.grid {
+            text-transform: uppercase;
+
+            .grid-header {
+                width: 100%;
+                -webkit-justify-content: flex-end;
+                justify-content: flex-end;
+                .flex(flex-start);
+
+                li {
+                    margin: 0;
+                    width: 60px;
+
+                    &.name { .calc-width(100, 240); }
+                }
+
+                &.dates { font-weight: 600; }
+                &.addons {
+                    color: @grey3;
+                    margin-top: 4pt;
+                }
+
+                &.vat-report {
+                    font-weight: 600;
+
+                    li {
+                        text-align: right;
+                        width: 120px;
+                    }
+                }
+            }
+
+            .grid-footer {
+                margin-top: 4pt;
+                .float;
+
+                li {
+                    line-height: 1.2;
+                    width: 50%;
+                    margin: 0;
+                    .pull-left;
+
+                    span { color: @grey3; }
+
+                    &:last-child { text-align: right; }
+                }
+            }
+
+            .toggle {
+                color: @textColor;
+                background: transparent;
+                line-height: 14pt;
+                .show;
+                .float;
+
+                strong,
+                span:not(.currency) {
+                    .nowrap();
+                    .pull-left;
+                }
+
+                strong {
+                    font-weight: 600;
+                    .calc-width(100, 120);
+
+                    &.name { .calc-width(100, 240); }
+                }
+
+                span:not(.children) { width: 60px; }
+
+                /* Title Levels ***/
+                &.title-1 { border-bottom: 2px solid @grey3; }
+
+                &.title-2 {
+                    border-bottom: 1px solid @grey3;
+
+                    &:first-child { margin-top: 4pt; }
+                }
+
+                &.title-3 { border-bottom: 1px solid @grey2; }
+
+                /* VAT Report ***/
+                &.vat-report {
+                    strong {
+                        .calc-width(100, 240);
+
+                        em {
+                            color: @grey3;
+                            font-weight: 400;
+                            padding-left: 8px;
+                        }
+                    }
+
+                    span:not(.currency) { 
+                        text-align: right;
+                        width: 120px; 
+                    }
+                }
+            }
+
+            .grid-content {
+                padding-bottom: 8pt;
+
+                tr {
+                    td {
+                        padding: 2pt 4pt 0;
+                        line-height: 20px;
+
+                        strong { font-weight: 600; }
+
+                        .unassigned,
+                        &.guests { color: @grey3; }
+
+                        &.room {
+                            width: 60px;
+                            .nowrap();
+                        }
+
+                        &.guests {
+                            max-width: 3cm;
+                            &:not(.accompany){
+                                .nowrap();
+                            }
+
+                            span {
+                                margin: 0 5px;
+
+                                &:first-child { margin-left: 0; }
+                                &:last-child { margin-right: 0; }
+                            }
+
+                            .accompanying-guest {
+                                margin: 0;
+
+                                span {
+                                    margin: 0 5px;
+                                }
+
+                                &:first-child span { margin-left: 0; }
+                                &:last-child span { margin-right: 0; }
+                            }
+
+
+                            &.accompany {
+                                white-space: normal;
+                            }
+                        }
+
+                        &.vat-revenue {
+                            text-align: right;
+                            width: 120px;
+                        }
+                    }
+
+                    &.pagination { .hide; }
+                }
+
+                &.vat-report {
+
+                    td {
+                        &:not(:first-child) {
+                            padding-left: 0;
+                        }
+                    }
+
+                    .country {
+                        width: 90px;
+                    }
+                    
+                    .number {
+                        width: 90px;
+                    }
+                    
+                    .revenue {
+                        text-align: right;
+                        width: 120px;
+
+                        &:not(:last-child) {
+                            width: 90px;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.occupancy-footer { display: table; }
+
+        &.card-authorization-check {
+            .grid-footer {
+                li {
+                    .pull-right;
+                }
+            }
+        }
+
+        &.group-rooms {
+
+            .group {
+                page-break-inside: avoid;
+
+                &:last-child {
+                    border-bottom: 1px solid @grey2;
+                }
+
+            }
+
+            .group-info {
+                padding: 4pt 10pt;
+                border-top: 1px solid @grey2;
+                border-bottom: 1px solid @grey2;
+                min-height: 30pt;
+                .float;
+
+                .title {
+                    display: block;
+                    font-weight: 600;
+                    font-size: 10pt;
+                    margin:0;
+                }
+
+                .data {
+                    display: block;
+                    font-size: 9pt;
+                    text-transform: uppercase;
+                    .float;
+
+                    li {
+                        float: left;
+                        margin-bottom:0;
+                        line-height:1;
+                        margin-top: 2pt;
+
+                        &:not(:last-child) {
+                            margin-right: 15pt;
+                        }
+
+                        span {
+                            color: @grey3;
+                        }
+                    }
+                }
+
+            }
+
+            .group-data {
+                .float;
+
+                ul {
+                    .pull-left;
+                    width: 75px;
+
+                    .main-heading {
+                        height: 36px;
+                        line-height: 36px;
+                        font-size: 12px;
+                        text-align: center;
+                        background: @grey1;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        border-right: 1px solid rgba(0, 0, 0, 0.1)
+                    }
+
+                    li {
+                        margin:0;
+                        .float;
+
+                        &:not(.main-heading) {
+                            border-bottom: 1px solid @grey2;
+                            border-right: 1px solid @grey2;
+                            padding: 0 10pt 0 5pt;
+                            text-align: right;
+                            font-weight: 600;
+                            line-height: 14pt;
+
+                        }
+
+                        .icons {
+                            margin-top: 1pt;
+                            .pull-left;
+                            .square(12pt);
+
+                            &.icon-blocked { background-position: 2px -277px; }
+
+                            &.icon-picked-up { background-position: 2px -318px; }
+
+                            &.icon-available { background-position: 4px -297px; }
+                        }
+
+                        &:last-child {
+                            border-bottom:0;
+                        }
+                    }
+                }
+
+                table {
+                    .pull-left;
+                    clear: none;
+                    .calc-width(100, 75);
+                }
+
+                &.totals {
+
+
+                    table {
+                        thead {
+
+                            tr:first-child {
+                                padding:0 10pt;
+
+                                th {
+                                    text-align: left;
+                                    &:first-child {
+
+                                        &:not(:last-child) {
+                                            text-align: right;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        tbody {
+                            td {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.print-commission-agent {
+
+            .travel-agent-single-print {
+                .show();
+            }
+
+            &.scrollable {
+                overflow: hidden;
+            }
+
+            .travel-agent-print,
+            .wrapper {
+                .hide();
+            } 
+        }
+
+        &.print-commission-summary {
+
+            .travel-agent-single-print,
+            .travel-agent-print,
+            .button {
+                .hide();
+            }
+
+            &.scrollable {
+                overflow: hidden;
+            }
+
+            .travel-agent {
+                margin-bottom: 20pt;
+                border-bottom: 1px solid @grey2;
+
+                &:last-child { margin-bottom: 10pt; }
+            }
+        }
+
+        &.journal-content {
+            .iScrollVerticalScrollbar,
+            .iScrollHorizontalScrollbar { display: none !important; }
+            
+            .journal-summary {
+                .toggle {
+                    border: none;
+                }
+
+                h3 {
+                    justify-content: flex-start;
+                }
+
+                &.totals {
+                    h3 {
+                        padding: 4pt 4pt 4pt 8pt;
+                    }
+                }
+            }
+        }
+    }
+
+/* Housekeeping             ==============================*/
+    #rooms.hidden { display: block !important; }
+    .worksheet-options { .hide; }
+
+    .worksheet-summary {
+        text-align: center;
+        margin-bottom: 12pt;
+        .show;
+
+        li {
+            display: inline-block;
+            font-size: 8pt;
+            line-height: 1;
+            text-transform: uppercase;
+            .float;
+
+            strong {
+                color: @grey3;
+                font-weight: 400;
+                .show;
+            }
+
+            span {
+                display: inline-block;
+                font-size: 12pt;
+                font-weight: 300;
+
+                &.delimiter {
+                    padding: 0 2pt;
+                    text-align: center;
+                }
+            }
+
+            &:not(:last-child) { margin-right: 20pt; }
+        }
+    }
+
+/* Work Management          ==============================*/
+    #worksheet-content {
+
+        .worksheet-header,
+        #unassigned-rooms,
+        .worksheet-room.placeholder { .hide; }
+
+        h2 {
+            font-size: 18pt;
+            line-height: 1.2;
+            font-weight: 600;
+            margin: 1.414em 0 0.5em;
+            .show;
+        }
+
+        .wrapper { width: 100% !important; }
+
+        .employee {
+            page-break-after: always;
+            page-break-inside: auto;
+
+            .totals {
+                text-align: center;
+
+                ul {
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    width: 4cm;
+                    margin: 0 auto;
+                }
+
+                li {
+                    font-size: 14pt;
+                    line-height: 1.2;
+                    width: 2cm;
+
+                    &:first-child { padding-right: 4pt; }
+                    &:last-child { padding-left: 4pt;}
+                }
+
+                span {
+                    font-weight: 600;
+                    .show;
+
+                    &.value { border-bottom: 1px solid @grey2; }
+
+                    &.total { color: @grey3; }
+                }
+            }
+        }
+
+        .worksheet-room {
+            .worksheet-task {
+                h3,
+                .info { visibility: hidden; }
+
+                &:first-child {
+                    h3,
+                    .info { visibility: visible; }
+                   
+                    height: 35pt;
+                }
+            }
+        }
+
+        .worksheet-task {
+            position: relative;
+            font-size: 8pt;
+            line-height: 1;
+            padding: 4pt 0;
+            margin: 0;
+            page-break-after: auto;
+            page-break-inside: avoid;
+            .size(24pt, 100%);
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
+
+            h3 {
+                order: 1;
+                color: @textColor;
+                font-size: 16pt;
+                line-height: 1;
+                font-weight: 600;
+                width: 3cm;
+            }
+
+            .info {
+                order: 2;
+                .show;
+
+                span {
+                    display: inline-block;
+                    text-transform: uppercase;
+                    line-height: 16pt;
+                    width: 4cm;
+
+                    &.red,
+                    &.green { font-weight: 600; }
+
+                    &.grey { color: @grey3; }
+                }
+            }
+
+            .task {
+                order: 3;
+                font-size: 8pt;
+                font-weight: 600;
+                .show;
+                width: 5cm;
+            }
+           
+            .room-type {
+                width: 100%;
+                flex-shrink: 0;
+                flex-grow: 1;
+                flex: auto;
+                order: 10;
+            }
+
+            .icon-ok-10 {
+                order: 5;
+                margin-left: auto;
+                background: #fff;
+                .square(18pt);
+                .show;
+
+                &:before {
+                    content: "✔";
+                    position: absolute;
+                    top: 4pt;
+                    right: 0;
+                    font-size: 12pt;
+                    line-height: 16pt;
+                    color: @grey2;
+                    text-indent: 0;
+                    text-align: center;
+                    font-weight: 600;
+                    border: 1px solid @grey2;
+                    background: #fff;
+                    z-index: 9;
+                    .square(16pt);
+                    .show;
+                }
+
+                &.no-icon:before {
+                    content: none;
+                    border: none;
+                }
+            }
+
+            .vip {
+                order: 4;
+                font-size: 7pt;
+                line-height: 18pt;
+                .square(16pt);
+                .show;
+                margin-left: auto;
+            }
+
+            .only-print {
+                display: inline-block;
+            }
+
+            .room {
+                 &:before {
+                    content: "";
+                    position: absolute;
+                    top: 4pt;
+                    right: 0;
+                    border: 1px dashed @textColor;
+                    z-index: 3;
+                    visibility: visible !important;
+                    .square(16pt);
+                    .show;
+                }
+            }
+
+            &:last-child {
+                border-bottom: 1px solid @grey3;
+            }
+
+            .print-date {
+                order: 4;
+
+                .arrival-date,
+                .departure-date {
+                    display: block;
+                    margin-top: 2pt;
+
+                    .guest-status {
+                        .square(10px);
+                        background-size: 12px;
+
+                        &.check-in {
+                           background-position: -2px -2px
+                        }
+
+                        &.check-out {
+                           background-position: -2px -14px
+                        }
+                    }
+
+                    time {
+                        line-height: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+/* Journal                  ==============================*/
+    .journal-header,
+    .journal-print,
+    .journal-groups,
+    .grid-footer { .hide; }
+
+    /* Header / Footer ***/
+    .journal-header-print,
+    .journal-footer-print {
+        clear: both;
+
+        li {
+            font-size: 8pt;
+            line-height: 1;
+            text-transform: uppercase;
+            color: @grey3;
+            .show;
+
+            span { color: @textColor; }
+        }
+    }
+
+    .journal-header-print {
+        padding-bottom: 8pt;
+
+        li {
+            text-align: center;
+
+            span:not(.currency) {
+                font-size: 12pt;
+                line-height: 1;
+                font-weight: 300;
+                .show;
+
+                &.green,
+                &.red,
+                &.brand-colors { font-weight: 600; }
+            }
+
+            &:last-child {
+                margin-right: 0;
+                padding-right: 0;
+                border-right: 0;
+            }
+        }
+
+        &.summary { padding: 0 2cm .5cm; }
+    }
+
+    .journal-footer-print {
+        padding-top: 8pt;
+        .float;
+
+        li {
+            width: 50%;
+            margin: 0;
+            .pull-left;
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+
+        &.summary { padding: .5cm 2cm 0; }
+    }
+
+    .journal-content {
+        font-size: 8pt;
+        line-height: 1;
+        text-transform: uppercase;
+        .float;
+
+        /* Summary ***/
+        .journal-summary {
+            padding: 8pt 0;
+            border-bottom: 1px solid @grey2;
+            .flex(center);
+            .float;
+
+            h3 {
+                font-size: 10pt;
+                font-weight: 300;
+                color: @grey4;
+                text-transform: uppercase;
+                text-align: left;
+                width: 4cm;
+                .pull-left;
+
+                &.toggle { background: transparent; }
+            }
+
+            ul {
+                width: -webkit-calc(~'100% - 4cm');
+                width: -moz-calc(~'100% - 4cm');
+                width: calc(~'100% - 4cm');
+                .pull-left;
+
+                li {
+                    text-transform: uppercase;
+                    text-align: right;
+                    margin: 0 1.33cm 0 0;
+                    color: @grey3;
+                    width: -webkit-calc(~'25% - 1cm');
+                    width: -moz-calc(~'25% - 1cm');
+                    width: calc(~'25% - 1cm');
+                    .pull-left;
+
+                    span:not(.currency) {
+                        font-size: 14pt;
+                        font-weight: 300;
+                        color: @textColor;
+                        .show;
+                    }
+
+                    &:last-child { margin-right: 0; }
+                }
+            }
+
+            &.first {
+                h3 { padding-top: 10pt; }
+            }
+
+            &.totals {
+                padding-bottom: 0;
+                border-bottom: 0;
+
+                h3 {
+                    color: @textColor;
+                    font-weight: 400;
+                }
+
+                li {
+                    span:not(.currency) { font-weight: 400; }
+                }
+            }
+        }
+
+        /* Grids ***/
+        .journal-grid {
+
+            .grid-header {
+                padding: 0 8pt;
+                background: @grey1;
+                #flexbox > .parent(row wrap, flex-end, center, '');
+
+                li {
+                    font-weight: 600;
+                    padding: 4pt 0;
+                    margin: 0;
+
+                    &.name {
+                        margin-right: auto;
+                    }
+
+                    &.code,
+                    &.number,
+                    &.value {
+                        text-align: right;
+                        width: 2cm;
+                    }
+                }
+            }
+
+            .grid-footer {
+                text-align: right;
+                font-weight: 600;
+                line-height: 30px;
+                margin: 0;
+                padding-right: 8pt;
+
+                span:not(.currency) { margin-right: 4pt; }
+            }
+
+            .toggle {
+                color: @textColor;
+                padding: 4pt 4pt 4pt 8pt;
+                margin: 0;
+                break-inside: avoid;
+                background: transparent;
+                border-bottom: 1px solid @grey2;
+                #flexbox > .parent(row wrap, flex-end, center, '');
+
+                .name {
+                    font-weight: 600;
+                    padding-right: 4pt;
+                    margin-right: auto;
+                }
+
+                .code,
+                .number,
+                .value {
+                    text-align: right;
+                    padding-right: 4pt;
+                    width: 2cm;
+                }
+
+                > .code {
+                    text-align: left;
+                }
+
+                > .name + .code {
+                    text-align: right;
+                }
+            }
+
+            /* 1st Level ***/
+            .grid-group {
+                > .toggle.active {
+                    font-weight: 600;
+                    background: @grey1;
+                }
+            }
+
+            /* 2nd Level ***/
+            .grid-charge {
+                > .toggle.active:not(:first-child) {
+                    margin-top: .5cm;
+                }
+
+                .grid-items:not(:last-child) {
+                    margin-bottom: .5cm;
+                }
+            }
+
+            /* 3rd Level ***/
+            .grid-items {
+                table-layout: fixed;
+
+                th,
+                td {
+                    line-height: 1;
+                    padding: 4pt 0 4pt 8pt;
+
+                    &.align-right {
+                        text-align: right;
+                    }
+
+                    &:last-child {
+                        padding-right: 8pt;
+                    }
+                }
+
+                th {
+                    color: @grey3;
+                    vertical-align: middle;
+                    background: transparent;
+
+                    &:not([class*="cell-"]) {
+                        width: 2cm;
+                    }
+                }
+
+                td {
+                    vertical-align: top;
+
+                    strong {
+                        font-weight: 600;
+                    }
+
+                    .grey-text,
+                    .adjusted {
+                        color: @grey3;
+                    }
+                }
+
+                .cell-row {
+                    .show();
+                }
+
+                input {
+                    font-size: 8pt;
+                    line-height: 8pt;
+                    color: @grey3;
+                    font-style: italic;
+                    text-transform: uppercase;
+                    padding: 0;
+                    background: transparent;
+                    min-height: 8pt;
+                    width: 100%;
+                    .box-shadow(none);
+                    .show;
+                }
+
+                .pagination { .hide; }
+            }
+
+            /* Print ***/
+            &.print-details {
+                .grid-header { 
+                    background: transparent; 
+                }
+
+                .grid-group {
+                    > .toggle {
+                        background: @grey1;
+                        border-bottom: 0;
+                    }
+                }
+
+                .grid-charge {
+                    display: block !important;
+
+                    &.hidden { display: block !important; }
+                }
+
+                .grid-items {
+                    display: table !important;
+
+                    &.hidden { display: table !important; }
+                }
+            }
+        }
+
+        /* Summary ***/
+        &.summary {
+            padding: 0 2cm;
+
+            .journal-grid {
+                .grid-items {
+                    margin-left: 0;
+                    width: 100%;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 1cm;
+                }
+            }
+        }
+
+        /* Journal Ledger Print ***/
+        .report-content {
+            display: none !important;
+            
+            .charge-code {
+                display: none !important;
+            }
+
+            &.print-details {
+                .charge-code {
+                    display: table-row !important;
+                }
+            }
+        }
+        
+        /* Summary by Ledger ***/
+        &.print-ledger {
+            .report-content { display: block !important; }
+            .wrapper { display: none !important; }
+        }
+
+        /* Cashier ***/
+        .journal-shift {
+            padding-left: 1cm;
+            width: 65%;
+            .pull-left;
+
+            .shift-details {
+                caption {
+                    font-size: 8pt;
+                    margin-bottom: 4pt;
+                    text-align: center;
+                }
+
+                tr {
+                    th,
+                    td { border-bottom: 1px solid @grey3; }
+
+                    th {
+                        line-height: 10pt;
+                        width: 80%;
+                    }
+
+                    td {
+                        width: 20%;
+                        font-size: 10pt;
+                        font-weight: 600;
+                        text-align: right;
+
+                        &.entry {
+                            font-size: 8pt;
+                            font-weight: 400;
+                            text-align: left;
+                            .float;
+
+                            input {
+                                font-size: 8pt;
+                                line-height: 1;
+                                color: @grey3;
+                                font-style: italic;
+                                text-transform: uppercase;
+                                padding: 0;
+                                background: transparent;
+                                min-height: 8pt;
+                                margin: -4pt 0 0 4pt;
+                                min-height: 8pt;
+                                .size(8pt, 4cm);
+                                .box-shadow(none);
+                            }
+                        }
+                    }
+                }
+            }
+
+            button { .hide; }
+        }
+
+        .journal-history {
+            width: 35%;
+            .pull-left;
+
+            h2 { .hide; }
+
+            .shift-history {
+                border-right: 1px solid @grey2;
+
+                li {
+                    color: @grey3;
+                    background: transparent;
+                    padding: 4pt;
+                    margin: 0 1px 0 0;
+                    border-bottom: 1px solid @grey1;
+
+                    .status {
+                        font-weight: 400;
+                        .show;
+
+                        span {
+                            font-style: italic;
+                            .pull-right;
+                            .show;
+                        }
+                    }
+
+                    time {
+                        color: @grey2;
+                        .float;
+
+                        .time { .pull-left; }
+                        .date { .pull-right; }
+                    }
+
+                    &.active {
+                        position: relative;
+                        color: @textColor;
+                        border-top: 1px solid @grey2;
+                        border-bottom-color: @grey2;
+                        margin: 0;
+
+                        time { color: @textColor; }
+
+                        &:first-child { border-top: 0; }
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            right: -1px;
+                            background-color: #fff;
+                            .size(100%, 2px);
+                        }
+                    }
+
+                    &:last-child { border-bottom: 0; }
+                }
+            }
+        }
+    }
+
+/* Registration             ==============================*/
+    .complete-registration,
+    .reservation-header { .hide; }
+
+    .registration-content {
+
+        .registration-summary {
+
+            .bill-tabs,
+            .bill-summary-wrapper,
+            .total-stay-fees,
+            .incoming-billing { .hide; }
+        }
+
+        /* Printables ***/
+        .invoice { .show(); }
+        .registration-card { .hide(); }
+
+        &.print-registration-card {
+            .invoice { .hide(); }
+            .registration-card { .show(); }
+        }
+    }
+
+    .invoice {
+        margin: 1cm 2cm 0;
+
+        table {
+            th,
+            td { font-size: 8pt; }
+
+            th { font-weight: 600; }
+            td { border-bottom: 0; }
+        }
+
+        .invoice-logo {
+            height: 2cm;
+            position: relative;
+
+            &:not(.envelope) {
+              h1 {
+                position: absolute;
+                top:0;
+                left:0;
+                font-size:18pt;
+                font-weight: 600;
+                line-height: 40px;
+                }
+            }
+
+
+            img {
+                .size(40px, auto);
+                -webkit-filter: grayscale(100%);
+                filter: grayscale(100%);
+
+                &.qr-code {
+                    .size(140px, auto);
+                }
+            }
+
+            &.envelope {
+                height: 4.8cm;
+                h1 {
+                    font-size: 10pt;
+                    font-weight: 600;
+                }
+
+                .type {
+                    position: absolute;
+                    top:0;
+                    right:0;
+                    font-size:18pt;
+                    font-weight: 600;
+                    line-height: 40px;
+
+                    &.with-label {
+                        line-height: 25px;
+                    }
+
+                    .label {
+                        float: none;
+                        line-height: 0;
+                        position: relative;
+                        z-index: 999;
+                        display: block;
+                        text-align: right;
+                        margin: 0;
+                        line-height: 10px;
+                        font-size: 9pt;
+                    }
+                }
+
+                .qr-code {
+                    position: absolute;
+                    top: 35x;
+                    right: -10px;
+                }
+            }
+        }
+
+        .info-container {
+            page-break-inside: avoid;
+            
+            .info-left,
+            .info-right {
+                .pull-left;
+                width: 50%;
+                word-break: break-word;
+
+                .qr-code {
+                    width: auto;
+                    height: 140px;
+                }
+            }
+
+            .info-bottom {
+                clear: both;
+                width: 100%;
+                display: block;
+                margin-top: 0.25cm;
+            }
+
+            .info-right {
+                text-align: right;
+
+            }
+
+            &.cols-3 {
+
+                .info-left,
+                .info-right {
+                    word-break: break-word;
+                    width: 30%;
+                }
+
+                .info-mid {
+                    width: 40%;
+                    padding-left: 20px;
+                    margin-bottom: 20px;
+                }
+
+                .info-bottom {
+                    .info-left,
+                    .info-right {
+                        width: 50%;
+                    }
+                }
+            }
+
+            &.cols-2 {
+
+                .info-left {
+                    word-break: break-word;
+                    width: 30%;
+                }
+
+                .info-mid {
+                    width: 70%;
+                    padding-left: 20px;
+                    margin-bottom: 20px;
+                }
+
+                .info-bottom {
+                    .info-left {
+                        width: 50%;
+                    }
+                }
+            }
+
+            &.account-info {
+                .info-bottom {
+                    .float;
+                    margin: .5cm 0;
+                }
+
+                .info-right,
+                .info-bottom {
+                    strong {
+                        display: inline;
+                    }
+                }
+            }
+        }
+
+        .guest-info {
+            text-transform: none;
+
+            tr {
+                page-break-after: avoid;
+
+                th,
+                td {
+                    padding: 0 4pt 0 0;
+                    page-break-after: avoid;
+                }
+
+                td { padding-bottom: 8pt; }
+            }
+        }
+
+        .invoice-header {
+            font-size: 8pt;
+            line-height: 1;
+            text-align: center;
+            margin-top: 0;
+            clear: both;
+
+            &.top-header {
+                height: 1.5cm;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    height: 30px;
+                    top: -30px;
+                    right: 0;
+                }
+
+                h1 {
+                    font-size:18pt;
+                    font-weight: 600;
+                }
+
+                .invoice-header-address {
+                    font-size:10pt;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .invoice-body {
+            margin-top: 1cm;
+
+            .date {
+                font-size: 9pt;
+                line-height: 10pt;
+                margin: 0;
+
+                strong {
+                    font-weight: 600;
+                    .show;
+                }
+            }
+
+            .invoice-details {
+                text-transform: none;
+                margin: 4pt 0;
+                page-break-after:auto;
+
+                caption {
+                    font-size: 12pt;
+                    line-height: 1;
+                    padding: 12pt 0 8pt;
+                    border-top: 1px solid @grey2;
+
+                    span {
+                        font-size: 9pt;
+                        .show;
+                    }
+                }
+
+                tr {
+                    th,
+                    td {
+                        padding: 2pt 2pt 2pt 0;
+
+                        &.align-right { text-align: right; }
+
+                        &.description,
+                        &.charge-description {
+                            color: @black;
+
+                            strong {
+                                font-weight: 600;
+                                .show();
+                            }
+
+                            span {
+                                &:not(.currency) {
+                                    .show;
+                                }
+
+                                &.reference {
+                                    color: @black;
+                                    font-style: italic;
+                                    margin-bottom: 2pt;
+                                }
+                            }
+                        }
+
+                        &.description {
+                            font-size: 8pt;
+                        }
+
+                        &.receipt-amount {
+                            width: 50pt;
+                        }
+
+                        &.amt-short {
+                            width: 40pt;
+                        }
+                        
+                        &.amt {
+                            width: 55pt;
+                        }
+
+                        &.date { 
+                            width: 60pt;
+                            font-size: 8pt;
+                            line-height: 1;
+                        }
+
+                        &.qty,
+                        &.quantity { width: 20pt; }
+                    }
+
+                    &:last-child {
+                        td {
+                            padding-bottom: 12pt;
+                        }
+                    }
+
+                    &.invoice-sub-item + tr:not(.invoice-sub-item){
+                        td {
+                            padding-top: 8pt;
+                        }
+                    }
+                }
+
+                thead {
+                    tr {
+                       th { background-color: transparent; }
+                    }
+                }
+
+                tfoot {
+                    padding: 12pt 0 4pt;
+                    border-top: 1px solid @grey2;
+
+                    td { text-align: right; }
+
+                    tr {
+                        &:first-child {
+                            td { padding-top: 12pt; }
+                        }
+                    }
+                }
+               
+                tbody {
+                    tr {
+                        &.totals {
+                            td {
+                                text-align: right;
+                            }
+                        }
+
+                        &:not(.totals)+tr.totals,
+                        &.first-total {
+                            td {
+                                padding: 12pt 0 4pt;
+                                border-top: 1px solid @grey2;
+                            }
+                        }
+                    }
+                }
+
+                &.proforma-details {
+                    table-layout: fixed;
+                    
+                    td,
+                    th {
+                        &.amount {
+                            width: 50pt;
+                        }
+
+                        &.qty { width: 20pt; }
+                        &.date { width: 50pt; }
+                        &.occ {width: 30pt; }
+
+                        
+                    }
+
+                    tr {
+                        &.first {
+                            td {
+                                padding-top: 5pt;
+                            }
+                        }
+                        &.last {
+                            td {
+                                border-bottom: 1px solid @grey2;
+                                padding-bottom: 5pt;
+                            }
+                        }
+
+                        td {
+                            &[rowspan] {
+                                border-bottom: 1px solid @grey2;
+                                page-break-inside: avoid;
+                                padding-bottom: 5pt;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tax-breakdown {
+                td,th {
+                   padding: 4pt;
+                   text-align: right;
+
+                   &:first-child {
+                       text-align: left;
+                       padding-left: 4pt;
+                   }
+                }
+
+               th {
+                   font-size: 8pt;
+                }
+
+                tfoot td {
+                   background-color: @grey2;
+                   font-weight: bold;
+                }
+
+                .tax-description {
+                   width: 50%;
+                }
+            }
+
+            .vat-breakdown {
+                page-break-inside: avoid;
+
+                td,th {
+                   padding: 4pt;
+                   text-align: right;
+
+                   &:first-child {
+                       text-align: left;
+                       padding-left: 4pt;
+                   }
+                }
+
+                th {
+                   font-size: 8pt;
+                }
+
+                tfoot td {
+                   font-weight: bold;
+                }
+
+                .vat-description {
+                    width: 50%;
+                }
+            }
+        }
+
+        .invoice-footer {
+            font-size: 8pt;
+            padding-top: 16pt;
+
+            &.text-center {
+                text-align: center;
+            }
+        }
+    }
+
+    .registration-card {
+        margin: 1cm 2cm 0;
+       
+        &.with-page-break {
+            page-break-after: always;
+        }
+
+        &.registration-card-2,
+        &.registration-card-3 {
+            margin: 0.5cm;
+        }
+
+        &.registration-card-3 {
+            .value {
+                display: block;
+                clear: both;
+            }
+        }
+
+        table {
+            tr {
+                page-break-after: avoid;
+
+                th,
+                td {
+                    font-size: 9pt;
+                    padding: 0 4pt 0 0;
+                    page-break-after: avoid;
+                }
+
+                th { font-weight: 600; }
+                td {
+                    border-bottom: 0;
+                    padding-bottom: 10pt;
+                }
+            }
+
+            &.fixed {
+                table-layout: fixed;
+            }
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .float-left {
+            .pull-left
+        }
+
+        .hotel-guest-info {
+            margin-bottom: 10pt;
+
+            .hotel-info {
+                width: 25%;
+                text-transform: none;
+                padding-right: 10pt;
+            }
+
+            .guest-info {
+                background: #ebebeb;
+                padding: 10pt;
+
+                td strong {
+                    display: block;
+                    padding-top: 2pt;
+                }
+
+                .name-addr {
+                    margin-bottom: 15pt;
+                    td {
+                        padding-bottom: 10pt;
+                        border-bottom: 2pt solid #fff;
+                    }
+                }
+
+                .rate-initial {
+                    td {
+                        padding: 10pt;
+                        background: #fff;
+                    }
+                }
+            }
+        }
+
+        .bill-details {
+            margin-bottom: 10pt;
+
+            td, th {
+                padding: 5px 10pt;
+            }
+
+            th {
+                background: #fff;
+            }
+
+            tr td {
+                font-weight: bold;
+                background: #ebebeb;
+                border-bottom: 2pt solid #fff;
+            }
+
+            .addon-price {
+                text-align: center;
+            }
+
+            .addons {
+                padding: 0;
+                td {
+                    border-bottom: none;
+                    text-transform: none;
+                }
+            }
+        }
+
+        .guest-data-enter {
+            margin-bottom: 10pt;
+
+            &.fixed {
+                table-layout: fixed;
+            }
+
+            td {
+                padding: 10pt;
+                border: 2pt solid #ebebeb;
+                height: 50pt;
+                font-weight: normal;
+                text-transform: none;
+
+                span {
+                    display: block;
+                    font-weight: 400;
+                    font-size: 11pt;
+                    margin-top: 5pt;
+                }
+            }
+
+            .details {
+                border: 0;
+                padding: 0 0 0 10pt;
+            }
+
+            &.customized {
+                margin: 0;
+
+                &.border-top {
+                    border-top: 2pt solid #000;
+                }
+
+                &.border-bottom {
+                    border-bottom: 2pt solid #000;
+                }
+
+                tr {
+                    &:last-child:not(.with-borders) {
+                        td {
+                            border-bottom: none;
+                        }
+                    }
+
+                    &:last-child{
+                        &.with-borders {
+                            td {
+                                border-left-width: 1pt;
+                            }
+                        }
+                    }
+                }
+
+                td {
+                    color: @grey3;
+                    font-size: 8pt;
+                    font-weight: 400;
+                    padding: 5pt;
+                    height: 37pt;
+                    border-width: 1pt;
+                    border-color: #000;
+
+                    &:first-child {
+                        border-left-width: 2pt;
+                    }
+
+                    &:last-child {
+                        border-right-width: 2pt;
+                    }
+
+                    &.border-left-width {
+                        border-left-width: 1pt;
+                    }
+
+                    &.border-bottom-grey {
+                        border-bottom-color: @grey3;
+                    }
+
+                    &.border-right-grey {
+                        border-right-color: @grey3;
+                    }
+
+                    &.short {
+                        height: 27pt;
+                    }
+
+                    &.centered {
+                        vertical-align: middle;
+                        text-align: center;
+                    }
+
+                    &.centered-vertical {
+                        vertical-align: middle;
+                    }
+
+                    &.headline {
+                        font-size: 20pt;
+                    }
+
+                    &.align-right {
+                        text-align: right;
+                    }
+
+                    &.inner-table {
+                        padding: 0;
+
+                        td {
+                            border-top: none;
+                            border-left: none;
+                            border-bottom: none;
+                            border-width: 1pt;
+
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+
+                        table {
+                            margin: 0;
+                            height: 100%;
+                        }
+                    }
+
+                    strong {
+                        display: block;
+                        color: #000;
+                    }
+
+                    .placeholder {
+                        margin: 0;
+                        font-size: 6pt;
+                        color: @grey3;
+                    }
+                }
+
+                .details {
+                    padding: 0;
+                    border: 0;
+
+                    td {
+                        &:not(:last-child) {
+                            border-right-color: transparent;
+                        }
+                    }
+                }
+            }
+
+            &:not(.customized) {
+                td {
+                    &.inner-table {
+                        padding: 0;
+
+                        td {
+                            border-top: none;
+                            border-left: none;
+                            border-bottom: 2pt solid #ebebeb;
+                            border-right: 2pt solid #ebebeb;
+                            height: 50pt;
+
+                            span {
+                                &.pull-left,
+                                &.pull-right {
+                                    margin: 0;
+                                }
+                            }
+
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+
+                        table {
+                            margin: 0;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .terms-signature {
+            td {
+                text-transform: none;
+                padding: 0;
+            }
+
+            .terms {
+                padding-bottom: 50pt;
+            }
+
+            .signature {
+                padding: 5pt;
+                border-top: 1pt solid #000;
+                display: block;
+                width: 50%;
+            }
+        }
+
+        .registration-card-text-columns {
+            #flexbox > .parent(row nowrap, '', '', '');
+            page-break-inside: avoid;
+
+            .column {
+                width: 100%;
+            }
+
+            &.columns-2 {
+                .column {
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+    .converted-currency {
+        display: block;
+        color: @black;
+        font-style: italic;
+        margin-top: 3px;
+
+        &.smaller {
+            font-size: 0.875em;
+        }
+    }
+
+/* Rooming List             ==============================*/
+    .batch-registration-cards {
+        margin: 1cm 2cm 0;
+
+        table {
+            tr {
+                page-break-after: avoid;
+
+                th,
+                td {
+                    font-size: 9pt;
+                    padding: 0 4pt 0 0;
+                    page-break-after: avoid;
+                }
+
+                th { font-weight: 600; }
+                td {
+                    border-bottom: 0;
+                    padding-bottom: 10pt;
+                }
+            }
+        }
+
+        .hotel-guest-info {
+            margin-bottom: 10pt;
+
+            .hotel-info {
+                width: 25%;
+                text-transform: none;
+                padding-right: 10pt;
+            }
+
+            .guest-info {
+                background: #ebebeb;
+                padding: 10pt;
+
+                td strong {
+                    display: block;
+                    padding-top: 2pt;
+                }
+
+                .name-addr {
+                    margin-bottom: 15pt;
+                    td {
+                        padding-bottom: 10pt;
+                        border-bottom: 2pt solid #fff;
+                    }
+                }
+
+                .rate-initial {
+                    td {
+                        padding: 10pt;
+                        background: #fff;
+                    }
+                }
+            }
+        }
+
+        .bill-details {
+            margin-bottom: 10pt;
+
+            td, th {
+                padding: 5px 10pt;
+            }
+
+            th {
+                background: #fff;
+            }
+
+            tr td {
+                font-weight: bold;
+                background: #ebebeb;
+                border-bottom: 2pt solid #fff;
+            }
+
+            .addon-price {
+                text-align: center;
+            }
+
+            .addons {
+                padding: 0;
+                td {
+                    border-bottom: none;
+                    text-transform: none;
+                }
+            }
+        }
+
+        .guest-data-enter {
+            margin-bottom: 10pt;
+
+            td {
+                padding: 10pt;
+                border: 2pt solid #ebebeb;
+                height: 50pt;
+                font-weight: normal;
+                text-transform: none;
+            }
+
+            .details {
+                border: 0;
+                padding: 0 0 0 10pt;
+            }
+        }
+
+        .terms-signature {
+            td {
+                text-transform: none;
+                padding: 0;
+            }
+
+            .terms {
+                padding-bottom: 50pt;
+            }
+
+            .signature {
+                padding: 5pt;
+                border-top: 1pt solid #000;
+                display: block;
+                width: 50%;
+            }
+        }
+
+        .page-break{
+            page-break-after: always;
+            break-after: always;
+        }
+    }
+
+/* Commisions               ==============================*/
+    .commissions-content {
+        margin: 0 2cm;
+
+        .commissions-header {
+            margin-bottom: .5cm;
+            .float;
+
+            ul {
+                .pull-left();
+                .float;
+
+                &.totals {
+                    .pull-right();
+                }
+
+                li {
+                    margin-right: 10pt;
+                    .pull-left();
+
+                    &.actions {
+                        display: none;
+                    }
+
+                    span {
+                        text-transform: uppercase;
+                    }
+
+                    .amount {
+                        display: block;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .filters {
+                li {
+                    text-transform: uppercase;
+                    &:not(.active) {
+                        display: none;
+                    }
+
+                    strong {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .commissions-list {
+            .expand,
+            .check {
+                .hide();
+            }
+
+            .commissions-list-header {
+                .float;
+
+                li {
+                    text-align: right;
+                    width: 130px;
+                    text-transform: uppercase;
+                    .pull-left();
+
+                    &.agent-info {
+                        text-align: left;
+                        .calc-width(100, 390);
+                    }
+
+                    &:last-child {
+                        padding-right: 5pt;
+                    }
+                }
+            }
+        }
+
+         /* Commision Item***/
+        .commision-item {
+            position: relative;
+            .float;
+
+            a {
+                &.has-arrow {
+                    background: none !important;
+                }
+            }
+
+            .data {
+                .calc-width(100, 390);
+                .pull-left();
+
+                .meta-data {
+                    display: block;
+                    width: 100%;
+                    clear: both;
+                    margin-top: 5pt;
+                }
+
+                h2 {
+                    line-height: 1;
+                    white-space: normal; 
+                    padding-right: 5px;
+                    display: block;
+                    vertical-align: top;
+                }
+
+                .icons {
+                    display: inline;
+                    line-height: 20px;
+                    height: 20px;
+                    overflow: hidden;
+                }
+
+                .icon-hold {
+                    position: absolute;
+                    left: -40px;
+                    top: 10px; 
+                    margin: auto;
+                }
+
+                .icons {
+                    color: @grey3;
+                    padding-left: 20px;
+                }
+
+                .icon-location,
+                .icon-guest-travelagent {
+                    background: none;
+                    padding: 0;
+                    display: block;
+                    line-height: 1;
+                    height: auto;
+                    .pull-left();
+                }
+
+                .icon-location {
+                        width: 70%;
+                }
+                 .icon-guest-travelagent {
+                        width: 30%;
+                 }
+            }
+
+            .info {
+                text-align: right;
+                .pull-right;
+                .float;
+
+                li {
+                    border-bottom: none;
+                    width: 130px;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0;
+                    .pull-left();
+
+                    &:last-child {
+                        padding-right: 5pt;
+                    }
+                }
+            }
+
+            .commission-details {
+                display: block !important;
+                th,
+                td {
+                    &:first-child {
+                        width: 10pt;
+                    }
+                    &.amount,
+                    &.owing {
+                        text-align: right;
+                        width: 130px;
+                        padding-right: 0;
+                    }
+
+                    &.owing {
+                        padding-right: 5pt;
+                    }
+                }
+            }
+        }
+    }
+
+/* Overbooking              ==============================*/
+    .overbooking-content {
+        #flexbox > .parent(row nowrap, '', '', '');
+
+        .row {
+            height: 18pt;
+            width: 100%;
+            box-shadow: inset 0 -1px 0 @grey2;
+            overflow: hidden;
+            #flexbox > .parent(row nowrap, '', '', '');
+        }
+
+        .cell {
+            line-height: 18pt;
+            text-align: right;
+            box-shadow: inset 1px 0 0 @grey2;
+            .size(18pt, 7.14%);
+            #flexbox > .parent(row nowrap, '', '', '');
+
+            .rooms {
+                font-size: 8pt;
+                font-style: italic;
+                color: @grey3;
+                display: none;
+
+                &.unavailable {
+                    color: @red;
+                }
+            }
+
+            .limit {
+                display: block;
+                padding: 0 8pt;
+                width: 100%;
+            }
+
+            &:last-child {
+                box-shadow: inset 1px 0 0 @grey2, inset -1px 0 0 @grey2;
+            }
+        }
+
+        .overbooking-timeline {
+            background-color: @grey1;
+            box-shadow: inset 0 -1px 0 @grey2, inset 0 1px 0 @grey2;
+            .size(44pt, 100%);
+            #flexbox > .parent(column wrap, space-between, '', '');
+
+            .wrapper {
+                padding: 5px;
+            }
+
+            .label {
+                margin-top: auto;
+                margin-left: auto;
+                font-weight: 600;
+                font-size: 8pt;
+                line-height: 22pt;
+                color: @textColor;
+            }
+
+            .row {
+                overflow: hidden;
+                .size(22pt, 100%);
+            }
+
+            .cell {
+                line-height: 22pt;
+                height: 22pt;
+
+                &.day {
+                    line-height: 1;
+                    text-align: center;
+                    text-transform: uppercase;
+                    padding: 4pt 6pt;
+                    flex-wrap: wrap;
+
+                    span {
+                        width: 100%;
+                        .show();
+                    }
+
+                    strong {
+                        font-weight: 600;
+                        width: 100%;
+                    }
+                }
+            }           
+
+            .limit {
+                font-size: 10pt;
+                font-weight: 600;
+            }
+        }
+
+        .overbooking-rooms {
+            width: 180px;
+            box-shadow: inset 1px 0 0 @grey2;
+
+            .row {
+                line-height: 1;
+                text-transform: uppercase;
+                text-align: right;
+                padding: 0 6pt;
+                #flexbox > .parent(column wrap, center, flex-end, '');
+            }
+        }
+
+        .overbooking-limits {
+            width: calc(~'100% - 180px');
+        }
+
+        /* Showing rooms left to sell ***/ 
+        &.showing-rooms {
+            .rooms {
+                display: block;
+                padding: 0 4pt 0 8pt;
+                width: 24pt;
+                box-shadow: inset -1px 0 0 @grey2;
+            }
+
+            .limit {
+                display: block;
+                padding-left: 4pt;
+                width: calc(~'100% - 24pt');
+            }
+        }
+    }
+
+/* Card Print               ==============================*/
+    .card-print {
+        .cards-wrapper {
+            .cards-header {
+                display: block !important;
+                height: auto;
+                margin-bottom: 20px;
+
+                .card-header {
+                    .float;
+
+                    .guest-image {
+                        .show;
+                        .pull-left;
+                        .square(40px);
+                        margin-right: 10px;
+
+                        .vip { .hide; }
+                    }
+
+                    form {
+                        .calc-width(100, 50);
+                        .pull-left;
+                        text-align: left;
+
+                        .status {
+                            display: inline-block;
+                            font-weight: inherit;
+                            font-size: inherit;
+                        }
+
+                        .name { font-size: 1.5em; font-weight: 600; }
+
+                        ul {
+                            li {
+                                display: inline-block;
+                                margin: 0 10px 0 0;
+                            }
+                        }
+
+                        .switch-button {
+                            vertical-align: middle;
+                            padding-left: 10px;
+                            margin-left: 10px;
+                            border-left: 1px solid rgba(0,0,0,0.1);
+                            width: auto;
+                            &.on { display: inline-block; }
+                            &:not(.on),
+                            .data-off,
+                            input { .hide; }
+
+                            .data-on { 
+                                .float;
+
+                                .value { .hide; }
+                                .switch-icon { 
+                                    .pull-left;
+                                    background: transparent;
+                                    border-radius: 0;
+                                    color: @black;
+                                    font-size: inherit;
+
+                                    &.vip {
+                                        font-weight: inherit;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .notice,
+        .card-tabs-nav { .hide; }
+
+        .card-tab { 
+            display: block !important; 
+            .float;
+
+            .entry {
+                width: 100%;
+                margin: 0;
+                .float;
+
+                /** Something in PMS that can't be removed? */
+                .check-block { display: inline-block; }
+
+                label { 
+                    display: inline-block;
+                    &:not(.checkbox):not(.radio) {
+                        width: 150px;
+                    }
+
+                    &.checkbox,
+                    &.radio {
+                        &:not(.checked),
+                        .icon-form,
+                        input { .hide; }
+
+                        float: none;
+
+                        &.checked {
+                            &.print-block { display: block !important; }
+                        }
+                    }
+                }
+
+                input,
+                .select {
+                    display: inline-block;
+                    vertical-align: middle;
+                    .calc-width(100,200);
+                }
+                
+                .select {
+                    &:after { .hide; }
+                }
+
+                .clear-value { .hide; }
+
+                input,
+                select,
+                label.checkbox,
+                label.radio {
+                    background: transparent;
+                    min-height: auto;
+                    height: auto;
+                    line-height: 18px;
+                    border:0;
+                    padding: 0;
+                    font-size: 14px;
+                    .box-shadow(none);
+                }
+            }
+
+            .holder,
+            .entry {
+                span {
+                    &.only-print { font-size: 14px; }
+                }
+            }
+
+            .h3 {
+                margin-bottom: 15px;
+                margin-top: 30px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .active-item {
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.15);
+
+                &.item-loyalty {
+                    .value {
+                        &.code,
+                        &.number {
+                            margin-rigth: 40px;
+                        }
+
+                        &.code {
+                            width: 100px;
+                        }
+
+                        &.number {
+                            width: 150px;
+                        }
+                    }
+                }
+                .card-logo {
+                    margin: 0 40px 0 0;
+                }
+                .primary { .hide; }
+                
+            }
+            .add-new-button { .hide; }
+        }
+    }
+
+/* Automatic Payments       ==============================*/
+    #automatic-payments {
+
+        .cell-checkbox {
+            .hide();
+        }
+
+        .grid-header {
+            display: grid;
+            grid-template-columns: 35% 15% 22% 14% 14%;
+            background-color: @grey1;
+
+            li {
+                font-size: 8pt;
+                line-height: 1;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin: 0;
+                padding: 4pt 4pt 4pt 0;
+
+                &.cell-reservation {
+                    padding-left: 4pt;
+                }
+            }
+
+            .cell-cost,
+            .cell-deposit {
+                text-align: right;
+            }
+        }
+
+        .grid-content {
+            .search-results {
+                li:not(.no-content) {
+                    &.autopayment-item {
+                        
+                        .info {
+                            font-size: 8pt;
+                            line-height: 1;
+                            #flexbox > .parent(row wrap, '', center, '');
+
+                            .label {
+                                font-size: 8pt;
+                                display: inline-block;
+                                float: none;
+                                margin-right: 3px;
+                            }
+
+                            .value {
+                                font-weight: 600;
+                            }
+                        }
+
+                        a {
+                            display: grid;
+                            grid-template-columns: 35% 15% 22% 14% 14%;
+                            background: transparent;
+                            padding: 0 4pt;
+
+                            &:before,
+                            &:after {
+                                .hide();
+                            }
+                        }
+
+                        [class*="cell-"] { 
+                            #flexbox > .parent(row wrap, '', center, '');
+                        }
+
+                        .cell-reservation {
+                            h2 {
+                                font-size: 9pt;
+                                width: 100%;
+                                .nowrap();
+                            }
+                        }
+
+                        .cell-card {
+
+                            .card-logo {
+                                margin-right: 4px;
+
+                                img {
+                                    .size(14px, auto);
+                                }
+                            }
+
+                            .info {
+                                width: 35%;
+                            }
+                        }
+
+                        .cell-cost,
+                        .cell-deposit {
+                            font-size: 9pt;
+                            #flexbox > .parent('', flex-end, '', '');
+                        }
+
+                        .cell-deposit {
+                            font-weight: 600;
+
+                            .deposit-due {
+                                font-size: 8pt;
+                                text-align: right;
+                                color: @grey3;
+                                text-transform: uppercase;
+                                width: 100%;
+                                .show();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/

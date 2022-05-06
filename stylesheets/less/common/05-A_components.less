@@ -1,0 +1,219 @@
+/* 1. ROOT
+==========================================================*/
+/* 2. TYPOGRAPHY
+==========================================================*/
+/* 3. GRAPHICAL ELEMENTS
+==========================================================*/
+/* 4. LAYOUT
+==========================================================*/
+/* 5. COMPONENTS
+==========================================================*/
+
+/* Login page 				==============================*/
+	#login-page {
+		.container {
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+
+			#login {
+				position: static;
+				text-align: left;
+		  		vertical-align: middle;
+				padding: 20px;
+				height: 100%;
+				overflow: auto;
+				.background(@white);
+				.show;
+
+				.logo {
+					margin: 0 auto;
+					max-width: 158px;
+					width: 50%;
+					height: auto;
+					.show;
+				}
+
+				.notice { margin: 20px 0 0 0; }
+
+				.form {
+					margin: 20px 0 10px;
+					border-bottom: 1px solid rgba(0,0,0,.1);
+
+					.entry { 
+						float: none;
+						margin-bottom: 20px;
+
+						label,
+						input {
+							margin-bottom: 0;
+							width: 100%;
+							.show; 
+						}
+
+						input {
+							font-size: 18px;
+							line-height: 50px;
+							.placeholder-text(18px, 50px, 400, @grey3);
+
+							&.error { .placeholder-text(18px, 50px, 400, @red); }
+						}
+					}
+
+					.action {
+						text-align: center;
+						margin-bottom: 20px;
+
+						.button,
+						a {
+							line-height: 50px;
+							.size(50px, 100%);
+						}
+
+						.button { 
+							font-size: 18px; 
+							margin-bottom: 10px;
+						}
+
+						a { 
+							font-size: 14px;
+							font-style: italic;
+						
+							&:active { .box-shadow(0 0 0 1px lighten(@logoPrimary, 20)); }
+						}
+					}
+				}
+
+				.support {
+					font-size: 14px;
+					line-height: 1.33em;
+					color: @grey3;
+					text-align: center;
+					font-style: italic;
+				}
+			}
+		}
+	}
+
+	/* 600px+		 			  			  ================*/
+	@media only screen and (min-width: 600px) {
+		#login-page {
+
+			.container {
+				position: relative;
+				text-align: center;
+				overflow: hidden;
+		   		.square(100%);
+
+		   		#login {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					padding: 40px;
+					width: 540px;
+					margin: -220px 0 0 -270px;
+					height: auto;
+					overflow: hidden;
+					.box-shadow(0 0 5px rgba(0,0,0,.2));
+					#border-radius > .rounded();
+	                				
+					.logo { .size(35px,158px); }
+
+					.form {
+						margin: 20px 0;
+
+						.entry {
+							input {
+								font-size: 16px;
+								line-height: 40px;
+								.placeholder-text(16px, 40px, 400, @grey3);
+
+								&.error { .placeholder-text(16px, 40px, 400, @red); }
+							}
+						}
+
+						.action {
+							.float;
+
+							.button,
+							a { width: auto; }
+
+							.button { 
+								padding: 0 40px; 
+								margin: 0;
+								.pull-right;
+
+								&.new { float: none; }
+							}
+
+							a { 
+								.pull-left;
+			
+								&:active { .box-shadow(none); }
+							}
+						}	
+					}
+				}
+			}	
+		}
+	}
+
+/* 6. IE
+==========================================================*/
+/* 7. RESPONSIVE
+==========================================================*/
+
+//CICO-5779 Added color codes
+
+.room-green {color:@green}
+.room-red {color:@red}
+.room-orange {color:@orange}
+.room-grey {color:@grey3}
+
+
+/* Added by qburst*/
+/*  CICO-9277 Stay card or view bill - need to be able to see deposit paid and balance prior to check in*/
+.deposit-balance{
+	.content-right{
+			.modal-options {
+				margin: 20px auto;
+				display: table;
+				.float;
+	
+				li { 
+			    	display: inline-block;
+			        cursor: pointer;
+			        margin: 0 0 0 1px;
+			        font-size: 14px;
+			        line-height: 40px;
+			        text-align: center;
+			        color: @textColor;
+			        font-weight: 600;
+			        text-transform: uppercase;
+			        padding: 0 20px;
+			        .pull-left;
+			        .clickable;
+			        #border-radius > .rounded(0);
+	
+			        &:hover { 
+			            color: @logoPrimary; 
+			            .box-shadow();
+			        }
+	
+			        &.active {
+			            cursor: default;
+			            color: @white;
+			            text-shadow: 1px 1px 0 rgba(0,0,0,.1);
+			            .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.3)");
+			            .gradient (@logoGradientEnd, @logoGradientStart);
+			        }
+	
+			        &:first-child { #border-radius > .left(); }
+			        &:last-child { #border-radius > .right(); }
+			    }
+			}
+			.select-card {
+				width: 420px;
+				.cards-list .active-item > span.primary{ right: -9px !important;}
+			}
+		}}

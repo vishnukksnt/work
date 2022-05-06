@@ -1,0 +1,45 @@
+#group-summary{
+	.ui-datepicker-trigger{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 99;
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+	.has-datepicker{
+		position: relative;
+		&.full-width{
+			.ui-datepicker-trigger{
+				width: 50%;
+			}
+		}
+		.not-selected{
+			font-size: 0px;
+		}
+	}
+		
+}
+
+.group-card{
+
+	&.cards.fullscreen .cards-wrapper .cards-header .card-header .card-actions {
+    	display: block;
+  	}
+
+	#enhance-stay{
+		background: #fcfcfc url(cssimg/texture.png) repeat;
+		.addon-tab{
+			h2, .price{
+				color: #202225;
+			}
+		}
+	}
+}
+
+
+#invoice-email{
+	width: 100%;
+}

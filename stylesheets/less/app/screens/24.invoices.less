@@ -1,0 +1,145 @@
+@media not print {
+    #find-invoices.content {
+        top: 120px;
+        .calc-height(100, 180);
+
+        &.no-content,
+        &.no-pagination { .calc-height(100, 120); }
+    }
+
+    .invoice-list-header {
+        height: 50px;
+        padding: 10px 100px 0 20px;
+        .float();
+
+        &.receipts-list-header {
+            padding-right: 50px;
+        }
+
+        li {
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: @grey3;
+            text-align: right;
+            margin: 0;
+            padding-right: 20px;
+            .pull-left();
+
+            &.expand {
+                width: 40px;
+            }
+
+            &.check {
+                width: 50px;
+                padding: 0;
+
+                label {
+                    margin: 0;
+                    padding: 0;
+                    height: 100%;
+                    width: 100%;
+
+                    .icon-form {
+                        margin: auto;
+                        right: 0;
+                    }
+                }
+            }
+
+            &.guest-details {
+                text-align: left;
+                .calc-width(100, 320);
+            }
+
+            &.number {
+                width: 100px;
+            }
+
+            &.balance {
+                width: 120px;
+            }
+        }
+
+        &.ar-invoices,
+        &.no-folio {
+            li {
+                &.guest-details {
+                    .calc-width(100, 220);
+                }
+            }
+        }
+
+        &.guest-deposit-invoices {
+            li {
+                &.guest-details {
+                    .calc-width(100, 420);
+                }
+            }
+        }
+    }
+
+    .invoice-list-content {
+        position: relative;
+        .calc-height(100, 50);
+
+        .search-results {
+            padding: 0 20px;
+        }
+
+        .iScrollVerticalScrollbar {
+            top: 0;
+            bottom: 0;
+        }
+
+        &.no-results { height: 100%; }
+
+        &.no-pagination {
+            .calc-height( 100, 80 );
+        }
+
+        &.no-folio {
+            .search-results {
+                li {
+                    &:not(.no-content).invoice-item {
+                        .bill {
+                            grid-template-columns: 30px calc(~'100% - 370px') 270px 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .invoice-list-header,
+    .invoice-list-content {
+        .expand-arrow {
+            .square(20px);
+            .icons > .rotate-up();
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            background-size: 100px;
+
+            &.black {
+                background-position: 4px -1279px;
+            }
+
+            &:not(.active) {
+                opacity: 0.2;
+                .icons > .rotate-down();
+            }
+        }
+    }
+
+    .invoice {
+        .hide();
+    }
+}

@@ -1,0 +1,645 @@
+/* Registration content ***/
+.registration-content {
+    position: relative;
+    height: calc(~'100% - 50px');
+
+    .button:not(.toggle):not(.blank) {
+        height: 40px;
+        width: 40px;
+        text-indent: -9999px;
+
+        &.with-icon {
+            padding: 0;
+
+            &.only-icon {
+                .icons {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        .icons {
+            top: 10px;
+        }
+    }
+    
+    &.with-complete-registration {
+        height: calc(~'100% - 140px');
+    }
+
+    > .wrapper { 
+        padding: 0;
+        min-height: 100%;
+        .float; 
+    }
+    
+    > .iScrollVerticalScrollbar { 
+        top: 50px !important; 
+    }
+
+    /* Billing information ***/
+    .billing-information {
+        display: none !important;
+    }
+
+    /* Registration summary ***/
+    .registration-summary {
+        position: relative;
+        min-height: calc(~'100vh - 130px');
+
+        /* Registration summary tabs navigation ***/
+        .bill-tabs {
+            height: 50px;
+            width: 100%;
+            background-color: @grey1;
+            box-shadow: inset 0 -1px 2px rgba(0,0,0,.2);
+
+            .iScrollHorizontalScrollbar { 
+                display: none;
+            }
+
+            .wrapper {
+                display: flex;
+                flex-flow: row nowrap;
+                min-width: 100%;
+            }
+
+            li {
+                position: relative;
+                margin: 0;
+                .size(50px, 140px);
+
+                .card-logo,
+                .payment {
+                    display: none;
+                }
+
+                .bill-toggle {
+                    position: relative;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    line-height: 1;
+                    color: @grey4;
+                    text-transform: uppercase;
+                    padding: 10px;
+                    cursor: pointer;
+                    background: rgba(0,0,0,.05);
+                    box-shadow: inset -1px 0 0 rgba(0,0,0,.1);
+                    .square(100%);
+
+                    .bill-entity-icon {
+                        position: relative;
+                        padding: 5px;
+                        background: @gcard;
+                        .square(24px);
+
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+
+                        .icons {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background-size: 70px;
+                            .square(24px);
+
+                            &.icon-company {
+                                background-color: @ccard;
+                                background-position: 6px -2013px;
+                            }
+
+                            &.icon-travel-agent {
+                                background-color: @tacard;
+                                background-position: 6px -2082px;
+                            }
+                        }
+                    }
+
+                    .price {
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding-left: 5px;
+                        width: calc(~'100% - 24px');
+
+                        span:not(.currency) { 
+                            font-size: 13px;
+                            font-weight: 400;
+                            .show;
+                        }
+                    }
+
+                    &.error {
+                        &:after {
+                            content: "!";
+                            position: absolute;
+                            top: 1px;
+                            left: 1px;
+                            font-size: 12px;
+                            line-height: 14px;
+                            text-align: center;
+                            font-weight: 600;
+                            color: @white;
+                            background: @red;
+                            .square(16px);
+                            #border-radius > .rounded(14px);
+                        }
+                    }
+
+                    &.has-icon {
+                        .icons:not(.icon-company):not(.icon-travel-agent) {
+                            background-color: @white;
+                            background-size: 80px;
+                            border-radius: 3px;
+                            .square(16px);
+                            top: 5px;
+                            left: 5px;
+                            position: absolute;
+
+                            &.icon-room-lock {
+                                background-position: 1px -6026px;
+                            }
+
+                            &.icon-bill-open {
+                                background-position: 1px -8266px;
+                            }
+                        }
+
+                        &.error {
+                            &:after {
+                                top: 25px;
+                            }
+                        }
+                    }
+                }
+
+                &.new-bill {
+                    .hide();
+                }
+
+                &.with-button {
+
+                    .button {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        display: none;
+                        background-position: 6px -3934px;
+                        background-color: @grey1;
+                        width: 24px;
+                        height: 24px;
+                        line-height: 24px;
+                        padding: 0;
+                    }
+                }
+
+                /*&:not(.ui-tabs-active),
+                &:not(.active) {
+                    padding-top: 5px;
+                }*/
+
+                &.ui-tabs-active,
+                &.active {
+                    /*padding-top: 0;*/
+                    
+                    .bill-toggle {
+                        cursor: default;
+                        pointer-events: none;
+                        color: @textColor;
+                        font-weight: 600;
+                        background-color: @white;
+                        //background-color: rgba(0,0,0,.15);
+                    }
+
+                    &.with-button {
+                        .button {
+                            display: block;
+                        }
+                    }
+                }
+
+            }
+
+            /*&.with-incoming {
+                .calc-width(100, 280);
+            }*/
+        }
+
+        .incoming-billing {
+            display: none !important;
+        }
+
+
+        /* Registration summary tabs ***/
+        .bill-summary {
+            position: relative;
+            display: flex;
+            flex-flow: row wrap;
+
+            /* Short bill summary ***/
+            .bill-summary-wrapper {
+                width: 100%;
+                background-color: @white;
+                box-shadow: inset 0 -2px 0 @grey2;
+
+                .scrollable {
+                    max-width: 40vw;
+                    padding: 10px;
+                    height: 60px;
+                }
+
+                .iScrollHorizontalScrollbar { 
+                    display: none;
+                }
+
+                li {
+                    height: 40px;
+                    margin: 0;
+                    display: flex;
+                    flex-flow: row nowrap;
+
+                    &:not(.add-new) {
+                        display: none;
+                    }
+
+                    .button {
+                        overflow: hidden;
+
+                        &:not(:last-child) {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+                .allowance {
+                    display: none;
+                }
+            }
+        }   
+    }
+
+    /* Printables ***/
+    .invoice,
+    .registration-card { .hide; }
+
+    /* Total Stay Fees ***/
+    .total-stay-fees {
+       width: 100%;
+
+        /* Reservation Overview ***/
+        .overview {
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-items: center;
+
+            .toggle {
+                height: 40px;
+                .show();
+
+                .title {
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-transform: uppercase;
+                    .show;
+                }
+
+                .value {
+                    font-size: 24px;
+                    line-height: 24px;
+                    font-weight: 600;
+                    .show;
+                    .nowrap();
+
+                    &.red { color: @red; }
+                    &.green { color: @green; }
+                }
+
+                &.has-arrow {
+                    padding: 0 30px;
+                }
+            }
+
+            .button { 
+                position: absolute;
+                top: 10px;
+                .show;
+
+                &.brand-colors { 
+                    display: none;
+                }
+
+                &.blue {
+                    right: 10px;
+                }
+
+                &.green {
+                    right: 60px;
+                }
+
+                &.disabled {
+                    opacity: .3;
+                }
+            }
+
+            .checkbox {
+                display: none;
+            }
+        }
+
+        /* Reservation Signature / Reservation Payment Details ***/
+        .signature,
+        .item-payment {
+            display: none !important;
+        }
+
+        /* Fee details ***/   
+        .details {
+            padding: 0 10px;
+
+            /* Total stay fees table ***/
+            .total-fees {
+                width: 100%;
+                font-size: 14px;
+                line-height: 21px;
+                text-transform: uppercase;
+                table-layout: fixed;
+                border-collapse: collapse; 
+                border-spacing: 0;
+
+                .button {
+                    height: 30px;
+                    width: 30px;
+                    max-width: 30px;
+                    max-height: 30px;
+                    flex: 1 0 auto;
+
+                    .icons {
+                        top: 5px;
+                        transform: scale(.75);
+                    }
+                } 
+
+                tr {
+                    display: grid;
+                    grid-template-columns: 15ch 1fr 1fr 40px;
+                    grid-column-gap: 10px;
+                    grid-row-gap: 0;
+                    width: 100%;
+                    height: 40px;
+
+                    &:nth-child(even) {
+                        background-color: rgba(0,0,0,.05);
+                    }
+                } 
+
+                .pagination {
+
+                    .numbers-pagination {
+                        position: static;
+                        padding: 5px 0;
+                        height: 40px;
+                        background: transparent;
+                        box-shadow: none;
+                    }
+
+
+                    .button {
+                        font-size: 14px;
+                        line-height: 30px;
+
+                        &:before {
+                            top: 10px;
+                        }
+
+                        &.number {
+                            text-indent: 0;
+                        }
+
+                        &.next {
+                            &:before {
+                                right: 10px;
+                            }
+                        }
+
+                        &.prev {
+                            &:before {
+                                left: 12px;
+                            }
+                        }
+                    }
+                }
+
+                /*.numbers-pagination {
+                    height: 40px;
+
+                    .button {
+                        
+                        font-size: 14px;
+                        line-height: 30px;
+
+                        &:not(.prev),
+                        &:not(.next) {
+                            text-indent: 0;
+                        }
+                    }
+                }*/
+
+                th,
+                td {
+                    &.align-right {
+                        text-align: right;
+                    }
+                }
+
+                td {
+                    display: flex;
+                    align-items: center;
+                    padding: 5px;
+                    height: 40px;
+
+                    &.credits {
+                        .button { 
+                            margin-left: 5px;
+                        }
+                    }
+
+                    &.align-right {
+                        justify-content: flex-end;
+                    }
+                }
+
+                thead {
+                    th{
+                        &:nth-child(2),
+                        &:nth-child(3),
+                        &:nth-child(6) {
+                            display: none;
+                        }
+                    }
+                }
+
+                tbody {
+                    td {
+                        &:nth-child(2),
+                        &:nth-child(3),
+                        &:nth-child(6) {
+                            display: none;
+                        }
+                    }
+                }
+
+                tfoot {
+                    tr {
+                        grid-column-gap: 0;
+                        min-height: 40px;
+                        height: auto;
+                        
+                        &.pagination {
+                            background-color: rgba(0,0,0,.1);
+                            grid-template-columns: 1fr ;
+                        }
+
+                        &.active {
+                            background-color: @white;
+                            grid-template-columns: 2fr 1fr 40px;
+
+                            td:nth-child(4) { .hide; }
+                        }
+                    }    
+
+                    td {
+                        line-height: 1.2;
+                        min-height: 40px;
+                        height: auto;
+
+                        &.total-label {
+                            justify-content: flex-end;
+
+                            .button {
+                                margin-right: 5px;
+                            }
+                        }
+
+                        &.total-value {
+                            font-weight: 600;
+                            justify-content: flex-end;
+
+                            strong {
+                                color: @logoPrimary;
+                            }
+
+                            &.red,
+                            &.red strong { color: @red; }
+                            &.green,
+                            &.green strong { color: @green; }
+                        }
+                    }                                 
+                }
+            }
+
+            /* Signature / Charges **/
+            &.signature-wrapper,
+            &.charges-accepted {
+                display: none !important
+            }
+        }
+    }
+
+    .signature-header {
+        padding-top: 20px;
+
+        h2 { 
+            margin: 0;
+            font-size: 24px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .button {
+            line-height: 40px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    #signature {
+        margin: 0 10px;
+        width: calc(~'100% - 20px');
+    }
+
+
+}
+
+/* Complete registration ***/
+.complete-registration {
+    padding: 10px;
+    background-color: @white;
+    box-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    z-index: 9040;
+    #flexbox > .parent(column, flex-end, center, space-between);
+
+    &.form {
+        .entry {
+            flex: 1 1 auto;
+            margin: 0;
+            width: 100%;
+            .float;
+
+            .checkbox {
+                font-size: 14px;
+                line-height: 20px;
+                text-transform: uppercase;
+                white-space: normal;
+                .show;
+            }
+
+            .icon-form {
+                background-color: @grey1;
+            }
+
+            .termsandconditions-checkbox {
+                padding: 0;
+                .square(20px);
+            }
+
+            .agree-terms-and-conditions { 
+                display: inline;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+
+            .checkbox {
+                margin-bottom: 10px;
+
+                .icon-checkbox { 
+                    top: 0;
+                    left: 0; 
+                }
+
+                &.single { margin: 15px 0 0 0; }
+
+                &:last-child { 
+                    clear: both; 
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .actions {
+        flex: 0 1 auto;
+        width: 100%;
+        margin-top: 10px;
+
+        .button {
+            font-size: 18px;
+            line-height: 50px;
+            width: 100%;
+            padding: 0 10px;
+        }
+    }
+} 
